@@ -1,0 +1,194 @@
+﻿using BusinessLogicTier;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using DataTier;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+
+using System.Web.UI.WebControls;
+
+public partial class admin_DownlineReport : System.Web.UI.Page
+{
+    Data ObjData = new Data();
+    clsState objState = new clsState();
+    clsUser objUser = new clsUser();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            if (Session["userid"] != null)
+            {
+
+                TxtUserId.Text = Session["userid"].ToString();
+                TxtUserId.Enabled = false;
+            }
+            else
+            {
+                Response.Redirect("logout.aspx");
+            }
+        }
+    }
+    void loaduser()
+    {
+        objUser.UserId = TxtUserId.Text;
+        DataTable dt = new DataTable();
+        dt = getUserDirectLeft(objUser);
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+    }
+
+    public DataTable getUserDownline(clsUser objUser)
+    {
+        string str_query = "";
+
+        str_query = @"; WITH MyCTE
+AS ( SELECT id,userid,username,   sponserid,1 AS userlevel
+FROM userdetail
+WHERE UserId ='" + objUser.UserId + @"'
+UNION ALL
+SELECT UserDetail.id,userdetail.userid,userdetail.username,  userdetail.sponserid ,MyCTE.userlevel+1 
+FROM userdetail
+INNER JOIN MyCTE ON userdetail.sponserid = MyCTE.userid
+WHERE userdetail.userid !='" + objUser.UserId + @"' )
+SELECT MyCTE.*,ud.username as parentname
+FROM MyCTE left join userdetail ud on mycte.sponserid=ud.userid ";
+
+
+
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(str_query);
+        }
+        catch (Exception ex)
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+        return dt;
+    }
+
+    public DataTable getUserDirectLeft(clsUser objUser)
+    {
+        //string str_query = "";
+        //            string str_query = @"DECLARE @child NVARCHAR(100)
+        //
+        //SELECT @child=userid FROM UserDetail WHERE ParentUserId='" + objUser.UserId + @"' AND StandingPosition='1'
+        //; WITH MyCTE
+        //AS ( SELECT id,userid,username,ParentUserId,Case when isnull(Status,0)=1 then 'active' else 'deactive' end as Status,1 AS userlevel
+        //FROM userdetail
+        //WHERE UserId =@child
+        //UNION ALL
+        //SELECT UserDetail.id,userdetail.userid,userdetail.username,  userdetail.ParentUserId ,Case when isnull(UserDetail.Status,0)=1 then 'active' else 'deactive' end as Status,MyCTE.userlevel+1 
+        //FROM userdetail
+        //INNER JOIN MyCTE ON userdetail.parentuserid = MyCTE.userid
+        //WHERE userdetail.userid !=@child )
+        //SELECT MyCTE.*,ud.username as parentname
+        //FROM MyCTE left join userdetail ud on mycte.parentuserid=ud.userid ";
+
+
+
+        //            DataTable dt = null;
+        //            ObjData.StartConnection();
+        //            try
+        //            {
+        //                dt = ObjData.RunDataTable(str_query);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                dt = null;
+        //            }
+        //            ObjData.EndConnection();
+        //            return dt;
+
+        SqlParameter[] para ={
+                                     new SqlParameter ("@UserId",objUser.UserId),
+
+                                     };
+        DataSet ds = DBHelper.ExecuteQuery("GetDownlineStandingWiseLeft", para);
+
+        DataTable dt = ds.Tables[0];
+
+        return dt;
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        loaduser();
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Dashboard.aspx");
+    }
+    protected void ExportToExcel(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=DownlineReport.xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+        using (StringWriter sw = new StringWriter())
+        {
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            //To Export all pages
+
+
+            GridView1.HeaderRow.BackColor = Color.White;
+            foreach (TableCell cell in GridView1.HeaderRow.Cells)
+            {
+                cell.BackColor = GridView1.HeaderStyle.BackColor;
+            }
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                row.BackColor = Color.White;
+                foreach (TableCell cell in row.Cells)
+                {
+                    if (row.RowIndex % 2 == 0)
+                    {
+                        cell.BackColor = GridView1.AlternatingRowStyle.BackColor;
+                    }
+                    else
+                    {
+                        cell.BackColor = GridView1.RowStyle.BackColor;
+                    }
+                    cell.CssClass = "textmode";
+                }
+            }
+
+            GridView1.RenderControl(hw);
+
+            //style to format numbers to string
+            string style = @"<style> .textmode { } </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        /* Verifies that the control is rendered */
+    }
+
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "myteam")
+        {
+            int index = Convert.ToInt32(e.CommandArgument.ToString());
+            Label lbluserid = (Label)GridView1.Rows[index].FindControl("lbluserid");
+            objUser.UserId = lbluserid.Text;
+            DataTable dt = new DataTable();
+            dt = getUserDirectLeft(objUser);
+            GridView2.DataSource = dt;
+            GridView2.DataBind();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal();", true);
+        }
+    }
+}
