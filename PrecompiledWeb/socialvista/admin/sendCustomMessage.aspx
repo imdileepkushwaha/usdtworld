@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="admin_sendCustomMessage, App_Web_ypc30v0j" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="admin_sendCustomMessage, App_Web_ng24kyl5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 

@@ -1,4 +1,4 @@
-﻿<%@ page title="Define Recharge Commission" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_DownlineReport, App_Web_voj4fkuq" %>
+﻿<%@ page title="Define Recharge Commission" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_DownlineReport, App_Web_ikc0yibi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
         <link href="../css/radio/style.css" rel="stylesheet" />

@@ -298,141 +298,151 @@ body {
 
     <!--(Ends)-->
     <link href="../dist/css/user-profile.css" rel="stylesheet" />
+    <link href="css/dashboard-page.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 class="fw-semibold mb-0">Dashboard</h6>
-        <ul class="d-flex align-items-center gap-2">
-            <li class="fw-medium">
-                <a href="#" class="d-flex align-items-center gap-1 hover-text-primary">
-                    <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-                    Dashboard
-                </a>
-            </li>
+    <div class="sv-dashboard-page">
 
-        </ul>
-    </div>
-	
-      <div class="row">
-    
-    <!-- Chart Column (6 width) -->
-   
-<div class="col-md-4">	
- 
+    <div class="sv-dash-header">
+        <div class="sv-dash-header__glow sv-dash-header__glow--1"></div>
+        <div class="sv-dash-header__glow sv-dash-header__glow--2"></div>
+        <div class="sv-dash-header__grid"></div>
 
-    <div id="crypto-list"></div>
-
- 
-</div>
-
-           <div class="col-md-8">
-      <div class="chart-box">
-        
-        <!-- TradingView Widget -->
-        <div class="tradingview-widget-container">
-          <div id="tradingview_chart"></div>
+        <div class="sv-dash-header__main">
+            <div class="sv-dash-header__icon">
+                <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <div class="sv-dash-header__text">
+                <span class="sv-dash-header__eyebrow">
+                    <span class="sv-dash-header__pulse"></span>
+                    Live Trading Panel
+                </span>
+                <h1>Trading Dashboard</h1>
+                <p>Live markets, wallets &amp; performance at a glance</p>
+                <div class="sv-dash-header__tags">
+                    <span><i class="fa-solid fa-bolt"></i> Real-time</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
+                    <span><i class="fa-solid fa-wallet"></i> Multi-wallet</span>
+                </div>
+            </div>
         </div>
 
-      </div>
+        <div class="sv-dash-header__actions">
+            <a href="Dashboard.aspx" class="sv-dash-breadcrumb">
+                <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                Dashboard
+            </a>
+            <div class="sv-dash-header__meta">
+                <span class="sv-dash-header__meta-label">Member</span>
+                <strong><asp:Label ID="lblHeaderUser" runat="server" Text="—" /></strong>
+            </div>
+        </div>
     </div>
-  </div>
-	
-    
-	
-  <div class="row">
-    
-    <div class="col-md-12">
-      <div class="scroll-box">
-        <div class="scroll-text">
-                            <span class="w-70 text-secondary-light fw-medium">Welcome Dear,
-            <asp:Label ID="lblusername" runat="server" Text="Label"></asp:Label>Your Trade Id is  <asp:Label ID="lbluserid" runat="server" Text="Label"></asp:Label>, Happy Trading !</span> </marquee>
 
+    <div class="row sv-market-row g-3">
+        <div class="col-lg-4 col-md-5">
+            <div class="sv-panel h-100">
+                <div class="sv-panel__head">
+                    <h6><i class="fa-solid fa-coins" style="margin-right:8px;color:#c4b5fd;"></i>Live Crypto</h6>
+                    <span>Top 5</span>
+                </div>
+                <div class="sv-panel__body">
+                    <div id="crypto-list" class="crypto-box"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-7">
+            <div class="sv-panel h-100">
+                <div class="sv-panel__head">
+                    <h6><i class="fa-solid fa-chart-line" style="margin-right:8px;color:#67e8f9;"></i>Market Chart</h6>
+                    <span>BTC / USDT</span>
+                </div>
+                <div class="sv-panel__body p-0">
+                    <div class="chart-box">
+                        <div class="tradingview-widget-container">
+                            <div id="tradingview_chart"></div>
+                        </div>
                     </div>
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </div>
-           <div class="card mt-24">
+    <div class="scroll-box">
+        <div class="scroll-text">
+            <span class="sv-welcome-label">Welcome,</span>
+            <asp:Label ID="lblusername" runat="server" Text="Member"></asp:Label>
+            &nbsp;&bull;&nbsp; Trade ID:
+            <asp:Label ID="lbluserid" runat="server" Text="—"></asp:Label>
+            &nbsp;&bull;&nbsp; Happy Trading!
+        </div>
+    </div>
+
+    <div class="card mt-24 sv-wallet-section">
                 <div class="card-header">
                     <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                        <h6 class="mb-2 fw-bold text-lg mb-0">My Wallet</h6>
-
+                        <div>
+                            <h6 class="mb-1 fw-bold text-lg mb-0">My Wallet</h6>
+                            <p class="sv-wallet-section__sub mb-0">Track your nonworking, working &amp; topup balances</p>
+                        </div>
+                        <span class="sv-wallet-section__badge"><i class="fa-solid fa-wallet"></i> 3 Wallets</span>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <div class="row gy-4">
+                    <div class="row gy-4 sv-wallet-grid">
 
-                            <div class="col-xxl-4 col-sm-4">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                             <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Nonworking Wallet</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="Lblnonworking" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                      
-                         
                         <div class="col-xxl-4 col-sm-4">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                              <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Working Wallet</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="Lblworking" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-wallet-card sv-wallet-card--nonworking">
+                                <div class="sv-wallet-card__glow"></div>
+                                <div class="sv-wallet-card__top">
+                                    <span class="sv-wallet-card__icon">
+                                        <iconify-icon icon="mdi:wallet-outline" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-wallet-card__chip">Nonworking</span>
                                 </div>
+                                <p class="sv-wallet-card__label">Nonworking Wallet</p>
+                                <div class="sv-wallet-card__amount">
+                                    <asp:Label ID="Lblnonworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-wallet-card__currency">USD</span>
+                                </div>
+                                <p class="sv-wallet-card__hint">Reserved / inactive balance</p>
                             </div>
                         </div>
 
-
-
-                              <div class="col-xxl-4 col-sm-4">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-3">
-                                <div class="card-body p-0">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-yellow text-white flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Topup Wallet</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="Lbltoupup" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                        <div class="col-xxl-4 col-sm-4">
+                            <div class="sv-wallet-card sv-wallet-card--working">
+                                <div class="sv-wallet-card__glow"></div>
+                                <div class="sv-wallet-card__top">
+                                    <span class="sv-wallet-card__icon">
+                                        <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-wallet-card__chip">Active</span>
                                 </div>
+                                <p class="sv-wallet-card__label">Working Wallet</p>
+                                <div class="sv-wallet-card__amount">
+                                    <asp:Label ID="Lblworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-wallet-card__currency">USD</span>
+                                </div>
+                                <p class="sv-wallet-card__hint">Available for trading &amp; income</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-4 col-sm-4">
+                            <div class="sv-wallet-card sv-wallet-card--topup">
+                                <div class="sv-wallet-card__glow"></div>
+                                <div class="sv-wallet-card__top">
+                                    <span class="sv-wallet-card__icon">
+                                        <iconify-icon icon="mdi:cash-plus" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-wallet-card__chip">Topup</span>
+                                </div>
+                                <p class="sv-wallet-card__label">Topup Wallet</p>
+                                <div class="sv-wallet-card__amount">
+                                    <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-wallet-card__currency">USD</span>
+                                </div>
+                                <p class="sv-wallet-card__hint">Deposit &amp; activation funds</p>
                             </div>
                         </div>
                         
@@ -514,9 +524,11 @@ body {
             </div>
         </div>
     </section>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
+    <div class="sv-dashboard-page">
     <div class="row gy-8">
         <div class="col-lg-12">
             <div class="">
@@ -543,9 +555,7 @@ body {
                 </div>
             </div>
 	</div>
-	<div  class="row">
-    
-	</div><br>
+	
 	<div  class="row" style="display:none">
         <div class="col-12 d-none">
             <div class="card h-100">
@@ -613,47 +623,74 @@ body {
 						  </div>
 						</div>
 	
-	<br>
-                       <div class="row">
+
+                       <div class="row g-3 align-items-stretch">
 
                                <div class="col-lg-6">
-            <div class="card h-100">
-                <div class="card-body p-24">
+            <div class="sv-ref-card">
+                <div class="sv-ref-card__glow" aria-hidden="true"></div>
 
-                    <div id="dvlink" runat="server" visible="True">
-                        <asp:Label class="form-label" ID="Label1" runat="server" Text="Refrence Link"></asp:Label>
-                        <div class="input-group mb-24">
-                            <asp:TextBox ID="TxtLeftLinkLink" runat="server" CssClass="form-control" />
-                            <asp:Button ID="Button1" runat="server" Text="Copy" CssClass="btn btn-primary" OnClientClick="CopyToClipboard()" />
-
-
+                <div id="dvlink" runat="server" visible="True">
+                    <div class="sv-ref-card__head">
+                        <span class="sv-ref-card__icon">
+                            <iconify-icon icon="solar:link-round-bold" class="icon"></iconify-icon>
+                        </span>
+                        <div class="sv-ref-card__titles">
+                            <asp:Label ID="Label1" runat="server" Text="Reference Link" CssClass="sv-ref-card__title"></asp:Label>
+                            <p class="sv-ref-card__sub">Share your link and invite new members to your team</p>
                         </div>
-
+                        <span class="sv-ref-card__badge"><i class="fa-solid fa-user-plus"></i> Invite</span>
                     </div>
-                    <div  style="display:none">
-                        <asp:Label class="form-label" ID="Label2" runat="server" Text="Affiliate Link (RIGHT)"></asp:Label>
-                        <div class="input-group mb-0">
-                            <asp:TextBox ID="TxtRightLink" runat="server" CssClass="form-control" />
-                            <asp:Button ID="Button2" runat="server" Text="Copy" CssClass="btn btn-primary" OnClientClick="CopyToClipboard2()" />
 
+                    <div class="sv-ref-card__body">
+                        <div class="sv-ref-card__input-wrap">
+                            <span class="sv-ref-card__input-icon"><i class="fa-solid fa-link"></i></span>
+                            <asp:TextBox ID="TxtLeftLinkLink" runat="server" CssClass="sv-ref-card__input form-control" ReadOnly="true" />
                         </div>
+                        <asp:Button ID="Button1" runat="server" Text="Copy Link" CssClass="sv-ref-card__copy" OnClientClick="return CopyToClipboard();" />
+                    </div>
 
+                    <p class="sv-ref-card__hint">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Copy and share via WhatsApp, Telegram, or social media
+                    </p>
+                </div>
+
+                <div style="display:none">
+                    <asp:Label class="form-label" ID="Label2" runat="server" Text="Affiliate Link (RIGHT)"></asp:Label>
+                    <div class="input-group mb-0">
+                        <asp:TextBox ID="TxtRightLink" runat="server" CssClass="form-control" />
+                        <asp:Button ID="Button2" runat="server" Text="Copy" CssClass="btn btn-primary" OnClientClick="return CopyToClipboard2();" />
                     </div>
                 </div>
             </div>
         </div>
-                           <div class="col-md-6 radius-8 border h-15 mt-3">  <div class="d-flex justify-content-between align-items-center mt-3 mb-3 ">
-                               
-                               
-
-                                     <span class="mb-2 fw-medium text-secondary-light text-lg"><b>Investment Amount</b></span> <br />
-                                    <h3 class="mb-0"> <asp:Label ID="lblinvamount" runat="server" Text="Label"></asp:Label> $</h3>
-                                    <small>
-                                        <asp:Label ID="Lblactivatedate2" runat="server" Text="01/07/2024"></asp:Label></small>
-                               
-                                <a href="javascript:void(0)" class="btn btn-success btn-sm">
-                                    <asp:Label ID="lblstatus" runat="server" Text="Label"></asp:Label></a>
-                            </div></div>
+                           <div class="col-lg-6">
+                               <div class="sv-invest-card">
+                                   <div class="sv-invest-card__glow" aria-hidden="true"></div>
+                                   <div class="sv-invest-card__head">
+                                       <span class="sv-invest-card__icon">
+                                           <iconify-icon icon="mdi:chart-areaspline" class="icon"></iconify-icon>
+                                       </span>
+                                       <div class="sv-invest-card__titles">
+                                           <span class="sv-invest-card__label">Investment Amount</span>
+                                           <p class="sv-invest-card__sub">Your active package value</p>
+                                       </div>
+                                       <a href="javascript:void(0)" class="sv-invest-card__status">
+                                           <i class="fa-solid fa-circle-check"></i>
+                                           <asp:Label ID="lblstatus" runat="server" Text="Active"></asp:Label>
+                                       </a>
+                                   </div>
+                                   <div class="sv-invest-card__amount-row">
+                                       <asp:Label ID="lblinvamount" CssClass="heading sv-invest-card__value" runat="server" Text="0"></asp:Label>
+                                       <span class="sv-invest-card__currency">USD</span>
+                                   </div>
+                                   <p class="sv-invest-card__date">
+                                       <i class="fa-solid fa-calendar-check"></i>
+                                       Activated: <asp:Label ID="Lblactivatedate2" runat="server" Text="—"></asp:Label>
+                                   </p>
+                               </div>
+                           </div>
 
                             <div class="col-md-5 radius-8 border h-100 purple-light-end-1 gap-1 mb-8 " style="display:none"> 
 
@@ -712,103 +749,82 @@ body {
                         </div>
                    
               
-            <div class="card mt-24">
+            <div class="card mt-24 sv-earn-section">
                 <div class="card-header">
                     <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                        <h6 class="mb-2 fw-bold text-lg mb-0">Earning Performance</h6>
-
+                        <div>
+                            <h6 class="mb-1 fw-bold text-lg mb-0">Earning Performance</h6>
+                            <p class="sv-earn-section__sub mb-0">Track direct, daily, level &amp; total income</p>
+                        </div>
+                        <span class="sv-earn-section__badge"><i class="fa-solid fa-chart-line"></i> Live Stats</span>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <div class="row gy-4">
+                    <div class="row gy-4 sv-earn-grid">
 
                             <div class="col-xxl-6 col-sm-6">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                             <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Direct Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lblDirectincome" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--direct">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:account-cash" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Direct</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Direct Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblDirectincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
 
                          <div class="col-xxl-6 col-sm-6" style="display:none">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                               <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Daily Direct Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lbldailydirect" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--direct">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:calendar-today" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Today</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Daily Direct Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lbldailydirect" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
                             <div class="col-xxl-6 col-sm-6" style="display:none">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" data-bs-toggle="modal" data-bs-target="#modal-today">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                                <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Level Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lblMatching" CssClass="heading" runat="server" Text="0"></asp:Label></h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--level" data-bs-toggle="modal" data-bs-target="#modal-today">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:stairs" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Level</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Level Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblMatching" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-1">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-primary-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
-                                              <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Daily Income</span>
-                                                <h6 class="fw-semibold">
-                                                  <asp:Label ID="lblroi" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--daily">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:cash-clock" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Daily</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Daily Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblroi" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
@@ -816,118 +832,87 @@ body {
 
 
                               <div class="col-xxl-6 col-sm-6">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-3">
-                                <div class="card-body p-0">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-yellow text-white flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Level ROI Income</span>
-                                                <h6 class="fw-semibold">
-                                                       <asp:Label ID="lblhelp" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                                   
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--level">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:layers-triple" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">ROI</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Level ROI Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblhelp" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
                         
                            <div class="col-xxl-6 col-sm-6" style="display:none">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-3">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-yellow text-white flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mingcute:user-follow-fill" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Single Leg Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lblreward" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--reward">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mingcute:user-follow-fill" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Leg</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Single Leg Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblreward" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
 
 
                               <div class="col-xxl-6 col-sm-6">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-3">
-                                <div class="card-body p-0" >
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-yellow text-white flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:currency-usd" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Total Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lbltotal" CssClass="heading" runat="server" Text="0"></asp:Label> $</h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--total">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:cash-multiple" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Total</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Total Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lbltotal" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xxl-6 col-sm-6" style="display:none">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-3">
-                                <div class="card-body p-0" data-bs-toggle="modal" data-bs-target="#modal-month">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-purple text-white flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mingcute:user-follow-fill" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Bonanza</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lblCurrentMonth" CssClass="heading" runat="server" Text="0"></asp:Label></h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--bonus" data-bs-toggle="modal" data-bs-target="#modal-month">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:gift" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">Bonus</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Bonanza</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lblCurrentMonth" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xxl-6 col-sm-6" style="display:none">
-                            <div class="card p-3 shadow-none radius-8 border h-100 purple-light-end-2">
-                                <div class="card-body p-0" data-bs-toggle="modal" data-bs-target="#modal-total">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-8">
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="mb-0 w-48-px h-48-px bg-success-main flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mingcute:user-follow-fill" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-2 fw-medium text-secondary-light text-sm">Total Income</span>
-                                                <h6 class="fw-semibold">
-                                                    <asp:Label ID="lbltotalincome" CssClass="heading" runat="server" Text="0"></asp:Label></h6>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="sv-earn-stat sv-earn-stat--total" data-bs-toggle="modal" data-bs-target="#modal-total">
+                                <div class="sv-earn-stat__glow"></div>
+                                <div class="sv-earn-stat__top">
+                                    <span class="sv-earn-stat__icon">
+                                        <iconify-icon icon="mdi:chart-timeline-variant" class="icon"></iconify-icon>
+                                    </span>
+                                    <span class="sv-earn-stat__chip">All Time</span>
+                                </div>
+                                <p class="sv-earn-stat__label">Total Income</p>
+                                <div class="sv-earn-stat__amount">
+                                    <asp:Label ID="lbltotalincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
                         </div>
@@ -3671,35 +3656,70 @@ Profit Share Budget</p>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
     <script type="text/javascript" language="javascript">
-        function CopyToClipboard() {
-
-
-            /* Get the text field */
-            var copyText = document.getElementById('<%=TxtLeftLinkLink.ClientID%>');
-
-            /* Select the text field */
-            copyText.select();
-
-            /* Copy the text inside the text field */
-            document.execCommand("Copy");
-
-            /* Alert the copied text */
-            alert("Copied the text: " + copyText.value);
+        function showRefCopyToast(message) {
+            var toast = document.getElementById('sv-ref-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'sv-ref-toast';
+                toast.className = 'sv-ref-toast';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.classList.add('sv-ref-toast--show');
+            clearTimeout(window._svRefToastTimer);
+            window._svRefToastTimer = setTimeout(function () {
+                toast.classList.remove('sv-ref-toast--show');
+            }, 2500);
         }
+
+        function setRefCopyBtnState(btn, defaultText) {
+            if (!btn) return;
+            btn.classList.add('sv-ref-card__copy--done');
+            btn.value = 'Copied!';
+            clearTimeout(btn._svCopyResetTimer);
+            btn._svCopyResetTimer = setTimeout(function () {
+                btn.classList.remove('sv-ref-card__copy--done');
+                btn.value = defaultText;
+            }, 2000);
+        }
+
+        function copyRefText(inputEl, btn, defaultText) {
+            if (!inputEl || !inputEl.value) return false;
+
+            var text = inputEl.value;
+            var onSuccess = function () {
+                showRefCopyToast('Link copied to clipboard!');
+                setRefCopyBtnState(btn, defaultText);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(function () {
+                    inputEl.select();
+                    document.execCommand('copy');
+                    onSuccess();
+                });
+            } else {
+                inputEl.select();
+                document.execCommand('copy');
+                onSuccess();
+            }
+            return false;
+        }
+
+        function CopyToClipboard() {
+            return copyRefText(
+                document.getElementById('<%=TxtLeftLinkLink.ClientID%>'),
+                document.getElementById('<%=Button1.ClientID%>'),
+                'Copy Link'
+            );
+        }
+
         function CopyToClipboard2() {
-
-
-            /* Get the text field */
-            var copyText1 = document.getElementById('<%=TxtRightLink.ClientID%>');
-
-            /* Select the text field */
-            copyText1.select();
-
-            /* Copy the text inside the text field */
-            document.execCommand("Copy");
-
-            /* Alert the copied text */
-            alert("Copied the text: " + copyText1.value);
+            return copyRefText(
+                document.getElementById('<%=TxtRightLink.ClientID%>'),
+                document.getElementById('<%=Button2.ClientID%>'),
+                'Copy'
+            );
         }
 
         function primeclick() {
@@ -3976,4 +3996,5 @@ Profit Share Budget</p>
         loadCrypto();
         setInterval(loadCrypto, 30000);
 </script>
+    </div>
 </asp:Content>

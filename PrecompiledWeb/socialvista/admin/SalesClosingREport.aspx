@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="SalesClosingREport, App_Web_2bvzwplz" %>
+﻿<%@ page title="" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="SalesClosingREport, App_Web_fdlpebdg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

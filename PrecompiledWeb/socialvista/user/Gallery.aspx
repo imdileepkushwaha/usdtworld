@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/user/WebsiteMaster.master" autoeventwireup="true" inherits="user_Gallery, App_Web_farxqaeb" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/user/WebsiteMaster.master" autoeventwireup="true" inherits="user_Gallery, App_Web_s2gvt0bk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="pooltest, App_Web_dgn3tjdr" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="pooltest, App_Web_qqkwabyq" %>
 
 <!DOCTYPE html>
 

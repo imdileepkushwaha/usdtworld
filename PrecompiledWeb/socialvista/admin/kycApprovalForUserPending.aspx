@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="kycApprovalForUserPending, App_Web_oiaeawxq" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="kycApprovalForUserPending, App_Web_0tut2aep" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 

@@ -1,4 +1,4 @@
-﻿<%@ page title="Callback Request Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_fi0f1pfn" %>
+﻿<%@ page title="Callback Request Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_wedwbetx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

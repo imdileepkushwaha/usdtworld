@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="user_MyInvoice, App_Web_whpx20ve" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/admin/adminmaster.master" autoeventwireup="true" inherits="user_MyInvoice, App_Web_jyehmktt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <%--  <link rel="stylesheet" href="invoicecss/invoicecss.css">--%>

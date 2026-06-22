@@ -1,4 +1,4 @@
-﻿<%@ page title="Level Master" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="WithdrawlSettings, App_Web_2bvzwplz" %>
+﻿<%@ page title="Level Master" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="WithdrawlSettings, App_Web_fdlpebdg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ page title="Transfer E-Pin" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="WalletTransfer, App_Web_5ywks0d2" %>
+﻿<%@ page title="Transfer E-Pin" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="WalletTransfer, App_Web_u1sscnrz" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">

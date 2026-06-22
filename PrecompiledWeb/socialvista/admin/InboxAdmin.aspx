@@ -1,4 +1,4 @@
-﻿<%@ page title="Inbox" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="Associate_Details, App_Web_whpx20ve" %>
+﻿<%@ page title="Inbox" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="Associate_Details, App_Web_jyehmktt" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

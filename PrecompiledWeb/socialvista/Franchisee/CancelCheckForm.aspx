@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="user_CancelCheckForm, App_Web_lk3hpmqh" %>
+﻿<%@ page title="" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="user_CancelCheckForm, App_Web_geu5file" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 

@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="MehndilinkInvoice, App_Web_tfqma3dv" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="MehndilinkInvoice, App_Web_03qdakud" %>
 
 <!DOCTYPE html>
 

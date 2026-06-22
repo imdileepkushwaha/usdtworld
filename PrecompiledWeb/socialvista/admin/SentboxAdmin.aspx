@@ -1,4 +1,4 @@
-﻿<%@ page title="Sentbox" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="Associate_Details, App_Web_smj24ms5" %>
+﻿<%@ page title="Sentbox" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="Associate_Details, App_Web_4lgut4ce" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="js/jquery-1.10.2.js"></script>

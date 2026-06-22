@@ -1,4 +1,4 @@
-﻿<%@ page title="Add Product" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_ProductAdd, App_Web_hkme4f2k" %>
+﻿<%@ page title="Add Product" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_ProductAdd, App_Web_y1bjnat5" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit.HTMLEditor" TagPrefix="cc1" %>
 

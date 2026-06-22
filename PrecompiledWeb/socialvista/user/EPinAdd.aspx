@@ -1,4 +1,4 @@
-﻿<%@ page title="Generate E-Pin" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_EPinAdd, App_Web_w2cbuwev" %>
+﻿<%@ page title="Generate E-Pin" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_EPinAdd, App_Web_awsuintk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
       <script type="text/javascript">

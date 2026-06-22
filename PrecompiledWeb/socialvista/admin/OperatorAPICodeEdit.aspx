@@ -1,4 +1,4 @@
-﻿<%@ page title="Edit Operator API Code" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_OperatorAPICodeEdit, App_Web_hkme4f2k" %>
+﻿<%@ page title="Edit Operator API Code" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_OperatorAPICodeEdit, App_Web_y1bjnat5" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
       <section class="content-header">

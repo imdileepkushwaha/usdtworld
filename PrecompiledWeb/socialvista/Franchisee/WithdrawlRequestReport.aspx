@@ -1,4 +1,4 @@
-﻿<%@ page title="Withdrawl Request Report" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_5nk2ho4e" %>
+﻿<%@ page title="Withdrawl Request Report" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_geu5file" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="Api_sms, App_Web_hdhggpzb" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="Api_sms, App_Web_u1rueocu" %>
 
 <!DOCTYPE html>
 

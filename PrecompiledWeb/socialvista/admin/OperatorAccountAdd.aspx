@@ -1,4 +1,4 @@
-﻿<%@ page title="Add Operator Account" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_OperatorAccountAdd, App_Web_jjhqyy0q" %>
+﻿<%@ page title="Add Operator Account" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_OperatorAccountAdd, App_Web_xaf2lnhz" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     

@@ -1,4 +1,4 @@
-﻿<%@ page title="Generate Closing" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="CalculateClosing, App_Web_2bvzwplz" %>
+﻿<%@ page title="Generate Closing" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="CalculateClosing, App_Web_fdlpebdg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
       

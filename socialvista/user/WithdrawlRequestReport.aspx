@@ -1,84 +1,98 @@
 ﻿<%@ Page Title="Withdrawl Request Report" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="WithdrawlRequestReport.aspx.cs" Inherits="admin_UserReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="css/account-pages.css" rel="stylesheet" />
+    <link href="css/report-pages.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
-     <section class="content-header">
-      <h1 style="color:white;">
-     Withdrawl Request Report 
-      </h1>
-      <ol class="breadcrumb">
-     <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i> Home > </a></li>
-            <li><a href="#">Withdrawl > </a></li>
-        <li class="active">Withdrawl Report </li>
-      
-      </ol>
-    </section>   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <div class="row" style="color:white;">
-          <div class="col-md-12">
-              <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Search Criteria</h3>
-            </div>
-                   <div class="box-body">
-                  
-                          <div class="row">
-                         <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>From date :</label>
-                                <asp:TextBox runat="server" CssClass="form-control form_date" ID="txtfromdate"></asp:TextBox>
-                             </div>
-                         </div>
-                         <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>To date :</label>
-                                   <asp:TextBox runat="server" CssClass="form-control form_date" ID="txttodate"></asp:TextBox>
-                             </div>
-                         </div>
-                               <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>Status :</label>
-                                  <asp:DropDownList ID="ddstatus" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Status</asp:ListItem>
-                                            <asp:ListItem>Pending</asp:ListItem>
-                                            <asp:ListItem>Approved</asp:ListItem>
-                                        </asp:DropDownList>
-                             </div>
-                         </div>
-                     </div>
-                         
-                          
-                       </div>
-                         <div class="box-footer">
-                        
-                              
-                     
+            <div class="sv-account-page sv-report-page">
+                <div class="sv-page-header sv-page-header--withdraw">
+                    <div class="sv-page-header__glow sv-page-header__glow--1"></div>
+                    <div class="sv-page-header__glow sv-page-header__glow--2"></div>
+                    <div class="sv-page-header__main">
+                        <div class="sv-page-header__icon">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="sv-page-header__text">
+                            <h1>Withdrawal Request Report</h1>
+                            <p>Track pending, approved and cancelled withdrawals</p>
+                        </div>
+                    </div>
+                    <div class="sv-page-header__actions">
+                        <a href="Dashboard.aspx" class="sv-page-breadcrumb">
+                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                            Dashboard
+                        </a>
+                        <span class="sv-page-header__crumb">Withdrawal / Request Report</span>
+                    </div>
+                </div>
 
-                               <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="btnCancel" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btncancel_Click" />
-              </div>
+                <div class="sv-form-card sv-form-card--withdraw">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Search Criteria</h3>
+                            <p>Filter withdrawal requests by date and status</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-calendar"></i> From Date</label>
+                                    <asp:TextBox runat="server" CssClass="form-control form_date" ID="txtfromdate" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-calendar-day"></i> To Date</label>
+                                    <asp:TextBox runat="server" CssClass="form-control form_date" ID="txttodate" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-circle-check"></i> Status</label>
+                                    <asp:DropDownList ID="ddstatus" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="0">Select Status</asp:ListItem>
+                                        <asp:ListItem>Pending</asp:ListItem>
+                                        <asp:ListItem>Approved</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="sv-report-actions">
+                            <div class="sv-report-actions__left">
+                                <asp:Button ID="btnSubmit" CssClass="sv-btn-primary" runat="server" Text="Search" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnCancel" CssClass="sv-btn-danger" runat="server" Text="Reset" OnClick="btncancel_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                  
-              </div>
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-list"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Withdrawal History</h3>
+                            <p>All submitted withdrawal requests</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="sv-report-toolbar">
+                            <p class="sv-report-toolbar__title">
+                                <i class="fa-solid fa-table"></i> Request List
+                            </p>
+                        </div>
 
-
-              <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Details</h3>
-            </div>
-                   <div class="box-body">
-                  
-                          <div class="row">
-                         <div class="col-md-12">
-                             <div class="form-group table-responsive">
-                                <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered table-hover dataTable" Width="100%" AutoGenerateColumns="False" OnRowDataBound="grdGetHelp_RowDataBound">
+                        <div class="sv-report-table-wrap table-responsive">
+                            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover" Width="100%" AutoGenerateColumns="False" OnRowDataBound="grdGetHelp_RowDataBound">
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No">
                                         <ItemTemplate>
@@ -118,45 +132,23 @@
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                             </div>
-                         </div>
-                      
-                            
-                     </div>
-                         
-                          
-                       </div>
-                         <div class="box-footer">
-                        
-             
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                           
-                    
-              </div>
-
-
-                  
-              </div>
-
-              </div>
-                  </div>
-
-
-
-
-          
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
-     <script type="text/javascript">
-         $('.form_date').datepicker({
-             format: 'dd/mm/yyyy',
-         }).on('changeDate', function (ev) {
-             $(this).datepicker('hide');
-         });
-     </script>
-       <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $('.form_date').datepicker({
+            format: 'dd/mm/yyyy',
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    </script>
+    <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
         Sys.Application.add_load(LoadHandler);
         function LoadHandler() {
@@ -166,6 +158,5 @@
                 $(this).datepicker('hide');
             });
         }
-     </script>
+    </script>
 </asp:Content>
-

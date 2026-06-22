@@ -1,4 +1,4 @@
-﻿<%@ page title="Group Maching Bonus" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="GroupMachingBonus, App_Web_3jfdvnsk" %>
+﻿<%@ page title="Group Maching Bonus" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="GroupMachingBonus, App_Web_znmzujtu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

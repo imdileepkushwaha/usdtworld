@@ -1,4 +1,4 @@
-﻿<%@ page title="Binary Income Report" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="GroupIncomeReport, App_Web_odhkxf4b" %>
+﻿<%@ page title="Binary Income Report" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="GroupIncomeReport, App_Web_bavsdnkk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

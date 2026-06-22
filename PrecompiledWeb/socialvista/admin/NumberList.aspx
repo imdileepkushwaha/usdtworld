@@ -1,4 +1,4 @@
-﻿<%@ page title="Operator Series" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="NumberList, App_Web_hkme4f2k" %>
+﻿<%@ page title="Operator Series" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="NumberList, App_Web_y1bjnat5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">

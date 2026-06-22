@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="FranchiseeuserInvoice, App_Web_efsurmna" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="FranchiseeuserInvoice, App_Web_qi2wwo0r" %>
 
 <!DOCTYPE html>
 

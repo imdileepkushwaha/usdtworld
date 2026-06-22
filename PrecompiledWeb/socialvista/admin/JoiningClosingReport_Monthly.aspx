@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="JoiningClosingReportMonth, App_Web_fi0f1pfn" enableeventvalidation="false" %>
+﻿<%@ page title="" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="JoiningClosingReportMonth, App_Web_wedwbetx" enableeventvalidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

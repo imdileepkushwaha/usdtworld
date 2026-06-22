@@ -9,6 +9,13 @@ using System.Web.UI.WebControls;
 public partial class admin_UserReport : System.Web.UI.Page
 {
     clsAccount objaccount = new clsAccount();
+
+    private DataTable TransactionData
+    {
+        get { return ViewState["TransactionData"] as DataTable; }
+        set { ViewState["TransactionData"] = value; }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -17,6 +24,7 @@ public partial class admin_UserReport : System.Web.UI.Page
             {
                 txtuserid.Text = Session["userid"].ToString();
                 txtuserid.Enabled = false;
+                ddlRecordFilter.SelectedValue = "25";
                 loaduser();
                 balance();
             }
@@ -40,17 +48,96 @@ public partial class admin_UserReport : System.Web.UI.Page
             LblCurrentWallet.Text = dt.Rows[0]["bal"].ToString();
         }
 
-       
+
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
 
     }
 
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        BindGrid(e.NewPageIndex);
+    }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         loaduser();
     }
+
+    void ApplyPageSize()
+    {
+        string selected = ddlRecordFilter.SelectedItem.Text;
+
+        if (selected == "All")
+        {
+            GridView1.AllowPaging = false;
+            return;
+        }
+
+        int pageSize;
+        if (int.TryParse(selected, out pageSize) && pageSize > 0)
+        {
+            GridView1.AllowPaging = true;
+            GridView1.PageSize = pageSize;
+        }
+    }
+
+    void BindGrid(int pageIndex)
+    {
+        DataTable dt = TransactionData;
+        if (dt == null)
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+            UpdatePagerInfo();
+            return;
+        }
+
+        if (GridView1.AllowPaging)
+        {
+            int maxPage = (int)Math.Ceiling(dt.Rows.Count / (double)GridView1.PageSize);
+            if (maxPage == 0) maxPage = 1;
+            if (pageIndex >= maxPage) pageIndex = maxPage - 1;
+            if (pageIndex < 0) pageIndex = 0;
+            GridView1.PageIndex = pageIndex;
+        }
+        else
+        {
+            GridView1.PageIndex = 0;
+        }
+
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+        UpdatePagerInfo();
+    }
+
+    void UpdatePagerInfo()
+    {
+        DataTable dt = TransactionData;
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            lblPagerInfo.Text = "No transactions found.";
+            return;
+        }
+
+        int total = dt.Rows.Count;
+
+        if (!GridView1.AllowPaging)
+        {
+            lblPagerInfo.Text = "Showing all " + total + " records";
+            return;
+        }
+
+        int start = (GridView1.PageIndex * GridView1.PageSize) + 1;
+        int end = Math.Min((GridView1.PageIndex + 1) * GridView1.PageSize, total);
+        int totalPages = GridView1.PageCount;
+
+        lblPagerInfo.Text = string.Format(
+            "Showing {0}–{1} of {2} records | Page {3} of {4}",
+            start, end, total, GridView1.PageIndex + 1, totalPages);
+    }
+
     void loaduser()
     {
 
@@ -70,31 +157,14 @@ public partial class admin_UserReport : System.Web.UI.Page
         {
             objaccount.ToDate = DateTime.MinValue;
         }
-        string noOfRows = "";
-        if (ddlRecordFilter.SelectedItem.Text == "All")
-            noOfRows = "";
 
-            //else if (ddlRecordFilter.SelectedItem.Text == "5")
-        //    noOfRows = "top 5";
-
-        else if (ddlRecordFilter.SelectedItem.Text == "25")
-            noOfRows = "top 25";
-
-        else if (ddlRecordFilter.SelectedItem.Text == "50")
-            noOfRows = "top 50";
-
-        else if (ddlRecordFilter.SelectedItem.Text == "100")
-            noOfRows = "top 100";
-
-        else if (ddlRecordFilter.SelectedItem.Text == "500")
-            noOfRows = "top 500";
-
-        objaccount.NoOfRow = noOfRows;
+        objaccount.NoOfRow = "";
         objaccount.UserId = txtuserid.Text;
         DataTable dt = new DataTable();
         dt = objaccount.getTransactionReport(objaccount);
-        GridView1.DataSource = dt;
-        GridView1.DataBind();
+        TransactionData = dt;
+        ApplyPageSize();
+        BindGrid(0);
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -132,10 +202,26 @@ public partial class admin_UserReport : System.Web.UI.Page
 
     protected void imgExcel_Click(object sender, ImageClickEventArgs e)
     {
+        if (TransactionData == null)
+        {
+            loaduser();
+        }
+
+        int savedPageIndex = GridView1.PageIndex;
+        bool savedPaging = GridView1.AllowPaging;
+
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = TransactionData;
+        GridView1.DataBind();
+
         ExportGridToExcel();
+
+        GridView1.AllowPaging = savedPaging;
+        BindGrid(savedPageIndex);
     }
     protected void ddlRecordFilter_SelectedIndexChanged(object sender, EventArgs e)
     {
-        loaduser();
+        ApplyPageSize();
+        BindGrid(0);
     }
 }

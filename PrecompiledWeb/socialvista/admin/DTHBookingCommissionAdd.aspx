@@ -1,4 +1,4 @@
-﻿<%@ page title="DMR Commission" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_DMRCommissionAdd, App_Web_2bvzwplz" %>
+﻿<%@ page title="DMR Commission" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_DMRCommissionAdd, App_Web_fdlpebdg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

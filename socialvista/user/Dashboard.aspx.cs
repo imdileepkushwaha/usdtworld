@@ -437,6 +437,8 @@ public partial class user_Dashboard : System.Web.UI.Page
         {
             lbluserid.Text = dt.Rows[0]["userid"].ToString();
             lblusername.Text = dt.Rows[0]["username"].ToString();
+            if (lblHeaderUser != null)
+                lblHeaderUser.Text = dt.Rows[0]["username"].ToString();
             LblSponserId.Text = dt.Rows[0]["sponserId"].ToString();
             LblParentId.Text = dt.Rows[0]["parentuserid"].ToString();
             ImgMyPhoto.ImageUrl = "../ProductImage/" + dt.Rows[0]["PhotoImage"].ToString();

@@ -1,4 +1,4 @@
-﻿<%@ page title="Autopool   Income Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_lvusbtyq" %>
+﻿<%@ page title="Autopool   Income Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_4zv2kht2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

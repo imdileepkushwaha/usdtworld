@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Edit User Details" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="UserProfile.aspx.cs" Inherits="UserProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="css/account-pages.css" rel="stylesheet" />
     <script type="text/javascript">
         function validate() {
             if (document.getElementById("<%=txtsponserid.ClientID%>").value == "") {
@@ -86,30 +87,15 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 class="fw-semibold mb-0">View Profile</h6>
-        <ul class="d-flex align-items-center gap-2">
-            <li class="fw-medium">
-                <a href="Dashboard.aspx" class="d-flex align-items-center gap-1 hover-text-primary">
-                    <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-                    Dashboard
-                </a>
-            </li>
-           <li>/</li>
-            <li class="fw-medium">My Profile</li>
-            <li>/</li>
-            <li class="fw-medium">View Profile</li>
-        </ul>
-    </div>
-    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
-            <div class="modal2">
-                <div class="center2">
-                    <img alt="" src="loader.gif" />
+            <div class="sv-page-loader">
+                <div class="sv-page-loader__card">
+                    <div class="sv-page-loader__spinner"></div>
+                    <span class="sv-page-loader__text">Loading profile...</span>
                 </div>
             </div>
         </ProgressTemplate>
@@ -117,232 +103,236 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Sponser Details</h3>
+            <div class="sv-account-page">
+                <div class="sv-page-header sv-page-header--profile">
+                    <div class="sv-page-header__glow sv-page-header__glow--1"></div>
+                    <div class="sv-page-header__glow sv-page-header__glow--2"></div>
+                    <div class="sv-page-header__main">
+                        <div class="sv-page-header__icon">
+                            <i class="fa-solid fa-user-circle"></i>
                         </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Sponser Id :</label>
-                                        <asp:TextBox ID="txtsponserid" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Sponser name</label>
-                                        <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Name :</label>
-                                        <asp:TextBox ID="txtname" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Mobile</label>
-                                        <asp:TextBox ID="txtmobile" Enabled="false" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Email :</label>
-                                        <asp:TextBox ID="txtemail" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <asp:DropDownList ID="ddgender" Enabled="false" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Gender</asp:ListItem>
-                                            <asp:ListItem Value="Male">Male</asp:ListItem>
-                                            <asp:ListItem Value="Female">Female</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-
-                           
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address :</label>
-                                        <asp:TextBox ID="txtaddress" Enabled="false" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="display: none">
-                                    <div class="form-group">
-                                        <label>Select Country :</label>
-                                        <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
-                                            <asp:ListItem Value="0"> Select Country</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select State</label>
-                                        <asp:DropDownList ID="ddstate" AutoPostBack="true" Enabled="false" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
-                                            <asp:ListItem Value="0"> Select State</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select City :</label>
-                                        <asp:DropDownList ID="ddcity" Enabled="false" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0"> Select City</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="display: none">
-                                    <div class="form-group">
-                                        <label>Area Name</label>
-                                        <asp:TextBox ID="txtareaname" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="display: none">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pincode :</label>
-                                        <asp:TextBox ID="txtpincode" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="display: none">
-                                    <div class="form-group">
-                                        <label>Date of Birth</label>
-                                        <asp:TextBox ID="txtdateofbirth" CssClass="form-control form_date" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="sv-page-header__text">
+                            <h1>My Profile</h1>
+                            <p>View your sponsor, personal &amp; wallet details</p>
                         </div>
                     </div>
-                    
+                    <div class="sv-page-header__actions">
+                        <a href="Dashboard.aspx" class="sv-page-breadcrumb">
+                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                            Dashboard
+                        </a>
+                        <span class="sv-page-header__crumb">My Profile / View Profile</span>
+                    </div>
+                </div>
 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Nominee Details</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nominee Name :</label>
-                                        <asp:TextBox ID="txtnomineename" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nominee Relation</label>
-                                        <asp:TextBox ID="txtnomineerelation" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-users"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Sponsor Details</h3>
+                            <p>Your upline and personal information</p>
                         </div>
                     </div>
-					
-					
-					
-					
-					<div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Trust Wallet Details</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                          <label>Wallet Type</label>
-                                            <asp:TextBox ID="Txtwallettype" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label> Trust Wallet Address</label>
-                                            <asp:TextBox ID="TxtWalletAdd" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> Sponsor Id</label>
+                                    <asp:TextBox ID="txtsponserid" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
                             </div>
-
-
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-user"></i> Sponsor Name</label>
+                                    <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-signature"></i> Name</label>
+                                    <asp:TextBox ID="txtname" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-mobile-screen"></i> Mobile</label>
+                                    <asp:TextBox ID="txtmobile" Enabled="false" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-envelope"></i> Email</label>
+                                    <asp:TextBox ID="txtemail" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                                    <asp:DropDownList ID="ddgender" Enabled="false" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                                        <asp:ListItem Value="Male">Male</asp:ListItem>
+                                        <asp:ListItem Value="Female">Female</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-location-dot"></i> Address</label>
+                                    <asp:TextBox ID="txtaddress" Enabled="false" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display: none">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Select Country</label>
+                                    <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
+                                        <asp:ListItem Value="0"> Select Country</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-map"></i> State</label>
+                                    <asp:DropDownList ID="ddstate" AutoPostBack="true" Enabled="false" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
+                                        <asp:ListItem Value="0"> Select State</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-city"></i> City</label>
+                                    <asp:DropDownList ID="ddcity" Enabled="false" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="0"> Select City</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display: none">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Area Name</label>
+                                    <asp:TextBox ID="txtareaname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3" style="display: none">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Pincode</label>
+                                    <asp:TextBox ID="txtpincode" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display: none">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Date of Birth</label>
+                                    <asp:TextBox ID="txtdateofbirth" CssClass="form-control form_date" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-   
-                    <div class="box box-primary" style="display:none">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Bank Details</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>A/c Holder Name</label>
-                                        <asp:TextBox ID="txtaccountholdername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Withdrawal Wallet Address</label>
-                                        <asp:TextBox ID="txtaccountno" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>IFSC Code</label>
-                                        <asp:TextBox ID="txtifsccode" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>PAN number</label>
-                                        <asp:TextBox ID="txtpan" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Bank</label>
-                                        <asp:DropDownList ID="ddbank" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" style="display: none">
-                                    <div class="form-group">
-                                        <label>Branch</label>
-                                        <asp:TextBox ID="txtbranchname" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="box-footer">
-
-
-                            <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" Visible="false" />
-                            <asp:Button ID="btnCancel" OnClick="btnCancel_Click" CssClass="btn btn-danger" runat="server" Text="Cancel" Visible="false" />
+                <div class="sv-form-card sv-form-card--nominee">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-user-group"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Nominee Details</h3>
+                            <p>Emergency beneficiary information</p>
                         </div>
                     </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-user"></i> Nominee Name</label>
+                                    <asp:TextBox ID="txtnomineename" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-heart"></i> Nominee Relation</label>
+                                    <asp:TextBox ID="txtnomineerelation" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="sv-form-card sv-form-card--wallet">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-wallet"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Trust Wallet Details</h3>
+                            <p>Your linked crypto wallet information</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-coins"></i> Wallet Type</label>
+                                    <asp:TextBox ID="Txtwallettype" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-link"></i> Trust Wallet Address</label>
+                                    <asp:TextBox ID="TxtWalletAdd" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sv-form-card" style="display:none">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-building-columns"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Bank Details</h3>
+                            <p>Withdrawal and banking information</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">A/c Holder Name</label>
+                                    <asp:TextBox ID="txtaccountholdername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Withdrawal Wallet Address</label>
+                                    <asp:TextBox ID="txtaccountno" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">IFSC Code</label>
+                                    <asp:TextBox ID="txtifsccode" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">PAN Number</label>
+                                    <asp:TextBox ID="txtpan" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Bank</label>
+                                    <asp:DropDownList ID="ddbank" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display: none">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Branch</label>
+                                    <asp:TextBox ID="txtbranchname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sv-form-actions">
+                            <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="sv-btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" Visible="false" />
+                            <asp:Button ID="btnCancel" OnClick="btnCancel_Click" CssClass="sv-btn-danger" runat="server" Text="Cancel" Visible="false" />
+                        </div>
+                    </div>
                 </div>
             </div>
 

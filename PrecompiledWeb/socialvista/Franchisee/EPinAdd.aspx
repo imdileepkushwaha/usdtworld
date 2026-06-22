@@ -1,4 +1,4 @@
-﻿<%@ page title="Generate E-Pin" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="admin_EPinAdd, App_Web_5nk2ho4e" %>
+﻿<%@ page title="Generate E-Pin" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="admin_EPinAdd, App_Web_geu5file" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

@@ -1,4 +1,4 @@
-﻿<%@ page title="Dispute Request" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="admin_DisputeRequest, App_Web_3jfdvnsk" %>
+﻿<%@ page title="Dispute Request" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="admin_DisputeRequest, App_Web_znmzujtu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ page title="Add City" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_CityAdd, App_Web_fi0f1pfn" %>
+﻿<%@ page title="Add City" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_CityAdd, App_Web_wedwbetx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script type="text/javascript">

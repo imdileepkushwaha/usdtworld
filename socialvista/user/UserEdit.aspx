@@ -2,6 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="css/account-pages.css" rel="stylesheet" />
     <script type="text/javascript">
         function validate() {
             //if (document.getElementById("<%=hdstatus.ClientID%>").value == "1") {
@@ -64,225 +65,250 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
-            <div class="modal2">
-                <div class="center2">
-                    <img alt="" src="loader.gif" />
+            <div class="sv-page-loader">
+                <div class="sv-page-loader__card">
+                    <div class="sv-page-loader__spinner"></div>
+                    <span class="sv-page-loader__text">Saving changes...</span>
                 </div>
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="row" style="color:white;">
-                <div class="col-md-12">
-
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Personal Details</h3>
+            <div class="sv-account-page">
+                <div class="sv-page-header sv-page-header--edit">
+                    <div class="sv-page-header__glow sv-page-header__glow--1"></div>
+                    <div class="sv-page-header__glow sv-page-header__glow--2"></div>
+                    <div class="sv-page-header__main">
+                        <div class="sv-page-header__icon">
+                            <i class="fa-solid fa-user-pen"></i>
                         </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Sponser Id :</label>
-                                        <asp:TextBox ID="txtsponserid" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Sponser name</label>
-                                        <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Name :</label>
-                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Mobile</label>
-                                        <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Email :</label>
-                                        <asp:TextBox ID="txtemail" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <asp:DropDownList ID="ddgender" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Gender</asp:ListItem>
-                                            <asp:ListItem Value="Male">Male</asp:ListItem>
-                                            <asp:ListItem Value="Female">Female</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"  style="display: none;" >
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address :</label>
-                                        <asp:TextBox ID="txtaddress" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"  style="display: none;" >
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select Country :</label>
-                                        <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
-                                            <asp:ListItem Value="0"> Select Country</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select State</label>
-                                        <asp:DropDownList ID="ddstate" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
-                                            <asp:ListItem Value="0"> Select State</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"  style="display: none;" >
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select City :</label>
-                                        <asp:DropDownList ID="ddcity" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0"> Select City</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Other</label>
-                                        <asp:TextBox ID="txtareaname" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6"  style="display: none;" >
-                                    <div class="form-group">
-                                        <label>Pincode :</label>
-                                        <asp:TextBox ID="txtpincode" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Date of Birth</label>
-                                        <asp:TextBox ID="txtdateofbirth" CssClass="form-control form_date" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-
-                                        <div >
-                      <asp:HiddenField ID="hdstatus" runat="server"/>
-                        <div class="box box-primary"   >
-                            <div class="box-header with-border" style="display:none" >
-                                <h3 class="box-title">Bank Details</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row" style="display:none">
-                                    <div class="col-md-6"  >
-                                        <div class="form-group">
-                                            <label>A/c Holder Name</label>
-                                            <asp:TextBox ID="txtaccountholdername" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-								
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                     <label>Account Number</label>
-                                            <asp:TextBox ID="txtaccountno" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    	 <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>IFSC</label>
-                                            <asp:TextBox ID="txtifsccode" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row"  >
-                                    <div class="box-header with-border" >
-                                <h3 class="box-title">Trust Wallet Detail</h3>
-                            </div>
-                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                     <label>Wallet Type</label>
-                                            <asp:TextBox ID="Txtwallettype" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    	 <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label> Trust Wallet Address</label>
-                                            <asp:TextBox ID="TxtWalletAdd" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" style="display:none">
-                                        <div class="form-group">
-                                            <label>PAN number</label>
-                                            <asp:TextBox ID="txtpan" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="display: none;" >
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Bank</label>
-                                            <asp:DropDownList ID="ddbank" CssClass="form-control" runat="server"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Branch</label>
-                                            <asp:TextBox ID="txtbranchname" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="sv-page-header__text">
+                            <h1>Edit Profile</h1>
+                            <p>Update your personal and wallet information</p>
                         </div>
                     </div>
-                      <div class="box box-primary">
-                            <div class="box-header with-border"  style="display:none">
-                                <h3 class="box-title">Nominee Details</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-6"  style="display:none">
-                                        <div class="form-group">
-                                            <label>Nominee Name :</label>
-                                            <asp:TextBox ID="txtnomineename" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6"  style="display:none">
-                                        <div class="form-group">
-                                            <label>Nominee Relation</label>
-                                            <asp:TextBox ID="txtnomineerelation" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br />
-                              <div class="box-footer" id="div_update" runat="server" visible="true">
-                            <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                            <asp:Button ID="btnCancel" OnClick="btnCancel_Click" CssClass="btn btn-danger" runat="server" Text="Cancel" />
-                        </div>
-                          <div class="box-footer" id="div_noupdate" runat="server" visible="false"><span style="float:right;font-size:20px;color:red;"><i>You cannot update profile.Please contact admin.</i></span></div>
-                        </div>
+                    <div class="sv-page-header__actions">
+                        <a href="Dashboard.aspx" class="sv-page-breadcrumb">
+                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                            Dashboard
+                        </a>
+                        <span class="sv-page-header__crumb">My Profile / Edit Profile</span>
+                    </div>
                 </div>
-            </div>
+
+                <asp:HiddenField ID="hdstatus" runat="server" />
+
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-id-card"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Personal Details</h3>
+                            <p>Update your contact and profile information</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> Sponsor Id</label>
+                                    <asp:TextBox ID="txtsponserid" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-user"></i> Sponsor Name</label>
+                                    <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-signature"></i> Name</label>
+                                    <asp:TextBox ID="txtname" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-mobile-screen"></i> Mobile</label>
+                                    <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-envelope"></i> Email</label>
+                                    <asp:TextBox ID="txtemail" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                                    <asp:DropDownList ID="ddgender" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                                        <asp:ListItem Value="Male">Male</asp:ListItem>
+                                        <asp:ListItem Value="Female">Female</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-cake-candles"></i> Date of Birth</label>
+                                    <asp:TextBox ID="txtdateofbirth" CssClass="form-control form_date" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3" style="display: none;">
+                            <div class="col-md-12">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-location-dot"></i> Address</label>
+                                    <asp:TextBox ID="txtaddress" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Select Country</label>
+                                    <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
+                                        <asp:ListItem Value="0"> Select Country</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Select State</label>
+                                    <asp:DropDownList ID="ddstate" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
+                                        <asp:ListItem Value="0"> Select State</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Select City</label>
+                                    <asp:DropDownList ID="ddcity" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="0"> Select City</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Other</label>
+                                    <asp:TextBox ID="txtareaname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Pincode</label>
+                                    <asp:TextBox ID="txtpincode" onkeypress="return isNumber(event)" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sv-form-card sv-form-card--wallet">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-wallet"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Trust Wallet Details</h3>
+                            <p>Update your linked crypto wallet</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-coins"></i> Wallet Type</label>
+                                    <asp:TextBox ID="Txtwallettype" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-link"></i> Trust Wallet Address</label>
+                                    <asp:TextBox ID="TxtWalletAdd" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3" style="display:none">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">A/c Holder Name</label>
+                                    <asp:TextBox ID="txtaccountholdername" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Account Number</label>
+                                    <asp:TextBox ID="txtaccountno" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">IFSC</label>
+                                    <asp:TextBox ID="txtifsccode" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">PAN Number</label>
+                                    <asp:TextBox ID="txtpan" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Bank</label>
+                                    <asp:DropDownList ID="ddbank" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Branch</label>
+                                    <asp:TextBox ID="txtbranchname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sv-form-card sv-form-card--nominee" style="display:none">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-user-group"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Nominee Details</h3>
+                            <p>Emergency beneficiary information</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Nominee Name</label>
+                                    <asp:TextBox ID="txtnomineename" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sv-field">
+                                    <label class="sv-field__label">Nominee Relation</label>
+                                    <asp:TextBox ID="txtnomineerelation" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sv-form-card sv-form-card--actions">
+                    <div class="sv-form-card__body">
+                        <div id="div_update" runat="server" visible="true">
+                            <div class="sv-form-actions sv-form-actions--end">
+                                <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="sv-btn-primary" runat="server" Text="Save Changes" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnCancel" OnClick="btnCancel_Click" CssClass="sv-btn-danger" runat="server" Text="Cancel" />
+                            </div>
+                        </div>
+                        <div id="div_noupdate" runat="server" visible="false" class="sv-profile-alert">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            You cannot update profile. Please contact admin.
+                        </div>
+                    </div>
+                </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

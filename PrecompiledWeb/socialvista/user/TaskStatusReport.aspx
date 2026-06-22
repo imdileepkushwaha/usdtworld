@@ -1,4 +1,4 @@
-﻿<%@ page title="Binary Income Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="TaskStatusReport, App_Web_shn2h2tp" %>
+﻿<%@ page title="Binary Income Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="TaskStatusReport, App_Web_b1ewlcuj" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -1,378 +1,313 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="admin_index, App_Web_dgn3tjdr" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="admin_index, App_Web_qqkwabyq" %>
 
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-   <meta charset="UTF-8">
-    <title><%= clsUtility.ProjectName %></title>
-    <meta charset="UTF-8">
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="Description" content="Xino - Laravel Admin & Dashboard Template">
-		<meta name="Author" content="Spruko Technologies Private Limited">
-		<meta name="Keywords" content="cryptocurrency, dashboard, admin, crypto, ico, bootstrap admin template, admin template, bootstrap dashboard template, crypto dashboard, cryptocurrency dashboard, ico dashboard, crypto admin, dashboard cryptocurrency, cryptocurrency trading dashboard, crypto dashboard template "/>
-
-		<!-- Title -->
-     
-
-        <!-- Favicon -->
-        <link rel="icon" href="img/logo.png" type="image/x-icon"/>
-
-		<!-- Icons css -->
-		<link href="assets/css/icons.html" rel="stylesheet">
-
-		<!---Fontawesome css-->
-		<link href="assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-		<!---Ionicons css-->
-		<link href="assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
-
-		<!---Typicons css-->
-		<link href="assets/plugins/typicons.font/typicons.css" rel="stylesheet">
-
-		<!---Feather css-->
-		<link href="assets/plugins/feather/feather.css" rel="stylesheet">
-
-		<!---Falg-icons css-->
-        <link href="assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-
-		
-		<!---Style css-->
-		<link href="assets/css/style.css" rel="stylesheet">
-		<link href="assets/css/style-dark.css" rel="stylesheet">
-
-        <!-- skin css-->
-        <link href="assets/css/skin-modes.css" rel="stylesheet">
-
-		<!--- Animations css-->
-		<link href="assets/css/animate.css" rel="stylesheet">
-
-        <!-- Switcher css -->
-		<link href="assets/switcher/css/switcher.css" rel="stylesheet">
-		<link rel="stylesheet" href="assets/switcher/demo.css">
-     <script>
-         function validate2() {
-             if (document.getElementById("<%=TxtOtp.ClientID%>").value == "") {
-
-                 alert('Enter OTP');
-                 document.getElementById("<%=TxtOtp.ClientID%>").focus();
-                 return false;
-             }
-         }
-         function validate3() {
-             if (document.getElementById("<%=txtuserid.ClientID%>").value == "") {
-
-                 alert('Enter User Id');
-                 document.getElementById("<%=txtuserid.ClientID%>").focus();
-             return false;
-         }
-     }
-     function validate5() {
-         if (document.getElementById("<%=TxtResetotp.ClientID%>").value == "") {
-
-                 alert('Enter OTP');
-                 document.getElementById("<%=TxtResetotp.ClientID%>").focus();
-                 return false;
-             }
-             if (document.getElementById("<%=TxtNewPassword.ClientID%>").value == "") {
-
-                 alert('Enter New Password');
-                 document.getElementById("<%=TxtNewPassword.ClientID%>").focus();
-                 return false;
-             }
-             if (document.getElementById("<%=TxtConfirmpassword.ClientID%>").value == "") {
-
-                 alert('Enter Confirm Password');
-                 document.getElementById("<%=TxtConfirmpassword.ClientID%>").focus();
-                 return false;
-             }
-         }
-     </script>
-	
-	
-	<script>
-	    // Change the type of input to password or text
-	    function Toggle() {
-	        let temp = document.getElementById("<%=txtpassword.ClientID%>");
-             
-	        if (temp.type === "password") {
-	            temp.type = "text";
-	        }
-	        else {
-	            temp.type = "password";
-	        }
-	    }
-	    function Toggle1() {
-	        let temp = document.getElementById("<%=TxtNewPassword.ClientID%>");
-
-            if (temp.type === "password") {
-                temp.type = "text";
-            }
-            else {
-                temp.type = "password";
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= clsUtility.ProjectName %> – Login</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link href="css/auth.css" rel="stylesheet" />
+    <link href="css/auth-overrides.css" rel="stylesheet" />
+    <script>
+        function validate2() {
+            if (document.getElementById("<%=TxtOtp.ClientID%>").value == "") {
+                alert('Enter OTP');
+                document.getElementById("<%=TxtOtp.ClientID%>").focus();
+                return false;
             }
         }
-        function Toggle2() {
-            let temp = document.getElementById("<%=TxtConfirmpassword.ClientID%>");
-
-            if (temp.type === "password") {
-                temp.type = "text";
+        function validate3() {
+            if (document.getElementById("<%=txtuserid.ClientID%>").value == "") {
+                alert('Enter User Id');
+                document.getElementById("<%=txtuserid.ClientID%>").focus();
+                return false;
             }
-            else {
-                temp.type = "password";
+        }
+        function validate5() {
+            if (document.getElementById("<%=TxtResetotp.ClientID%>").value == "") {
+                alert('Enter OTP');
+                document.getElementById("<%=TxtResetotp.ClientID%>").focus();
+                return false;
+            }
+            if (document.getElementById("<%=TxtNewPassword.ClientID%>").value == "") {
+                alert('Enter New Password');
+                document.getElementById("<%=TxtNewPassword.ClientID%>").focus();
+                return false;
+            }
+            if (document.getElementById("<%=TxtConfirmpassword.ClientID%>").value == "") {
+                alert('Enter Confirm Password');
+                document.getElementById("<%=TxtConfirmpassword.ClientID%>").focus();
+                return false;
             }
         }
     </script>
 </head>
-<body  class="hold-transition login-page" style="background-color:#000">
-      <form id="form1" runat="server">
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>         
-           <asp:UpdateProgress id="updateProgress" runat="server">
-    <ProgressTemplate>
-       <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../assets/images/social.gif" AlternateText="Loading ..." ToolTip="Loading ..." style="border-width:0px;padding: 10px;position:fixed;top:25%;left:40%;" />
-        </div>
-    </ProgressTemplate>
-</asp:UpdateProgress>
-          <asp:UpdatePanel runat="server" ID="uplMaster" >
-        <ContentTemplate>
-           <div class="my-auto page page-h">
-			<div class="main-signin-wrapper" >
-				<div class="main-card-signin d-md-flex" style="background-color:#808080 ; color:#fff;">
-				
-				<div class="p-5 wd-md-100p">
-					<div class="main-signin-header">
-						
-                        <h2 class="text-center" style="color:#fff">Welcome back! <%= clsUtility.ProjectName %></h2><br />
-						<h4  style="color:#ADD8E6">Hey there! Ready to log in? Just enter your username and password below and you'll be back in action
-                  in no time. Let's go!</h4>
-						
-							<div class="form-group">
-								<label style="color:#fff">TRADE ID</label>
-                                 <asp:TextBox ID="txtusername" class="form-control" runat="server" placeholder="Username"></asp:TextBox>
-							</div>
-							<div class="form-group">
-								<label style="color:#fff">PASSWORD</label>  <asp:TextBox ID="txtpassword" TextMode="Password" CssClass="form-control" placeholder="Password"  runat="server"></asp:TextBox><br><input type="checkbox" onclick="Toggle()">
-    <strong>Show Password</strong>
- 
-							</div>
-                        
-                         <asp:Button runat="server" ID="btnLogin" Text="Sign In" class="btn btn-main-primary btn-block" OnClick="btnLogin_Click"/>
-                     
-						
-					</div>
-					<div class="main-signin-footer mt-3 mg-t-5">
-						<p style="color:#fff">   <a onclick="showModal();" style="cursor:pointer;">Forgot password?</a></p>
-						<p style="color:#fff">Don't have an account? <a href="../Register.aspx" style="color:#ADD8E6">Create an Account</a></p>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-
-            <div class="row" style="display:none">
-               
-                 <div> <div class="login-box" >
-      <div class="login-logo">
-            <%-- <a href="#"><b><%= clsUtility.ProjectName %></b></a>--%>
-
-      </div><!-- /.login-logo -->
-      <div class="login-box-body">
-           <a href="#"><b><img src="img/spinelogo.png" style="width:80%"></b></a>
-        <p class="login-box-msg">User Login</p>
-      
-          <div class="form-group has-feedback">      
-            
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-             
-          
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-          
-            <div class="col-xs-4">
-         
-            
-            </div>
-              <div class="col-xs-8">
-                  Forgot password?</a>
-                  </div><!-- /.col -->
-          </div>
-        
-      </div><!-- /.login-box-body -->
-    </div></div>
-
-            </div>
-    <!-- /.login-box -->
-         
-      <div id="myModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Forgot Password</h4>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="uplMaster" DisplayAfter="150">
+            <ProgressTemplate>
+                <div class="auth-loader-overlay" role="status" aria-live="polite" aria-label="Loading">
+                    <div class="auth-loader-card">
+                        <div class="auth-loader-spinner" aria-hidden="true">
+                            <span class="auth-loader-ring auth-loader-ring--outer"></span>
+                            <span class="auth-loader-ring auth-loader-ring--inner"></span>
+                            <span class="auth-loader-core">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </span>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                User-id                           
-                                <asp:TextBox runat="server" class="form-control" ID="txtuserid"></asp:TextBox>
-                            </div>
-                          
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button ID="btnSend" runat="server" Text="Submit" OnClientClick="return validate3();" CssClass="btn green" OnClick="btnSend_Click" />
-                            <button type="button" class="btn red" data-dismiss="modal">Close</button>
-                        </div>
-                        <div class="row" id="divsuccess" runat="server" visible="false">
-                            <div class="col-md-12">
-                                <div class="alert alert-success"> <strong>Success!</strong> <asp:Label ID="lblmessage" runat="server" Text="Label"></asp:Label>. </div>
-                            </div>
-                        </div>
-                       
+                        <p class="auth-loader-title">Please wait</p>
+                        <p class="auth-loader-text">Signing you in<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                        <div class="auth-loader-bar" aria-hidden="true"><span></span></div>
                     </div>
                 </div>
-            </div>
-             <div id="Divotp" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">OTP Confirmation</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                               OTP                           
-                                <asp:TextBox runat="server" class="form-control" ID="TxtOtp"></asp:TextBox>
-                                <asp:Label ID="LblMessages" runat="server" Text="Invalid OTP please enter valid OTP...!" CssClass="bg-red-active" Visible="false"></asp:Label>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+
+        <asp:UpdatePanel runat="server" ID="uplMaster">
+            <ContentTemplate>
+
+                <!-- Animated Background -->
+                <div class="auth-bg">
+                    <div class="bg-orb bg-orb--1"></div>
+                    <div class="bg-orb bg-orb--2"></div>
+                    <div class="bg-orb bg-orb--3"></div>
+                    <div class="bg-orb bg-orb--4"></div>
+                    <div class="bg-orb bg-orb--5"></div>
+                </div>
+                <div class="grid-overlay"></div>
+
+                <!-- Auth Wrapper -->
+                <div class="auth-wrapper login-page">
+                    <a href="../index.html" class="back-home-btn" data-aos="fade-right" data-aos-duration="600">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Home</span>
+                    </a>
+
+                    <div class="auth-card" data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
+
+                        <!-- Left Branding Panel -->
+                        <div class="auth-brand">
+                            <div class="brand-orb brand-orb--1"></div>
+                            <div class="brand-orb brand-orb--2"></div>
+                            <div class="brand-orb brand-orb--3"></div>
+
+                            <div class="particle particle--1"></div>
+                            <div class="particle particle--2"></div>
+                            <div class="particle particle--3"></div>
+                            <div class="particle particle--4"></div>
+                            <div class="particle particle--5"></div>
+
+                            <div class="geo-deco geo-deco--ring"></div>
+                            <div class="geo-deco geo-deco--diamond"></div>
+                            <div class="geo-deco geo-deco--triangle"></div>
+                            <div class="geo-deco geo-deco--dots">
+                                <span></span><span></span><span></span>
+                                <span></span><span></span><span></span>
+                                <span></span><span></span><span></span>
+                            </div>
+
+                            <div class="brand-content">
+                                <div class="logo-wrapper">
+                                    <div class="brand-logo"><%= clsUtility.ProjectName %></div>
+                                </div>
+                                <p class="brand-tagline">Your premium social trading platform.<br />Smarter insights. Bigger returns.</p>
+
+                                <ul class="brand-features">
+                                    <li class="brand-feature">
+                                        <div class="feature-icon">
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h4>Real-Time Analytics</h4>
+                                            <p>Live market data with AI-powered signals</p>
+                                        </div>
+                                    </li>
+                                    <li class="brand-feature">
+                                        <div class="feature-icon feature-icon--cyan">
+                                            <i class="fa-solid fa-users-gear"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h4>Copy Trading</h4>
+                                            <p>Follow top traders and mirror their moves</p>
+                                        </div>
+                                    </li>
+                                    <li class="brand-feature">
+                                        <div class="feature-icon feature-icon--gold">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h4>Bank-Grade Security</h4>
+                                            <p>256-bit encryption &amp; 2FA authentication</p>
+                                        </div>
+                                    </li>
+                                    <li class="brand-feature">
+                                        <div class="feature-icon feature-icon--green">
+                                            <i class="fa-solid fa-bolt"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h4>Lightning Execution</h4>
+                                            <p>Sub-millisecond order execution speed</p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                             <asp:Button ID="BtnConfirm" runat="server" Text="Submit OTP" OnClientClick="return validate2();" CssClass="btn btn-success" OnClick="BtnConfirm_Click"  />
-                            <asp:Button ID="BtnResend" runat="server" Text="Resend OTP" CssClass="btn btn-info" OnClick="BtnResend_Click" />
-                            <button type="button" class="btn red" data-dismiss="modal">Close</button>
-                        </div>
-                        <div class="row" id="div2" runat="server" visible="false">
-                            <div class="col-md-12">
-                                <div class="alert alert-success"> <strong>Success!</strong> <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>. </div>
+
+                        <!-- Right Form Panel -->
+                        <div class="auth-form-panel">
+                            <div class="form-header" data-aos="fade-left" data-aos-delay="200">
+                                <h2>Welcome back</h2>
+                                <p>Sign in to your trading account</p>
+                            </div>
+
+                            <div id="loginForm" data-aos="fade-left" data-aos-delay="300">
+                                <div class="input-group">
+                                    <i class="fa-regular fa-envelope input-group__icon"></i>
+                                    <asp:TextBox ID="txtusername" runat="server" CssClass="input-group__field" placeholder="Trade ID" autocomplete="username"></asp:TextBox>
+                                    <label for="<%= txtusername.ClientID %>" class="input-group__label">Trade ID</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <i class="fa-solid fa-lock input-group__icon"></i>
+                                    <asp:TextBox ID="txtpassword" runat="server" TextMode="Password" CssClass="input-group__field" placeholder="Password" autocomplete="current-password"></asp:TextBox>
+                                    <label for="<%= txtpassword.ClientID %>" class="input-group__label">Password</label>
+                                    <button type="button" class="input-group__toggle" id="btnTogglePass" aria-label="Toggle password visibility">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="form-row">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="chkRemember" />
+                                        <div class="checkbox-visual"></div>
+                                        <span>Remember me</span>
+                                    </label>
+                                    <a href="javascript:void(0)" id="forgotLink" class="forgot-link">Forgot password?</a>
+                                </div>
+
+                                <asp:LinkButton runat="server" ID="btnLogin" CssClass="btn-login" OnClick="btnLogin_Click">
+                                    <span class="btn-text">
+                                        Sign In
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </asp:LinkButton>
+                            </div>
+
+                            <div class="auth-footer" data-aos="fade-left" data-aos-delay="400">
+                                <p>Don't have an account? <a href="../Register.aspx">Create one free &rarr;</a></p>
+                            </div>
+
+                            <div class="security-badge" data-aos="fade-up" data-aos-delay="500">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Secured with 256-bit SSL encryption</span>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
-            </div>
-             <div id="Divreset" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">OTP Confirmation</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                   OTP                           
-                    <asp:TextBox runat="server" class="form-control" ID="TxtResetotp"></asp:TextBox>
-                    <asp:Label ID="Label2" runat="server" Text="Invalid OTP please enter valid OTP...!" CssClass="bg-red-active" Visible="false"></asp:Label>
-                </div>
-                 <div class="form-group">
-    New Password                           
-   							<label>Password</label>  <asp:TextBox ID="TxtNewPassword" TextMode="Password" CssClass="form-control" placeholder="Password"  runat="server"></asp:TextBox><br><input type="checkbox" onclick="Toggle1()">
-<strong>Show Password</strong>
-   
- </div>
-                                <div class="form-group">
-   Confirm Password                           
- 							<label>Password</label>  <asp:TextBox ID="TxtConfirmpassword" TextMode="Password" CssClass="form-control" placeholder="Password"  runat="server"></asp:TextBox><br><input type="checkbox" onclick="Toggle2()">
-<strong>Show Password</strong>
-  
-</div>
-            </div>
-            <div class="modal-footer">
-                 <asp:Button ID="Button1" runat="server" Text="Submit OTP" OnClientClick="return validate5();" CssClass="btn btn-success" OnClick="Button1_Click"  />
-               
-                <button type="button" class="btn red" data-dismiss="modal">Close</button>
-            </div>
-            <div class="row" id="div1" runat="server" visible="false">
-                <div class="col-md-12">
-                    <div class="alert alert-success"> <strong>Success!</strong> <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>. </div>
-                </div>
-            </div>
-           
-        </div>
-    </div>
-</div>
 
-                </ContentTemplate>
-    </asp:UpdatePanel>
-           </form>
-    <!-- jQuery 2.1.3 -->
-   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="../plugins/iCheck/icheck.min.js"></script>
+                <!-- Forgot Password Modal -->
+                <div id="myModal" class="modal-overlay hidden modal-overlay--static">
+                    <div class="modal-card">
+                        <button type="button" class="modal-close" data-close-modal="myModal" aria-label="Close forgot password dialog">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="modal-header">
+                            <h3>Forgot your password?</h3>
+                            <p>Enter your registered email or user ID. We will send password recovery instructions to your email.</p>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-regular fa-user input-group__icon"></i>
+                            <asp:TextBox ID="txtuserid" runat="server" CssClass="input-group__field" placeholder="Email or User ID"></asp:TextBox>
+                            <label for="<%= txtuserid.ClientID %>" class="input-group__label">Email or User ID</label>
+                        </div>
+                        <div id="divsuccess" runat="server" visible="false" class="alert-success">
+                            <strong>Success!</strong> <asp:Label ID="lblmessage" runat="server" Text="Label"></asp:Label>
+                        </div>
+                        <asp:Button ID="btnSend" runat="server" Text="Confirm &amp; Send Email" OnClientClick="return validate3();" CssClass="btn-login" OnClick="btnSend_Click" />
+                    </div>
+                </div>
+
+                <!-- OTP Confirmation Modal -->
+                <div id="Divotp" class="modal-overlay hidden modal-overlay--static">
+                    <div class="modal-card">
+                        <button type="button" class="modal-close" data-close-modal="Divotp" aria-label="Close OTP dialog">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="modal-header">
+                            <h3>OTP Confirmation</h3>
+                            <p>Enter the OTP sent to your registered mobile number.</p>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-key input-group__icon"></i>
+                            <asp:TextBox ID="TxtOtp" runat="server" CssClass="input-group__field" placeholder="Enter OTP"></asp:TextBox>
+                            <label for="<%= TxtOtp.ClientID %>" class="input-group__label">OTP</label>
+                        </div>
+                        <asp:Label ID="LblMessages" runat="server" Text="Invalid OTP please enter valid OTP...!" CssClass="bg-red-active" Visible="false"></asp:Label>
+                        <div id="div2" runat="server" visible="false" class="alert-success">
+                            <strong>Success!</strong> <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        </div>
+                        <div class="form-row-actions">
+                            <asp:Button ID="BtnConfirm" runat="server" Text="Submit OTP" OnClientClick="return validate2();" CssClass="btn-login" OnClick="BtnConfirm_Click" />
+                            <asp:Button ID="BtnResend" runat="server" Text="Resend OTP" CssClass="btn-secondary-modal" OnClick="BtnResend_Click" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Password Modal -->
+                <div id="Divreset" class="modal-overlay hidden modal-overlay--static">
+                    <div class="modal-card">
+                        <button type="button" class="modal-close" data-close-modal="Divreset" aria-label="Close reset password dialog">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="modal-header">
+                            <h3>Reset Password</h3>
+                            <p>Enter OTP and set your new password.</p>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-key input-group__icon"></i>
+                            <asp:TextBox ID="TxtResetotp" runat="server" CssClass="input-group__field" placeholder="Enter OTP"></asp:TextBox>
+                            <label for="<%= TxtResetotp.ClientID %>" class="input-group__label">OTP</label>
+                        </div>
+                        <asp:Label ID="Label2" runat="server" Text="Invalid OTP please enter valid OTP...!" CssClass="bg-red-active" Visible="false"></asp:Label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock input-group__icon"></i>
+                            <asp:TextBox ID="TxtNewPassword" runat="server" TextMode="Password" CssClass="input-group__field" placeholder="New password"></asp:TextBox>
+                            <label for="<%= TxtNewPassword.ClientID %>" class="input-group__label">New Password</label>
+                            <button type="button" class="input-group__toggle" onclick="Toggle1()" aria-label="Show password">
+                                <i id="toggleNewPasswordIcon" class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock input-group__icon"></i>
+                            <asp:TextBox ID="TxtConfirmpassword" runat="server" TextMode="Password" CssClass="input-group__field" placeholder="Confirm password"></asp:TextBox>
+                            <label for="<%= TxtConfirmpassword.ClientID %>" class="input-group__label">Confirm Password</label>
+                            <button type="button" class="input-group__toggle" onclick="Toggle2()" aria-label="Show password">
+                                <i id="toggleConfirmPasswordIcon" class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="div1" runat="server" visible="false" class="alert-success">
+                            <strong>Success!</strong> <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                        </div>
+                        <asp:Button ID="Button1" runat="server" Text="Submit OTP" OnClientClick="return validate5();" CssClass="btn-login" OnClick="Button1_Click" />
+                    </div>
+                </div>
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        $(function () {
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue',
-                increaseArea: '20%' // optional
-            });
-        });
+        AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic', disable: 'mobile' });
     </script>
-     <script type="text/javascript">
-         function showModal() {
-             $('#myModal').modal({ backdrop: 'static', keyboard: false })
-         }
-         function Closepopup() {
-             $('#myModal').modal('hide');
-             $('body').removeClass('modal-open');
-             $('body').css('padding-right', '0');
-             $('.modal-backdrop').remove();
-         }
-         function showModal12() {
-             $('#Divotp').modal({ backdrop: 'static', keyboard: false })
-         }
-         function Closepopup1() {
-             $('#Divotp').modal('hide');
-             $('body').removeClass('modal-open');
-             $('body').css('padding-right', '0');
-             $('.modal-backdrop').remove();
-         }
-         function showModal13() {
-             $('#Divreset').modal({ backdrop: 'static', keyboard: false })
-         }
-         function Closepopup2() {
-             $('#Divreset').modal('hide');
-             $('body').removeClass('modal-open');
-             $('body').css('padding-right', '0');
-             $('.modal-backdrop').remove();
-         }
-     </script>
-
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-		<!-- Bootstrap Bundle js -->
-		<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-		<!-- Ionicons js -->
-		<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-		<!-- Moment js -->
-		<script src="assets/plugins/moment/moment.js"></script>
-
-		<!-- eva-icons js -->
-		<script src="assets/js/eva-icons.min.js"></script>
-
-		<!-- Rating js-->
-		<script src="assets/plugins/rating/jquery.rating-stars.js"></script>
-		<script src="assets/plugins/rating/jquery.barrating.js"></script>
-
-		
-		<!-- Custom js -->
-		<script src="assets/js/custom.js"></script>
-
-        <!-- Switcher js -->
-		<script src="assets/switcher/js/switcher.js"></script>
+    <script src="js/auth-login.js"></script>
 </body>
 </html>

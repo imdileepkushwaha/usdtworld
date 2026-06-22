@@ -1,4 +1,4 @@
-﻿<%@ page title="Joining Package Activation" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="UserOwnActivation, App_Web_shn2h2tp" %>
+﻿<%@ page title="Joining Package Activation" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="UserOwnActivation, App_Web_b1ewlcuj" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">

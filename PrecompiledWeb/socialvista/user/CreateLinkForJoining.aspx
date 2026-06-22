@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/user/usermaster.master" autoeventwireup="true" inherits="CreateLinkForJoining, App_Web_w2cbuwev" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/user/usermaster.master" autoeventwireup="true" inherits="CreateLinkForJoining, App_Web_awsuintk" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
        <link href="../css/radio/style.css" rel="stylesheet" />
 </asp:Content>

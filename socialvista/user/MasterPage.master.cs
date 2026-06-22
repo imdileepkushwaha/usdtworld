@@ -11,22 +11,24 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (Session["userid"] != null)
         {
-          //  LblUsernameSideMenu.Text = Session["username"].ToString() + "(" + Session["userid"].ToString() + ")";
-            //LblMainId.Text = Session["username"].ToString() + "(" + Session["userid"].ToString() + ")";
-            //LblFullname.Text = Session["username"].ToString() + "(" + Session["userid"].ToString() + ")";
+            string userId = Session["userid"].ToString();
+            string userName = Session["username"] != null ? Session["username"].ToString() : userId;
+            litUserDisplay.Text = userName;
+            litUserName.Text = userName;
+            litUserId.Text = userId;
+
             String UserImage = Session["UserImage"].ToString();
+            string imagePath;
             if (UserImage.ToString() != "")
             {
-                //dvUserImage1.Src = "~/ProductImage/" + UserImage.ToString();
-                //dvUserImage2.Src = "~/ProductImage/" + UserImage.ToString();
-                dvUserImage3.Src = "~/ProductImage/" + UserImage.ToString();
+                imagePath = "~/ProductImage/" + UserImage.ToString();
             }
             else
             {
-                //dvUserImage1.Src = "~/ProductImage/636549111447865966default.png";
-                //dvUserImage2.Src = "~/ProductImage/636549111447865966default.png";
-                dvUserImage3.Src = "~/ProductImage/636549111447865966default.png";
+                imagePath = "~/ProductImage/636549111447865966default.png";
             }
+            dvUserImage3.Src = imagePath;
+            dvUserImage4.Src = imagePath;
 
             if (Session["status"].ToString() == "1")
             {

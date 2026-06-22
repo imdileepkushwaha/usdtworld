@@ -1,4 +1,4 @@
-﻿<%@ page title="Transfer E-Pin" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="ActivateUserWithEpin, App_Web_5nk2ho4e" %>
+﻿<%@ page title="Transfer E-Pin" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="ActivateUserWithEpin, App_Web_ufqoucmr" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">

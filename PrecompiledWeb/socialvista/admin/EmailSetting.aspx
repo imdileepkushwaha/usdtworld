@@ -1,4 +1,4 @@
-﻿<%@ page title="Email Setting" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_EmailSetting, App_Web_fi0f1pfn" %>
+﻿<%@ page title="Email Setting" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_EmailSetting, App_Web_wedwbetx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

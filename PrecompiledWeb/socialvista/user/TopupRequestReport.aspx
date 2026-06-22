@@ -1,4 +1,4 @@
-﻿<%@ page title="Deposit Request Report" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="admin_TopupRequestReport, App_Web_g0aq0vd4" %>
+﻿<%@ page title="Deposit Request Report" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="admin_TopupRequestReport, App_Web_cwfov4if" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

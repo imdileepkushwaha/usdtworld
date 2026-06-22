@@ -1,4 +1,4 @@
-﻿<%@ page title="Change Password" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_CHangePassword, App_Web_shn2h2tp" %>
+﻿<%@ page title="Change Password" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_CHangePassword, App_Web_b1ewlcuj" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">

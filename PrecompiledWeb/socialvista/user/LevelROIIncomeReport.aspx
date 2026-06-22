@@ -1,4 +1,4 @@
-﻿<%@ page title="Level ROI Income Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="LevelROIIncomeReport, App_Web_odhkxf4b" %>
+﻿<%@ page title="Level ROI Income Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="LevelROIIncomeReport, App_Web_bavsdnkk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

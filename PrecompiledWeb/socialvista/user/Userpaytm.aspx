@@ -1,4 +1,4 @@
-﻿<%@ page title="Edit User Details" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="Userpaytm, App_Web_g0aq0vd4" %>
+﻿<%@ page title="Edit User Details" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="Userpaytm, App_Web_cwfov4if" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
    

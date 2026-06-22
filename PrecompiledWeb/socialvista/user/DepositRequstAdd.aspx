@@ -1,5 +1,5 @@
 ﻿
-<%@ page title="Deposit Request" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="user_DepositRequstAdd, App_Web_w2cbuwev" %>
+<%@ page title="Deposit Request" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="user_DepositRequstAdd, App_Web_awsuintk" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">

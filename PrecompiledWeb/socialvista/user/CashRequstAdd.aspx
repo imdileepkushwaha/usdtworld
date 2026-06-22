@@ -1,4 +1,4 @@
-﻿<%@ page title="Withdrawl Request" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="CashRequstAdd, App_Web_w2cbuwev" %>
+﻿<%@ page title="Withdrawl Request" language="C#" masterpagefile="usermaster.master" autoeventwireup="true" inherits="CashRequstAdd, App_Web_awsuintk" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">

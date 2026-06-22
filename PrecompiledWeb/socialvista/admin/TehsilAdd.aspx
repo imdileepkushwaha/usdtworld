@@ -1,4 +1,4 @@
-﻿<%@ page title="Add Market" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="TehsilAdd, App_Web_oiaeawxq" %>
+﻿<%@ page title="Add Market" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="TehsilAdd, App_Web_0tut2aep" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script type="text/javascript">

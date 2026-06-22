@@ -1,4 +1,4 @@
-﻿<%@ page title="Pending Request" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_PendingRequest, App_Web_ypc30v0j" %>
+﻿<%@ page title="Pending Request" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_PendingRequest, App_Web_ng24kyl5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

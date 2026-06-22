@@ -1,4 +1,4 @@
-﻿<%@ page title="Recharge Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_jjhqyy0q" %>
+﻿<%@ page title="Recharge Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_xaf2lnhz" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">

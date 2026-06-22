@@ -1,4 +1,4 @@
-﻿<%@ page title="Upgrade User With E-Pin" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="UpgradeUserWithEpin, App_Web_w2cbuwev" %>
+﻿<%@ page title="Upgrade User With E-Pin" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="UpgradeUserWithEpin, App_Web_awsuintk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">

@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/User/MasterPage.master" autoeventwireup="true" inherits="User_account_Ledger, App_Web_shn2h2tp" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/User/MasterPage.master" autoeventwireup="true" inherits="User_account_Ledger, App_Web_b1ewlcuj" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

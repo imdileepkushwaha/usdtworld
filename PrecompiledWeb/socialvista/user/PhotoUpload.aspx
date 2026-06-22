@@ -1,4 +1,4 @@
-﻿<%@ page title="Withdrawl Request" language="C#" masterpagefile="Masterpage.master" autoeventwireup="true" inherits="PhotoUpload, App_Web_w2cbuwev" %>
+﻿<%@ page title="Withdrawl Request" language="C#" masterpagefile="Masterpage.master" autoeventwireup="true" inherits="PhotoUpload, App_Web_awsuintk" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

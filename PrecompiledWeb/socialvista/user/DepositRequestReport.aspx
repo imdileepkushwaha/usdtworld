@@ -1,4 +1,4 @@
-﻿<%@ page title="Deposit Request Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_DepositRequestReport, App_Web_g0aq0vd4" %>
+﻿<%@ page title="Deposit Request Report" language="C#" masterpagefile="MasterPage.master" autoeventwireup="true" inherits="admin_DepositRequestReport, App_Web_cwfov4if" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

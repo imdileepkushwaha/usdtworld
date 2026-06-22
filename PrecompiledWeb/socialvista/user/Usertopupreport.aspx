@@ -1,4 +1,4 @@
-﻿<%@ page title="Topup Report" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="Usertopupreport, App_Web_w2cbuwev" %>
+﻿<%@ page title="Topup Report" language="C#" masterpagefile="masterpage.master" autoeventwireup="true" inherits="Usertopupreport, App_Web_awsuintk" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	

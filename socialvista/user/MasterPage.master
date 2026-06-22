@@ -9,7 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Title -->
-    <title> <%= clsUtility.ProjectName %>|| Login</title>
+    <title><%= clsUtility.ProjectName %> | Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!--New Theme end CSS -->
     <link rel="stylesheet" href="../web-assets/css/remixicon.css">
@@ -41,6 +46,7 @@
     <link rel="stylesheet" href="../web-assets/css/lib/audioplayer.css">
     <!-- main css -->
     <link rel="stylesheet" href="../web-assets/css/style.css">
+    <link rel="stylesheet" href="css/dashboard-theme.css" />
 
     <!--New Theme end CSS -->
 
@@ -56,18 +62,23 @@
 
 
 
-<body data-theme="dark">
+<body data-theme="dark" data-nav-page="<%= System.IO.Path.GetFileName(Request.Path) %>">
 
 
     <aside class="sidebar">
         <button type="button" class="sidebar-close-btn">
             <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
         </button>
-        <div>
+        <div class="sv-sidebar-brand">
             <a href="Dashboard.aspx" class="sidebar-logo">
-                <img src="../user/img/logo.png" alt="site logo" class="light-logo">
-                <img src="../user/img/logo.png" alt="site logo" class="dark-logo">
-                <img src="../user/img/logo.png" alt="site logo" class="logo-icon">
+                <span class="sv-logo-wrap">
+                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" />
+                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" />
+                </span>
+                <span class="sv-logo-text">
+                    <span class="sv-brand-name"><%= clsUtility.ProjectName %></span>
+                    <span class="sv-brand-tag">Member Panel</span>
+                </span>
             </a>
         </div>
         <div class="sidebar-menu-area">
@@ -371,8 +382,14 @@
                         <button type="button" class="sidebar-mobile-toggle">
                             <iconify-icon icon="heroicons:bars-3-solid" class="icon"></iconify-icon>
                         </button>
+                        <div class="sv-welcome d-none d-lg-block">
+                            <p class="sv-welcome__label">Welcome back</p>
+                            <p class="sv-welcome__user">
+                                <asp:Literal ID="litUserDisplay" runat="server" />
+                            </p>
+                        </div>
                         <form class="navbar-search">
-                            <input type="text" name="search" placeholder="Search">
+                            <input type="text" name="search" placeholder="Search menu, reports...">
                             <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
                         </form>
                     </div>
@@ -381,43 +398,40 @@
                     <div class="d-flex flex-wrap align-items-center gap-3">
                      
 
-                        <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" onclick="javascript:toggleFullScreen()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                        <button class="sv-nav-btn has-indicator rounded-circle d-flex justify-content-center align-items-center" type="button" onclick="javascript:toggleFullScreen()" title="Fullscreen">
+                            <i class="fa-solid fa-expand"></i>
                         </button>
 
-
-                      
-
                         <div class="dropdown">
-                            <button class="d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown">
-                                <img id="dvUserImage3" runat="server" src="~/user/img/default.png" class="w-40-px h-40-px object-fit-cover rounded-circle" alt="" />
-
+                            <button class="sv-profile-btn d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown" aria-label="Profile menu">
+                                <img id="dvUserImage3" runat="server" src="~/user/img/default.png" class="w-40-px h-40-px object-fit-cover rounded-circle" alt="Profile" />
                             </button>
                             <div class="dropdown-menu to-top dropdown-menu-sm">
-                                <div class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
-                                    
-                                    <button type="button" class="hover-text-danger">
-                                        <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon>
-                                    </button>
+                                <div class="sv-profile-card d-flex align-items-center gap-3">
+                                    <img id="dvUserImage4" runat="server" src="~/user/img/default.png" class="w-44-px h-44-px object-fit-cover rounded-circle" alt="Profile" />
+                                    <div>
+                                        <p class="sv-profile-card__name"><asp:Literal ID="litUserName" runat="server" /></p>
+                                        <p class="sv-profile-card__id">ID: <asp:Literal ID="litUserId" runat="server" /></p>
+                                    </div>
                                 </div>
                                 <ul class="to-top-list">
                                     <li>
-                                        <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="UserProfile.aspx">
+                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="UserProfile.aspx">
                                             <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>
                                             My Profile</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="Dashboard.aspx">
-                                            <iconify-icon icon="tabler:message-check" class="icon text-xl"></iconify-icon>
-                                            Home</a>
+                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="Dashboard.aspx">
+                                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-xl"></iconify-icon>
+                                            Dashboard</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="CHangePassword.aspx">
+                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="CHangePassword.aspx">
                                             <iconify-icon icon="icon-park-outline:setting-two" class="icon text-xl"></iconify-icon>
                                             Change Password</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="index.aspx">
+                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="logout.aspx">
                                             <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>
                                             Log Out</a>
                                     </li>
@@ -443,11 +457,13 @@
             </div>
         </form>
         <footer class="d-footer">
-            <div class="row align-items-center justify-content-between">
+            <div class="row align-items-center justify-content-between g-2">
                 <div class="col-auto">
-                    <p class="mb-0">&copy; 2025-2026  <%= clsUtility.ProjectName %>, All Rights Reserved.</p>
+                    <p class="mb-0">&copy; 2025–2026 <span class="sv-footer-brand"><%= clsUtility.ProjectName %></span>. All rights reserved.</p>
                 </div>
-                
+                <div class="col-auto d-none d-md-block">
+                    <p class="mb-0"><i class="fa-solid fa-shield-halved" style="color:#6ee7b7;margin-right:6px;"></i>Secure member portal</p>
+                </div>
             </div>
         </footer>
     </main>
@@ -505,5 +521,6 @@
 
     <!-- main js -->
     <script src="../web-assets/js/app.js"></script>
+    <script src="js/sidebar-menu.js"></script>
 </body>
 </html>

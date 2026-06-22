@@ -1,4 +1,4 @@
-﻿<%@ page title="Binary Report" language="C#" masterpagefile="Masterpage.master" autoeventwireup="true" inherits="PoolBinaryReport, App_Web_zzg0fu3c" %>
+﻿<%@ page title="Binary Report" language="C#" masterpagefile="Masterpage.master" autoeventwireup="true" inherits="PoolBinaryReport, App_Web_2evl2ddv" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

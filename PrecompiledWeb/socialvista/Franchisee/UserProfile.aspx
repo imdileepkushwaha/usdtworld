@@ -1,4 +1,4 @@
-﻿<%@ page title="Edit User Details" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="UserProfile, App_Web_5nk2ho4e" %>
+﻿<%@ page title="Edit User Details" language="C#" masterpagefile="franchiseemaster.master" autoeventwireup="true" inherits="UserProfile, App_Web_geu5file" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">

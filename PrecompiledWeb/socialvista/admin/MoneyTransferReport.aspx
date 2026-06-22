@@ -1,4 +1,4 @@
-﻿<%@ page title="Money Transfer Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_voj4fkuq" %>
+﻿<%@ page title="Money Transfer Report" language="C#" masterpagefile="adminmaster.master" autoeventwireup="true" inherits="admin_UserReport, App_Web_ikc0yibi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
       <script type="text/javascript">

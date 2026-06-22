@@ -1,4 +1,4 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/Franchisee/franchiseemaster.master" autoeventwireup="true" inherits="Franchisee_UserRepurchaseReport, App_Web_5nk2ho4e" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/Franchisee/franchiseemaster.master" autoeventwireup="true" inherits="Franchisee_UserRepurchaseReport, App_Web_geu5file" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

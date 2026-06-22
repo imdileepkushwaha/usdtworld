@@ -1,4 +1,4 @@
-﻿<%@ page title="Add City" language="C#" masterpagefile="~/User/usermaster.master" autoeventwireup="true" inherits="CouponAssignmentMaster, App_Web_odhkxf4b" %>
+﻿<%@ page title="Add City" language="C#" masterpagefile="~/User/usermaster.master" autoeventwireup="true" inherits="CouponAssignmentMaster, App_Web_bavsdnkk" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      
