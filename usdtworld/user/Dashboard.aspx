@@ -339,6 +339,48 @@ body {
         </div>
     </div>
 
+    <section class="sv-plans-section" aria-label="Membership plans">
+        <div class="sv-plans-section__head">
+            <div>
+                <span class="sv-plans-section__eyebrow"><i class="fa-solid fa-layer-group"></i> Packages</span>
+                <h2>Investment Plans</h2>
+                <p>Explore membership tiers and grow your portfolio</p>
+            </div>
+            <asp:Label ID="LblCurrentPlanBadge" runat="server" CssClass="sv-plans-section__current" Visible="false" />
+        </div>
+        <div class="sv-plans-grid">
+            <asp:Repeater ID="rptPlans" runat="server" OnItemDataBound="rptPlans_ItemDataBound">
+                <ItemTemplate>
+                    <article class="sv-plan-card sv-plan-card--accent-<%# Container.ItemIndex % 4 %>">
+                        <div class="sv-plan-card__top">
+                            <span class="sv-plan-card__shield"><i class="fa-solid fa-shield-halved"></i></span>
+                            <h3 class="sv-plan-card__name"><%# Eval("PlanName") %></h3>
+                        </div>
+                        <div class="sv-plan-card__main">
+                            <div class="sv-plan-card__pricing">
+                                <span class="sv-plan-card__price">$<%# Eval("Planamount") %></span>
+                                <span class="sv-plan-card__badge">Members Only</span>
+                            </div>
+                            <div class="sv-plan-card__logo-wrap">
+                                <img src="img/usdt.png" alt="UWC" class="sv-plan-card__logo" />
+                            </div>
+                        </div>
+                        <div class="sv-plan-card__footer">
+                            <div class="sv-plan-card__metric">
+                                <asp:Literal ID="litMetric" runat="server" />
+                            </div>
+                            <asp:HyperLink ID="lnkAction" runat="server" />
+                        </div>
+                    </article>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <asp:Panel ID="pnlNoPlans" runat="server" Visible="false" CssClass="sv-plans-empty">
+            <i class="fa-solid fa-box-open"></i>
+            <p>No plans available at the moment.</p>
+        </asp:Panel>
+    </section>
+
     <div class="row sv-market-row g-3">
         <div class="col-lg-4 col-md-5">
             <div class="sv-panel h-100">

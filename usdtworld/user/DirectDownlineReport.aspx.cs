@@ -91,21 +91,25 @@ public partial class admin_DirectReport : System.Web.UI.Page
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            Label lblstatus = (Label)e.Row.FindControl("lblStatus");
-            if (lblstatus.Text == "Unpaid")
-            {
-                e.Row.BackColor = System.Drawing.Color.Black;
-                e.Row.ForeColor = System.Drawing.Color.White ;
-            }
-            else
-            {
-                e.Row.BackColor = System.Drawing.Color.Black;
-                e.Row.ForeColor = System.Drawing.Color.White;
-            }
+        if (e.Row.RowType != DataControlRowType.DataRow)
+            return;
 
-        }
+        Label lblstatus = (Label)e.Row.FindControl("lblstatus");
+        if (lblstatus == null)
+            return;
+
+        ApplyTeamStatusClass(lblstatus);
+    }
+
+    static void ApplyTeamStatusClass(Label lblstatus)
+    {
+        string status = (lblstatus.Text ?? "").Trim().ToLowerInvariant();
+        if (status == "active" || status == "paid")
+            lblstatus.CssClass = "sv-team-status sv-team-status--active";
+        else if (status == "unpaid")
+            lblstatus.CssClass = "sv-team-status sv-team-status--unpaid";
+        else
+            lblstatus.CssClass = "sv-team-status sv-team-status--inactive";
     }
 
 
@@ -156,20 +160,13 @@ public partial class admin_DirectReport : System.Web.UI.Page
     }
     protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            Label lblstatus = (Label)e.Row.FindControl("lblStatus");
-            if (lblstatus.Text == "Unpaid")
-            {
-                e.Row.BackColor = System.Drawing.Color.Black;
-                e.Row.ForeColor = System.Drawing.Color.White;
-            }
-            else
-            {
-                e.Row.BackColor = System.Drawing.Color.Black;
-                e.Row.ForeColor = System.Drawing.Color.White;
-            }
+        if (e.Row.RowType != DataControlRowType.DataRow)
+            return;
 
-        }
+        Label lblstatus = (Label)e.Row.FindControl("lblstatus");
+        if (lblstatus == null)
+            return;
+
+        ApplyTeamStatusClass(lblstatus);
     }
 }

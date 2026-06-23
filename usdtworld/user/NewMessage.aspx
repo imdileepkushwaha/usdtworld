@@ -1,96 +1,95 @@
-﻿<%@ Page Title="New Message" Language="C#" MasterPageFile="masterpage.master" AutoEventWireup="true" CodeFile="NewMessage.aspx.cs" Inherits="Associate_Details" %>
+﻿<%@ Page Title="New Message" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="NewMessage.aspx.cs" Inherits="Associate_Details" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <style>
-        hr {
-            margin-top: 3px;
-            margin-bottom: 3px;
-            border: 0;
-        }
-        .label {
-            
-            font-size: 100% !important;
-            font-weight: 600 !important;
-            line-height: 2 !important;
-        }
-    </style>
-    <script src="js/jquery-1.10.2.js"></script>
+    <link href="css/dashboard-page.css" rel="stylesheet" />
+    <link href="css/messages-page.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPageheading" runat="Server">
-    <section class="content-header">
-      <h1>
-            Compose Mail
-      </h1>
-      <ol class="breadcrumb">
-     <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Customer Care</a></li>
-        <li class="active">Compose Mail</li>
-      </ol>
-    </section>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPageData" runat="Server">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Compose Mail</h3>
+<asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
+    <div class="sv-dashboard-page sv-messages-page">
+
+        <div class="sv-dash-header">
+            <div class="sv-dash-header__glow sv-dash-header__glow--1"></div>
+            <div class="sv-dash-header__glow sv-dash-header__glow--2"></div>
+            <div class="sv-dash-header__grid"></div>
+
+            <div class="sv-dash-header__main">
+                <div class="sv-dash-header__icon">
+                    <i class="fa-solid fa-headset"></i>
                 </div>
-                <div class="box-content row">
-                    <div class="col-lg-12 col-md-12">
-                        <hr />
-                        <div class="row" style="display:none;">
-                            <div class="col-md-offset-1 col-md-1">
-                                <label for="exampleInputEmail1">To</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="txttoid" CssClass="form-control" runat="server" OnTextChanged="txttoid_TextChanged" AutoPostBack="true" Text="admin" ></asp:TextBox>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:Label ID="lblUserName" runat="server" Text="User"></asp:Label>
-                                <asp:Label ID="lbluserid" runat="server" Text="User"></asp:Label>
-                            </div>
+                <div class="sv-dash-header__text">
+                    <span class="sv-dash-header__eyebrow">
+                        <span class="sv-dash-header__pulse"></span>
+                        Customer Care
+                    </span>
+                    <h1>Compose Message</h1>
+                    <p>Send a support request to our admin team</p>
+                </div>
+            </div>
+
+            <div class="sv-dash-header__actions">
+                <a href="Dashboard.aspx" class="sv-dash-breadcrumb">
+                    <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                    Dashboard
+                </a>
+            </div>
+        </div>
+
+        <nav class="sv-msg-tabs" aria-label="Message sections">
+            <a href="NewMessage.aspx" class="sv-msg-tabs__item sv-msg-tabs__item--active">
+                <i class="fa-solid fa-pen-to-square"></i> Compose
+            </a>
+            <a href="Inbox.aspx" class="sv-msg-tabs__item">
+                <i class="fa-solid fa-inbox"></i> Inbox
+            </a>
+            <a href="Sentbox.aspx" class="sv-msg-tabs__item">
+                <i class="fa-solid fa-paper-plane"></i> Sent
+            </a>
+        </nav>
+
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
+    <div class="sv-dashboard-page sv-messages-page">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div class="sv-panel">
+            <div class="sv-panel__head">
+                <h6><i class="fa-solid fa-envelope-open-text" style="margin-right:8px;color:#c4b5fd;"></i>New Support Ticket</h6>
+                <span>To Admin</span>
+            </div>
+            <div class="sv-panel__body">
+                <div class="sv-msg-form">
+                    <div class="row" style="display:none;">
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txttoid" CssClass="sv-msg-input form-control" runat="server" OnTextChanged="txttoid_TextChanged" AutoPostBack="true" Text="admin"></asp:TextBox>
+                            <asp:Label ID="lblUserName" runat="server" Text="User"></asp:Label>
+                            <asp:Label ID="lbluserid" runat="server" Text="User"></asp:Label>
                         </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-offset-1 col-md-1">
-                                <label for="exampleInputEmail1">Subject</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="txtmessagetitle" CssClass="form-control" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-offset-1 col-md-1">
-                                <label for="exampleInputEmail1">Attachment</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:FileUpload ID="fupAttachment" runat="server" CssClass="form-control" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-offset-1 col-md-1">
-                                <label for="exampleInputEmail1">Message</label>
-                            </div>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtdescription" CssClass="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-sm-offset-2 col-sm-12">
-                                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="btnSubmit_Click" />
-                                <asp:Button ID="btncancel" CssClass="btn btn-default" Text="Cancel" runat="server" OnClick="btncancel_Click" />
-                            </div>
-                        </div>
-                        <hr />
+                    </div>
+
+                    <div class="sv-msg-form__group">
+                        <label for="<%= txtmessagetitle.ClientID %>">Subject</label>
+                        <asp:TextBox ID="txtmessagetitle" CssClass="sv-msg-input form-control" runat="server" placeholder="Enter message subject"></asp:TextBox>
+                    </div>
+
+                    <div class="sv-msg-form__group">
+                        <label for="<%= fupAttachment.ClientID %>">Attachment</label>
+                        <asp:FileUpload ID="fupAttachment" runat="server" CssClass="sv-msg-input form-control" />
+                        <span class="sv-msg-form__hint">Supported: images, PDF, DOC, XLS, TXT</span>
+                    </div>
+
+                    <div class="sv-msg-form__group">
+                        <label for="<%= txtdescription.ClientID %>">Message</label>
+                        <asp:TextBox ID="txtdescription" CssClass="sv-msg-input sv-msg-input--textarea form-control" TextMode="MultiLine" runat="server" placeholder="Write your message here..."></asp:TextBox>
+                    </div>
+
+                    <div class="sv-msg-form__actions">
+                        <asp:Button ID="btnSubmit" CssClass="sv-msg-btn sv-msg-btn--primary" Text="Send Message" runat="server" OnClick="btnSubmit_Click" />
+                        <asp:Button ID="btncancel" CssClass="sv-msg-btn sv-msg-btn--ghost" Text="Cancel" runat="server" OnClick="btncancel_Click" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 </asp:Content>
-

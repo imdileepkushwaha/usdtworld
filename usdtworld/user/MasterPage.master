@@ -73,8 +73,8 @@
         <div class="sv-sidebar-brand">
             <a href="Dashboard.aspx" class="sidebar-logo">
                 <span class="sv-logo-wrap">
-                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" />
-                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" />
+                    <img src="img/usdt.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" />
+                    <img src="img/usdt.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" />
                 </span>
                 <span class="sv-logo-text">
                     <span class="sv-brand-name"><%= clsUtility.ProjectName %></span>
@@ -158,10 +158,13 @@
                     <ul class="sidebar-submenu">
                         <li>
                             <a href="NewMessage.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Support</a>
-							   <a href="Inbox.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Inbox</a>
-							      <a href="sentbox.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>SentBox</a>
                         </li>
-                       
+                        <li>
+                            <a href="Inbox.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Inbox</a>
+                        </li>
+                        <li>
+                            <a href="Sentbox.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>SentBox</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown" style="display:none">

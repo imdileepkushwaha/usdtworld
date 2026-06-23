@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using DataTier;
@@ -24,6 +25,8 @@ public partial class user_Dashboard : System.Web.UI.Page
     public string LoginId = "";
     public string WhiteLabelId = "";
     clsRecharge objrecharge = new clsRecharge();
+    clsplan objplan = new clsplan();
+    HashSet<int> _purchasedPlanIds = new HashSet<int>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -68,6 +71,7 @@ public partial class user_Dashboard : System.Web.UI.Page
                 loadPV();
                 loadawardlist();
                 GetAllIncome();
+                loadPlans();
 
 
             }
@@ -86,6 +90,127 @@ public partial class user_Dashboard : System.Web.UI.Page
     }
 
 
+
+    void loadPlans()
+    {
+        _purchasedPlanIds = GetPurchasedPlanIds(Session["userid"].ToString());
+
+        DataTable dt = objplan.getPlanAll();
+
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            pnlNoPlans.Visible = true;
+            return;
+        }
+
+        pnlNoPlans.Visible = false;
+        rptPlans.DataSource = dt;
+        rptPlans.DataBind();
+
+        if (!string.IsNullOrEmpty(LblCurrentpackage.Text) && LblCurrentpackage.Text != "—")
+        {
+            LblCurrentPlanBadge.Visible = true;
+            LblCurrentPlanBadge.Text = "Current: " + LblCurrentpackage.Text;
+        }
+    }
+
+    HashSet<int> GetPurchasedPlanIds(string userId)
+    {
+        var purchased = new HashSet<int>();
+        string safeUserId = userId.Replace("'", "''");
+        string query = "SELECT DISTINCT planid FROM UserTOPUPtb WHERE Userid='" + safeUserId + "'";
+
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(query);
+        }
+        catch
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+
+        if (dt == null)
+            return purchased;
+
+        foreach (DataRow row in dt.Rows)
+        {
+            int planId;
+            if (int.TryParse(row["planid"].ToString(), out planId))
+                purchased.Add(planId);
+        }
+
+        return purchased;
+    }
+
+    protected void rptPlans_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
+            return;
+
+        DataRowView row = (DataRowView)e.Item.DataItem;
+        int planId = Convert.ToInt32(row["id"]);
+        bool isYield = IsYieldPlan(row.Row);
+
+        Literal litMetric = (Literal)e.Item.FindControl("litMetric");
+        HyperLink lnkAction = (HyperLink)e.Item.FindControl("lnkAction");
+
+        if (litMetric != null)
+        {
+            if (isYield)
+            {
+                decimal yield;
+                decimal.TryParse(row["BuisnessVolume"].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out yield);
+                litMetric.Text =
+                    "<span class=\"sv-plan-card__metric-value\">" + yield.ToString("0.##", CultureInfo.InvariantCulture) + "%</span>" +
+                    "<span class=\"sv-plan-card__metric-label\">Yield</span>";
+            }
+            else
+            {
+                decimal income;
+                decimal.TryParse(row["MonthlyAmount"].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out income);
+                litMetric.Text =
+                    "<span class=\"sv-plan-card__metric-label\">Single Level Income</span>" +
+                    "<span class=\"sv-plan-card__metric-value sv-plan-card__metric-value--gold\">$" + income.ToString("F4", CultureInfo.InvariantCulture) + "</span>";
+            }
+        }
+
+        if (lnkAction != null)
+        {
+            if (_purchasedPlanIds.Contains(planId))
+            {
+                lnkAction.Text = "Purchased";
+                lnkAction.NavigateUrl = "javascript:void(0);";
+                lnkAction.CssClass = "sv-plan-card__btn sv-plan-card__btn--purchased";
+            }
+            else
+            {
+                lnkAction.Text = "Buy";
+                lnkAction.CssClass = "sv-plan-card__btn sv-plan-card__btn--buy";
+                lnkAction.NavigateUrl = isYield ? "UpgradeUserToWallet.aspx" : "ActivateUserToWallet.aspx";
+            }
+        }
+    }
+
+    static bool IsYieldPlan(DataRow row)
+    {
+        if (row.Table.Columns.Contains("topuptype") && row["topuptype"] != DBNull.Value)
+        {
+            string topupType = row["topuptype"].ToString();
+            if (topupType.Equals("ReTopup", StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (topupType.Equals("Topup", StringComparison.OrdinalIgnoreCase))
+                return false;
+        }
+
+        decimal businessVolume;
+        decimal monthlyAmount;
+        decimal.TryParse(row["BuisnessVolume"].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out businessVolume);
+        decimal.TryParse(row["MonthlyAmount"].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out monthlyAmount);
+        return businessVolume > 0 && monthlyAmount == 0;
+    }
 
     private void GetAllIncome()
     {

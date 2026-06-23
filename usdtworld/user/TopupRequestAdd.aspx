@@ -1,293 +1,242 @@
-﻿
-<%@ Page Title="Deposit Request" Language="C#" MasterPageFile="masterpage.master" AutoEventWireup="true" CodeFile="TopupRequestAdd.aspx.cs" Inherits="user_TopupRequestAdd" %>
+﻿<%@ Page Title="Deposit Request" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="TopupRequestAdd.aspx.cs" Inherits="user_TopupRequestAdd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <script type="text/javascript">
-
-
-         function validate() {
-
-                             
-                
-             if (document.getElementById("<%=TxtTransactionId.ClientID%>").value == "") {
-
-                 alert('Enter TransactionID');
-                 document.getElementById("<%=TxtTransactionId.ClientID%>").focus();
-                     return false;
-                 }
-
-             }
-             if (document.getElementById("<%=RDBtnFranchisee.ClientID%>").checked == true) {
-
-             if (document.getElementById("<%=TxtFranchiseeUserId.ClientID%>").value == "") {
-                     alert('Enter franchisee ID');
-                     document.getElementById("<%=TxtFranchiseeUserId.ClientID%>").focus();
-                     return false;
-                 }
-
-             }
-            
-             if (document.getElementById("<%=txtamount.ClientID%>").value == "") {
-
-             alert('Enter Amount');
-             document.getElementById("<%=txtamount.ClientID%>").focus();
+    <link href="css/account-pages.css" rel="stylesheet" />
+    <link href="css/kyc-page.css" rel="stylesheet" />
+    <link href="css/topup-pages.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function validate() {
+            if (document.getElementById("<%=TxtTransactionId.ClientID%>").value == "") {
+                alert('Enter TransactionID');
+                document.getElementById("<%=TxtTransactionId.ClientID%>").focus();
                 return false;
-            }       
-           
-           
-
-           
+            }
+            if (document.getElementById("<%=RDBtnFranchisee.ClientID%>").checked == true) {
+                if (document.getElementById("<%=TxtFranchiseeUserId.ClientID%>").value == "") {
+                    alert('Enter franchisee ID');
+                    document.getElementById("<%=TxtFranchiseeUserId.ClientID%>").focus();
+                    return false;
+                }
+            }
+            if (document.getElementById("<%=txtamount.ClientID%>").value == "") {
+                alert('Enter Amount');
+                document.getElementById("<%=txtamount.ClientID%>").focus();
+                return false;
+            }
+        }
     </script>
-     <link href="../css/radio/style.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" Runat="Server">
-     
-  
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" Runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
-            <div class="modal2">
-                <div class="center2">
-                    <img alt="" src="loader.gif" />
-                </div>
-            </div>
+            <div class="modal2"><div class="center2"><img alt="" src="loader.gif" /></div></div>
         </ProgressTemplate>
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="sv-account-page sv-topup-page">
+                <div class="sv-page-header sv-page-header--topup">
+                    <div class="sv-page-header__glow sv-page-header__glow--1"></div>
+                    <div class="sv-page-header__glow sv-page-header__glow--2"></div>
+                    <div class="sv-page-header__main">
+                        <div class="sv-page-header__icon"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="sv-page-header__text">
+                            <h1>Deposit Request</h1>
+                            <p>Submit a topup deposit request with payment proof</p>
+                        </div>
+                    </div>
+                    <div class="sv-page-header__actions">
+                        <a href="Dashboard.aspx" class="sv-page-breadcrumb">
+                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                            Dashboard
+                        </a>
+                        <span class="sv-page-header__crumb">Topup / Deposit Request</span>
+                    </div>
+                </div>
 
-            <div class="row" style="color:white;">
-          <div class="col-md-12">
-              <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Topup Request</h3>
-            </div>
-                   <div class="box-body">
-                       <%--<h4> Request Type</h4>
-                        <hr />--%>
+                <nav class="sv-topup-tabs" aria-label="Topup sections">
+                    <a href="TopupRequestAdd.aspx" class="sv-topup-tabs__item sv-topup-tabs__item--active"><i class="fa-solid fa-wallet"></i> Deposit Request</a>
+                    <a href="ActivateUserToWallet.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-user-check"></i> Activate User</a>
+                    <a href="TopupDetail.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-list-check"></i> Topup Detail</a>
+                </nav>
+
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Topup Request</h3>
+                            <p>Fill deposit details and upload payment slip</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
                         <div class="row" style="display:none">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="RDBtnTRecharge" runat="server" Text="Main Wallet" GroupName="A" AutoPostBack="true" OnCheckedChanged="RDBtnTRecharge_CheckedChanged"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="RdBtnUtility" runat="server" Text="Cash Wallet" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnUtility_CheckedChanged"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                </div>
+                            <div class="col-md-3">
+                                <asp:RadioButton ID="RDBtnTRecharge" runat="server" Text="Main Wallet" GroupName="A" AutoPostBack="true" OnCheckedChanged="RDBtnTRecharge_CheckedChanged" />
                             </div>
-                      
-                       <%-- <h4> Request To</h4>                     
-                        <hr />--%>
-                    <div class="row" style="display:none">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="RDBTNAdmin" runat="server" Text="Admin" GroupName="B" AutoPostBack="true" OnCheckedChanged="RDBTNAdmin_CheckedChanged"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="RDBtnFranchisee" runat="server" Text="Franchisee" GroupName="B" AutoPostBack="true" OnCheckedChanged="RDBtnFranchisee_CheckedChanged"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                </div>
+                            <div class="col-md-3">
+                                <asp:RadioButton ID="RdBtnUtility" runat="server" Text="Cash Wallet" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnUtility_CheckedChanged" />
                             </div>
-                           <%-- <hr />--%>
+                        </div>
+                        <div class="row" style="display:none">
+                            <div class="col-md-3">
+                                <asp:RadioButton ID="RDBTNAdmin" runat="server" Text="Admin" GroupName="B" AutoPostBack="true" OnCheckedChanged="RDBTNAdmin_CheckedChanged" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:RadioButton ID="RDBtnFranchisee" runat="server" Text="Franchisee" GroupName="B" AutoPostBack="true" OnCheckedChanged="RDBtnFranchisee_CheckedChanged" />
+                            </div>
+                        </div>
+
                         <asp:Panel runat="server" Visible="false" ID="Pnlfranchisee">
-                            <div class="row">
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>Franchisee-ID :</label>
-                                <asp:TextBox ID="TxtFranchiseeUserId"  runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="TxtFranchiseeUserId_TextChanged" />
-                             </div>
-                         </div>
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>Franchisee Name :</label>
-                                <asp:TextBox ID="TxtFranchiseename" Enabled="false" runat="server" CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                            </asp:Panel>
-					   
-					   
-					   
-					  <asp:Panel runat="server" Visible="false" ID="Pnladmin">
-                          <div class="row">
-                         <div class="col-md-6" style="display:none">
-                             <div class="form-group">
-                                 <label>Select Deposit Account :</label>
-                                   <asp:DropDownList ID="ddbankaccountno" AutoPostBack="true" OnSelectedIndexChanged="ddbankaccountno_SelectedIndexChanged"  CssClass="form-control"  runat="server">
-                                            <asp:ListItem Value="0">Select Wallet Type</asp:ListItem>
-                                        </asp:DropDownList>
-                             </div>
-                         </div>
-							  <br>
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>Deposit Wallet :</label>
-                                <asp:TextBox ID="txtdepositaccountno" Enabled="false" runat="server" CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                          <div class="row">
-                         <div class="col-md-6" style="display:none">
-                             <div class="form-group">
-                                 <label>Deposit Bank :</label>
-                                  <asp:TextBox ID="txtdepositbank" Enabled="false" runat="server" CssClass="form-control" />
-                             </div>
-                         </div>
-							  
-							  <br>
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                <br> <br>
-                                 <asp:TextBox ID="txtifsccode" Enabled="false" runat="server" CssClass="form-control" Visible="false" />
-                                  <asp:Image ID="ImageShow" runat="server" Width="200px" Height="200px"  />
-                             </div>
-                         </div>
-							  
-							      <div class="col-md-6" style="display:none">
-                             <div class="form-group">
-                                 <label>Wallet Address :</label>
-                                 <asp:TextBox ID="txtaccountholdername" Enabled="false" runat="server" CssClass="form-control" />
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label">Franchisee ID</label>
+                                        <asp:TextBox ID="TxtFranchiseeUserId" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="TxtFranchiseeUserId_TextChanged" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label">Franchisee Name</label>
+                                        <asp:TextBox ID="TxtFranchiseename" Enabled="false" runat="server" CssClass="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
 
-
-                             </div>
-                         </div>
-                     </div>
-                         <div class="row">
-							  <br> <br>
-                     
-                         <div class="col-md-6" style="Display:none">
-                             <div class="form-group">
-                                 <label>Branch Name :</label>
-                                <asp:TextBox ID="txtbranchname" Enabled="false" runat="server" CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                           <div class="row">
-                         <div class="col-md-6" style="display:none;">
-                             <div class="form-group">
-                                    <label>Deposit Mode :</label>
-                                   <asp:DropDownList ID="ddmode" runat="server" CssClass="form-control">
+                        <asp:Panel runat="server" ID="Pnladmin">
+                            <div class="sv-topup-section">
+                                <h4 class="sv-topup-section__title"><i class="fa-solid fa-qrcode"></i> Deposit Wallet</h4>
+                                <div class="sv-topup-wallet-card">
+                                    <div class="sv-topup-wallet-card__info">
+                                        <span class="sv-topup-wallet-card__label">Deposit Wallet Address</span>
+                                        <div class="sv-topup-wallet-card__value">
+                                            <asp:TextBox ID="txtdepositaccountno" Enabled="false" runat="server" CssClass="form-control" />
+                                        </div>
+                                        <div style="display:none">
+                                            <asp:DropDownList ID="ddbankaccountno" AutoPostBack="true" OnSelectedIndexChanged="ddbankaccountno_SelectedIndexChanged" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="0">Select Wallet Type</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtdepositbank" Enabled="false" runat="server" CssClass="form-control" />
+                                            <asp:TextBox ID="txtifsccode" Enabled="false" runat="server" CssClass="form-control" Visible="false" />
+                                            <asp:TextBox ID="txtaccountholdername" Enabled="false" runat="server" CssClass="form-control" />
+                                            <asp:TextBox ID="txtbranchname" Enabled="false" runat="server" CssClass="form-control" />
+                                            <asp:DropDownList ID="ddmode" runat="server" CssClass="form-control">
                                                 <asp:ListItem Value="Select">Select </asp:ListItem>
                                                 <asp:ListItem Value="Cheque">Cheque</asp:ListItem>
                                                 <asp:ListItem Value="RTGS">RTGS</asp:ListItem>
                                                 <asp:ListItem Value="NEFT">NEFT</asp:ListItem>
                                                 <asp:ListItem Value="IMPS">IMPS</asp:ListItem>
-                                          <asp:ListItem Value="IMPS">THIRD PARTY TRANSFER</asp:ListItem>
-                                         <asp:ListItem Value="Cash">Cash</asp:ListItem>
+                                                <asp:ListItem Value="IMPS">THIRD PARTY TRANSFER</asp:ListItem>
+                                                <asp:ListItem Value="Cash">Cash</asp:ListItem>
                                             </asp:DropDownList>
-                             </div>
-                         </div>
-                       
-                     </div>
-                           </asp:Panel>
-							
-							 <br> <br>
-                          <div class="row">
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>User Id :</label>
-                                  <asp:TextBox ID="txtuserid" AutoPostBack="true" runat="server" CssClass="form-control" OnTextChanged="txtuserid_TextChanged" />
-                             </div>
-                         </div>
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>User Name :</label>
-                                  <asp:TextBox ID="txtusername" Enabled="false" runat="server" CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                         <div class="row">
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <label>Account Balance :</label>
-                               <asp:TextBox ID="txtbalance" Enabled="false" runat="server" onkeypress="return isNumberKey(event);" CssClass="form-control" />    
-                             </div>
-                         </div>
-                         <div class="col-md-6">
-                             <div class="form-group">
-                                 <span><label>Enter Amount :</label>&nbsp;<asp:Label ID="lblmssg" runat="server" style="font-weight:bold;color:red"></asp:Label></span>
-                                   <asp:TextBox ID="txtamount"    runat="server" onkeypress="return isNumberKey(event);" CssClass="form-control" />
-                             </div>
-                         </div>
-							 
-							   <div class="col-md-6"  >
-                             <div class="form-group">
-                                   <label>Transaction Number:</label>
-                                 <asp:TextBox ID="TxtTransactionId"  runat="server"  CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                         
-                         <div class="row">
-                         <div class="col-md-6">
-							 
-							 <br> <br>
-                             <div class="form-group">
-                                 <label>Upload Slip :</label>
-                                 <asp:FileUpload ID="ImageUpload" runat="server" />    
-                             </div>
-                         </div>
-                         <div class="col-md-6" style="display:none">
-                             <div class="form-group">
-                                   <label>Narration :</label>
-                                  <asp:TextBox ID="TxtNarration"  runat="server"  CssClass="form-control" />
-                             </div>
-                         </div>
-                     </div>
-                       
-                       </div>
-                         <div class="box-footer">
-                         <br> <br>
-             
+                                        </div>
+                                    </div>
+                                    <div class="sv-topup-qr">
+                                        <div class="sv-topup-qr__frame">
+                                            <asp:Image ID="ImageShow" runat="server" />
+                                        </div>
+                                        <span class="sv-topup-qr__hint">Scan to deposit</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
 
-                               <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="btnCancel" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-                    
-              </div>
+                        <div class="sv-topup-section" style="margin-top: 25px!important;">
+                            <h4 class="sv-topup-section__title"><i class="fa-solid fa-user"></i> Member Details</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> User ID</label>
+                                        <asp:TextBox ID="txtuserid" AutoPostBack="true" runat="server" CssClass="form-control" OnTextChanged="txtuserid_TextChanged" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-signature"></i> User Name</label>
+                                        <asp:TextBox ID="txtusername" Enabled="false" runat="server" CssClass="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-coins"></i> Account Balance</label>
+                                        <asp:TextBox ID="txtbalance" Enabled="false" runat="server" onkeypress="return isNumberKey(event);" CssClass="form-control sv-topup-balance" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                  
-              </div>
-              </div>
-                  </div>
+                        <div class="sv-topup-section">
+                            <h4 class="sv-topup-section__title"><i class="fa-solid fa-receipt"></i> Transaction Details</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="sv-field sv-topup-amount-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-indian-rupee-sign"></i> Enter Amount</label>
+                                        <asp:TextBox ID="txtamount" runat="server" onkeypress="return isNumberKey(event);" CssClass="form-control" placeholder="Enter deposit amount" />
+                                        <asp:Label ID="lblmssg" runat="server" CssClass="sv-topup-field-error"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-hashtag"></i> Transaction Number</label>
+                                        <asp:TextBox ID="TxtTransactionId" runat="server" CssClass="form-control" placeholder="Enter transaction / UTR number" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="sv-topup-section">
+                            <h4 class="sv-topup-section__title"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Payment Slip</h4>
+                            <div class="row g-3">
+                                <div class="col-md-8">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label">Payment Slip / Screenshot</label>
+                                        <div class="sv-kyc-upload">
+                                            <label class="sv-kyc-upload__zone">
+                                                <span class="sv-kyc-upload__icon"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                                                <span class="sv-kyc-upload__title">Click to upload slip</span>
+                                                <span class="sv-kyc-upload__hint">JPG, PNG or PDF supported</span>
+                                                <asp:FileUpload ID="ImageUpload" runat="server" CssClass="sv-kyc-upload__input" />
+                                            </label>
+                                            <div class="sv-kyc-upload__file">
+                                                <i class="fa-solid fa-file-image"></i>
+                                                <span class="sv-kyc-upload__name">No file selected</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="display:none">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label">Narration</label>
+                                        <asp:TextBox ID="TxtNarration" runat="server" CssClass="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-
-
-            
+                        <div class="sv-topup-actions">
+                            <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="sv-btn-primary" runat="server" Text="Submit Request" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnCancel" CssClass="sv-btn-danger" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
         <Triggers>
-      
-        <asp:PostBackTrigger ControlID = "btnSubmit" />
-    </Triggers>
+            <asp:PostBackTrigger ControlID="btnSubmit" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">   
- 
-  <script type="text/javascript" language="javascript">
-      function CopyToClipboard() {
-
-
-          /* Get the text field */
-          var copyText = document.getElementById('<%=txtaccountholdername.ClientID%>');
-
-          /* Select the text field */
-          copyText.select();
-
-          /* Copy the text inside the text field */
-          document.execCommand("Copy");
-
-          /* Alert the copied text */
-          alert("Copied the text: " + copyText.value);
-      }
-      </script>
+<asp:Content ID="Content4" ContentPlaceHolderID="contentScript" Runat="Server">
+    <script src="js/kyc-upload.js"></script>
+    <script type="text/javascript" language="javascript">
+        function CopyToClipboard() {
+            var copyText = document.getElementById('<%=txtaccountholdername.ClientID%>');
+            copyText.select();
+            document.execCommand("Copy");
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>
 </asp:Content>

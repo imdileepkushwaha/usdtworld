@@ -17,6 +17,13 @@ public partial class admin_DownlineReport : System.Web.UI.Page
     Data ObjData = new Data();
     clsState objState = new clsState();
     clsUser objUser = new clsUser();
+
+    private DataTable DownlineData
+    {
+        get { return ViewState["DownlineData"] as DataTable; }
+        set { ViewState["DownlineData"] = value; }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -36,10 +43,55 @@ public partial class admin_DownlineReport : System.Web.UI.Page
     void loaduser()
     {
         objUser.UserId = TxtUserId.Text;
-        DataTable dt = new DataTable();
-        dt = getUserDirectLeft(objUser);
+        DataTable dt = getUserDirectLeft(objUser);
+        DownlineData = dt;
+        BindGrid(0);
+    }
+
+    void BindGrid(int pageIndex)
+    {
+        DataTable dt = DownlineData;
+        if (dt == null)
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+            UpdatePagerInfo();
+            return;
+        }
+
+        int maxPage = (int)Math.Ceiling(dt.Rows.Count / (double)GridView1.PageSize);
+        if (maxPage == 0) maxPage = 1;
+        if (pageIndex >= maxPage) pageIndex = maxPage - 1;
+        if (pageIndex < 0) pageIndex = 0;
+        GridView1.PageIndex = pageIndex;
+
         GridView1.DataSource = dt;
         GridView1.DataBind();
+        UpdatePagerInfo();
+    }
+
+    void UpdatePagerInfo()
+    {
+        DataTable dt = DownlineData;
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            lblPagerInfo.Text = "No downline members found.";
+            return;
+        }
+
+        int total = dt.Rows.Count;
+        int start = (GridView1.PageIndex * GridView1.PageSize) + 1;
+        int end = Math.Min((GridView1.PageIndex + 1) * GridView1.PageSize, total);
+        int totalPages = GridView1.PageCount;
+
+        lblPagerInfo.Text = string.Format(
+            "Showing {0}–{1} of {2} records | Page {3} of {4}",
+            start, end, total, GridView1.PageIndex + 1, totalPages);
+    }
+
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        BindGrid(e.NewPageIndex);
     }
 
     public DataTable getUserDownline(clsUser objUser)
@@ -127,6 +179,21 @@ FROM MyCTE left join userdetail ud on mycte.sponserid=ud.userid ";
     }
     protected void ExportToExcel(object sender, EventArgs e)
     {
+        if (DownlineData == null)
+        {
+            loaduser();
+        }
+
+        if (DownlineData == null || DownlineData.Rows.Count == 0)
+            return;
+
+        int savedPageIndex = GridView1.PageIndex;
+        bool savedPaging = GridView1.AllowPaging;
+
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = DownlineData;
+        GridView1.DataBind();
+
         Response.Clear();
         Response.Buffer = true;
         Response.AddHeader("content-disposition", "attachment;filename=DownlineReport.xls");
@@ -135,9 +202,6 @@ FROM MyCTE left join userdetail ud on mycte.sponserid=ud.userid ";
         using (StringWriter sw = new StringWriter())
         {
             HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-            //To Export all pages
-
 
             GridView1.HeaderRow.BackColor = Color.White;
             foreach (TableCell cell in GridView1.HeaderRow.Cells)
@@ -163,13 +227,15 @@ FROM MyCTE left join userdetail ud on mycte.sponserid=ud.userid ";
 
             GridView1.RenderControl(hw);
 
-            //style to format numbers to string
             string style = @"<style> .textmode { } </style>";
             Response.Write(style);
             Response.Output.Write(sw.ToString());
             Response.Flush();
             Response.End();
         }
+
+        GridView1.AllowPaging = savedPaging;
+        BindGrid(savedPageIndex);
     }
 
     public override void VerifyRenderingInServerForm(Control control)

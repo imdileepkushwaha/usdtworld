@@ -72,8 +72,8 @@
         <div class="sv-sidebar-brand">
             <a href="Dashboard.aspx" class="sidebar-logo">
                 <span class="sv-logo-wrap">
-                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" />
-                    <img src="img/logo-circle.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" />
+                    <img src="img/usdt.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" />
+                    <img src="img/usdt.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" />
                 </span>
                 <span class="sv-logo-text">
                     <span class="sv-brand-name"><%= clsUtility.ProjectName %></span>

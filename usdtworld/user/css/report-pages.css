@@ -325,71 +325,87 @@
     padding: 6px 12px !important;
 }
 
-/* Data table */
-.sv-report-table-wrap {
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(108, 99, 255, 0.14);
-    background: rgba(15, 23, 42, 0.5);
+/* Data table — uses sv-msg-table from messages-page.css */
+.sv-report-page .sv-txn-id {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #c4b5fd;
+    background: rgba(108, 99, 255, 0.1);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    word-break: break-all;
 }
 
-.sv-report-page .table,
-.sv-report-page table.table {
-    width: 100% !important;
-    margin-bottom: 0 !important;
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
-    color: #e8edf5 !important;
-    background: transparent !important;
-}
-
-.sv-report-page .table thead th,
-.sv-report-page table.table thead th {
-    padding: 14px 16px !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.08em !important;
-    color: #c4b5fd !important;
-    background: rgba(108, 99, 255, 0.12) !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(108, 99, 255, 0.2) !important;
+.sv-report-page .sv-txn-amount {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 700;
     white-space: nowrap;
 }
 
-.sv-report-page .table tbody td,
-.sv-report-page table.table tbody td {
-    padding: 13px 16px !important;
-    font-size: 0.88rem !important;
-    color: #e2e8f0 !important;
-    background: transparent !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(108, 99, 255, 0.08) !important;
-    vertical-align: middle !important;
+.sv-report-page .sv-txn-amount--credit {
+    color: #34d399;
 }
 
-.sv-report-page .table tbody tr:hover td,
-.sv-report-page table.table tbody tr:hover td {
-    background: rgba(108, 99, 255, 0.06) !important;
+.sv-report-page .sv-txn-amount--credit::before {
+    content: "+";
+    margin-right: 2px;
+    opacity: 0.85;
 }
 
-.sv-report-page .table tbody tr:last-child td,
-.sv-report-page table.table tbody tr:last-child td {
-    border-bottom: 0 !important;
+.sv-report-page .sv-txn-amount--debit {
+    color: #f87171;
 }
 
-/* Credit / debit column hints via nth-child if needed */
-.sv-report-page .table tbody td:nth-child(5) {
-    color: #6ee7b7 !important;
+.sv-report-page .sv-txn-amount--debit::before {
+    content: "-";
+    margin-right: 2px;
+    opacity: 0.85;
+}
+
+.sv-report-page .sv-txn-type {
+    display: inline-flex;
+    align-items: center;
+    max-width: 160px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.74rem;
     font-weight: 600;
+    color: #67e8f9;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.22);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.sv-report-page .table tbody td:nth-child(6) {
-    color: #fca5a5 !important;
-    font-weight: 600;
+.sv-report-page .sv-txn-desc {
+    display: block;
+    max-width: 260px;
+    font-size: 0.84rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* GridView pagination */
+.sv-report-page .sv-txn-col-credit,
+.sv-report-page .sv-txn-col-debit {
+    text-align: right;
+}
+
+.sv-report-page .sv-msg-table thead th.sv-txn-col-credit,
+.sv-report-page .sv-msg-table thead th.sv-txn-col-debit {
+    text-align: right;
+}
+
+/* GridView pagination inside sv-msg-table */
 .sv-report-pager-info {
     display: flex;
     align-items: center;
@@ -406,18 +422,26 @@
     font-weight: 500;
 }
 
-.sv-report-page .sv-grid-pager td {
-    padding: 14px 12px !important;
+.sv-report-page .sv-msg-table tr.sv-grid-pager td {
+    padding: 12px 12px 4px !important;
     border: 0 !important;
-    border-top: 1px solid rgba(108, 99, 255, 0.12) !important;
-    background: rgba(108, 99, 255, 0.04) !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
     text-align: center !important;
+}
+
+.sv-report-page .sv-msg-table tr.sv-grid-pager:hover td {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-left-color: transparent !important;
 }
 
 .sv-report-page .sv-grid-pager table {
     margin: 0 auto;
     border-collapse: separate;
-    border-spacing: 6px;
+    border-spacing: 8px;
 }
 
 .sv-report-page .sv-grid-pager a,
@@ -425,9 +449,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 36px;
-    min-height: 36px;
-    padding: 0 10px;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0 12px;
     border-radius: 10px;
     font-size: 0.82rem;
     font-weight: 600;
@@ -436,21 +460,21 @@
 }
 
 .sv-report-page .sv-grid-pager a {
-    color: #c4b5fd !important;
-    background: rgba(17, 24, 39, 0.85);
-    border: 1px solid rgba(108, 99, 255, 0.18);
+    color: #cbd5e1 !important;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.16);
 }
 
 .sv-report-page .sv-grid-pager a:hover {
     color: #fff !important;
-    background: rgba(108, 99, 255, 0.2);
-    border-color: rgba(108, 99, 255, 0.35);
+    background: rgba(108, 99, 255, 0.15);
+    border-color: rgba(108, 99, 255, 0.4);
 }
 
 .sv-report-page .sv-grid-pager span {
     color: #fff !important;
-    background: rgba(108, 99, 255, 0.28);
-    border: 1px solid rgba(108, 99, 255, 0.4);
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.85) 0%, rgba(91, 82, 232, 0.95) 100%) !important;
+    border: 1px solid rgba(108, 99, 255, 0.45) !important;
 }
 
 .sv-report-empty {
@@ -486,13 +510,7 @@
         align-items: flex-start;
     }
 
-    .sv-report-table-wrap {
-        border-radius: 12px;
-    }
-
-    .sv-report-page .table thead th,
-    .sv-report-page .table tbody td {
-        padding: 10px 12px !important;
-        font-size: 0.8rem !important;
+    .sv-report-page .sv-txn-desc {
+        max-width: 140px;
     }
 }

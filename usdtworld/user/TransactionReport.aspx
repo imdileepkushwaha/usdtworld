@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/account-pages.css" rel="stylesheet" />
     <link href="css/report-pages.css" rel="stylesheet" />
+    <link href="css/messages-page.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
 </asp:Content>
@@ -132,9 +133,10 @@
                             </div>
                         </div>
 
-                        <div class="sv-report-table-wrap table-responsive">
-                            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover" Width="100%"
-                                AutoGenerateColumns="False" AllowPaging="true" PageSize="25"
+                        <div class="sv-msg-table-wrap">
+                            <div class="sv-msg-table-scroll">
+                            <asp:GridView ID="GridView1" runat="server" CssClass="sv-msg-table table table-borderless" Width="100%"
+                                AutoGenerateColumns="False" AllowPaging="true" PageSize="25" GridLines="None"
                                 PagerSettings-Mode="NumericFirstLast" PagerSettings-Position="Bottom" PagerSettings-PageButtonCount="5"
                                 PagerSettings-FirstPageText="&laquo; First" PagerSettings-PreviousPageText="&lsaquo; Prev"
                                 PagerSettings-NextPageText="Next &rsaquo;" PagerSettings-LastPageText="Last &raquo;"
@@ -143,46 +145,51 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="#">
                                         <ItemTemplate>
-                                            <%# (GridView1.PageIndex * GridView1.PageSize) + Container.DataItemIndex + 1 %>
+                                            <span class="sv-msg-sr"><%# (GridView1.PageIndex * GridView1.PageSize) + Container.DataItemIndex + 1 %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbldate" runat="server" Text='<%#Eval("mentiondate","{0:dd/MM/yyyy hh:mm tt}") %>'></asp:Label>
+                                            <span class="sv-msg-date"><%# Eval("mentiondate", "{0:dd/MM/yyyy hh:mm tt}") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="User Id" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbluserid" runat="server" Text='<%#Eval("userid") %>'></asp:Label>
+                                            <asp:Label ID="lbluserid" runat="server" Text='<%# Eval("userid") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Transaction Id">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblusername" runat="server" Text='<%#Eval("transactionid") %>'></asp:Label>
+                                            <span class="sv-txn-id"><%# Eval("transactionid") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Credit Amount">
+                                    <asp:TemplateField HeaderText="Credit">
+                                        <ItemStyle CssClass="sv-txn-col-credit" />
+                                        <HeaderStyle CssClass="sv-txn-col-credit" />
                                         <ItemTemplate>
-                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("cramount") %>'></asp:Label>
+                                            <span class="sv-txn-amount sv-txn-amount--credit"><%# Eval("cramount") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Debit Amount">
+                                    <asp:TemplateField HeaderText="Debit">
+                                        <ItemStyle CssClass="sv-txn-col-debit" />
+                                        <HeaderStyle CssClass="sv-txn-col-debit" />
                                         <ItemTemplate>
-                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("dramount") %>'></asp:Label>
+                                            <span class="sv-txn-amount sv-txn-amount--debit"><%# Eval("dramount") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Type">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbltransactiontype" runat="server" Text='<%#Eval("transactiontype") %>'></asp:Label>
+                                            <span class="sv-txn-type"><%# Eval("transactiontype") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("Remark") %>'></asp:Label>
+                                            <span class="sv-txn-desc" title='<%# Eval("Remark") %>'><%# Eval("Remark") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
+                            </div>
                         </div>
                         <div class="sv-report-pager-info">
                             <asp:Label ID="lblPagerInfo" runat="server" CssClass="sv-report-pager-info__text"></asp:Label>
