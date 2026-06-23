@@ -1,781 +1,461 @@
-﻿﻿<%@ page language="C#" autoeventwireup="true"  CodeFile="Register.aspx.cs" inherits="Register" %>
+﻿<%@ page language="C#" autoeventwireup="true" CodeFile="Register.aspx.cs" inherits="Register" %>
 
 <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= clsUtility.ProjectName %> – Create Account</title>
+    <meta name="application-name" content="<%= clsUtility.ProjectName %> - Future Of Smart Trading" />
+    <meta name="author" content="<%= clsUtility.Company %>" />
+    <meta name="keywords" content="<%= clsUtility.ProjectName %>, Crypto, Forex, and Stocks Trading Business" />
+    <meta name="description" content="Create your <%= clsUtility.ProjectName %> account and start your trading journey." />
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title>Social Vista - Future Of Smart Trading
-  </title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Sites meta Data -->
-  <meta name="application-name"
-    content="Social Vista - Future Of Smart Trading">
-  <meta name="author" content="Social Vista">
-  <meta name="keywords" content="Social Vista, Crypto, Forex, and Stocks Trading Business">
-  <meta name="description"
-    content="Experience the power of future trading, the ultimate tarding portfolio designed to transform your trading business. With its sleek design and advanced features, Social vista empowers you to showcase your expertise, engage clients, and dominate the markets. Elevate your online presence and unlock new trading possibilities with Bitrader.">
-
-  <!-- OG meta data -->
-  <meta property="og:title"
-    content="Social Vista - Future Of Smart Trading">
-  <meta property="og:site_name" content=Social Vista>
-  <meta property="og:url" content="index.html">
-  <meta property="og:description"
-    content="Welcome to Social Vista, the ultimate tarding portfolio designed to transform your trading business. With its sleek and modern design, Bitrader provides a cutting-edge platform to showcase your expertise, attract clients, and stay ahead in the competitive trading markets.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/og.png">
-
-
-
-  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/aos.css">
-  <link rel="stylesheet" href="assets/css/all.min.css">
-
-  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-
-
-
-  <!-- main css for template -->
-  <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/auth.css" />
+    <link rel="stylesheet" href="assets/css/register-overrides.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
-
 <body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
- <div class="preloader">
-    <img src="assets/images/logo/preloader.png" alt="preloader icon">
-  </div>
-
-     <div class="lightdark-switch" style="display:none">
-    <span class="switch-btn" id="btnSwitch"><img src="assets/images/icon/moon.svg" alt="light-dark-switchbtn"
-        class="swtich-icon"></span>
-  </div>
-
-   
-      <header class="header-section header-section--style5">
-    <div class="header-bottom">
-      <div class="container">
-        <div class="header-wrapper header-wrapper--style2">
-          <div class="logo">
-            <a href="index-2.html">
-              <img src="assets/images/logo/socialvistalogo.png" alt="logo" class="dark" style="height: 120px;">
-            </a>
-          </div>
-          <div class="header-content d-flex align-items-center gap-4">
-            <div class="menu-area">
-              <ul class="menu menu--style1">
-               <li>
-                  <a href="index.html">Home</a>
-                  
-                </li>
-                <li>
-                  <a href="index.html">Services</a>
-                  
-                </li>
-                <li>
-                  <a href="index.html">About us</a>
-                  
-                </li>
-
-                <li>
-                  <a href="/user/index.aspx">Sign In</a>
-                 
-
-                </li>
-                <li>
-                  <a href="contact.aspx">Contact Us</a>
-                </li>
-              </ul>
-
-            </div>
-            <div class="header-action">
-              <div class="menu-area">
-                <div class="header-btn">
-                  <a href="/register.aspx" class="trk-btn trk-btn--tertiary">
-                    <span>Register</span>
-                  </a>
-                </div>
-
-                <!-- toggle icons -->
-                <div class="header-bar d-lg-none header-bar--style1">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-   
-    <br /><br /><br /><br />
-   <section class="page-header bg--cover" style="background-image:url(assets/images/header/1.png)">
-    <div class="container">
-      <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
-        <h2>Register</h2>
-        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item "><a href="index-2.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Register</li>
-          </ol>
-        </nav>
-      </div>
-      <div class="page-header__shape">
-        <span class="page-header__shape-item page-header__shape-item--1"><img src="assets/images/header/2.png"
-            alt="shape-icon"></span>
-      </div>
-    </div>
-  </section>
-
-
-        <form id="form1" runat="server">
-            <div style="background-color:#000000; color:#fff">
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-               
-                     <asp:UpdateProgress ID="updateProgress" runat="server">
-        <ProgressTemplate>
-                <div style="position: fixed; text-align: center; height: 50%; width: 50%; top: 0; right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="assets/images/social.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="border-width: 0px; padding: 10px; position: fixed; " />
+        <asp:UpdateProgress ID="updateProgress" runat="server">
+            <ProgressTemplate>
+                <div class="update-progress-overlay">
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="assets/images/social.gif" AlternateText="Loading..." />
                 </div>
             </ProgressTemplate>
-    </asp:UpdateProgress>
-             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-             
+        </asp:UpdateProgress>
 
-                        <div class="inner-banner-w3ls d-flex flex-column justify-content-center align-items-center">
-    </div>
-	
-			 <br />
-                             <div class="center">
-								  
-								   
-                            
-                                       <section class="account padding-top padding-bottom sec-bg-color2">
+        <div class="auth-bg-orb auth-bg-orb--1"></div>
+        <div class="auth-bg-orb auth-bg-orb--2"></div>
+        <div class="auth-bg-orb auth-bg-orb--3"></div>
+        <div class="auth-bg-orb auth-bg-orb--4"></div>
+        <div class="auth-grid-overlay"></div>
+        <canvas id="registerParticles"></canvas>
 
-                                             <div class="container">
-      <div class="account__wrapper" >
-                        <div class="row">
-                            <!--Body-->
-                           <div class="col-md-6">
-                                    <div class="form-group" >
-                                        <label class="text-end ">Sponsor Id :</label>
-                                        <asp:TextBox ID="txtsponserid" AutoPostBack="true" OnTextChanged="txtsponserid_TextChanged" CssClass="form-control" runat="server" placeholder="Sponsor ID"></asp:TextBox>
-</div>
-                                </div>
-                            
+        <div class="auth-wrapper register-page">
+            <div class="auth-card">
 
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Sponsor Name :</label>
-                                        <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-control" runat="server" placeholder="Sponsor Name"></asp:TextBox>
-                                    </div>
+                <div class="auth-brand">
+                    <div class="brand-dots">
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                        <span class="brand-dot"></span>
+                    </div>
+                    <div class="brand-orb brand-orb--1"></div>
+                    <div class="brand-orb brand-orb--2"></div>
+                    <div class="brand-orb brand-orb--3"></div>
+
+                    <div class="brand-content">
+                        <div class="brand-logo"><%= clsUtility.ProjectName %></div>
+                        <div class="brand-tagline">Start Your Trading Journey</div>
+
+                        <div class="steps-process">
+                            <div class="step-item" data-aos="fade-right" data-aos-delay="300">
+                                <div class="step-circle">1</div>
+                                <div class="step-info">
+                                    <h4>Create Account</h4>
+                                    <p>Fill in your details below</p>
+                                </div>
+                                <div class="step-connector">
+                                    <div class="step-connector-line"></div>
                                 </div>
                             </div>
-							     <div class="col-md-6" style="display:none">
-                                <div class="form-group">
-									 <div class="input-group">
-                                    <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                    <asp:TextBox ID="txtparentname" Enabled="false" CssClass="form-control" runat="server" placeholder="Parental Name"></asp:TextBox> </div>
+                            <div class="step-item" data-aos="fade-right" data-aos-delay="450">
+                                <div class="step-circle">2</div>
+                                <div class="step-info">
+                                    <h4>Verify Identity</h4>
+                                    <p>Quick &amp; secure verification</p>
+                                </div>
+                                <div class="step-connector">
+                                    <div class="step-connector-line"></div>
                                 </div>
                             </div>
-							<div class="col-md-6" style="display:none">
-                                <div class="form-group">
-									    <div class="input-group">
-                                    <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                    <asp:TextBox ID="txtparentid" AutoPostBack="true" CssClass="form-control" runat="server" OnTextChanged="txtparentid_TextChanged" placeholder="Parental ID"></asp:TextBox>
+                            <div class="step-item" data-aos="fade-right" data-aos-delay="600">
+                                <div class="step-circle">3</div>
+                                <div class="step-info">
+                                    <h4>Start Trading</h4>
+                                    <p>Access global markets instantly</p>
                                 </div>
-									 </div>
-                            </div>
-                        
-                       
-          <br />
-                        <div class="row" >
-                            <!--Body-->
-                            <div class="col-md-6" style="display:none;">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-key text-primary"></i></div>
-                                        <asp:TextBox ID="txtepin" CssClass="form-control" runat="server" placeholder="E-Pin" Enabled="false"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="display:none;">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-inr text-primary"></i></div>
-                                        <asp:TextBox ID="txtamount" Enabled="false" CssClass="form-control" runat="server" placeholder="Amount"></asp:TextBox>
-                                    </div>
-                                </div>
-                        </div>
-                        </div>
-                        <div class="form-row" style="display: none;">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <asp:RadioButton ID="RdBtnFree" runat="server" Text="Free Regitration" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnFree_CheckedChanged" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <asp:RadioButton ID="RdBtnEpin" runat="server" Text="E-Pin Regitration" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnEpin_CheckedChanged" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
                             </div>
                         </div>
-                        <asp:Panel ID="pnlpin" Visible="false" runat="server">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select Plan :</label>
-                                        <asp:DropDownList ID="DDLstPlan" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="DDLstPlan_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                    </div>
-                                </div>
+
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="fas fa-shield-halved"></i>
+                                <span>SSL Secured</span>
                             </div>
-                            <div class="row" style="display:none;">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select E-Pin :</label>
-                                        <asp:DropDownList ID="ddepin" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddepin_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                            <div class="trust-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>256-bit Encryption</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="auth-form-panel">
+                    <div class="mobile-brand-logo">
+                        <span><%= clsUtility.ProjectName %></span>
+                    </div>
+
+                    <div class="auth-form-header">
+                        <h1>Create Account</h1>
+                        <p>Join thousands of traders worldwide</p>
+                    </div>
+
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div id="registerForm">
+                                <div class="form-row">
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                                        <asp:TextBox ID="txtsponserid" AutoPostBack="true" OnTextChanged="txtsponserid_TextChanged" CssClass="form-group__input" runat="server" placeholder="Sponsor ID"></asp:TextBox>
+                                        <i class="fas fa-id-badge form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="120">
+                                        <asp:TextBox ID="txtsponsername" Enabled="false" CssClass="form-group__input" runat="server" placeholder="Sponsor Name"></asp:TextBox>
+                                        <i class="fas fa-user-check form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
                                     </div>
                                 </div>
 
-                            </div>
-                        </asp:Panel>
-                       <div class="row" style="display:none" >
-                            <div class="col-md-1">
-                                <div class="form-group custom-radio">
-                                    <asp:RadioButton ID="RdBtnLeft" runat="server" Text="Left" GroupName="B" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group custom-radio">
-                                    <asp:RadioButton ID="RdBtnRight" runat="server" Text="Right" GroupName="B" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                            </div>
-                        </div> 
-
-
-              <div class="row">
-							<div class="col-md-6" style="display:none">
-                                <div class="form-group">
-                                    <label class="text-end ">Select Position :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:DropDownList ID="ddposition" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Position</asp:ListItem>
-                                            <asp:ListItem Value="Left">Left</asp:ListItem>
-                                            <asp:ListItem Value="Right">Right</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Body-->
-							<div class="col-md-6" >
-							
-								
-								 <div class="form-group">
-                                       <label class="text-end ">Name :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-dark" >
-											
-									
- <asp:DropDownList ID="ddpp" runat="server" style="border:; background-color:none">
+                                <div class="form-row form-row--name">
+                                    <div class="form-group form-group--prefix" data-aos="fade-up" data-aos-delay="130">
+                                        <asp:DropDownList ID="ddpp" CssClass="form-group__input" runat="server">
                                             <asp:ListItem Value="Mr">Mr.</asp:ListItem>
                                             <asp:ListItem Value="Mrs">Mrs.</asp:ListItem>
                                             <asp:ListItem Value="Miss">Miss</asp:ListItem>
                                         </asp:DropDownList>
-  
-								</div>
-                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" placeholder="Name"></asp:TextBox>
-
+                                        <i class="fas fa-user-tag form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
                                     </div>
-                                </div></div>
-                                  <div class="col-md-6"> 
-                                                <div class="form-group">
-                                       <label class="text-end ">Last Name :</label>
-                                   
-                                                  <asp:TextBox ID="txtlastname" CssClass="form-control" runat="server" placeholder="Last Name"></asp:TextBox>
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="140">
+                                        <asp:TextBox ID="txtname" CssClass="form-group__input" runat="server" placeholder="First Name"></asp:TextBox>
+                                        <i class="fas fa-user form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                                        <asp:TextBox ID="txtlastname" CssClass="form-group__input" runat="server" placeholder="Last Name"></asp:TextBox>
+                                        <i class="fas fa-user form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                </div>
 
-                                        </div>
+                                <div class="form-group" data-aos="fade-up" data-aos-delay="170">
+                                    <asp:TextBox ID="txtemail" CssClass="form-group__input" runat="server" placeholder="Email Address"></asp:TextBox>
+                                    <i class="fas fa-envelope form-group__icon"></i>
+                                    <div class="form-group__glow"></div>
+                                </div>
 
-                                           </div>
-                            </div>
-           <br />
-
-                                       
-                        <div class="row">
-                            <!--Body-->
-							   <div class="col-md-6" style="display:none">
-                                <div class="form-group">
-                                    <label class="text-end ">Select Gender :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Gender</asp:ListItem>
-                                            <asp:ListItem Value="Male">Male</asp:ListItem>
-                                            <asp:ListItem Value="Female">Female</asp:ListItem>
-                                             <asp:ListItem Value="Transgender">Transgender</asp:ListItem>
+                                <div class="form-row">
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="190">
+                                        <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-group__input" runat="server" maxlength="14" placeholder="Phone Number"></asp:TextBox>
+                                        <i class="fas fa-phone form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="210">
+                                        <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-group__input" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
+                                            <asp:ListItem Value="0">Country</asp:ListItem>
                                         </asp:DropDownList>
+                                        <i class="fas fa-globe form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group form-group--password" data-aos="fade-up" data-aos-delay="230">
+                                        <asp:TextBox ID="txtuserpassword" TextMode="Password" CssClass="form-group__input" runat="server" placeholder="Create Password"></asp:TextBox>
+                                        <i class="fas fa-lock form-group__icon"></i>
+                                        <button type="button" class="password-toggle" onclick="toggleAspPassword('<%= txtuserpassword.ClientID %>', this)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                    <div class="form-group form-group--password" data-aos="fade-up" data-aos-delay="250">
+                                        <asp:TextBox ID="txtconfirmpassword" TextMode="Password" CssClass="form-group__input" runat="server" placeholder="Confirm Password"></asp:TextBox>
+                                        <i class="fas fa-shield-halved form-group__icon"></i>
+                                        <button type="button" class="password-toggle" onclick="toggleAspPassword('<%= txtconfirmpassword.ClientID %>', this)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                </div>
+
+                                <div class="password-strength" data-aos="fade-up" data-aos-delay="270">
+                                    <div class="strength-bar-track">
+                                        <div class="strength-bar-fill" id="strengthBar"></div>
+                                    </div>
+                                    <div class="strength-label" id="strengthLabel"></div>
+                                </div>
+
+                                <div class="terms-group" data-aos="fade-up" data-aos-delay="350">
+                                    <label class="terms-checkbox">
+                                        <input type="checkbox" id="chkTerms" checked="checked" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <div class="terms-text">
+                                        I agree to the <a href="Terms_Conditions.html" target="_blank">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                                    </div>
+                                </div>
+
+                                <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="auth-submit-btn" runat="server" Text="Create My Account" OnClick="btnSubmit_Click" data-aos="fade-up" data-aos-delay="400" />
                             </div>
 
-                             
-
-                             <div class="col-md-6">
-                              <div class="form-group" >
-                                        <label class="text-end">Email:</label>
-                                        <asp:TextBox ID="txtemail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
-
-                                    </div>
-                                </div>
-
-
-                              <div class="col-md-3">
-                            <div class="form-group">
-
-                                  <label class="text-end ">Select Country :</label>
-                                <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
-                                    <asp:ListItem Value="0"> Select Country</asp:ListItem>
+                            <div class="register-hidden-fields" aria-hidden="true">
+                                <asp:TextBox ID="txtparentname" Enabled="false" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtparentid" AutoPostBack="true" runat="server" OnTextChanged="txtparentid_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtepin" runat="server" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="txtamount" Enabled="false" runat="server"></asp:TextBox>
+                                <asp:RadioButton ID="RdBtnFree" runat="server" Text="Free Regitration" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnFree_CheckedChanged" />
+                                <asp:RadioButton ID="RdBtnEpin" runat="server" Text="E-Pin Regitration" GroupName="A" AutoPostBack="true" OnCheckedChanged="RdBtnEpin_CheckedChanged" />
+                                <asp:Panel ID="pnlpin" Visible="false" runat="server">
+                                    <asp:DropDownList ID="DDLstPlan" AutoPostBack="true" OnSelectedIndexChanged="DDLstPlan_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddepin" AutoPostBack="true" OnSelectedIndexChanged="ddepin_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                </asp:Panel>
+                                <asp:RadioButton ID="RdBtnLeft" runat="server" Text="Left" GroupName="B" />
+                                <asp:RadioButton ID="RdBtnRight" runat="server" Text="Right" GroupName="B" />
+                                <asp:DropDownList ID="ddposition" runat="server">
+                                    <asp:ListItem Value="0">Select Position</asp:ListItem>
+                                    <asp:ListItem Value="Left">Left</asp:ListItem>
+                                    <asp:ListItem Value="Right">Right</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="DropDownList1" runat="server">
+                                    <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                                    <asp:ListItem Value="Male">Male</asp:ListItem>
+                                    <asp:ListItem Value="Female">Female</asp:ListItem>
+                                    <asp:ListItem Value="Transgender">Transgender</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlYear" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlMonth" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDay" runat="server"></asp:DropDownList>
+                                <asp:TextBox ID="txtdob" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="TextBox3" TextMode="MultiLine" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddcounssstry" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddstate" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">Select State</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddcity" runat="server">
+                                    <asp:ListItem Value="0">Select City</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtnomineename" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddrelation" runat="server">
+                                    <asp:ListItem Value="0">Select Relation</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="txtaadhar" runat="server" MaxLength="12"></asp:TextBox>
+                                <asp:TextBox ID="txtheight" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddgender" runat="server">
+                                    <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                                    <asp:ListItem Value="Male">Male</asp:ListItem>
+                                    <asp:ListItem Value="Female">Female</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="txtPanNumber" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtaccountholdername" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtaccountno" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtifsccode" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddbank" runat="server">
+                                    <asp:ListItem Value="0">Select Bank</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="txtaddress" TextMode="MultiLine" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtpincode" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtareaname" runat="server" Visible="false"></asp:TextBox>
+                                <asp:TextBox ID="txt123mobile" runat="server" maxlength="10"></asp:TextBox>
+                                <asp:TextBox ID="txt123nomineename" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddlYear2" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged2" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlMonth2" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged2" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDay2" runat="server"></asp:DropDownList>
+                                <asp:TextBox ID="txtdob2" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="dd132relation" runat="server">
+                                    <asp:ListItem Value="0">Select Relation</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                                     </div>                          <div class="col-md-3" >
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 
-                                <div class="form-group">
-                                     <label class="text-end ">Mobile No. :</label>
-                                    <div class="input-group">
-                                       
-                                        <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" maxlength="14" placeholder="Mobile No"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div> 
-
-                            <div class="col-md-6" style="display:none">
-		  <div class="form-group">
-		     <label>Date of Birth : Year-Month-Date</label>
-		   
-                         
-                             <fieldset>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlYear" CssClass="form-control" ToolTip="Year" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlMonth" CssClass="form-control" ToolTip="Month" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlDay" CssClass="form-control" ToolTip="Day" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                            </fieldset>
-                        </div>
-                                    <div class="form-group" style="display:none;">
-                                        <label>Date Of Birth(dd/MM/yyyy)</label>
-                                     
-
-                                        <asp:TextBox ID="txtdob" CssClass="form-control form_date" runat="server" Placeholder="dd/MM/yyyy"></asp:TextBox>
-                                    </div>
-                                </div>
-
-                            <div class="col-md-12" style="display:none">
-                            <div class="form-group">
-                                <label class="text-end ">Address :</label>
-                                <asp:TextBox ID="TextBox3" TextMode="MultiLine" CssClass="form-control" runat="server" placeholder="Address"></asp:TextBox>
-                            </div>
-
-                        </div>
-							 <div class="col-md-6"  style="display:none">
-                            <div class="form-group">
-                                <label class="text-end "> Select Country :</label>
-                                <asp:DropDownList ID="ddcounssstry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
-                                    <asp:ListItem Value="0"> Select Country</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                                     </div>
-                                 <div class="col-md-6" style="display:none">
-                            <div class="form-group">
-                                <label class="text-end "> Select State :</label>
-                                <asp:DropDownList ID="ddstate" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddstate_SelectedIndexChanged">
-                                    <asp:ListItem Value="0"> Select State</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                                     </div>
-
-                                 <div class="col-md-6" style="display:none">
-                            <div class="form-group">
-                                <label class="text-end "> Select City :</label>
-                                <asp:DropDownList ID="ddcity" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="0"> Select City</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                                     </div>
-
-                                <div class="col-md-6" style="display:none" >
-                            <div class="form-group">
-                                <label class="text-end ">Pincode :</label>
-                                <asp:TextBox ID="TextBox2" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" Placeholder="Pincode"></asp:TextBox>
-                                
-                            </div>
-                                     </div>
-                                    
-                                
-                          
-                             <div class="col-md-6"  style="display:none">   
-                                 <div class="form-group">
-                                      <label class="text-end ">Nominee Name :</label>
-                                        <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                            <asp:TextBox ID="txtnomineename" placeholder= "Nominee Name" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>  
-                                        </div>
-                                    </div> 
-
-                             <div class="col-md-6"  style="display:none">
-                                <div class="form-group">
-                                       <label class="text-end ">Select Relation :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:DropDownList ID="ddrelation" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Relation</asp:ListItem>
-                                            <asp:ListItem Value="Husband">Husband</asp:ListItem>
-                                            <asp:ListItem Value="Wife">Wife</asp:ListItem>
-                                             <asp:ListItem Value="Mother">Mother</asp:ListItem>
-                                             <asp:ListItem Value="Father">Father</asp:ListItem>
-                                             <asp:ListItem Value="Son">Son</asp:ListItem>
-                                             <asp:ListItem Value="Daughter">Daughter</asp:ListItem>
-											 <asp:ListItem Value="Brother">Brother</asp:ListItem>
-											 <asp:ListItem Value="Cousin">Cousin</asp:ListItem>
-											 <asp:ListItem Value="Uncle">Uncle</asp:ListItem>
-											 <asp:ListItem Value="Aunt">Aunt</asp:ListItem>
-                                              <asp:ListItem Value="Brother-In-Law">Brother-In-Law</asp:ListItem>
-											 <asp:ListItem Value="Mother-In-Law">Mother-In-Law</asp:ListItem>
-											 <asp:ListItem Value="Sister-In-Law">Sister-In-Law</asp:ListItem>
-											 <asp:ListItem Value="Father-In-Law">Father-In-Law</asp:ListItem>
-                                                      
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                           
-
-
-                          <div class="col-md-6"  style="display:none;">
-                                    <div class="form-group" >
-                                        <label class="text-end">Adhar Number :</label>
-                                        <asp:TextBox ID="txtaadhar" CssClass="form-control" runat="server" placeholder="Aadhar Number" MaxLength="12"></asp:TextBox>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
- <div class="row">
-
-      
-                            	<div class="col-md-6" style="display:none;">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:TextBox ID="txtheight" CssClass="form-control" runat="server" placeholder="Name"></asp:TextBox>
-
-                                    </div>
-                                </div>
-                            </div>
-     	<div class="col-md-6" style="display:none;">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" placeholder="Name"></asp:TextBox>
-
-                                    </div>
-                                </div>
-                            </div> </div>
-     
-
- <div class="row">
-                             <div class="col-md-6"  style="display:none;">
-                            <div class="form-group" >
-                                        <label class="text-end">Select Gender:</label>
-                                        <asp:DropDownList ID="ddgender" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Gender</asp:ListItem>
-                                            <asp:ListItem Value="Male">Male</asp:ListItem>
-                                            <asp:ListItem Value="Female">Female</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                          
-							
-							<div class="col-md-6"  style="display:none;">
-                                        <div class="form-group" >
-                                        <label class="text-end">Pan Number:</label>
-                                            <asp:TextBox ID="txtPanNumber" runat="server" CssClass="form-control" placeholder="Pan Card Number"></asp:TextBox>
-                                        </div>
-                                    </div>
-       </div>
-                                           <div class="row">
-                                  <div class="col-md-6" style="display: none;">
-                                    <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:TextBox ID="txtaccountholdername" placeholder= "Account Holder Name" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div> <br>
-                              <div class="col-md-6"  style="display: none;">
-                                     <div class="input-group">
-                                        <div class="input-group-addon bg-light"><i class="fa fa-user text-primary"></i></div>
-                                        <asp:TextBox ID="txtaccountno" placeholder= "Account Number" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                             </div>
-                                        
-                             <div class="row"  style="display: none;">
-                                  <div class="col-md-6">
-                                    <div class="input-group">
-                                       <div class="input-group-addon bg-light"><i class="fa fa-tag prefix text-primary"></i></div>
-                                        <asp:TextBox ID="txtifsccode" Placeholder="IFSC Code" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div> 
-                                               <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <asp:DropDownList ID="ddbank" CssClass="form-control" runat="server"> 
-                                             <asp:ListItem Value="0"> Select Bank</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                 </div>
-                                 <div class="row" style="display: none;">
-                       
-                        </div>
-
-        
-                           <div class="row" style="display:none">
-                             <div class="col-md-12" >
-                            <div class="form-group">
-                                <asp:TextBox ID="txtaddress" TextMode="MultiLine" CssClass="form-control" runat="server" placeholder="Address"></asp:TextBox>
-                            </div>
-
-                        </div>
-                                
-                              </div>
-                          <div class="row" style="display:none">
-                               
-                                
-                     
-                                <div class="col-md-6">
-                            <div class="form-group">
-                                <asp:TextBox ID="txtpincode" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" Placeholder="Pincode"></asp:TextBox>
-                                <asp:TextBox ID="txtareaname" CssClass="form-control" runat="server" Placeholder="Area" Visible="false"></asp:TextBox>
-                            </div>
-                                     </div>
-                               
-                              </div>
-                        <div class="row">
-                              
-                            
-                             <div class="col-md-6"  style="display:none;">
-                                  <div class="form-group" >
-                                        <label class="text-end">Mobile Number:</label>
-                                        <asp:TextBox ID="txt123mobile" onkeypress="return isNumber(event)" CssClass="form-control" runat="server" maxlength="10" placeholder="Mobile No"></asp:TextBox>
-                                    </div>
-                                </div>
-
-                            
-                            </div>  
-                                    
-                         <div class="row">
-                             <div class="col-md-6"   style="display:none;">
-                                         <div class="form-group" >
-                                        <label class="text-end">Nominee Name:</label>
-                                            <asp:TextBox ID="txt123nomineename" placeholder= "Nominee Name" CssClass="form-control" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div> 
-
-                                <div class="col-md-6" style="display:none;">
-		 <div class="form-group">
-		     <label>Nominee Date of Birth : Year-Month-Date</label>
-		   
-                         
-                             <fieldset>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlYear2" CssClass="form-control" ToolTip="Year" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged2">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlMonth2" CssClass="form-control" ToolTip="Month" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged2">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                    <asp:DropDownList ID="ddlDay2" CssClass="form-control" ToolTip="Day" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                            </fieldset>
-                        </div>
-                                    <div class="form-group" style="display:none;">
-                                        <label>Nominee Date Of Birth(dd/MM/yyyy)</label>
-                                     
-
-                                        <asp:TextBox ID="txtdob2" CssClass="form-control form_date" runat="server" Placeholder="dd/MM/yyyy"></asp:TextBox>
-                                    </div>
-                                </div>
-                                    <div class="col-md-6"   style="display:none;">
-                                    <div class="form-group" >
-                                        <label class="text-end">Nominee Relation:</label>
-                                            <asp:DropDownList ID="dd132relation" CssClass="form-control" runat="server">
-                                            <asp:ListItem Value="0">Select Relation</asp:ListItem>
-                                            <asp:ListItem Value="Husband">Husband</asp:ListItem>
-                                            <asp:ListItem Value="Wife">Wife</asp:ListItem>
-                                             <asp:ListItem Value="Mother">Mother</asp:ListItem>
-                                             <asp:ListItem Value="Father">Father</asp:ListItem>
-                                             <asp:ListItem Value="Son">Son</asp:ListItem>
-                                             <asp:ListItem Value="Daughter">Daughter</asp:ListItem>
-												 <asp:ListItem Value="Brother">Brother</asp:ListItem>
-                                             <asp:ListItem Value="Sister">Sister</asp:ListItem>
-                                             <asp:ListItem Value="Father-In-Law">Father-In-Law</asp:ListItem>
-                                             <asp:ListItem Value="Mother-In-Law">Mother-In-Law</asp:ListItem>
-                                              <asp:ListItem Value="Other">Other</asp:ListItem>
-                                                      
-                                        </asp:DropDownList>
-                                        </div>
-                                    </div>
-                               
-                        </div>
-                     
-                                         
-                        <div class="row">
-                            <!--Body-->
-                            <div class="col-md-6">
-                              <div class="form-group" >
-                                        <label class="text-end">Password:</label>
-                                        <asp:TextBox ID="txtuserpassword" TextMode="Password" CssClass="form-control" runat="server" placeholder="Password"></asp:TextBox>
-
-                                    </div>
-                                </div>
-                           
-
-                            <div class="col-md-6">
-                                <div class="form-group" >
-                                        <label class="text-end">Confirm Password:</label>
-                                        <asp:TextBox ID="txtconfirmpassword" TextMode="Password" CssClass="form-control" runat="server" placeholder="Confirm Password"></asp:TextBox>
-                                    </div>
-                                </div>
-                           
-                        </div>
-                    
-
-                        <div class="form-row" style="display: none;">
-                            <div class="form-group col-md-6">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div class="col-md-4 dvRow">
-                                   
-                                    
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                 
-                                 
-                                </div>
-                                <div class="col-md-4 dvRow">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12" style="margin-bottom: 0 !important;">
-                            </div>
-                        </div>
-						
-						<br>
-
-                                            <div class="row" style="display:none">
-                                <div class="col-md-12 text-center">
-                                    <div class="form-group">
-                                        
-                                    <p style="color:#000">
-                                   
-                                        I agree to the<a href="Terms_Conditions.html" class="thembo text-primary" target="_blank">Terms & Condition</a></p>
-                                        </div>
-                                    </div>
-                                 </div>	<br>
-                        <div class="row">
-							
-							<div class="col-sm-5"></div>
-                            <div class="col-sm-2">
-                                <div class="text-center">
-
-                                    <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="btn btn-success btn-block rounded-0 py-2" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                </div>
-                            </div>
-							
-							
-							<div class="col-sm-5"></div>
-                        </div>
-
-
-
-          </div>
-</section>
-                            
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
+                    <div class="auth-footer-link" data-aos="fade-up" data-aos-delay="450">
+                        Already have an account? <a href="user/index.aspx">Sign in <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
-            </form>
-    
-    
-  <!-- vendor plugins -->
+            </div>
+        </div>
+    </form>
 
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/all.min.js"></script>
-  <script src="assets/js/swiper-bundle.min.js"></script>
-  <script src="assets/js/aos.js"></script>
-  <script src="assets/js/fslightbox.js"></script>
-  <script src="assets/js/purecounter_vanilla.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic', disable: 'mobile' });
 
-
-
-  <script src="assets/js/custom.js"></script>
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-   
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        const btn = document.getElementById("btnSwitch");
-
-        // Default = DARK (if nothing saved)
-        let savedTheme = localStorage.getItem("theme") || "dark";
-        document.documentElement.setAttribute("data-bs-theme", savedTheme);
-
-        if (btn) {
-            btn.addEventListener("click", function () {
-
-                let currentTheme = document.documentElement.getAttribute("data-bs-theme");
-
-                let newTheme = currentTheme === "dark" ? "dark" : "dark";
-
-                document.documentElement.setAttribute("data-bs-theme", newTheme);
-
-                localStorage.setItem("theme", newTheme);
-            });
+        function isNumber(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+            return true;
         }
 
-    });
-</script>
+        function toggleAspPassword(clientId, btn) {
+            var input = document.getElementById(clientId);
+            var icon = btn.querySelector('i');
+            if (!input || !icon) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        function validatephonenumber(inputtxt) {
+            var phoneno = /^([6-9]{1})([0-9]{9})$/;
+            return phoneno.test(inputtxt);
+        }
+
+        function validateemail(inputtxt) {
+            var email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            return email.test(inputtxt);
+        }
+
+        function validate() {
+            var sponsorId = document.getElementById('<%= txtsponserid.ClientID %>');
+            var sponsorName = document.getElementById('<%= txtsponsername.ClientID %>');
+            var name = document.getElementById('<%= txtname.ClientID %>');
+            var mobile = document.getElementById('<%= txtmobile.ClientID %>');
+            var email = document.getElementById('<%= txtemail.ClientID %>');
+            var country = document.getElementById('<%= ddcountry.ClientID %>');
+            var password = document.getElementById('<%= txtuserpassword.ClientID %>');
+            var confirmPassword = document.getElementById('<%= txtconfirmpassword.ClientID %>');
+            var terms = document.getElementById('chkTerms');
+
+            if (!sponsorId.value) { alert('Enter Sponsor Id'); sponsorId.focus(); return false; }
+            if (!sponsorName.value) { alert('Invalid Sponsor Id'); sponsorId.focus(); return false; }
+            if (!name.value) { alert('Enter Name'); name.focus(); return false; }
+            if (!mobile.value) { alert('Enter Mobile'); mobile.focus(); return false; }
+            if (mobile.value.length < 10) { alert('Incorrect Mobile Number'); mobile.focus(); return false; }
+            if (!email.value) { alert('Enter Email'); email.focus(); return false; }
+            if (!validateemail(email.value)) { alert('Invalid Email ID'); email.focus(); return false; }
+            if (country.value === '0') { alert('Select Country'); country.focus(); return false; }
+            if (!password.value) { alert('Enter Password'); password.focus(); return false; }
+            if (!confirmPassword.value) { alert('Enter Confirm Password'); confirmPassword.focus(); return false; }
+            if (password.value !== confirmPassword.value) { alert('Password Not Match'); password.focus(); return false; }
+            if (!terms.checked) { alert('Please accept Terms of Service'); return false; }
+            return true;
+        }
+
+        (function () {
+            var pwInput = document.getElementById('<%= txtuserpassword.ClientID %>');
+            var bar = document.getElementById('strengthBar');
+            var label = document.getElementById('strengthLabel');
+            if (!pwInput || !bar || !label) return;
+
+            pwInput.addEventListener('input', function () {
+                var val = this.value;
+                var score = 0;
+                if (val.length === 0) {
+                    bar.style.width = '0%';
+                    label.innerHTML = '';
+                    return;
+                }
+                if (val.length >= 6) score++;
+                if (val.length >= 10) score++;
+                if (/[a-z]/.test(val)) score++;
+                if (/[A-Z]/.test(val)) score++;
+                if (/[0-9]/.test(val)) score++;
+                if (/[^a-zA-Z0-9]/.test(val)) score += 2;
+
+                var width, color, text, icon;
+                if (score <= 2) { width = 20; color = '#ef4444'; text = 'Weak'; icon = 'fa-circle-xmark'; }
+                else if (score <= 4) { width = 40; color = '#f97316'; text = 'Fair'; icon = 'fa-circle-exclamation'; }
+                else if (score <= 5) { width = 60; color = '#eab308'; text = 'Good'; icon = 'fa-circle-minus'; }
+                else if (score <= 6) { width = 80; color = '#22c55e'; text = 'Strong'; icon = 'fa-circle-check'; }
+                else { width = 100; color = '#06b6d4'; text = 'Excellent'; icon = 'fa-shield-halved'; }
+
+                bar.style.width = width + '%';
+                bar.style.background = 'linear-gradient(90deg, ' + color + ', ' + color + 'dd)';
+                label.innerHTML = '<i class="fas ' + icon + '" style="color:' + color + '"></i> <span style="color:' + color + '">' + text + '</span>';
+            });
+        })();
+
+        (function () {
+            var confirmInput = document.getElementById('<%= txtconfirmpassword.ClientID %>');
+            var pwInput = document.getElementById('<%= txtuserpassword.ClientID %>');
+            if (!confirmInput || !pwInput) return;
+
+            confirmInput.addEventListener('input', function () {
+                var icon = this.parentElement.querySelector('.form-group__icon');
+                if (this.value.length === 0) {
+                    this.style.borderColor = '';
+                    if (icon) icon.style.color = '';
+                    return;
+                }
+                if (this.value === pwInput.value) {
+                    this.style.borderColor = '#22c55e';
+                    if (icon) icon.style.color = '#22c55e';
+                } else {
+                    this.style.borderColor = 'var(--accent)';
+                    if (icon) icon.style.color = 'var(--accent)';
+                }
+            });
+        })();
+
+        (function () {
+            var canvas = document.getElementById('registerParticles');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var particles = [];
+            var PARTICLE_COUNT = 40;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function Particle() { this.reset(); }
+            Particle.prototype.reset = function () {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.3 + 0.05;
+                this.color = ['108,99,255', '0,212,255', '139,92,246'][Math.floor(Math.random() * 3)];
+            };
+            Particle.prototype.update = function () {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            };
+            Particle.prototype.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(' + this.color + ', ' + this.opacity + ')';
+                ctx.fill();
+            };
+
+            for (var i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
 </body>
 </html>

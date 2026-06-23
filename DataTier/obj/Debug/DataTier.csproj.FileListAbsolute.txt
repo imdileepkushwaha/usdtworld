@@ -466,3 +466,9 @@ D:\Web\usdtworld\usdtworld\DataTier\bin\Debug\DataTier.pdb
 D:\Web\usdtworld\usdtworld\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
 D:\Web\usdtworld\usdtworld\DataTier\obj\Debug\DataTier.dll
 D:\Web\usdtworld\usdtworld\DataTier\obj\Debug\DataTier.pdb
+c:\Data\Work\Deepak\usdtworld\DataTier\bin\Debug\DataTier.dll
+c:\Data\Work\Deepak\usdtworld\DataTier\bin\Debug\DataTier.pdb
+c:\Data\Work\Deepak\usdtworld\DataTier\obj\Debug\DataTier.csproj.AssemblyReference.cache
+c:\Data\Work\Deepak\usdtworld\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
+c:\Data\Work\Deepak\usdtworld\DataTier\obj\Debug\DataTier.dll
+c:\Data\Work\Deepak\usdtworld\DataTier\obj\Debug\DataTier.pdb

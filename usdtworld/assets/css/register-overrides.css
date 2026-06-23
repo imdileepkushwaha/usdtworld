@@ -1,0 +1,51 @@
+/* ASP.NET control overrides for Register page */
+input[type="submit"].auth-submit-btn,
+input[type="button"].auth-submit-btn {
+    width: 100%;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 14px;
+    font-family: var(--font2);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6, var(--secondary));
+    background-size: 200% 200%;
+    animation: btnGradient 4s ease infinite;
+    transition: all 0.4s ease;
+    letter-spacing: 0.3px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"].auth-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108, 99, 255, 0.4), 0 0 60px rgba(108, 99, 255, 0.15);
+}
+
+.register-page .form-row--name {
+    grid-template-columns: 100px 1fr 1fr;
+}
+
+.register-page .form-group--prefix .form-group__input {
+    padding-left: 14px;
+    text-align: center;
+}
+
+.register-page .register-hidden-fields {
+    display: none !important;
+}
+
+.register-page .update-progress-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 8, 15, 0.75);
+}
+
+.register-page .update-progress-overlay img {
+    max-width: 80px;
+}
