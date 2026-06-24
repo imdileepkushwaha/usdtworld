@@ -463,7 +463,7 @@
         <footer class="d-footer">
             <div class="row align-items-center justify-content-between g-2">
                 <div class="col-auto">
-                    <p class="mb-0">&copy; 2025–2026 <span class="sv-footer-brand"><%= clsUtility.ProjectName %></span>. All rights reserved.</p>
+                    <p class="mb-0">&copy; <%= clsUtility.Session %> <span class="sv-footer-brand"><%= clsUtility.ProjectName %></span>. All rights reserved.</p>
                 </div>
                 <div class="col-auto d-none d-md-block">
                     <p class="mb-0"><i class="fa-solid fa-shield-halved" style="color:#6ee7b7;margin-right:6px;"></i>Secure member portal</p>

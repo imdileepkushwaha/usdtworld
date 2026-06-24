@@ -15,7 +15,7 @@ using System.Data.SqlClient;
         public static string ProjectAbbreviation { get { return "USDT WORLD"; } }
         public static string ProjectWebsite { get { return "https://usdtworld.club/"; } }
         public static string Company { get { return "USDT WORLD"; } }
-        public static string Session { get { return "2026-267"; } }
+        public static string Session { get { return (DateTime.Now.Year - 1) + "–" + DateTime.Now.Year; } }
 
         public static string Day { get { return DateTime.Now.ToString("ddd, MMM dd, yyyy"); } }
 

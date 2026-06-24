@@ -26,10 +26,12 @@ public partial class Associate_Details : System.Web.UI.Page
                 if (GridView1.Rows.Count > 0)
                 {
                     pnllist.Visible = true;
+                    pnlEmpty.Visible = false;
                 }
                 else
                 {
                     pnllist.Visible = false;
+                    pnlEmpty.Visible = true;
                 }
             }
             else
@@ -244,10 +246,7 @@ public partial class Associate_Details : System.Web.UI.Page
         if (lnkbtnPage.CommandArgument.ToString() == CurrentPage.ToString())
         {
             lnkbtnPage.Enabled = false;
-            //lnkbtnPage.Style.Add("fone-size", "14px");
-            //lnkbtnPage.Font.Bold = true;
-            //  lnkbtnPage.Font.Underline = true;
-
+            lnkbtnPage.CssClass = "adm-msg-pager__active";
         }
     }
 
@@ -276,12 +275,13 @@ public partial class Associate_Details : System.Web.UI.Page
             HyperLink lnkPgAttachment = (HyperLink)e.Row.FindControl("HyperLink1");
             if (lblPgAttachment.Text.ToString() == "")
             {
-                lnkPgAttachment.CssClass = "fa fa-ban btn btn-warning disabled";
+                lnkPgAttachment.CssClass = "adm-msg-attach adm-msg-attach--none fa-solid fa-ban";
                 lnkPgAttachment.ToolTip = "No Attachment Found!";
+                lnkPgAttachment.NavigateUrl = "";
             }
             else
             {
-                lnkPgAttachment.CssClass = "fa fa-download btn btn-info";
+                lnkPgAttachment.CssClass = "adm-msg-attach adm-msg-attach--file fa-solid fa-download";
                 lnkPgAttachment.ToolTip = "Download Attachment!";
             }
         }

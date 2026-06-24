@@ -324,13 +324,13 @@ public partial class franchiseeAdd : System.Web.UI.Page
     protected void imgPAN_Click(object sender, ImageClickEventArgs e)
     {
         ImagePANLarge.ImageUrl = "~/ProductImage/" + ViewState["PAN_Img"].ToString();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal1();", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal1('DivPANlarge');", true);
     }
 
     protected void imgGST_Click(object sender, ImageClickEventArgs e)
     {
         ImageGSTLarge.ImageUrl = "~/ProductImage/" + ViewState["GST_Img"].ToString();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal2();", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal2('DivGSTLarge');", true);
     }
     protected void txtSponsorId_TextChanged(object sender, EventArgs e)
     {

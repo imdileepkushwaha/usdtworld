@@ -9,14 +9,18 @@ public partial class admin_MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["useradmin"] == null)
+        {
+            Response.Redirect("index.aspx");
+            return;
+        }
+
         if (!IsPostBack)
         {
-            if (Session["useradmin"] != null)
-            {
-                LblUsernameSideMenu.Text = Session["useradmin"].ToString();
-                LblMainId.Text = Session["useradmin"].ToString();
-                //LblFullname.Text = Session["useradmin"].ToString();
-            }
+            string adminName = Session["useradmin"].ToString();
+            LblUsernameSideMenu.Text = adminName;
+            LblMainId.Text = adminName;
+            litAdminWelcome.Text = adminName;
         }
     }
 }

@@ -80,7 +80,6 @@ public partial class FranchiseeSearchNew : System.Web.UI.Page
     protected void ddstate_SelectedIndexChanged(object sender, EventArgs e)
     {
         loadcity();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop", "showSearchModal();", true);
     }
 
 
@@ -140,7 +139,7 @@ public partial class FranchiseeSearchNew : System.Web.UI.Page
         }
         else
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop1", "alert('No Record Found');showSearchModal();", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop1", "alert('No Record Found');", true);
         }
        
     }
@@ -235,7 +234,6 @@ public partial class FranchiseeSearchNew : System.Web.UI.Page
   
     protected void BtnSearchFranchisee_Click(object sender,EventArgs e)
     {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop", "Closesearchpopup();", true);
         loadProduct(1);
     }
 
@@ -243,7 +241,6 @@ public partial class FranchiseeSearchNew : System.Web.UI.Page
     
     protected void BtnCancelFranchisee_Click(object sender,EventArgs e)
     {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop", "Closesearchpopup();", true);
     }
 
 
@@ -252,12 +249,10 @@ public partial class FranchiseeSearchNew : System.Web.UI.Page
     protected void ddcity_SelectedIndexChanged(object sender, EventArgs e)
     {
         loadTehsil();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop", "showSearchModal();", true);
     }
     protected void DDlstTehsil_SelectedIndexChanged(object sender, EventArgs e)
     {
         loadmarket();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "SearchPop", "showSearchModal();", true);
     }
     void loadTehsil()
     {

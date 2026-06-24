@@ -21,8 +21,7 @@ public partial class admin_DepositRequestReport : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-
-
+                loadgethelp();
             }
         }
         else
