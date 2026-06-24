@@ -1,0 +1,245 @@
+/* Registration success — ConfirmRegistration.aspx */
+.confirm-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+}
+
+.sv-confirm-card {
+    position: relative;
+    width: min(560px, 100%);
+    padding: 36px 32px 32px;
+    border-radius: 22px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(12, 18, 36, 0.96) 0%, rgba(15, 23, 42, 0.94) 100%);
+    border: 1px solid rgba(108, 99, 255, 0.22);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 0 80px rgba(108, 99, 255, 0.1);
+}
+
+.sv-confirm-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+    opacity: 0.8;
+}
+
+.sv-confirm-card__glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    right: -60px;
+    border-radius: 50%;
+    background: rgba(52, 211, 153, 0.12);
+    filter: blur(50px);
+    pointer-events: none;
+}
+
+.sv-confirm-card__success {
+    position: relative;
+    z-index: 1;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #6ee7b7;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    box-shadow: 0 0 32px rgba(52, 211, 153, 0.2);
+    animation: confirmPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes confirmPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 32px rgba(52, 211, 153, 0.2); }
+    50% { transform: scale(1.04); box-shadow: 0 0 44px rgba(52, 211, 153, 0.35); }
+}
+
+.sv-confirm-card__logo {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    width: auto;
+    max-width: 150px;
+    margin: 0 auto 0px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(108, 99, 255, 0.3));
+}
+
+.sv-confirm-card__title {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 8px;
+    font-family: var(--font2);
+    font-size: 1.55rem !important;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.sv-confirm-card__subtitle {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 26px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+.sv-confirm-credentials {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+    text-align: left;
+}
+
+.sv-confirm-cred {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(8, 12, 28, 0.55);
+    border: 1px solid rgba(108, 99, 255, 0.14);
+}
+
+.sv-confirm-cred__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.sv-confirm-cred__label i {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: #c4b5fd;
+    background: rgba(108, 99, 255, 0.14);
+    flex-shrink: 0;
+}
+
+.sv-confirm-cred__value {
+    font-family: var(--font2);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c4b5fd;
+    text-align: right;
+    word-break: break-all;
+}
+
+.sv-confirm-cred__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.sv-confirm-copy {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #c4b5fd;
+    background: rgba(108, 99, 255, 0.12);
+    border: 1px solid rgba(108, 99, 255, 0.22);
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.sv-confirm-copy:hover {
+    color: #fff;
+    background: rgba(108, 99, 255, 0.22);
+    border-color: rgba(108, 99, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.sv-confirm-copy--done {
+    color: #6ee7b7 !important;
+    background: rgba(52, 211, 153, 0.14) !important;
+    border-color: rgba(52, 211, 153, 0.35) !important;
+}
+
+.sv-confirm-note {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 24px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #cbd5e1;
+    background: rgba(108, 99, 255, 0.08);
+    border: 1px solid rgba(108, 99, 255, 0.16);
+}
+
+.sv-confirm-note i {
+    color: #fbbf24;
+    margin-right: 6px;
+}
+
+.sv-confirm-card .btn-login {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    text-decoration: none !important;
+}
+
+@media (max-width: 520px) {
+    .sv-confirm-card {
+        padding: 28px 20px 24px;
+    }
+
+    .sv-confirm-cred {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .sv-confirm-cred__right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sv-confirm-cred__value {
+        text-align: left;
+        font-size: 0.95rem;
+    }
+}

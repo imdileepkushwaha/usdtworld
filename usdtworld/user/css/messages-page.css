@@ -593,26 +593,45 @@
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
     padding: 0 !important;
+    margin: 0;
     border-radius: 12px !important;
-    font-size: 1.5rem !important;
+    font-size:.85rem  !important;
     line-height: 1 !important;
-    font-weight: 400 !important;
+    text-decoration: none !important;
     color: #94a3b8 !important;
     background: rgba(148, 163, 184, 0.08) !important;
     border: 1px solid rgba(148, 163, 184, 0.16) !important;
+    box-shadow: none !important;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
     transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.sv-msg-modal__close:hover {
+input.sv-msg-modal__close {
+    font-family: inherit;
+}
+
+.sv-msg-modal__close i {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.sv-msg-modal__close:hover,
+.sv-msg-modal__close:focus {
     color: #fff !important;
     background: rgba(248, 113, 113, 0.15) !important;
     border-color: rgba(248, 113, 113, 0.35) !important;
     transform: rotate(90deg);
+    outline: none;
+    text-decoration: none !important;
 }
 
 .sv-msg-modal__body {
@@ -729,11 +748,52 @@
 }
 
 .sv-msg-modal__done {
-    min-width: 140px;
+    min-width: 160px;
+    padding: 12px 26px !important;
+    border-radius: 12px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em;
+    gap: 8px;
+}
+
+input.sv-msg-modal__done,
+a.sv-msg-modal__done {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    line-height: 1.2;
+}
+
+input.sv-msg-modal__done {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.sv-msg-modal__done i {
+    font-size: 0.82rem;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.sv-msg-modal__done span {
+    line-height: 1;
 }
 
 .sv-msg-modal__foot .sv-msg-btn--primary {
     box-shadow: 0 10px 28px rgba(108, 99, 255, 0.3);
+}
+
+.sv-msg-modal__foot .sv-msg-btn--primary:hover,
+.sv-msg-modal__foot .sv-msg-btn--primary:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(108, 99, 255, 0.38);
+    outline: none;
+    text-decoration: none !important;
 }
 
 @media (max-width: 767px) {

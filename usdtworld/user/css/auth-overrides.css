@@ -1,4 +1,37 @@
 /* ASP.NET control overrides for auth layout */
+
+/* Browser autofill — match normal themed inputs */
+.login-page .input-group__field:-webkit-autofill,
+.login-page .input-group__field:-webkit-autofill:hover,
+.login-page .input-group__field:-webkit-autofill:focus,
+.login-page .input-group__field:-webkit-autofill:active,
+.modal-card .input-group__field:-webkit-autofill,
+.modal-card .input-group__field:-webkit-autofill:hover,
+.modal-card .input-group__field:-webkit-autofill:focus,
+.modal-card .input-group__field:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--text) !important;
+    caret-color: var(--text);
+    border-color: rgba(108, 99, 255, 0.1) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgba(22, 27, 39, 0.5) inset !important;
+    box-shadow: 0 0 0 1000px rgba(22, 27, 39, 0.5) inset !important;
+    transition: background-color 9999s ease-out 0s;
+}
+
+.login-page .input-group__field:-webkit-autofill:focus,
+.modal-card .input-group__field:-webkit-autofill:focus {
+    border-color: var(--primary) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgba(108, 99, 255, 0.05) inset, 0 0 0 4px rgba(108, 99, 255, 0.1), 0 0 30px rgba(108, 99, 255, 0.06) !important;
+    box-shadow: 0 0 0 1000px rgba(108, 99, 255, 0.05) inset, 0 0 0 4px rgba(108, 99, 255, 0.1), 0 0 30px rgba(108, 99, 255, 0.06) !important;
+}
+
+.login-page .input-group__field:autofill,
+.modal-card .input-group__field:autofill {
+    box-shadow: 0 0 0 1000px rgba(22, 27, 39, 0.5) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+    caret-color: var(--text);
+    border-color: rgba(108, 99, 255, 0.1) !important;
+}
+
 input.btn-login,
 button.btn-login,
 a.btn-login {
@@ -46,6 +79,32 @@ input.btn-login {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+}
+
+.auth-brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.logo-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.auth-brand-logo__img {
+    /* height: 58px; */
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 22px rgba(108, 99, 255, 0.35));
+}
+
+.auth-brand-logo__img--sm {
+    height: 38px;
+    max-width: 150px;
 }
 
 .modal-card .form-row-actions .btn-login,

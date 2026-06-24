@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Social Vista - Future Of Smart Trading
+  <title>USDT World - Future Of Smart Trading
   </title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,19 +12,19 @@
 
   <!-- Sites meta Data -->
   <meta name="application-name"
-    content="Social Vista - Future Of Smart Trading">
-  <meta name="author" content="Social Vista">
-  <meta name="keywords" content="Social Vista, Crypto, Forex, and Stocks Trading Business">
+    content="USDT World - Future Of Smart Trading">
+  <meta name="author" content="USDT World">
+  <meta name="keywords" content="USDT World, Crypto, Forex, and Stocks Trading Business">
   <meta name="description"
-    content="Experience the power of future trading, the ultimate tarding portfolio designed to transform your trading business. With its sleek design and advanced features, Social vista empowers you to showcase your expertise, engage clients, and dominate the markets. Elevate your online presence and unlock new trading possibilities with Bitrader.">
+    content="Experience the power of future trading, the ultimate tarding portfolio designed to transform your trading business. With its sleek design and advanced features, USDT World empowers you to showcase your expertise, engage clients, and dominate the markets. Elevate your online presence and unlock new trading possibilities with Bitrader.">
 
   <!-- OG meta data -->
   <meta property="og:title"
-    content="Social Vista - Future Of Smart Trading">
-  <meta property="og:site_name" content=Social Vista>
+    content="USDT World - Future Of Smart Trading">
+  <meta property="og:site_name" content="USDT World">
   <meta property="og:url" content="index.html">
   <meta property="og:description"
-    content="Welcome to Social Vista, the ultimate tarding portfolio designed to transform your trading business. With its sleek and modern design, Bitrader provides a cutting-edge platform to showcase your expertise, attract clients, and stay ahead in the competitive trading markets.">
+    content="Welcome to USDT World, the ultimate tarding portfolio designed to transform your trading business. With its sleek and modern design, Bitrader provides a cutting-edge platform to showcase your expertise, attract clients, and stay ahead in the competitive trading markets.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/og.png">
 

@@ -21,14 +21,18 @@ public partial class user_ConfirmRegistration : System.Web.UI.Page
     }
     void laoddata()
     {
+        if (Session["LoginId1"] == null || Session["Password1"] == null || Session["TransPassword1"] == null)
+        {
+            Response.Redirect("../Register.aspx");
+            return;
+        }
 
         LblLoginId.Text = Session["LoginId1"].ToString();
         LblPassword.Text = Session["Password1"].ToString();
         LblCOnfirmPassword.Text = Session["TransPassword1"].ToString();
         LblSponsorName.Text = "Necta Network";
-        LblSponsorId.Text = Session["SponserId1"].ToString();
-        //lblName.Text = Session["UserName2"].ToString();
-        }
+        LblSponsorId.Text = Session["SponserId1"] != null ? Session["SponserId1"].ToString() : string.Empty;
+    }
    // public void ImageUrl()
    // {
     //    ObjDUc.CreatedBy = "1";
@@ -41,4 +45,4 @@ public partial class user_ConfirmRegistration : System.Web.UI.Page
 
       //  }
     //}
-    }
+}

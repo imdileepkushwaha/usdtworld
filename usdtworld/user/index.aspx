@@ -86,7 +86,7 @@
 
                 <!-- Auth Wrapper -->
                 <div class="auth-wrapper login-page">
-                    <a href="../index.html" class="back-home-btn" data-aos="fade-right" data-aos-duration="600">
+                    <a href="../index.aspx" class="back-home-btn" data-aos="fade-right" data-aos-duration="600">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Back to Home</span>
                     </a>
@@ -116,7 +116,8 @@
 
                             <div class="brand-content">
                                 <div class="logo-wrapper">
-                                    <div class="brand-logo"><%= clsUtility.ProjectName %></div>
+                                    <img src="../img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="auth-brand-logo__img" onerror="this.onerror=null;this.src='img/logo.png';" />
+                                    <!-- <div class="brand-logo"><%= clsUtility.ProjectName %></div> -->
                                 </div>
                                 <p class="brand-tagline">Your premium social trading platform.<br />Smarter insights. Bigger returns.</p>
 

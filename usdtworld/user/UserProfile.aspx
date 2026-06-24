@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/account-pages.css" rel="stylesheet" />
+    <link href="css/messages-page.css" rel="stylesheet" />
     <script type="text/javascript">
         function validate() {
             if (document.getElementById("<%=txtsponserid.ClientID%>").value == "") {
@@ -124,6 +125,18 @@
                         <span class="sv-page-header__crumb">My Profile / View Profile</span>
                     </div>
                 </div>
+
+                <nav class="sv-msg-tabs" aria-label="Profile sections">
+                    <a href="UserProfile.aspx" class="sv-msg-tabs__item sv-msg-tabs__item--active">
+                        <i class="fa-solid fa-user"></i> View Profile
+                    </a>
+                    <a href="UserEdit.aspx" class="sv-msg-tabs__item">
+                        <i class="fa-solid fa-user-pen"></i> Edit Profile
+                    </a>
+                    <a href="CHangePassword.aspx" class="sv-msg-tabs__item">
+                        <i class="fa-solid fa-lock"></i> Change Password
+                    </a>
+                </nav>
 
                 <div class="sv-form-card">
                     <div class="sv-form-card__head">

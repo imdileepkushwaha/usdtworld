@@ -49,7 +49,7 @@
         }
 
 /* ═══════════════════════════════════════════════════════════
-       SOCIAL VISTA — PREMIUM LOGIN PAGE
+       USDT World — PREMIUM LOGIN PAGE
        Glassmorphism · Animated Orbs · Floating Labels · Split Card
        ═══════════════════════════════════════════════════════════ */
 
@@ -1308,6 +1308,11 @@
         z-index: 2;
         text-align: center;
     }
+
+.auth-brand-logo img{
+    width: 200px;
+}
+
     .register-page .brand-logo {
         font-family: var(--font2);
         font-size: 2.2rem;
@@ -1323,7 +1328,12 @@
     }
     .register-page .brand-tagline {
         font-size: 1.1rem;
-        color: var(--muted);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--primary) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 4s linear infinite;
         margin-bottom: 48px;
         font-weight: 300;
         letter-spacing: 0.5px;

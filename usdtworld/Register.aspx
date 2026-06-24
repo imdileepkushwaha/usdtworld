@@ -24,10 +24,21 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <asp:UpdateProgress ID="updateProgress" runat="server">
+        <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="150">
             <ProgressTemplate>
-                <div class="update-progress-overlay">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="assets/images/social.gif" AlternateText="Loading..." />
+                <div class="auth-loader-overlay" role="status" aria-live="polite" aria-label="Loading">
+                    <div class="auth-loader-card">
+                        <div class="auth-loader-spinner" aria-hidden="true">
+                            <span class="auth-loader-ring auth-loader-ring--outer"></span>
+                            <span class="auth-loader-ring auth-loader-ring--inner"></span>
+                            <span class="auth-loader-core">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </span>
+                        </div>
+                        <p class="auth-loader-title">Please wait</p>
+                        <p class="auth-loader-text">Creating your account<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                        <div class="auth-loader-bar" aria-hidden="true"><span></span></div>
+                    </div>
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
@@ -58,7 +69,10 @@
                     <div class="brand-orb brand-orb--3"></div>
 
                     <div class="brand-content">
-                        <div class="brand-logo"><%= clsUtility.ProjectName %></div>
+                        <div class="auth-brand-logo">
+                            <img src="img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="auth-brand-logo__img" onerror="this.onerror=null;this.src='user/img/logo.png';" />
+                            <!-- <div class="brand-logo"><%= clsUtility.ProjectName %></div> -->
+                        </div>
                         <div class="brand-tagline">Start Your Trading Journey</div>
 
                         <div class="steps-process">
@@ -106,6 +120,7 @@
 
                 <div class="auth-form-panel">
                     <div class="mobile-brand-logo">
+                        <img src="user/img/usdt.png" alt="<%= clsUtility.ProjectName %>" class="auth-brand-logo__img auth-brand-logo__img--sm" onerror="this.onerror=null;this.src='user/img/logo.png';" />
                         <span><%= clsUtility.ProjectName %></span>
                     </div>
 

@@ -46,7 +46,7 @@
 					 
 <h6 style="font-size:25px;">
 
-    Welcome to Social Vista – The Future of Smart Trading! </h6>
+    Welcome to USDT World – The Future of Smart Trading! </h6>
 
                       <h6 style="font-size:20px;">
  Trading ID: <span style="font-family:arial black;font-size:20px;color:#9891f2;"><b><asp:Label ID="LblLoginId" runat="server"> </asp:Label></b></span> <br />

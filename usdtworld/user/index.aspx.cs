@@ -246,7 +246,7 @@ public partial class admin_index : System.Web.UI.Page
         try
         {
 
-            string url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=socialvista&apikey=FB2A3-79967&apirequest=Text&sender=REGISR&mobile=" + MObile + "&message=Your OTP for Social Vista is " + OTP + " Do not share this code with anyone. sms&route=TRANS&TemplateID=1607100000000377105&format=JSON";
+            string url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=socialvista&apikey=FB2A3-79967&apirequest=Text&sender=REGISR&mobile=" + MObile + "&message=Your OTP for USDT World is " + OTP + " Do not share this code with anyone. sms&route=TRANS&TemplateID=1607100000000377105&format=JSON";
             string Result = url.CallURL();
             Insert_SendSMS(MObile, Result, url);
             res = MObile;
@@ -280,7 +280,7 @@ public partial class admin_index : System.Web.UI.Page
         try
         {
 
-            string url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=socialvista&apikey=FB2A3-79967&apirequest=Text&sender=REGISR&mobile=" + MObile + "&message=Social Vista OTP: " + OTP + " for password reset.Valid 10 mins.Don’t share.sms&route=TRANS&TemplateID=1607100000000377104&format=JSON";
+            string url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=socialvista&apikey=FB2A3-79967&apirequest=Text&sender=REGISR&mobile=" + MObile + "&message=USDT World OTP: " + OTP + " for password reset.Valid 10 mins.Don’t share.sms&route=TRANS&TemplateID=1607100000000377104&format=JSON";
             string Result = url.CallURL();
             Insert_SendSMS(MObile, Result, url);
             res = MObile;

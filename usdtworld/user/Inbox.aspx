@@ -145,7 +145,9 @@
                         <h3>Message Detail</h3>
                     </div>
                 </div>
-                <asp:Button ID="btnClose" CssClass="sv-msg-modal__close" runat="server" Text="×" ToolTip="Close" />
+                <asp:LinkButton ID="btnClose" runat="server" CssClass="sv-msg-modal__close" ToolTip="Close" CausesValidation="false">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </asp:LinkButton>
             </div>
 
             <div class="sv-msg-modal__body">
@@ -184,7 +186,10 @@
             </div>
 
             <div class="sv-msg-modal__foot">
-                <asp:Button ID="btnCloseFoot" CssClass="sv-msg-btn sv-msg-btn--primary sv-msg-modal__done" runat="server" Text="Got it" OnClientClick="$find('<%= pnlModal_ModalPopupExtender.ClientID %>').hide(); return false;" />
+                <asp:LinkButton ID="btnCloseFoot" runat="server" CssClass="sv-msg-btn sv-msg-btn--primary sv-msg-modal__done" CausesValidation="false" OnClientClick="$find('<%= pnlModal_ModalPopupExtender.ClientID %>').hide(); return false;">
+                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    <span>Got it</span>
+                </asp:LinkButton>
             </div>
         </asp:Panel>
 

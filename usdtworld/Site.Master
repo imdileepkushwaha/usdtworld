@@ -1,0 +1,142 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="socialvista.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">USDT World – Crypto, Forex & Stocks Trading</asp:ContentPlaceHolder></title>
+   <meta name="application-name"
+    content="USDT World - Future Of Smart Trading">
+  <meta name="author" content="USDT World">
+  <meta name="keywords" content="USDT World, Crypto, Forex, and Stocks Trading Business">
+  <meta name="description"
+    content="Experience the power of future trading, the ultimate tarding portfolio designed to transform your trading business. With its sleek design and advanced features, USDT World empowers you to showcase your expertise, engage clients, and dominate the markets. Elevate your online presence and unlock new trading possibilities with Bitrader.">
+
+  <!-- OG meta data -->
+  <meta property="og:title"
+    content="USDT World - Future Of Smart Trading">
+  <meta property="og:site_name" content=USDT World>
+  <meta property="og:url" content="index.aspx">
+  <meta property="og:description"
+    content="Welcome to USDT World, the ultimate tarding portfolio designed to transform your trading business. With its sleek and modern design, Bitrader provides a cutting-edge platform to showcase your expertise, attract clients, and stay ahead in the competitive trading markets.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og.png">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/web-style.css">
+
+    <!-- Font Awesome 6.5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="mainForm" runat="server">
+
+    <!-- ═══════ NAVBAR ═══════ -->
+    <nav class="navbar-sv" id="mainNavbar">
+        <div class="nav-inner">
+            <a href="index.aspx" class="nav-logo">
+                <img src="assets/images/usdtw.png" alt="USDT World">
+                
+            </a>
+            <ul class="nav-links">
+                <a href="index.aspx">Home</a>
+        <a href="index.aspx#about">About</a>
+        <a href="index.aspx#services">Services</a>
+        <a href="index.aspx#testimonials">Reviews</a>
+        <a href="index.aspx#faq">Faq's</a>
+        <a href="index.aspx#articles">Articles</a>
+            </ul>
+            <div class="nav-actions">
+                <!-- Language Dropdown -->
+                <div class="lang-selector">
+                    <button type="button" class="lang-btn">
+                        <i class="fa-solid fa-globe"></i> EN <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="javascript:void(0)" onclick="translatePage('en')" class="active"><img src="https://flagcdn.com/w20/us.png" alt="English"> English</a>
+                        <a href="javascript:void(0)" onclick="translatePage('es')"><img src="https://flagcdn.com/w20/es.png" alt="Spanish"> Espa&#241;ol</a>
+                        <a href="javascript:void(0)" onclick="translatePage('hi')"><img src="https://flagcdn.com/w20/in.png" alt="Hindi"> &#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</a>
+                        <a href="javascript:void(0)" onclick="translatePage('de')"><img src="https://flagcdn.com/w20/de.png" alt="German"> Deutsch</a>
+                    </div>
+                </div>
+
+                <a href="user/index.aspx" class="btn-nav-login">Sign In</a>
+                <a href="Register.aspx" class="btn-nav-signup">Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;margin-left:4px;"></i></a>
+            </div>
+            <div class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <a href="index.aspx">Home</a>
+        <a href="index.aspx#about">About</a>
+        <a href="index.aspx#services">Services</a>
+        <a href="index.aspx#testimonials">Reviews</a>
+        <a href="index.aspx#faq">Faq's</a>
+        <a href="index.aspx#articles">Articles</a>
+        <a href="Login.aspx">Sign In</a>
+        <a href="Register.aspx" class="btn-nav-signup">Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;margin-left:4px;"></i></a>
+    </div>
+
+    
+
+    <!-- ═══════ PAGE CONTENT ═══════ -->
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="footer">
+        <div class="footer-inner">
+           
+            <div class="footer-bottom">
+                <p>© 2026 USDT World. All rights reserved.</p>
+                <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Google Translate (Hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

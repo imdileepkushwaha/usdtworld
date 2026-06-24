@@ -299,6 +299,7 @@ body {
     <!--(Ends)-->
     <link href="../dist/css/user-profile.css" rel="stylesheet" />
     <link href="css/dashboard-page.css" rel="stylesheet" />
+    <link href="assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
     <div class="sv-dashboard-page">
@@ -335,6 +336,41 @@ body {
             <div class="sv-dash-header__meta">
                 <span class="sv-dash-header__meta-label">Member</span>
                 <strong><asp:Label ID="lblHeaderUser" runat="server" Text="—" /></strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="sv-flags-marquee" aria-label="Global trading markets">
+        <div class="sv-flags-marquee__viewport">
+            <div class="sv-flags-marquee__track">
+                <div class="sv-flags-marquee__group">
+                    <span class="sv-flags-marquee__item" title="United Kingdom"><span class="flag-icon flag-icon-squared flag-icon-gb" role="img" aria-label="United Kingdom"></span></span>
+                    <span class="sv-flags-marquee__item" title="Australia"><span class="flag-icon flag-icon-squared flag-icon-au" role="img" aria-label="Australia"></span></span>
+                    <span class="sv-flags-marquee__item" title="India"><span class="flag-icon flag-icon-squared flag-icon-in" role="img" aria-label="India"></span></span>
+                    <span class="sv-flags-marquee__item" title="Canada"><span class="flag-icon flag-icon-squared flag-icon-ca" role="img" aria-label="Canada"></span></span>
+                    <span class="sv-flags-marquee__item" title="Japan"><span class="flag-icon flag-icon-squared flag-icon-jp" role="img" aria-label="Japan"></span></span>
+                    <span class="sv-flags-marquee__item" title="Germany"><span class="flag-icon flag-icon-squared flag-icon-de" role="img" aria-label="Germany"></span></span>
+                    <span class="sv-flags-marquee__item" title="France"><span class="flag-icon flag-icon-squared flag-icon-fr" role="img" aria-label="France"></span></span>
+                    <span class="sv-flags-marquee__item" title="Italy"><span class="flag-icon flag-icon-squared flag-icon-it" role="img" aria-label="Italy"></span></span>
+                    <span class="sv-flags-marquee__item" title="Spain"><span class="flag-icon flag-icon-squared flag-icon-es" role="img" aria-label="Spain"></span></span>
+                    <span class="sv-flags-marquee__item" title="Brazil"><span class="flag-icon flag-icon-squared flag-icon-br" role="img" aria-label="Brazil"></span></span>
+                    <span class="sv-flags-marquee__item" title="Singapore"><span class="flag-icon flag-icon-squared flag-icon-sg" role="img" aria-label="Singapore"></span></span>
+                    <span class="sv-flags-marquee__item" title="United States"><span class="flag-icon flag-icon-squared flag-icon-us" role="img" aria-label="United States"></span></span>
+                </div>
+                <div class="sv-flags-marquee__group" aria-hidden="true">
+                    <span class="sv-flags-marquee__item" title="United Kingdom"><span class="flag-icon flag-icon-squared flag-icon-gb"></span></span>
+                    <span class="sv-flags-marquee__item" title="Australia"><span class="flag-icon flag-icon-squared flag-icon-au"></span></span>
+                    <span class="sv-flags-marquee__item" title="India"><span class="flag-icon flag-icon-squared flag-icon-in"></span></span>
+                    <span class="sv-flags-marquee__item" title="Canada"><span class="flag-icon flag-icon-squared flag-icon-ca"></span></span>
+                    <span class="sv-flags-marquee__item" title="Japan"><span class="flag-icon flag-icon-squared flag-icon-jp"></span></span>
+                    <span class="sv-flags-marquee__item" title="Germany"><span class="flag-icon flag-icon-squared flag-icon-de"></span></span>
+                    <span class="sv-flags-marquee__item" title="France"><span class="flag-icon flag-icon-squared flag-icon-fr"></span></span>
+                    <span class="sv-flags-marquee__item" title="Italy"><span class="flag-icon flag-icon-squared flag-icon-it"></span></span>
+                    <span class="sv-flags-marquee__item" title="Spain"><span class="flag-icon flag-icon-squared flag-icon-es"></span></span>
+                    <span class="sv-flags-marquee__item" title="Brazil"><span class="flag-icon flag-icon-squared flag-icon-br"></span></span>
+                    <span class="sv-flags-marquee__item" title="Singapore"><span class="flag-icon flag-icon-squared flag-icon-sg"></span></span>
+                    <span class="sv-flags-marquee__item" title="United States"><span class="flag-icon flag-icon-squared flag-icon-us"></span></span>
+                </div>
             </div>
         </div>
     </div>

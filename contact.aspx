@@ -45,7 +45,7 @@
 			<nav class="navbar navbar-expand-lg">
 				<div class="container">
 					<!-- Logo Start -->
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.aspx">
 						<img src="images/logo.png" alt="Logo">
 					</a>
 					<!-- Logo End -->
@@ -54,7 +54,7 @@
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item "><a class="nav-link" href="index.html">Home</a>
+                                <li class="nav-item "><a class="nav-link" href="index.aspx">Home</a>
                                     
                                 </li>                                
                                 <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
@@ -190,7 +190,7 @@
                         <h1 class="text-anime-style-2" data-cursor="-opaque">Contact <span>us</span></h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">home</a></li>
+                                <li class="breadcrumb-item"><a href="index.aspx">home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">conatct us</li>
                             </ol>
                         </nav>
@@ -413,7 +413,7 @@
 						<div class="footer-links">
                             <h3>quick link</h3>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.aspx">Home</a></li>
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="#">Services</a></li>
                                 <li><a href="#">Blog</a></li>
