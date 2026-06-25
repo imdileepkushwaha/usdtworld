@@ -19,6 +19,7 @@
                 document.getElementById("<%=txtdepositbank.ClientID%>").focus();
                 return false;
             }
+            return true;
         }
 
         function validate2() {
@@ -37,24 +38,53 @@
                 document.getElementById("<%=txtdepositbankedit.ClientID%>").focus();
                 return false;
             }
+            return true;
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" Runat="Server">
-    <section class="content-header">
-        <h1>Bank Account Add</h1>
-        <ol class="breadcrumb">
-            <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Utility management</a></li>
-            <li class="active">Bank Account Add</li>
-        </ol>
-    </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" Runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="200" DynamicLayout="false">
+        <ProgressTemplate>
+            <div class="adm-page-loader">
+                <div class="adm-page-loader__card">
+                    <div class="adm-page-loader__spinner"></div>
+                    <span class="adm-page-loader__text">Saving bank account...</span>
+                </div>
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="adm-form-page">
+                <div class="adm-page-head">
+                    <div>
+                        <h1 class="adm-page-head__title">Bank Account Add</h1>
+                        <p class="mb-0 text-muted" style="font-size:0.85rem;">Manage deposit bank accounts and QR codes</p>
+                    </div>
+                    <ol class="adm-page-head__breadcrumb">
+                        <li><a href="Dashboard.aspx"><i class="fa-solid fa-house"></i></a></li>
+                        <li><span class="sep">/</span></li>
+                        <li>Utility Management</li>
+                        <li><span class="sep">/</span></li>
+                        <li class="active">Bank Account Add</li>
+                    </ol>
+                </div>
+
+                <nav class="adm-util-tabs" aria-label="Utility management">
+                    <a href="CountryAdd.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-globe"></i> Country</a>
+                    <a href="StateAdd.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-map"></i> State</a>
+                    <a href="CityAdd.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-city"></i> City</a>
+                    <a href="BankAdd.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-building-columns"></i> Bank</a>
+                    <a href="BankAccountAdd.aspx" class="adm-util-tabs__item adm-util-tabs__item--active"><i class="fa-solid fa-wallet"></i> Bank Account</a>
+                    <a href="deductioncharge.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-percent"></i> Deduction</a>
+                    <a href="NewsAdd.aspx" class="adm-util-tabs__item"><i class="fa-solid fa-newspaper"></i> News</a>
+                </nav>
+
                 <div class="row">
                     <div class="col-12">
                         <div class="box box-primary adm-form-card">

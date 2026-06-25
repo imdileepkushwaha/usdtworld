@@ -449,3 +449,113 @@
         gap: 4px;
     }
 }
+
+/* Compose mail form */
+.adm-msg-card__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 16px 20px 20px;
+    border-top: 1px solid var(--adm-msg-border);
+    background: linear-gradient(180deg, #fff 0%, #fafbfd 100%);
+}
+
+.adm-msg-card__foot .btn-primary {
+    min-width: 140px;
+    padding: 10px 22px;
+    font-weight: 600;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(72, 127, 255, 0.22);
+}
+
+.adm-msg-card__foot .btn-outline-secondary {
+    min-width: 110px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.adm-msg-compose__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 720px;
+}
+
+.adm-msg-compose__field--full {
+    width: 100%;
+}
+
+.adm-msg-compose-textarea {
+    min-height: 180px;
+    resize: vertical;
+    padding: 14px 16px !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--adm-msg-border) !important;
+    background: #fafbfc !important;
+    color: var(--adm-text) !important;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.adm-msg-compose-textarea:focus {
+    background: #fff !important;
+    border-color: #487fff !important;
+    box-shadow: 0 0 0 3px rgba(72, 127, 255, 0.14) !important;
+}
+
+.adm-msg-compose-textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+.adm-msg-file-wrap {
+    position: relative;
+}
+
+.adm-msg-file-wrap__icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #9ca3af;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.adm-msg-file-input {
+    padding: 10px 14px 10px 42px !important;
+    min-height: 46px;
+    border-radius: 12px !important;
+    border: 1px dashed #c5d0dc !important;
+    background: #f8fafc !important;
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.adm-msg-file-input:hover,
+.adm-msg-file-input:focus {
+    border-color: rgba(72, 127, 255, 0.45) !important;
+    background: #fff !important;
+}
+
+.adm-msg-file-input::file-selector-button {
+    margin-right: 12px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #487fff;
+    background: rgba(72, 127, 255, 0.1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.adm-msg-file-input::file-selector-button:hover {
+    background: rgba(72, 127, 255, 0.16);
+}

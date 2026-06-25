@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 14px 20px;
-    margin: 0 0 22px;
+    margin: 0 0 22px!important;
     padding: 12px 20px;
     background: var(--adm-card);
     border: 1px solid var(--adm-border);
@@ -66,30 +66,43 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2px 0;
+    gap: 4px;
     list-style: none;
     margin: 0 !important;
-    padding: 7px 14px !important;
-    background: #f8fafc;
+    padding: 5px 14px !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid var(--adm-border);
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .admin-panel .content-header .breadcrumb > li,
-.admin-panel .adm-page-head__breadcrumb > li {
+.admin-panel .adm-page-head__breadcrumb > li,
+.admin-panel .adm-breadcrumb > li {
     display: inline-flex;
     align-items: center;
     color: var(--adm-muted);
 }
 
-.admin-panel .content-header .breadcrumb > li + li::before,
-.admin-panel .adm-page-head__breadcrumb .sep {
+.admin-panel .adm-page-head__breadcrumb > li:has(> .sep) {
     display: none !important;
+}
+
+.admin-panel .content-header .breadcrumb > li + li::before,
+.admin-panel .adm-page-head__breadcrumb > li + li:not(:has(> .sep))::before {
     content: none !important;
-    padding: 0 !important;
+}
+
+.admin-panel .adm-page-head__breadcrumb > li:not(:last-child):not(:has(> .sep))::after {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin: 0 8px;
+    color: #cbd5e1;
+    font-size: 0.55rem;
+    line-height: 1;
 }
 
 .admin-panel .content-header .breadcrumb > li:not(:last-child)::after {
@@ -100,10 +113,11 @@
     font-size: 0.75rem;
 }
 
+.admin-panel .content-header .breadcrumb > li + li::before,
 .admin-panel .adm-page-head__breadcrumb .sep {
-    color: #cbd5e1;
-    font-size: 0.75rem;
-    padding: 0 2px;
+    display: none !important;
+    content: none !important;
+    padding: 0 !important;
 }
 
 .admin-panel .content-header .breadcrumb a,
@@ -111,31 +125,53 @@
 .admin-panel .adm-breadcrumb a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
-    color: var(--adm-muted);
+    min-width: 30px;
+    height: 30px;
+    /* padding: 0 8px; */
+    border-radius: 10px;
+    /* color: #d97706; */
     text-decoration: none;
-    transition: color 0.2s ease;
+    /* background: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.18); */
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .admin-panel .content-header .breadcrumb a:hover,
 .admin-panel .adm-page-head__breadcrumb a:hover,
 .admin-panel .adm-breadcrumb a:hover {
-    color: var(--adm-accent);
+    color: #b45309;
+    background: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.35);
+    transform: translateY(-1px);
 }
 
 .admin-panel .content-header .breadcrumb a .fa,
 .admin-panel .content-header .breadcrumb a .fa-solid,
-.admin-panel .content-header .breadcrumb a .fa-regular {
+.admin-panel .content-header .breadcrumb a .fa-regular,
+.admin-panel .adm-page-head__breadcrumb a .fa,
+.admin-panel .adm-page-head__breadcrumb a .fa-solid,
+.admin-panel .adm-page-head__breadcrumb a .fa-regular {
     font-size: 0.72rem;
-    color: var(--adm-accent);
-    opacity: 0.85;
+    color: inherit;
+    opacity: 1;
 }
 
 .admin-panel .content-header .breadcrumb > .active,
+.admin-panel .adm-page-head__breadcrumb > .active,
 .admin-panel .adm-page-head__breadcrumb .active,
 .admin-panel .adm-breadcrumb .active {
-    color: var(--adm-text);
-    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    /* padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(72, 127, 255, 0.1);
+    border: 1px solid rgba(72, 127, 255, 0.16); */
+    color: #487fff;
+    font-weight: 600;
+    font-size: 0.76rem;
+    letter-spacing: 0.01em;
 }
 
 .admin-panel .content-header > h1:only-child {

@@ -13,10 +13,10 @@
         <div class="adm-page-head">
             <div>
                 <h1 class="adm-page-head__title">Dashboard</h1>
+                <p class="adm-page-head__subtitle">Overview of users, business &amp; payouts</p>
             </div>
             <ol class="adm-page-head__breadcrumb">
-                <li><a href="Dashboard.aspx"><i class="fa-solid fa-house"></i></a></li>
-                <li><span class="sep">/</span></li>
+                <li><a href="Dashboard.aspx" aria-label="Home"><i class="fa-solid fa-house"></i></a></li>
                 <li class="active">Dashboard</li>
             </ol>
         </div>
@@ -135,64 +135,77 @@
 
         <div class="row g-3 mt-1">
             <div class="col-lg-4">
-                <div class="adm-widget">
+                <div class="adm-widget adm-widget--summary">
                     <div class="adm-widget__head">
-                        <h2 class="adm-widget__title">Quick Summary</h2>
+                        <div class="adm-widget__head-left">
+                            <span class="adm-widget__icon adm-widget__icon--teal" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+                            <div>
+                                <h2 class="adm-widget__title">Quick Summary</h2>
+                                <p class="adm-widget__subtitle">Pending requests at a glance</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="adm-widget__body">
                         <div class="adm-quick-list">
-                            <div class="adm-quick-item">
+                            <div class="adm-quick-item adm-quick-item--deposit">
                                 <div class="adm-quick-item__icon adm-quick-item__icon--deposit"><i class="fa-solid fa-arrow-down"></i></div>
-                                <div class="adm-quick-item__content">
+                                <div class="adm-quick-item__main">
                                     <p class="adm-quick-item__title">Deposit Request</p>
                                     <div class="adm-quick-item__stats">
-                                        Total: <strong><asp:Label ID="LblDepositlTotal" runat="server" Text="0" Font-Bold="true" /></strong><br />
-                                        Pending: <strong><asp:Label ID="LblDepositPending" runat="server" Text="0" Font-Bold="true" /></strong>
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Total</span><span class="adm-quick-stat__val"><asp:Label ID="LblDepositlTotal" runat="server" Text="0" /></span></span>
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblDepositPending" runat="server" Text="0" /></span></span>
                                     </div>
-                                    <a href="DepositRequestReport.aspx" class="adm-quick-item__action">View report <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
+                                <a href="DepositRequestReport.aspx" class="adm-quick-item__go" title="View report"><i class="fa-solid fa-chevron-right"></i></a>
                             </div>
-                            <div class="adm-quick-item">
+                            <div class="adm-quick-item adm-quick-item--withdraw">
                                 <div class="adm-quick-item__icon adm-quick-item__icon--withdraw"><i class="fa-solid fa-arrow-up"></i></div>
-                                <div class="adm-quick-item__content">
+                                <div class="adm-quick-item__main">
                                     <p class="adm-quick-item__title">Withdrawal Request</p>
                                     <div class="adm-quick-item__stats">
-                                        Total: <strong><asp:Label ID="LblWithdrawlTotal" runat="server" Text="0" Font-Bold="true" /></strong><br />
-                                        Pending: <strong><asp:Label ID="LblWithdrawlPending" runat="server" Text="0" Font-Bold="true" /></strong>
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Total</span><span class="adm-quick-stat__val"><asp:Label ID="LblWithdrawlTotal" runat="server" Text="0" /></span></span>
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblWithdrawlPending" runat="server" Text="0" /></span></span>
                                     </div>
-                                    <a href="WithdrawlRequestReport.aspx" class="adm-quick-item__action">View report <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
+                                <a href="WithdrawlRequestReport.aspx" class="adm-quick-item__go" title="View report"><i class="fa-solid fa-chevron-right"></i></a>
                             </div>
-                            <div class="adm-quick-item">
+                            <div class="adm-quick-item adm-quick-item--news">
                                 <div class="adm-quick-item__icon adm-quick-item__icon--news"><i class="fa-solid fa-newspaper"></i></div>
-                                <div class="adm-quick-item__content">
+                                <div class="adm-quick-item__main">
                                     <p class="adm-quick-item__title">News</p>
                                     <div class="adm-quick-item__stats">
-                                        Count: <strong><asp:Label ID="LblNewsCount" runat="server" Text="0" /></strong>
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Count</span><span class="adm-quick-stat__val"><asp:Label ID="LblNewsCount" runat="server" Text="0" /></span></span>
                                     </div>
-                                    <a href="NewsAdd.aspx" class="adm-quick-item__action">Manage news <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
+                                <a href="NewsAdd.aspx" class="adm-quick-item__go" title="Manage news"><i class="fa-solid fa-chevron-right"></i></a>
                             </div>
-                            <div class="adm-quick-item">
+                            <div class="adm-quick-item adm-quick-item--purchase">
                                 <div class="adm-quick-item__icon adm-quick-item__icon--purchase"><i class="fa-solid fa-cart-shopping"></i></div>
-                                <div class="adm-quick-item__content">
+                                <div class="adm-quick-item__main">
                                     <p class="adm-quick-item__title">Purchase Pending</p>
                                     <div class="adm-quick-item__stats">
-                                        Count: <strong><asp:Label ID="LblPurchaseProductCount" runat="server" Text="0" /></strong>
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblPurchaseProductCount" runat="server" Text="0" /></span></span>
                                     </div>
-                                    <a href="#" class="adm-quick-item__action">View details <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
+                                <a href="#" class="adm-quick-item__go" title="View details"><i class="fa-solid fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="adm-widget">
+                <div class="adm-widget adm-widget--chart">
                     <div class="adm-widget__head">
-                        <h2 class="adm-widget__title">Platform Statistics</h2>
+                        <div class="adm-widget__head-left">
+                            <span class="adm-widget__icon adm-widget__icon--blue" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+                            <div>
+                                <h2 class="adm-widget__title">Platform Statistics</h2>
+                                <p class="adm-widget__subtitle">Business performance overview</p>
+                            </div>
+                        </div>
+                        <span class="adm-widget__badge">Live</span>
                     </div>
-                    <div class="adm-widget__body">
+                    <div class="adm-widget__body adm-widget__body--chart">
                         <div class="adm-chart-wrap">
                             <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                             <div id="Div1"></div>
