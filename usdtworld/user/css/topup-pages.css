@@ -184,6 +184,26 @@
     color: #f87171;
 }
 
+.sv-topup-bank-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(8, 12, 28, 0.55);
+    border: 1px solid rgba(52, 211, 153, 0.18);
+}
+
+.sv-topup-bank-grid .sv-field__label i {
+    color: #67e8f9;
+}
+
+@media (max-width: 767px) {
+    .sv-topup-bank-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .sv-topup-actions {
     display: flex;
     flex-wrap: wrap;

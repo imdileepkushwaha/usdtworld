@@ -90,6 +90,37 @@
     box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
 }
 
+.sv-page-header--bank .sv-page-header__icon {
+    background: linear-gradient(135deg, #059669, #34d399);
+    box-shadow: 0 8px 20px rgba(52, 211, 153, 0.35);
+}
+
+.sv-page-header--bank + .sv-bank-notice,
+.sv-page-header--bank ~ .sv-form-card:first-of-type {
+    border-color: rgba(52, 211, 153, 0.18);
+}
+
+.sv-bank-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    color: #a7f3d0;
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.sv-bank-notice i {
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 1rem;
+    color: #34d399;
+}
+
 .sv-page-header--edit + .sv-form-card,
 .sv-page-header--edit ~ .sv-form-card:first-of-type {
     border-color: rgba(245, 158, 11, 0.18);

@@ -1,0 +1,164 @@
+/* Franchisee Search page */
+.sv-page-header--franchisee .sv-page-header__icon {
+    background: linear-gradient(135deg, #0891b2, #00d4ff);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.32);
+}
+
+.sv-franchisee-search-card {
+    margin-bottom: 20px;
+    border-color: rgba(0, 212, 255, 0.2);
+}
+
+.sv-franchisee-search-card .sv-form-card__head {
+    background: rgba(0, 212, 255, 0.04);
+    border-bottom-color: rgba(0, 212, 255, 0.1);
+}
+
+.sv-franchisee-search-card .sv-form-card__head-icon {
+    background: linear-gradient(135deg, #0891b2, #00d4ff);
+    box-shadow: 0 6px 14px rgba(0, 212, 255, 0.25);
+}
+
+.sv-franchisee-search-card .sv-field__label i {
+    color: #67e8f9;
+}
+
+.sv-franchisee-name {
+    display: block;
+    font-weight: 700;
+    color: #f8fafc;
+    line-height: 1.35;
+}
+
+.sv-franchisee-loc {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 180px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #67e8f9;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sv-franchisee-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #c4b5fd;
+}
+
+.sv-franchisee-mobile i {
+    color: #a78bfa;
+    font-size: 0.75rem;
+}
+
+.sv-franchisee-address {
+    display: block;
+    max-width: 220px;
+    font-size: 0.84rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sv-franchisee-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.sv-franchisee-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-decoration: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.sv-franchisee-action--view {
+    color: #67e8f9;
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.25);
+}
+
+.sv-franchisee-action--view:hover {
+    color: #fff;
+    background: rgba(0, 212, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+.sv-franchisee-action--cart {
+    color: #6ee7b7;
+    background: rgba(52, 211, 153, 0.1);
+    border-color: rgba(52, 211, 153, 0.28);
+}
+
+.sv-franchisee-action--cart:hover {
+    color: #fff;
+    background: rgba(52, 211, 153, 0.18);
+    transform: translateY(-1px);
+}
+
+.sv-franchisee-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sv-franchisee-detail__row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(8, 12, 28, 0.45);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+}
+
+.sv-franchisee-detail__row--split {
+    grid-template-columns: 120px 1fr 80px 1fr;
+}
+
+.sv-franchisee-detail__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8896b0;
+}
+
+.sv-franchisee-detail__value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    word-break: break-word;
+}
+
+@media (max-width: 767px) {
+    .sv-franchisee-detail__row,
+    .sv-franchisee-detail__row--split {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .sv-franchisee-address {
+        max-width: 140px;
+    }
+}

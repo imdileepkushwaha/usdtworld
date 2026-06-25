@@ -1,51 +1,63 @@
 ﻿using BusinessLogicTier;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class admin_BankAdd : System.Web.UI.Page
 {
     clsBank objbank = new clsBank();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             if (Session["useradmin"] != null)
-            {
                 loaddata();
-            }
             else
-            {
                 Response.Redirect("logout.aspx");
-            }
         }
     }
+
     void loaddata()
     {
-        DataTable dt = new DataTable();
-        dt = objbank.getBank();
-        GridView1.DataSource = dt;
+        GridView1.DataSource = objbank.getBank();
         GridView1.DataBind();
+    }
+
+    void SetEditMode(bool isEdit)
+    {
+        btnSubmit.Visible = !isEdit;
+        btnUpdate.Visible = isEdit;
+        litFormTitle.Text = isEdit ? "Edit Bank" : "Add Bank";
+    }
+
+    void ResetForm()
+    {
+        lblbankid.Text = "";
+        txtbankname.Text = "";
+        SetEditMode(false);
+    }
+
+    void ScrollToMainForm()
+    {
+        ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "scrollForm",
+            "var el=document.getElementById('admMainForm');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}", true);
     }
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        objbank.BankName = txtbanknameedit.Text;
+        objbank.BankName = txtbankname.Text;
         objbank.BankId = lblbankid.Text;
         string res = objbank.Update_Bank(objbank);
         if (res == "t")
         {
-            string popupScript = "alert('Bank Edited Successfully');";
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript, true);
-            string popupScript2 = "Closepopup();";
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript2, true);
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), "alert('Bank Edited Successfully');", true);
+            ResetForm();
             loaddata();
         }
     }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         objbank.BankName = txtbankname.Text;
@@ -53,24 +65,25 @@ public partial class admin_BankAdd : System.Web.UI.Page
         string res = objbank.Insert_Bank(objbank);
         if (res == "t")
         {
-            string popupScript = "alert('Bank Added Successfully');";
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript, true);
-            txtbankname.Text = "";
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), "alert('Bank Added Successfully');", true);
+            ResetForm();
             loaddata();
         }
+        else if (res == "f")
+        {
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), "alert('Bank already exists.');", true);
+        }
         else
-            if (res == "f")
-            {
-                string popupScript = "alert('Bank already exists.');";
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript, true);
-            }
-            else
-            {
-                string popupScript = "alert('Unknow error occurred');";
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript, true);
-            }
-
+        {
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), "alert('Unknow error occurred');", true);
+        }
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        ResetForm();
+    }
+
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "edt")
@@ -79,8 +92,9 @@ public partial class admin_BankAdd : System.Web.UI.Page
             Label lblid = (Label)GridView1.Rows[index].FindControl("lblid");
             Label lblbankname = (Label)GridView1.Rows[index].FindControl("lblbankname");
             lblbankid.Text = lblid.Text;
-            txtbanknameedit.Text = lblbankname.Text;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal();", true);
+            txtbankname.Text = lblbankname.Text;
+            SetEditMode(true);
+            ScrollToMainForm();
         }
     }
 }

@@ -101,7 +101,7 @@ namespace BusinessLogicTier
         }
         public DataTable getStateAll()
         {
-            string str_query = "select sm.*,cm.countryname,cm.countrycode from StateMaster sm left join countrymaster cm on sm.countryid=cm.countryid  order by StateName,cm.countryname";
+            string str_query = "select sm.stateid, sm.statename, sm.CountryID as countryid, cm.countryname, cm.countrycode from StateMaster sm left join countrymaster cm on sm.countryid=cm.countryid order by StateName, cm.countryname";
 
             DataTable dt = null;
             ObjData.StartConnection();
@@ -156,7 +156,7 @@ namespace BusinessLogicTier
 
         public DataTable getCityAll()
         {
-            string str_query = "select cm.*, sm.statename,cm2.countryname,cm2.countrycode from citymaster cm  left join statemaster sm on cm.stateid=sm.stateid  left join countrymaster cm2 on sm.countryid=cm2.countryid   order by sm.statename,cm.cityname,cm2.countryname";
+            string str_query = "select cm.cityid, cm.stateid, cm.cityname, sm.statename, ISNULL(cm2.CountryID, sm.CountryID) as countryid, cm2.countryname, cm2.countrycode from citymaster cm left join statemaster sm on cm.stateid=sm.stateid left join countrymaster cm2 on sm.countryid=cm2.countryid order by sm.statename, cm.cityname, cm2.countryname";
 
             DataTable dt = null;
             ObjData.StartConnection();
@@ -399,7 +399,7 @@ namespace BusinessLogicTier
 
             try
             {
-                s2 = "update statemaster set statename='"+objState.StateName+"' where stateid='"+objState.StateId+"'";
+                s2 = "update statemaster set statename='"+objState.StateName+"', countryid='"+objState.CountryId+"' where stateid='"+objState.StateId+"'";
               
                 ObjData.RunInsUpDelQueryTrans(s2, tr);
                 res = "t";
@@ -530,7 +530,7 @@ namespace BusinessLogicTier
 
             try
             {
-                s2 = "update citymaster set cityname='" + objState.CityName + "' where cityid='" + objState.CityId + "'";
+                s2 = "update citymaster set cityname='" + objState.CityName + "', stateid='" + objState.StateId + "' where cityid='" + objState.CityId + "'";
 
                 ObjData.RunInsUpDelQueryTrans(s2, tr);
                 res = "t";

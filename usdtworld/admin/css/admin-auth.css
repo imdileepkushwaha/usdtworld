@@ -1,0 +1,118 @@
+/* Admin login — extends shared auth layout */
+
+.admin-login-page .auth-brand::before {
+    background: radial-gradient(ellipse at 30% 20%, rgba(251, 191, 36, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 80%, rgba(108, 99, 255, 0.22) 0%, transparent 50%);
+}
+
+.admin-login-page .brand-orb--1 {
+    background: rgba(251, 191, 36, 0.18);
+}
+
+.admin-login-page .brand-orb--2 {
+    background: rgba(108, 99, 255, 0.22);
+}
+
+.admin-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fde68a;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.08);
+}
+
+.admin-role-badge i {
+    font-size: 0.78rem;
+    color: #fbbf24;
+}
+
+.admin-login-page .form-header h2 {
+    background: linear-gradient(135deg, #fff 0%, #c7d2fe 55%, #fde68a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.admin-login-page .feature-icon--admin {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.22) 0%, rgba(245, 158, 11, 0.12) 100%);
+    border-color: rgba(251, 191, 36, 0.35);
+    color: #fbbf24;
+}
+
+.admin-login-page .btn-login {
+    background: linear-gradient(135deg, #6c63ff 0%, #5b52e8 48%, #7c3aed 100%);
+    box-shadow: 0 14px 32px rgba(108, 99, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.admin-login-page .btn-login:hover {
+    box-shadow: 0 18px 38px rgba(108, 99, 255, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.admin-login-page .security-badge {
+    border-color: rgba(251, 191, 36, 0.18);
+    background: rgba(251, 191, 36, 0.06);
+}
+
+.admin-login-page .security-badge i {
+    color: #fbbf24;
+}
+
+.admin-login-page .auth-footer a {
+    color: #a5b4fc;
+}
+
+.admin-login-page .auth-footer a:hover {
+    color: #fde68a;
+}
+
+/* ASP.NET autofill on admin login */
+.admin-login-page .input-group__field:-webkit-autofill,
+.admin-login-page .input-group__field:-webkit-autofill:hover,
+.admin-login-page .input-group__field:-webkit-autofill:focus,
+.admin-login-page .input-group__field:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--text) !important;
+    caret-color: var(--text);
+    border-color: rgba(108, 99, 255, 0.1) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgba(22, 27, 39, 0.5) inset !important;
+    box-shadow: 0 0 0 1000px rgba(22, 27, 39, 0.5) inset !important;
+    transition: background-color 9999s ease-out 0s;
+}
+
+.admin-login-page .input-group__field:-webkit-autofill:focus {
+    border-color: var(--primary) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgba(108, 99, 255, 0.05) inset, 0 0 0 4px rgba(108, 99, 255, 0.1), 0 0 30px rgba(108, 99, 255, 0.06) !important;
+    box-shadow: 0 0 0 1000px rgba(108, 99, 255, 0.05) inset, 0 0 0 4px rgba(108, 99, 255, 0.1), 0 0 30px rgba(108, 99, 255, 0.06) !important;
+}
+
+input.btn-login,
+a.btn-login {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    line-height: normal;
+}
+
+.admin-login-page .input-group__field[type="password"],
+.admin-login-page .input-group__field[type="text"] {
+    padding-right: 48px;
+}
+
+@media (max-width: 991px) {
+    .admin-login-page .auth-brand {
+        min-height: 280px;
+    }
+
+    .admin-login-page .brand-features {
+        display: none;
+    }
+}

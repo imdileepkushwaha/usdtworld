@@ -77,20 +77,43 @@ public partial class TaskStatusReport : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            Label lblstatus = (Label)e.Row.FindControl("Label1pimg");
-            HyperLink HyperLink1 = (HyperLink)e.Row.FindControl("HyperLink1");
+            Label lblPimg = (Label)e.Row.FindControl("Label1pimg");
+            HyperLink hyperLink1 = (HyperLink)e.Row.FindControl("HyperLink1");
+            Label lblStatus = (Label)e.Row.FindControl("lblStatus");
+            Label lbladminStatus = (Label)e.Row.FindControl("lbladminStatus");
+            Label lblPaiStatus = (Label)e.Row.FindControl("lblPaiStatus");
 
-            if (lblstatus.Text == "")
+            if (lblPimg != null && hyperLink1 != null)
             {
-                HyperLink1.Text = "Not Upload";
-                lblstatus.CssClass = "label label-warning";
+                if (string.IsNullOrEmpty(lblPimg.Text))
+                {
+                    hyperLink1.Text = "Not Uploaded";
+                    hyperLink1.CssClass = "sv-task-upload sv-task-upload--missing";
+                    hyperLink1.NavigateUrl = "#";
+                }
+                else
+                {
+                    hyperLink1.Text = "View Image";
+                    hyperLink1.CssClass = "sv-task-upload sv-task-upload--done";
+                }
             }
-            else
-            {
-                HyperLink1.Text = "View";
-                lblstatus.CssClass = "label label-Danger";
-            }
+
+            ApplyStatusBadge(lblStatus);
+            ApplyStatusBadge(lbladminStatus);
+            ApplyStatusBadge(lblPaiStatus);
         }
+    }
+
+    void ApplyStatusBadge(Label lbl)
+    {
+        if (lbl == null) return;
+        string text = lbl.Text.ToLower();
+        if (text.Contains("pending"))
+            lbl.CssClass = "label label-warning";
+        else if (text.Contains("approved") || text.Contains("done") || text.Contains("paid"))
+            lbl.CssClass = "label label-success";
+        else
+            lbl.CssClass = "label label-danger";
     }
     public DataTable getBinaryIncome(clsAccount objaccount)
     {
@@ -130,6 +153,9 @@ public partial class TaskStatusReport : System.Web.UI.Page
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Dashboard.aspx");
+        txtfromdate.Text = "";
+        txttodate.Text = "";
+        GridView1.DataSource = null;
+        GridView1.DataBind();
     }
 }

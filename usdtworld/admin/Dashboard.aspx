@@ -1,373 +1,226 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="adminmaster.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="admin_Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+    <link href="css/admin-dashboard-page.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" Runat="Server">
-     <section class="content-header">
-      <h1>
-         Dashboard        
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>      
-      </ol>
-    </section>
-    
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" Runat="Server">
-    <div >
-       <div class="row">
-            <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><asp:Label ID="LblUserCount" runat="server" Text="  "></asp:Label>
-               </h3>
-
-              <p>Users </p>
+    <div class="adm-dashboard">
+        <div class="adm-page-head">
+            <div>
+                <h1 class="adm-page-head__title">Dashboard</h1>
+                <p class="adm-page-head__subtitle">Overview of users, business &amp; payouts</p>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="UserReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+            <ol class="adm-page-head__breadcrumb">
+                <li><a href="Dashboard.aspx" aria-label="Home"><i class="fa-solid fa-house"></i></a></li>
+                <li class="active">Dashboard</li>
+            </ol>
         </div>
 
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><asp:Label ID="Lbltotalteamactive" runat="server" Text="  "></asp:Label>
-               </h3>
-
-              <p>Total Active User </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="UserReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><asp:Label ID="Lbltodayteamactive" runat="server" Text="  "></asp:Label>
-               </h3>
-
-              <p>Today Active Users </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="UserReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><asp:Label ID="Lbltotakbusiness" runat="server" Text="  "></asp:Label>
-               </h3>
-
-              <p>Total Business </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="UserReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-           
-                <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="lbltotalbonus" runat="server" Text=" "></asp:Label></h3>
-              <p>Total Bonus</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-             <div class="col-lg-3 col-xs-6" style="display:none;">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="LblProductCount" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Purchase</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="PurchaseReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="Lbltotakbusinesstoday" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Today Business</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="Lblwithdrawal" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Total Withdrawal</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="Lblwithdrawaltoday" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Today Withdrawal</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-                  <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="lblpendingwithdraw" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Pending Withdrawal</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+        <p class="adm-section-title">Overview</p>
+        <div class="adm-stat-grid">
+            <a href="UserReport.aspx" class="adm-stat-card adm-stat-card--teal">
+                <div>
+                    <p class="adm-stat-card__label">Users</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="LblUserCount" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-users"></i></div>
+            </a>
+            <a href="UserReport.aspx" class="adm-stat-card adm-stat-card--green">
+                <div>
+                    <p class="adm-stat-card__label">Total Active Users</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbltotalteamactive" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-user-check"></i></div>
+            </a>
+            <a href="UserReport.aspx" class="adm-stat-card adm-stat-card--blue">
+                <div>
+                    <p class="adm-stat-card__label">Today Active Users</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbltodayteamactive" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-bolt"></i></div>
+            </a>
+            <a href="UserReport.aspx" class="adm-stat-card adm-stat-card--purple">
+                <div>
+                    <p class="adm-stat-card__label">Total Business</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbltotakbusiness" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+            </a>
+            <a href="#" class="adm-stat-card adm-stat-card--amber">
+                <div>
+                    <p class="adm-stat-card__label">Total Bonus</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="lbltotalbonus" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-gift"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--teal">
+                <div>
+                    <p class="adm-stat-card__label">Today Business</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbltotakbusinesstoday" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-calendar-day"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--coral">
+                <div>
+                    <p class="adm-stat-card__label">Total Withdrawal</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lblwithdrawal" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--rose">
+                <div>
+                    <p class="adm-stat-card__label">Today Withdrawal</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lblwithdrawaltoday" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </a>
+            <a href="#" class="adm-stat-card adm-stat-card--amber">
+                <div>
+                    <p class="adm-stat-card__label">Pending Withdrawal</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="lblpendingwithdraw" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-hourglass-half"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--green">
+                <div>
+                    <p class="adm-stat-card__label">Total Deposit</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbldeposit" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-wallet"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--blue">
+                <div>
+                    <p class="adm-stat-card__label">Today Deposit</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="Lbldeposittoday" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-coins"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--purple">
+                <div>
+                    <p class="adm-stat-card__label">Total Payout</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="lbltotalpayout" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+            </a>
+            <a href="TransactionReport.aspx" class="adm-stat-card adm-stat-card--teal">
+                <div>
+                    <p class="adm-stat-card__label">Today Payout</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="lbltotalpayouttoday" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            </a>
+            <a href="ProductDetails.aspx" class="adm-stat-card adm-stat-card--coral">
+                <div>
+                    <p class="adm-stat-card__label">Products</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="LblActiveEpin" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-box"></i></div>
+            </a>
+            <a href="UsersRewardReport.aspx" class="adm-stat-card adm-stat-card--amber">
+                <div>
+                    <p class="adm-stat-card__label">Award &amp; Reward</p>
+                    <p class="adm-stat-card__value"><asp:Label ID="lable1" runat="server" Text="0" /></p>
+                </div>
+                <div class="adm-stat-card__icon"><i class="fa-solid fa-trophy"></i></div>
+            </a>
         </div>
 
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="Lbldeposit" runat="server" Text="  "></asp:Label>
-                </h3>
+        <asp:Label ID="LblProductCount" runat="server" Text=" " Visible="false" />
+        <asp:Label ID="LblPurchaseAmount" runat="server" Text="" Visible="false" />
 
-              <p>Total Deposit</p>
+        <div class="row g-3 mt-1">
+            <div class="col-lg-4">
+                <div class="adm-widget adm-widget--summary">
+                    <div class="adm-widget__head">
+                        <div class="adm-widget__head-left">
+                            <span class="adm-widget__icon adm-widget__icon--teal" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+                            <div>
+                                <h2 class="adm-widget__title">Quick Summary</h2>
+                                <p class="adm-widget__subtitle">Pending requests at a glance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="adm-widget__body">
+                        <div class="adm-quick-list">
+                            <div class="adm-quick-item adm-quick-item--deposit">
+                                <div class="adm-quick-item__icon adm-quick-item__icon--deposit"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div class="adm-quick-item__main">
+                                    <p class="adm-quick-item__title">Deposit Request</p>
+                                    <div class="adm-quick-item__stats">
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Total</span><span class="adm-quick-stat__val"><asp:Label ID="LblDepositlTotal" runat="server" Text="0" /></span></span>
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblDepositPending" runat="server" Text="0" /></span></span>
+                                    </div>
+                                </div>
+                                <a href="DepositRequestReport.aspx" class="adm-quick-item__go" title="View report"><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                            <div class="adm-quick-item adm-quick-item--withdraw">
+                                <div class="adm-quick-item__icon adm-quick-item__icon--withdraw"><i class="fa-solid fa-arrow-up"></i></div>
+                                <div class="adm-quick-item__main">
+                                    <p class="adm-quick-item__title">Withdrawal Request</p>
+                                    <div class="adm-quick-item__stats">
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Total</span><span class="adm-quick-stat__val"><asp:Label ID="LblWithdrawlTotal" runat="server" Text="0" /></span></span>
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblWithdrawlPending" runat="server" Text="0" /></span></span>
+                                    </div>
+                                </div>
+                                <a href="WithdrawlRequestReport.aspx" class="adm-quick-item__go" title="View report"><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                            <div class="adm-quick-item adm-quick-item--news">
+                                <div class="adm-quick-item__icon adm-quick-item__icon--news"><i class="fa-solid fa-newspaper"></i></div>
+                                <div class="adm-quick-item__main">
+                                    <p class="adm-quick-item__title">News</p>
+                                    <div class="adm-quick-item__stats">
+                                        <span class="adm-quick-stat"><span class="adm-quick-stat__lbl">Count</span><span class="adm-quick-stat__val"><asp:Label ID="LblNewsCount" runat="server" Text="0" /></span></span>
+                                    </div>
+                                </div>
+                                <a href="NewsAdd.aspx" class="adm-quick-item__go" title="Manage news"><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                            <div class="adm-quick-item adm-quick-item--purchase">
+                                <div class="adm-quick-item__icon adm-quick-item__icon--purchase"><i class="fa-solid fa-cart-shopping"></i></div>
+                                <div class="adm-quick-item__main">
+                                    <p class="adm-quick-item__title">Purchase Pending</p>
+                                    <div class="adm-quick-item__stats">
+                                        <span class="adm-quick-stat adm-quick-stat--pending"><span class="adm-quick-stat__lbl">Pending</span><span class="adm-quick-stat__val"><asp:Label ID="LblPurchaseProductCount" runat="server" Text="0" /></span></span>
+                                    </div>
+                                </div>
+                                <a href="#" class="adm-quick-item__go" title="View details"><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
+            <div class="col-lg-8">
+                <div class="adm-widget adm-widget--chart">
+                    <div class="adm-widget__head">
+                        <div class="adm-widget__head-left">
+                            <span class="adm-widget__icon adm-widget__icon--blue" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+                            <div>
+                                <h2 class="adm-widget__title">Platform Statistics</h2>
+                                <p class="adm-widget__subtitle">Business performance overview</p>
+                            </div>
+                        </div>
+                        <span class="adm-widget__badge">Live</span>
+                    </div>
+                    <div class="adm-widget__body adm-widget__body--chart">
+                        <div class="adm-chart-wrap">
+                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                            <div id="Div1"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="Lbldeposittoday" runat="server" Text="  "></asp:Label>
-                </h3>
 
-              <p>Today Deposit</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+        <div style="display:none;">
+            <asp:Literal ID="ltScripts" runat="server"></asp:Literal>
+            <div id="chart_div" style="height:500px;"></div>
         </div>
-           <div class="col-lg-3 col-xs-6" >
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="lbltotalpayout" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Total Payout</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-                <div class="col-lg-3 col-xs-6" >
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><asp:Label ID="lbltotalpayouttoday" runat="server" Text="  "></asp:Label>
-                </h3>
-
-              <p>Today Payout</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-table"></i>
-            </div>
-            <a href="TransactionReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-             <div class="col-lg-3 col-xs-6" style="display:none;">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><asp:Label ID="LblPurchaseAmount" runat="server" Text="" ></asp:Label>
-               </h3>
-
-              <p> Franchisee</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="FranchiseeReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-                    
-           </div>
-           <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3><asp:Label ID="LblActiveEpin" runat="server" Text=""></asp:Label>
-               </h3>
-
-              <p>Product </p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-edit"></i>
-            </div>
-            <a href="ProductDetails.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-                 <div class="col-lg-3 col-xs-6" >
-       
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><asp:Label ID="lable1" runat="server" Text="" ></asp:Label>
-               </h3>
-
-              <p> Award & Reward</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="UsersRewardReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-                    
-           </div>
-           </div>
- 
-    <div class="row">
-         <div class="col-md-6" style="display:none">
-                 
-         <asp:Literal ID="ltScripts" runat="server" ></asp:Literal>  
-        <div id="chart_div" style="height:500px;" > 
-            </div>     
-   
-
-        </div>
-        <div class="col-md-4">
-                   <div class="row">
-        <div class="col-md-12 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-mail-reply"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Deposit Request</span>
-              Total : <asp:Label ID="LblDepositlTotal" runat="server" Text="" Font-Bold="true"></asp:Label>    <br />      
-              Pending : <asp:Label ID="LblDepositPending" runat="server" Text="" Font-Bold="true"></asp:Label> <br /> 
-                 <a href="DepositRequestReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-12 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-share"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Withdrawl Request</span>
-                 Total : <asp:Label ID="LblWithdrawlTotal" runat="server" Text="" Font-Bold="true"></asp:Label>      <br />         
-              Pending : <asp:Label ID="LblWithdrawlPending" runat="server" Text="" Font-Bold="true"></asp:Label>  <br />   
-                 <a href="WithdrawlRequestReport.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          
-          </div>
-         
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-12 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-envelope-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">News</span>
-              <span class="info-box-number"><asp:Label ID="LblNewsCount" runat="server" Text=""></asp:Label></span>
-                   <a href="NewsAdd.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-         
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-12 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-circle-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Purchase Pending</span>
-              <span class="info-box-number"><asp:Label ID="LblPurchaseProductCount" runat="server" Text=""></asp:Label></span>
-                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-
-        </div>
-          <div class="col-md-8">
-         <asp:Literal ID="Literal1" runat="server"></asp:Literal>  
-        <div id="Div1" style="height:500px;" >     
-     </div>  
-
-        </div>
-      
-        <!-- /.col (LEFT) -->
-      
-        </div>
-        </div>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
-   
-    </asp:Content>
+</asp:Content>

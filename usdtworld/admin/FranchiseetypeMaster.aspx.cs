@@ -30,21 +30,27 @@ public partial class FranchiseetypeMaster : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         dt = objUser.getFranchiseetype();
-        GridView1.DataSource = dt;
-        GridView1.DataBind();
+        rptFranchiseeTypes.DataSource = dt;
+        rptFranchiseeTypes.DataBind();
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        foreach (GridViewRow r in GridView1.Rows)
+        foreach (RepeaterItem item in rptFranchiseeTypes.Items)
         {
-            Label lbllevel = (Label)r.FindControl("lblid");
-            TextBox TxtAdminCharge = (TextBox)r.FindControl("TxtAdminCharge");
-            TextBox TxtTdswithpam = (TextBox)r.FindControl("TxtTdswithpam");
-           
+            if (item.ItemType != ListItemType.Item && item.ItemType != ListItemType.AlternatingItem)
+                continue;
+
+            Label lbllevel = (Label)item.FindControl("lblid");
+            TextBox TxtAdminCharge = (TextBox)item.FindControl("TxtAdminCharge");
+            TextBox TxtTdswithpam = (TextBox)item.FindControl("TxtTdswithpam");
+
+            if (lbllevel == null || TxtAdminCharge == null || TxtTdswithpam == null)
+                continue;
+
             objUser.Updatefranchiseecommission(lbllevel.Text, TxtAdminCharge.Text, TxtTdswithpam.Text);
         }
         string popupScript = "alert('Data Updated Successfully');";
         ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), Guid.NewGuid().ToString(), popupScript, true);
-           
+        loaddata();
     }
 }

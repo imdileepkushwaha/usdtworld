@@ -71,7 +71,9 @@ public partial class admin_BankAccountAdd : System.Web.UI.Page
             txtdepositbank.Text = "";
             txtaccountholdername.Text = "";
             txtdepositaccountno.Text = "";
-          
+            txtifsccode.Text = "";
+            ImageShow.ImageUrl = "";
+            ImageShow.Visible = false;
             loaddata();
         }
         else if (res == "f")
@@ -99,16 +101,19 @@ public partial class admin_BankAccountAdd : System.Web.UI.Page
             Label lblaccountholdername = (Label)GridView1.Rows[index].FindControl("lblaccountholdername");
             Label lblaccountno = (Label)GridView1.Rows[index].FindControl("lblaccountno");
             Label lblbankname = (Label)GridView1.Rows[index].FindControl("lblbankname");
-          //  Label lblifsccode = (Label)GridView1.Rows[index].FindControl("lblifsccode");
-          //  Label lblbranchname = (Label)GridView1.Rows[index].FindControl("lblbranchname");
             Label lblimage = (Label)GridView1.Rows[index].FindControl("lblimage");
+            Image imgQr = (Image)GridView1.Rows[index].FindControl("lblbranchname");
             lblbankaccountid.Text = lblid.Text;
             txtaccholdernameedit.Text = lblaccountholdername.Text;
             txtaccountnoedit.Text = lblaccountno.Text;
             txtdepositbankedit.Text = lblbankname.Text;
-            ImageButton1.ImageUrl = "../ProductImage/" + lblimage.Text;
-           
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal();", true);
+            txtifsccodeedit.Text = lblimage.Text;
+            if (imgQr != null && !string.IsNullOrEmpty(imgQr.ImageUrl))
+            {
+                ImageButton1.ImageUrl = imgQr.ImageUrl;
+                ImageButton1.Visible = true;
+            }
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "Pop", "showModal();", true);
         }
         if (e.CommandName == "del")
         {
@@ -135,8 +140,14 @@ public partial class admin_BankAccountAdd : System.Web.UI.Page
         objbank.BankName = txtdepositbankedit.Text;
         objbank.AccHolderName = txtaccholdernameedit.Text;
         objbank.AccNo = txtaccountnoedit.Text;
-        objbank.IFSCCode = UploadImageedit();
-        objbank.BranchName = "";
+        objbank.IFSCCode = txtifsccodeedit.Text;
+        string newImage = UploadImageedit();
+        if (!string.IsNullOrEmpty(newImage))
+            objbank.BranchName = newImage;
+        else if (!string.IsNullOrEmpty(ImageButton1.ImageUrl))
+            objbank.BranchName = Path.GetFileName(ImageButton1.ImageUrl);
+        else
+            objbank.BranchName = "";
         string res = objbank.Update_BankAccount(objbank);
         if (res == "t")
         {

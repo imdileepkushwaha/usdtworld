@@ -16,10 +16,13 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-      <asp:UpdateProgress id="updateProgress" runat="server">
+      <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="200" DynamicLayout="false">
     <ProgressTemplate>
-        <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
-            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/img/ajax-loader.gif" AlternateText="Loading ..." ToolTip="Loading ..." style="padding: 10px;position:fixed;top:45%;left:50%;" />
+        <div class="adm-page-loader">
+            <div class="adm-page-loader__card">
+                <div class="adm-page-loader__spinner"></div>
+                <span class="adm-page-loader__text">Loading fund requests...</span>
+            </div>
         </div>
     </ProgressTemplate>
 </asp:UpdateProgress>
@@ -250,24 +253,33 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
-      <script type="text/javascript">
-          $('.form_date').datepicker({
-              format: 'dd/mm/yyyy',
-          }).on('changeDate', function (ev) {
-              $(this).datepicker('hide');
-          });
-     </script>
-       <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
-        Sys.Application.add_load(LoadHandler);
-        function LoadHandler() {
-            $('.form_date').datepicker({
-                format: 'dd/mm/yyyy',
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
+        function initDepositDatePicker() {
+            if (!window.jQuery || !$.fn.datepicker) return;
+            $('.form_date').each(function () {
+                var $el = $(this);
+                if ($el.data('datepicker')) return;
+                $el.datepicker({
+                    format: 'dd/mm/yyyy',
+                    autoclose: true
+                }).on('changeDate', function () {
+                    $(this).datepicker('hide');
+                });
             });
         }
-     </script>
+
+        Sys.Application.add_load(function () {
+            if (!window.jQuery) return;
+            if ($.fn.datepicker) {
+                initDepositDatePicker();
+                return;
+            }
+            var script = document.createElement('script');
+            script.src = '../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
+            script.onload = initDepositDatePicker;
+            document.body.appendChild(script);
+        });
+    </script>
      <script type="text/javascript">
 
 
