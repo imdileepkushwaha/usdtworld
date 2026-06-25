@@ -104,7 +104,7 @@
                     </svg>
                   </div>
                   <div class="coin_image">
-<img src="assets/images/about_image.svg" alt="Crypto trading illustration" class="hero-img" />
+<img src="assets/images/about_image.png" alt="Crypto trading illustration" class="hero-img" />
                   </div>
                 
                 <div class="coin-floating coin-1"><i class="fab fa-bitcoin"></i></div>
