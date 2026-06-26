@@ -105,7 +105,7 @@
                         <span>Topup Management</span>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="TopupRequestReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Topup Request Report</a></li>
+                        <li><a href="DepositRequestReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Topup Request Report</a></li>
                         <li><a href="Usertopupreport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>User Topup Report</a></li>
                     </ul>
                 </li>

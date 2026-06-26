@@ -207,6 +207,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                      <div class="col-md-6" style="display:none">
+                                    <div class="sv-field">
+                                        <label class="sv-field__label"><i class="fa-solid fa-layer-group"></i> Select Plan</label>
+                                        <asp:DropDownList ID="ddplan" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddplan_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                    </div>
+                                </div>
                                 <div class="col-md-4" style="display:none">
                                     <div class="sv-field">
                                         <label class="sv-field__label">Narration</label>

@@ -336,9 +336,7 @@
                         <span>My Income</span>
                     </a>
                     <ul class="sidebar-submenu">
-                      <li>
-                            <a href="#"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Daily Income</a>
-                        </li>
+                     
                         <li>
                             <a href="#"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Direct Income</a>
                         </li>
@@ -348,7 +346,13 @@
                             <a href="#"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Level Income</a>
                         </li>
                        
-                        
+                         <li>
+                            <a href="#"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>SIngle Leg Income</a>
+                        </li>
+
+                         <li>
+                            <a href="#"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Global Non Working Income</a>
+                        </li>
                         
                     </ul>
                 </li>

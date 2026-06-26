@@ -77,6 +77,27 @@ namespace BusinessLogicTier
            ObjData.EndConnection();
            return ds;
        }
+        public DataTable getPlanAll(string UserId)
+        {
+            string str_query = "select *,case when MoneyTransfer=0 then 'NO' else 'YES' end as MoneyTransfer1 from Planmaster ";
+            if (!string.IsNullOrEmpty(UserId))
+            {
+                str_query += " where id not in (select PlanId from UserTopupTb where UserId='" + UserId + "')";
+            }
+
+            DataTable ds = null;
+            ObjData.StartConnection();
+            try
+            {
+                ds = ObjData.RunDataTable(str_query);
+            }
+            catch (Exception ex)
+            {
+                ds = null;
+            }
+            ObjData.EndConnection();
+            return ds;
+        }
        public DataTable getPlan(clsplan objplan)
        {
            string str_query = "select * from Planmaster where id='"+objplan.id+"' ";
