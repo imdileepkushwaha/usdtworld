@@ -804,3 +804,11 @@ c:\Data\Work\Deepak\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.cspr
 c:\Data\Work\Deepak\usdtworld\BusinessLogicTier\obj\Debug\Business.2FDD14DE.Up2Date
 c:\Data\Work\Deepak\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.dll
 c:\Data\Work\Deepak\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.pdb
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\bin\Debug\BusinessLogicTier.dll
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\bin\Debug\BusinessLogicTier.pdb
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\bin\Debug\DataTier.dll
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\bin\Debug\Newtonsoft.Json.dll
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\bin\Debug\DataTier.pdb
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.csprojResolveAssemblyReference.cache
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.dll
+D:\Web\usdtworld\usdtworld\usdtworld\BusinessLogicTier\obj\Debug\BusinessLogicTier.pdb

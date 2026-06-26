@@ -54,24 +54,15 @@ public partial class user_ActivateUserToWallet : System.Web.UI.Page
     }
     public DataTable getPlanAll()
     {
-        //string str_query = "SELECT (Planname+'('+Rtrim(Convert(CHAR,Planamount))+')')AS [plan],Planamount FROM PlanMaster ";
-        //str_query += " order by mentiondate  desc";
-
-        string str_query = "SELECT id, Planname, Planamount FROM PlanMaster where topuptype='Topup'";
-        //  str_query += " and PlanName Like 'Joining package%' ";
-
-        DataTable dt = null;
-        ObjData.StartConnection();
+        string userId = Session["userid"] != null ? Session["userid"].ToString() : string.Empty;
         try
         {
-            dt = ObjData.RunDataTable(str_query);
+            return objplan.getPlanAll(userId);
         }
         catch (Exception ex)
         {
-            dt = null;
+            return null;
         }
-        ObjData.EndConnection();
-        return dt;
     }
     //void loadAmountepin()
     //{

@@ -375,49 +375,8 @@ body {
         </div>
     </div>
 
-    <section class="sv-plans-section" aria-label="Membership plans">
-        <div class="sv-plans-section__head">
-            <div>
-                <span class="sv-plans-section__eyebrow"><i class="fa-solid fa-layer-group"></i> Packages</span>
-                <h2>Investment Plans</h2>
-                <p>Explore membership tiers and grow your portfolio</p>
-            </div>
-            <asp:Label ID="LblCurrentPlanBadge" runat="server" CssClass="sv-plans-section__current" Visible="false" />
-        </div>
-        <div class="sv-plans-grid">
-            <asp:Repeater ID="rptPlans" runat="server" OnItemDataBound="rptPlans_ItemDataBound">
-                <ItemTemplate>
-                    <article class="sv-plan-card sv-plan-card--accent-<%# Container.ItemIndex % 4 %>">
-                        <div class="sv-plan-card__top">
-                            <span class="sv-plan-card__shield"><i class="fa-solid fa-shield-halved"></i></span>
-                            <h3 class="sv-plan-card__name"><%# Eval("PlanName") %></h3>
-                        </div>
-                        <div class="sv-plan-card__main">
-                            <div class="sv-plan-card__pricing">
-                                <span class="sv-plan-card__price">$<%# Eval("Planamount") %></span>
-                                <span class="sv-plan-card__badge">Members Only</span>
-                            </div>
-                            <div class="sv-plan-card__logo-wrap">
-                                <img src="img/usdt.png" alt="UWC" class="sv-plan-card__logo" />
-                            </div>
-                        </div>
-                        <div class="sv-plan-card__footer">
-                            <div class="sv-plan-card__metric">
-                                <asp:Literal ID="litMetric" runat="server" />
-                            </div>
-                            <asp:HyperLink ID="lnkAction" runat="server" />
-                        </div>
-                    </article>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
-        <asp:Panel ID="pnlNoPlans" runat="server" Visible="false" CssClass="sv-plans-empty">
-            <i class="fa-solid fa-box-open"></i>
-            <p>No plans available at the moment.</p>
-        </asp:Panel>
-    </section>
-
-    <div class="row sv-market-row g-3">
+        
+    <div class="row sv-market-row g-3" style="display:none">
         <div class="col-lg-4 col-md-5">
             <div class="sv-panel h-100">
                 <div class="sv-panel__head">
@@ -446,7 +405,7 @@ body {
         </div>
     </div>
 
-    <div class="scroll-box">
+    <div class="scroll-box" style="display:none">
         <div class="scroll-text">
             <span class="sv-welcome-label">Welcome,</span>
             <asp:Label ID="lblusername" runat="server" Text="Member"></asp:Label>
@@ -455,6 +414,49 @@ body {
             &nbsp;&bull;&nbsp; Happy Trading!
         </div>
     </div>
+
+    <section class="sv-plans-section" aria-label="Membership plans">
+        <div class="sv-plans-section__head">
+            <div>
+                <span class="sv-plans-section__eyebrow"><i class="fa-solid fa-layer-group"></i> Packages</span>
+                <h2>Investment Plans</h2>
+                <p>Explore membership tiers and grow your portfolio</p>
+            </div>
+            <asp:Label ID="LblCurrentPlanBadge" runat="server" CssClass="sv-plans-section__current" Visible="false" />
+        </div>
+        <div class="sv-plans-grid">
+            <asp:Repeater ID="rptPlans" runat="server" OnItemDataBound="rptPlans_ItemDataBound">
+                <ItemTemplate>
+                    <article class="sv-plan-card sv-plan-card--accent-<%# Container.ItemIndex % 4 %>">
+                        <div class="sv-plan-card__top">
+                            <span class="sv-plan-card__shield"><i class="fa-solid fa-shield-halved"></i></span>
+                            <h3 class="sv-plan-card__name"><%# Eval("PlanName") %></h3>
+                        </div>
+                        <div class="sv-plan-card__main">
+                            <div class="sv-plan-card__pricing">
+                                <span class="sv-plan-card__price">$<%# Eval("Planamount") %></span>
+                                <span class="sv-plan-card__badge">Members Only</span>
+                            </div>
+                            <div class="sv-plan-card__logo-wrap">
+                                <img src="img/usdt.png" alt="UWC" class="sv-plan-card__logo" />
+                            </div>
+                        </div>
+                        <div class="sv-plan-card__footer">
+                            <div class="sv-plan-card__metric" style="display:none">
+                                <asp:Literal ID="litMetric" runat="server" />
+                            </div>
+                            <asp:HyperLink ID="lnkAction" runat="server" />
+                        </div>
+                    </article>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <asp:Panel ID="pnlNoPlans" runat="server" Visible="false" CssClass="sv-plans-empty">
+            <i class="fa-solid fa-box-open"></i>
+            <p>No plans available at the moment.</p>
+        </asp:Panel>
+    </section>
+
 
     <div class="card mt-24 sv-wallet-section">
                 <div class="card-header">
@@ -477,9 +479,9 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:wallet-outline" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Nonworking</span>
+                                    <span class="sv-wallet-card__chip">Earning</span>
                                 </div>
-                                <p class="sv-wallet-card__label">Nonworking Wallet</p>
+                                <p class="sv-wallet-card__label">Earning Wallet</p>
                                 <div class="sv-wallet-card__amount">
                                     <asp:Label ID="Lblnonworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
@@ -495,14 +497,14 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Active</span>
+                                    <span class="sv-wallet-card__chip">Topup</span>
                                 </div>
-                                <p class="sv-wallet-card__label">Working Wallet</p>
+                                <p class="sv-wallet-card__label">Topup Wallet</p>
                                 <div class="sv-wallet-card__amount">
                                     <asp:Label ID="Lblworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
-                                <p class="sv-wallet-card__hint">Available for trading &amp; income</p>
+                                <p class="sv-wallet-card__hint">Available for Topup</p>
                             </div>
                         </div>
 
@@ -513,14 +515,14 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:cash-plus" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Topup</span>
+                                    <span class="sv-wallet-card__chip">Upgrade</span>
                                 </div>
-                                <p class="sv-wallet-card__label">Topup Wallet</p>
+                                <p class="sv-wallet-card__label">Upgrade Wallet</p>
                                 <div class="sv-wallet-card__amount">
                                     <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
-                                <p class="sv-wallet-card__hint">Deposit &amp; activation funds</p>
+                                <p class="sv-wallet-card__hint">Upgrade &amp; activation </p>
                             </div>
                         </div>
                         
@@ -867,7 +869,7 @@ body {
                                     </span>
                                     <span class="sv-earn-stat__chip">Today</span>
                                 </div>
-                                <p class="sv-earn-stat__label">Daily Direct Income</p>
+                                <p class="sv-earn-stat__label">Level  Income</p>
                                 <div class="sv-earn-stat__amount">
                                     <asp:Label ID="lbldailydirect" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
@@ -899,7 +901,7 @@ body {
                                     </span>
                                     <span class="sv-earn-stat__chip">Daily</span>
                                 </div>
-                                <p class="sv-earn-stat__label">Daily Income</p>
+                                <p class="sv-earn-stat__label">Level Income</p>
                                 <div class="sv-earn-stat__amount">
                                     <asp:Label ID="lblroi" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
@@ -916,9 +918,9 @@ body {
                                     <span class="sv-earn-stat__icon">
                                         <iconify-icon icon="mdi:layers-triple" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-earn-stat__chip">ROI</span>
+                                    <span class="sv-earn-stat__chip">Nonworking</span>
                                 </div>
-                                <p class="sv-earn-stat__label">Level ROI Income</p>
+                                <p class="sv-earn-stat__label">Single Leg Income</p>
                                 <div class="sv-earn-stat__amount">
                                     <asp:Label ID="lblhelp" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
@@ -926,16 +928,16 @@ body {
                             </div>
                         </div>
                         
-                           <div class="col-xxl-6 col-sm-6" style="display:none">
+                           <div class="col-xxl-6 col-sm-6" >
                             <div class="sv-earn-stat sv-earn-stat--reward">
                                 <div class="sv-earn-stat__glow"></div>
                                 <div class="sv-earn-stat__top">
                                     <span class="sv-earn-stat__icon">
                                         <iconify-icon icon="mingcute:user-follow-fill" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-earn-stat__chip">Leg</span>
+                                    <span class="sv-earn-stat__chip">Nonworking</span>
                                 </div>
-                                <p class="sv-earn-stat__label">Single Leg Income</p>
+                                <p class="sv-earn-stat__label">Non Working Global Income</p>
                                 <div class="sv-earn-stat__amount">
                                     <asp:Label ID="lblreward" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>

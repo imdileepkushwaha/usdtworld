@@ -102,21 +102,26 @@
                         </div>
 
                         <div class="sv-topup-section">
-                            <h4 class="sv-topup-section__title"><i class="fa-solid fa-sliders"></i> Plan &amp; Amount</h4>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="sv-field sv-topup-amount-field">
-                                        <label class="sv-field__label"><i class="fa-solid fa-indian-rupee-sign"></i> Amount</label>
-                                        <asp:TextBox ID="txtamount" Text="" Enabled="true" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="txtamount_TextChanged" placeholder="Enter amount"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+
+                               <h4 class="sv-topup-section__title"><i class="fa-solid fa-sliders"></i> Plan &amp; Amount</h4>
+                                   <div class="row g-3">
+                            <div class="col-md-6">
                                     <div class="sv-field">
                                         <label class="sv-field__label"><i class="fa-solid fa-layer-group"></i> Select Plan</label>
                                         <asp:DropDownList ID="ddplan" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddplan_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                     </div>
                                 </div>
-                            </div>
+                          
+                            
+                                <div class="col-md-6">
+                                    <div class="sv-field sv-topup-amount-field">
+                                       
+                                        <label class="sv-field__label"><i class="fa-solid fa-indian-rupee-sign"></i> Amount</label>
+                                        <asp:TextBox ID="txtamount" Text="" Enabled="true" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="txtamount_TextChanged" placeholder="Enter amount"></asp:TextBox>
+                                    </div>
+                                </div>
+                                       </div>
+                         
                         </div>
 
                         <div class="sv-topup-actions">
