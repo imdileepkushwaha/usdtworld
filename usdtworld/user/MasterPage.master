@@ -338,12 +338,12 @@
                     <ul class="sidebar-submenu">
                      
                         <li>
-                            <a href="#"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Direct Income</a>
+                            <a href="DirectIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Direct Income</a>
                         </li>
                        
 
                          <li>
-                            <a href="#"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Level Income</a>
+                            <a href="LevelIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Level Income</a>
                         </li>
                        
                          <li>

@@ -4,9 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
     <section class="content-header">
-      <h1 style="color:white;">
+      <h5 style="color:white;">
      Level Income Report  
-      </h1>
+      </h5>
       <ol class="breadcrumb">
      <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i> Home > </a></li>
             <li><a href="#">My Income > </a></li>
@@ -98,57 +98,31 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="From User Id">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblusername" runat="server" Text='<%#Eval("Fromuserid") %>'></asp:Label>
+                                            <asp:Label ID="lblusername" runat="server" Text='<%#Eval("JuniorUserId") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="FromUserCommission">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblFromUserCommission" runat="server" Text='<%#Eval("FromUserCommission") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="Level No">
                                         <ItemTemplate>
                                             <asp:Label ID="lblLevelNo" runat="server" Text='<%#Eval("LevelNo") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Level %">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblincomeper" runat="server" Text='<%#Eval("incomeper") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    
+
                                     <asp:TemplateField HeaderText="Income">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("Income") %>'></asp:Label>
+                                            <asp:Label ID="lblIncome" runat="server" Text='<%#Eval("Amount") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                   
-                                   <asp:TemplateField HeaderText="Admin Per">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblAdminPerl" runat="server" Text='<%#Eval("AdminPer") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField> 
-                                   <asp:TemplateField HeaderText="Admin Charge">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblAdmincharge" runat="server" Text='<%#Eval("Admincharge") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField> 
-                                    <asp:TemplateField HeaderText="Payable Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPaybleamount" runat="server" Text='<%#Eval("Paybleamount") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField> 
+                                    
                                                                  
-                                    <asp:TemplateField HeaderText="Expected Date">
+                                    <asp:TemplateField HeaderText="Entry Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblExpectedDate" runat="server" Text='<%#Eval("ExpectedDate") %>'></asp:Label>
+                                            <asp:Label ID="lblExpectedDate" runat="server" Text='<%#Eval("EntryDate") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>  
                                    
-                                   <asp:TemplateField HeaderText="Status">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblStatus" runat="server" Text='<%#Eval("Status") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>                                  
+                                                           
                                 </Columns>
                             </asp:GridView>
                              </div>

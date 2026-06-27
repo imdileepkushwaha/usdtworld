@@ -92,18 +92,18 @@
                                     
                                     <asp:TemplateField HeaderText="From User ID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("fromuserid") %>'></asp:Label>
+                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("JuniorUserId") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Income">
                                         <ItemTemplate>  
-                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("directincome") %>'></asp:Label>
+                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("Amount") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>    
                                    
                                     <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("entrydate") %>'></asp:Label>
+                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("MentionDate") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>                                  
                                                                     

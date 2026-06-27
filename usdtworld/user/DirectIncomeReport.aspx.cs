@@ -65,12 +65,12 @@ public partial class admin_UserReport : System.Web.UI.Page
     }
     public DataTable getDirectIncome(clsAccount objaccount)
     {
-        string str_query = "SELECT  userid, fromuserid, directincome,entrydate  FROM directincometb where 1=1";
+        string str_query = "SELECT  userid, JuniorUserId, Amount,MentionDate  FROM LevelIncomeDetail where LevelNo='1'";
 
 
         if (objaccount.FromDate != DateTime.MinValue && objaccount.ToDate != DateTime.MinValue)
         {
-            str_query += "  and entrydate  >= '" + objaccount.FromDate + "'   and entrydate   <= '" + objaccount.ToDate + "' ";
+            str_query += "  and MentionDate  >= '" + objaccount.FromDate + "'   and MentionDate   <= '" + objaccount.ToDate + "' ";
         }
 
 
@@ -80,7 +80,7 @@ public partial class admin_UserReport : System.Web.UI.Page
         }
 
 
-        str_query += " order by entrydate  desc";
+        str_query += " order by MentionDate  desc";
 
 
 
