@@ -63,12 +63,20 @@
 
 
 
-<body data-theme="dark" data-nav-page="<%= System.IO.Path.GetFileName(Request.Path) %>">
+<body class="sv-member-panel" data-theme="dark" data-nav-page="<%= System.IO.Path.GetFileName(Request.Path) %>">
+    <script>
+        (function () {
+            var sidebar = document.querySelector('.sidebar');
+            if (sidebar) sidebar.classList.remove('sidebar-open');
+            document.body.classList.remove('overlay-active', 'sv-mobile-nav-open');
+        })();
+    </script>
 
+    <div class="sv-sidebar-backdrop" id="svSidebarBackdrop" aria-hidden="true"></div>
 
     <aside class="sidebar">
-        <button type="button" class="sidebar-close-btn">
-            <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+        <button type="button" class="sidebar-close-btn" aria-label="Close menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
         <div class="sv-sidebar-brand">
             <a href="Dashboard.aspx" class="sidebar-logo">
@@ -530,5 +538,6 @@
     <!-- main js -->
     <script src="../web-assets/js/app.js"></script>
     <script src="js/sidebar-menu.js"></script>
+    <script src="js/user-sidebar.js"></script>
 </body>
 </html>

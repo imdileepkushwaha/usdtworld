@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using BusinessLogicTier;
+﻿using BusinessLogicTier;
 using DataTier;
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,10 @@ public partial class Register : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            if (Request.QueryString["email"] != null)
+            {
+                txtemail.Text = Request.QueryString["email"].ToString().Trim();
+            }
             if (Request.QueryString["UserId"] != null)
             {
                 loadcountry();

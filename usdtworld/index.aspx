@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <!-- ═══════ HERO ═══════ -->
-<section class="hero">
+<section class="hero" id="home">
     <div class="hero-bg-effects">
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
@@ -140,6 +140,405 @@
 
 
 
+<!-- ═══════ TOKEN SALE COUNTDOWN ═══════ -->
+<section class="token-sale-section" id="token-sale"
+    data-sale-end="2026-12-31T23:59:59"
+    data-total-raised="25555"
+    data-target-raise="100000"
+    data-token-price="0.000139"
+    data-token-symbol="USDTW">
+    <div class="token-sale-glow"></div>
+    <div class="token-sale-container">
+        <div class="token-sale-card" data-aos="fade-right">
+            <div class="token-sale-card__radar" aria-hidden="true"></div>
+            <p class="token-sale-card__label">Pre Token Sale Ends In</p>
+            <div class="token-countdown" id="tokenCountdown" aria-live="polite">
+                <div class="token-countdown__unit">
+                    <span class="token-countdown__value" data-unit="days">00</span>
+                    <span class="token-countdown__suffix">d</span>
+                </div>
+                <span class="token-countdown__sep">:</span>
+                <div class="token-countdown__unit">
+                    <span class="token-countdown__value" data-unit="hours">00</span>
+                    <span class="token-countdown__suffix">h</span>
+                </div>
+                <span class="token-countdown__sep">:</span>
+                <div class="token-countdown__unit">
+                    <span class="token-countdown__value" data-unit="minutes">00</span>
+                    <span class="token-countdown__suffix">m</span>
+                </div>
+                <span class="token-countdown__sep">:</span>
+                <div class="token-countdown__unit">
+                    <span class="token-countdown__value" data-unit="seconds">00</span>
+                    <span class="token-countdown__suffix">s</span>
+                </div>
+            </div>
+            <p class="token-sale-card__hint">Buy tokens now and reap the benefits of the crypto revolution</p>
+
+            <div class="token-sale-brand">
+                <div class="token-sale-brand__icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <span class="token-sale-brand__name">USDT WORLD</span>
+            </div>
+
+            <p class="token-sale-price">
+                Price 1 (<span id="tokenSymbol">USDTW</span>) = $<span id="tokenPrice">0.000139</span> per (USD)
+            </p>
+
+            <div class="token-sale-progress-head">
+                <span>Total Raise: <strong id="tokenRaisedText">25,555 USD (26%)</strong></span>
+                <span>Targeted Raise: <strong id="tokenTargetText">100,000 USD</strong></span>
+            </div>
+            <div class="token-sale-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="26">
+                <div class="token-sale-progress__fill" id="tokenProgressFill"></div>
+            </div>
+
+            <a href="Register.aspx" class="btn-token-buy">Buy Token</a>
+        </div>
+
+        <div class="token-sale-content" data-aos="fade-left">
+            <h2 class="token-sale-title">Token Sale Countdown</h2>
+            <p class="token-sale-desc">A token sale countdown creates urgency and drives investor interest before launch. It helps your community stay informed, builds trust through transparency, and prepares participants for the official sale window.</p>
+
+            <div class="token-sale-features">
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-chart-line"></i></span>
+                    <span>Investment Opportunity</span>
+                </div>
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-clock"></i></span>
+                    <span>Time Sensitivity</span>
+                </div>
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-users"></i></span>
+                    <span>Community Engagement</span>
+                </div>
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-bullhorn"></i></span>
+                    <span>Market Awareness</span>
+                </div>
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span>Investor Preparedness</span>
+                </div>
+                <div class="token-sale-feat">
+                    <span class="token-sale-feat__icon"><i class="fa-solid fa-handshake"></i></span>
+                    <span>Trust and Transparency</span>
+                </div>
+            </div>
+
+            <p class="token-sale-cta-text">Sign up, trade, and earn up to <strong>100 USDT</strong></p>
+
+            <form class="token-sale-form" id="tokenSaleForm" novalidate>
+                <div class="token-sale-form__wrap">
+                    <input type="email" id="tokenSaleEmail" class="token-sale-form__input" placeholder="Your email" autocomplete="email" required />
+                    <button type="submit" class="token-sale-form__btn">Register Now</button>
+                </div>
+                <p class="token-sale-form__msg" id="tokenSaleMsg" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ FEATURED PROJECTS ═══════ -->
+<section class="featured-projects" id="featured-projects"
+    data-sale-end="2026-12-31T23:59:59"
+    data-token-price="0.000139"
+    data-token-symbol="USDTW">
+    <div class="featured-projects__bg" aria-hidden="true">
+        <div class="featured-projects__nebula featured-projects__nebula--1"></div>
+        <div class="featured-projects__nebula featured-projects__nebula--2"></div>
+        <div class="featured-projects__stars"></div>
+    </div>
+
+    <div class="featured-projects__container">
+        <div class="featured-projects__header" data-aos="fade-up">
+            <span class="section-tag"><i class="fa-solid fa-fire"></i> Top Picks</span>
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        </div>
+
+        <div class="featured-projects__grid">
+            <div class="featured-projects__visual" data-aos="fade-right">
+                <div class="featured-coin-scene">
+                    <div class="featured-coin-platform" aria-hidden="true"></div>
+                    <div class="featured-coin-glow" aria-hidden="true"></div>
+                    <div class="featured-coin-ring featured-coin-ring--1" aria-hidden="true"></div>
+                    <div class="featured-coin-ring featured-coin-ring--2" aria-hidden="true"></div>
+
+                    <div class="featured-ticker featured-ticker--1 featured-ticker--up">
+                        <span class="featured-ticker__icon"><i class="fa-brands fa-bitcoin"></i></span>
+                        <span class="featured-ticker__body">
+                            <small class="featured-ticker__pair">BTC / USD</small>
+                            <strong class="featured-ticker__val">$67,256</strong>
+                            <span class="featured-ticker__chg">+2.4%</span>
+                        </span>
+                    </div>
+                    <div class="featured-ticker featured-ticker--2 featured-ticker--up">
+                        <span class="featured-ticker__icon"><i class="fa-brands fa-ethereum"></i></span>
+                        <span class="featured-ticker__body">
+                            <small class="featured-ticker__pair">ETH / USD</small>
+                            <strong class="featured-ticker__val">$3,604</strong>
+                            <span class="featured-ticker__chg">+1.8%</span>
+                        </span>
+                    </div>
+                    <div class="featured-ticker featured-ticker--3 featured-ticker--down">
+                        <span class="featured-ticker__icon"><i class="fa-solid fa-dollar-sign"></i></span>
+                        <span class="featured-ticker__body">
+                            <small class="featured-ticker__pair">USDT / USD</small>
+                            <strong class="featured-ticker__val">$1.00</strong>
+                            <span class="featured-ticker__chg">-0.01%</span>
+                        </span>
+                    </div>
+                    <div class="featured-ticker featured-ticker--4 featured-ticker--up">
+                        <span class="featured-ticker__icon"><i class="fa-solid fa-coins"></i></span>
+                        <span class="featured-ticker__body">
+                            <small class="featured-ticker__pair">USDTW</small>
+                            <strong class="featured-ticker__val" id="featuredTickerPrice">$0.000139</strong>
+                            <span class="featured-ticker__chg">+8.2%</span>
+                        </span>
+                    </div>
+
+                    <div class="featured-coin">
+                        <div class="featured-coin__shadow" aria-hidden="true"></div>
+                        <div class="featured-coin__body">
+                            <div class="featured-coin__face featured-coin__face--front">
+                                <span class="featured-coin__rim" aria-hidden="true"></span>
+                                <span class="featured-coin__inner" aria-hidden="true"></span>
+                                <img src="assets/images/usdtw.png" alt="USDT World Token" onerror="this.onerror=null;this.src='img/usdtw.png';" />
+                            </div>
+                            <div class="featured-coin__edge" aria-hidden="true"></div>
+                            <div class="featured-coin__face featured-coin__face--back">
+                                <span class="featured-coin__rim" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-project-card" data-aos="fade-left">
+                <div class="featured-project-card__sheen" aria-hidden="true"></div>
+                <div class="featured-project-card__accent" aria-hidden="true"></div>
+
+                <div class="featured-project-card__topbar">
+                    <span class="featured-project-card__badge featured-project-card__badge--live">
+                        <span class="featured-project-card__pulse" aria-hidden="true"></span>
+                        Live Sale
+                    </span>
+                    <span class="featured-project-card__badge featured-project-card__badge--chain">
+                        <i class="fa-solid fa-cubes"></i>
+                        Own Blockchain
+                    </span>
+                </div>
+
+                <div class="featured-project-card__head">
+                    <div class="featured-project-card__logo">
+                        <img src="assets/images/usdtw.png" alt="USDTW" onerror="this.onerror=null;this.src='img/usdtw.png';" />
+                    </div>
+                    <div class="featured-project-card__intro">
+                        <h3 class="featured-project-card__name">UWC+</h3>
+                        <p class="featured-project-card__subtitle">USDT World Token Ecosystem</p>
+                    </div>
+                    <div class="featured-project-card__countdown">
+                        <strong id="featuredDaysLeft">60</strong>
+                        <span>Days Left</span>
+                    </div>
+                </div>
+
+                <dl class="featured-project-card__details">
+                    <div class="featured-project-row">
+                        <dt><i class="fa-solid fa-align-left"></i> Description</dt>
+                        <dd>USDT World disrupts traditional finance through decentralized applications (dApps) and smart contracts built for modern traders.</dd>
+                    </div>
+                    <div class="featured-project-row">
+                        <dt><i class="fa-solid fa-star"></i> Key Features</dt>
+                        <dd>Decentralized applications (dApps) and smart contracts. Yield farming and liquidity provision. Decentralized exchanges.</dd>
+                    </div>
+                    <div class="featured-project-row">
+                        <dt><i class="fa-solid fa-circle-info"></i> Info</dt>
+                        <dd>Secure, transparent token ecosystem with multi-market trading, staking rewards, and community-driven governance.</dd>
+                    </div>
+                    <div class="featured-project-row featured-project-row--price">
+                        <dt><i class="fa-solid fa-tag"></i> Token Price</dt>
+                        <dd>
+                            <span class="featured-project-price">
+                                1 <span id="featuredTokenSymbol">USDTW</span> = $<span id="featuredTokenPrice">0.000139</span> USD
+                            </span>
+                        </dd>
+                    </div>
+                </dl>
+
+                <div class="featured-project-card__foot">
+                    <a href="#token-sale" class="btn-featured-read">
+                        Read More
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ LAUNCHPAD BENEFITS ═══════ -->
+<section class="launchpad-benefits" id="launchpad-benefits">
+    <div class="launchpad-benefits__bg" aria-hidden="true">
+        <div class="launchpad-benefits__glow launchpad-benefits__glow--1"></div>
+        <div class="launchpad-benefits__glow launchpad-benefits__glow--2"></div>
+    </div>
+    <div class="launchpad-benefits__deco" aria-hidden="true">
+        <div class="launchpad-parachute">
+            <span class="launchpad-parachute__canopy"></span>
+            <span class="launchpad-parachute__lines"></span>
+            <span class="launchpad-parachute__coin"><i class="fa-brands fa-bitcoin"></i></span>
+        </div>
+    </div>
+
+    <div class="launchpad-benefits__container">
+        <span class="launchpad-benefits__eyebrow" data-aos="fade-up"><i class="fa-solid fa-layer-group"></i> Launchpad Benefits</span>
+        <h2 class="launchpad-benefits__title" data-aos="fade-up">
+            The Benefits of Using a <span>Crypto Launchpad</span>
+        </h2>
+
+        <div class="launchpad-benefits__grid">
+            <article class="launchpad-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="launchpad-card__accent" aria-hidden="true"></div>
+                <div class="launchpad-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3 class="launchpad-card__title">Access to Vetted Projects</h3>
+                <p class="launchpad-card__text">Access to vetted projects guarantees investors a curated selection of credible and high-quality opportunities, reducing the risk of fraudulent or low-quality investments.</p>
+                <div class="launchpad-card__visual">
+                    <figure class="launchpad-card__figure">
+                        <img src="assets/images/benefit1.png" alt="" />
+                    </figure>
+                </div>
+            </article>
+
+            <article class="launchpad-card launchpad-card--early" data-aos="fade-up" data-aos-delay="100">
+                <div class="launchpad-card__accent" aria-hidden="true"></div>
+                <div class="launchpad-card__icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3 class="launchpad-card__title">Early Investment Opportunities</h3>
+                <p class="launchpad-card__text">Early investment opportunities provide access to promising projects before they gain widespread attention, potentially offering significant returns on investment.</p>
+                <div class="launchpad-card__visual">
+                    <figure class="launchpad-card__figure">
+                        <img src="assets/images/benefit2.png" alt="" />
+                    </figure>
+                </div>
+            </article>
+
+            <article class="launchpad-card launchpad-card--community" data-aos="fade-up" data-aos-delay="200">
+                <div class="launchpad-card__accent" aria-hidden="true"></div>
+                <div class="launchpad-card__icon"><i class="fa-solid fa-headset"></i></div>
+                <h3 class="launchpad-card__title">Community and Support</h3>
+                <p class="launchpad-card__text">Community and support networks foster collaboration, knowledge sharing, and mutual assistance within the cryptocurrency ecosystem.</p>
+                <div class="launchpad-card__visual">
+                    <figure class="launchpad-card__figure">
+                        <img src="assets/images/benefit3.png" alt="" />
+                    </figure>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ HOW TO GET STARTED ═══════ -->
+<section class="get-started" id="get-started">
+    <div class="get-started__bg" aria-hidden="true">
+        <div class="get-started__glow"></div>
+    </div>
+
+    <div class="get-started__container">
+        <div class="get-started__header" data-aos="fade-up">
+            <span class="section-tag"><i class="fa-solid fa-route"></i> Quick Start</span>
+            <h2 class="section-title">How to Get <span class="gradient-text">Started</span></h2>
+        </div>
+
+        <div class="get-started__grid">
+            <article class="get-started-step get-started-step--featured" data-aos="fade-up" data-aos-delay="0">
+                <div class="get-started-step__card">
+                    <div class="get-started-step__icon get-started-step__icon--blue">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <h3 class="get-started-step__title">Create Account</h3>
+                    <p class="get-started-step__text">Create your account today to unlock a world of possibilities in the cryptocurrency and decentralized finance space.</p>
+                    <a href="Register.aspx" class="get-started-step__btn">Signup</a>
+                </div>
+            </article>
+
+            <article class="get-started-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="get-started-step__icon get-started-step__icon--gold">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <h3 class="get-started-step__title">Verify Your Identity</h3>
+                <p class="get-started-step__text">Complete the identity verification process to ensure compliance and unlock full access to our platform's features.</p>
+            </article>
+
+            <article class="get-started-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="get-started-step__icon get-started-step__icon--gold">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="get-started-step__title">Deposit Funds</h3>
+                <p class="get-started-step__text">To begin investing, deposit funds securely into your account and start exploring our wide range of cryptocurrency opportunities.</p>
+            </article>
+
+            <article class="get-started-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="get-started-step__icon get-started-step__icon--gold">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="get-started-step__title">Start Trading</h3>
+                <p class="get-started-step__text">Start trading today to take advantage of the dynamic cryptocurrency market and seize opportunities for growth and profit.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ ECOSYSTEM ═══════ -->
+<section class="ecosystem-section" id="ecosystem">
+    <div class="ecosystem-section__container">
+        <header class="ecosystem-section__head" data-aos="fade-up">
+            <span class="section-tag"><i class="fa-solid fa-globe"></i> Our Ecosystem</span>
+            <h2 class="section-title">USDT World Ecosystem <span class="gradient-text">for Everyone</span></h2>
+            <p class="section-sub">USDT World ecosystem embodies a dynamic and inclusive landscape, redefining decentralized finance (DeFi) with innovative platforms and a user-centric approach built for modern traders.</p>
+        </header>
+
+        <div class="ecosystem-section__grid">
+            <article class="ecosystem-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="ecosystem-card__visual ecosystem-card__visual--trading" aria-hidden="true">
+                    <div class="eco-pie">
+                        <span class="eco-pie__slice eco-pie__slice--btc"><i class="fa-brands fa-bitcoin"></i></span>
+                        <span class="eco-pie__slice eco-pie__slice--pink"></span>
+                        <span class="eco-pie__slice eco-pie__slice--green"></span>
+                    </div>
+                </div>
+                <h3 class="ecosystem-card__title">Token Trading</h3>
+                <p class="ecosystem-card__text">Token trading enables users to seamlessly exchange cryptocurrencies and tokens, facilitating efficient portfolio management and market participation.</p>
+            </article>
+
+            <article class="ecosystem-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="ecosystem-card__visual ecosystem-card__visual--liquidity" aria-hidden="true">
+                    <span class="eco-arrow eco-arrow--down"><i class="fa-solid fa-arrow-down"></i></span>
+                    <div class="eco-bag">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <span class="eco-arrow eco-arrow--up"><i class="fa-solid fa-arrow-up"></i></span>
+                    <span class="eco-ring"></span>
+                </div>
+                <h3 class="ecosystem-card__title">Liquidity Provision</h3>
+                <p class="ecosystem-card__text">Liquidity provision on our platform facilitates market efficiency by enabling users to contribute assets to pools and earn rewards through liquidity mining.</p>
+            </article>
+
+            <article class="ecosystem-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="ecosystem-card__visual ecosystem-card__visual--launchpad" aria-hidden="true">
+                    <div class="eco-rocket">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <span class="eco-pad"></span>
+                </div>
+                <h3 class="ecosystem-card__title">Token Launchpad</h3>
+                <p class="ecosystem-card__text">Our token launchpad offers a platform for new cryptocurrency projects to raise capital and gain exposure, fostering innovation and growth within the crypto ecosystem.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
 <!-- ═══════ ABOUT ═══════ -->
 <section class="about-section" id="about">
     <div class="about-container">
@@ -222,7 +621,7 @@
 </section>
 
 <!-- ═══════ SERVICES ═══════ -->
-<section class="services-section" id="services">
+<section class="services-section" id="services" style="display: none;">
     <div class="services-container">
         <div class="services-header" data-aos="fade-up">
             <span class="section-tag"><i class="fa-solid fa-rocket"></i> Our Services</span>
@@ -342,6 +741,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ NEWSLETTER SIGNUP ═══════ -->
+<section class="newsletter-banner" id="newsletter" style="display:none">
+    <div class="newsletter-banner__container">
+        <div class="newsletter-banner__box" data-aos="fade-up">
+            <div class="newsletter-banner__content">
+                <h2 class="newsletter-banner__title">Sign up for Updates</h2>
+                <form class="newsletter-banner__form" id="newsletterSignupForm" novalidate>
+                    <label class="newsletter-banner__label" for="newsletterEmail">Email Address</label>
+                    <div class="newsletter-banner__row">
+                        <input type="email" id="newsletterEmail" class="newsletter-banner__input" placeholder="example@gmail.com" autocomplete="email" required />
+                        <button type="submit" class="newsletter-banner__btn">Signup</button>
+                    </div>
+                    <label class="newsletter-banner__consent">
+                        <input type="checkbox" id="newsletterConsent" required />
+                        <span>I agree to receive emails from USDT World</span>
+                    </label>
+                    <p class="newsletter-banner__msg" id="newsletterMsg" aria-live="polite"></p>
+                </form>
+            </div>
+
+            <div class="newsletter-banner__coins" aria-hidden="true">
+                <img src="assets/images/newsletter-coins.png" alt="" width="492" height="445" loading="lazy" />
             </div>
         </div>
     </div>

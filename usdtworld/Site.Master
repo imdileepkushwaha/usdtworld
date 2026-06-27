@@ -40,10 +40,114 @@
     <!-- Font Awesome 6.5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script>
+        document.documentElement.classList.add('is-loading');
+    </script>
+
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="is-loading">
     <form id="mainForm" runat="server">
+
+    <!-- ═══════ PAGE PRELOADER ═══════ -->
+    <div id="sitePreloader" class="site-preloader" role="status" aria-live="polite" aria-label="Loading USDT World">
+        <div class="site-preloader__bg" aria-hidden="true">
+            <div class="site-preloader__glow site-preloader__glow--1"></div>
+            <div class="site-preloader__glow site-preloader__glow--2"></div>
+            <div class="site-preloader__stars"></div>
+        </div>
+        <div class="site-preloader__inner">
+            <div class="site-preloader__coin-scene">
+                <div class="site-preloader__coin-glow" aria-hidden="true"></div>
+                <div class="site-preloader__orbit site-preloader__orbit--1" aria-hidden="true"></div>
+                <div class="site-preloader__orbit site-preloader__orbit--2" aria-hidden="true"></div>
+                <div class="site-preloader__coin">
+                    <div class="site-preloader__coin-body">
+                        <div class="site-preloader__coin-face site-preloader__coin-face--front">
+                            <span class="site-preloader__coin-rim" aria-hidden="true"></span>
+                            <img src="assets/images/usdtw.png" alt="" onerror="this.onerror=null;this.src='img/usdtw.png';" />
+                        </div>
+                        <div class="site-preloader__coin-edge" aria-hidden="true"></div>
+                        <div class="site-preloader__coin-face site-preloader__coin-face--back">
+                            <span class="site-preloader__coin-rim" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="site-preloader__brand">USDT World</p>
+            <p class="site-preloader__tagline">Future of Smart Trading</p>
+            <div class="site-preloader__bar" aria-hidden="true">
+                <span class="site-preloader__bar-fill"></span>
+            </div>
+            <p class="site-preloader__text">
+                Loading assets
+                <span class="site-preloader__dots"><span>.</span><span>.</span><span>.</span></span>
+            </p>
+        </div>
+    </div>
+    <noscript>
+        <style>
+            .site-preloader { display: none !important; }
+            html.is-loading, body.is-loading { overflow: auto !important; }
+        </style>
+    </noscript>
+    <script>
+        (function () {
+            var preloader = document.getElementById('sitePreloader');
+            if (!preloader) return;
+
+            var MIN_MS = 900;
+            var MAX_MS = 3500;
+            var start = Date.now();
+            var done = false;
+            var barFill = preloader.querySelector('.site-preloader__bar-fill');
+            var loadText = preloader.querySelector('.site-preloader__text');
+
+            function setProgress(pct) {
+                if (barFill) barFill.style.width = Math.min(100, pct) + '%';
+                if (loadText) {
+                    var label = loadText.childNodes[0];
+                    if (label && label.nodeType === 3) label.textContent = 'Ready ';
+                }
+            }
+
+            var progressTimer = setInterval(function () {
+                var elapsed = Date.now() - start;
+                var pct = Math.min(95, Math.round((elapsed / MIN_MS) * 95));
+                setProgress(pct);
+                if (elapsed >= MIN_MS) clearInterval(progressTimer);
+            }, 50);
+
+            function hidePreloader() {
+                if (done) return;
+                done = true;
+                clearInterval(progressTimer);
+                setProgress(100);
+
+                var elapsed = Date.now() - start;
+                var delay = Math.max(0, MIN_MS - elapsed);
+
+                setTimeout(function () {
+                    preloader.classList.add('is-hidden');
+                    document.documentElement.classList.remove('is-loading');
+                    if (document.body) document.body.classList.remove('is-loading');
+
+                    setTimeout(function () {
+                        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                    }, 650);
+                }, delay);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hidePreloader, { once: true });
+            } else {
+                hidePreloader();
+            }
+
+            window.addEventListener('load', hidePreloader, { once: true });
+            setTimeout(hidePreloader, MAX_MS);
+        })();
+    </script>
 
     <!-- ═══════ NAVBAR ═══════ -->
     <nav class="navbar-sv" id="mainNavbar">
@@ -53,12 +157,16 @@
                 
             </a>
             <ul class="nav-links">
-                <a href="index.aspx">Home</a>
-        <a href="index.aspx#about">About</a>
-        <a href="index.aspx#services">Services</a>
-        <a href="index.aspx#testimonials">Reviews</a>
-        <a href="index.aspx#faq">Faq's</a>
-        <a href="index.aspx#articles">Articles</a>
+                <a href="index.aspx#home">Home</a>
+                <a href="index.aspx#token-sale">Token Sale</a>
+                <a href="index.aspx#featured-projects">Featured</a>
+                <a href="index.aspx#launchpad-benefits">Benefits</a>
+                <a href="index.aspx#get-started">Get Started</a>
+                <a href="index.aspx#ecosystem">Ecosystem</a>
+                <a href="index.aspx#about">About</a>
+                <a href="index.aspx#testimonials">Reviews</a>
+                <a href="index.aspx#faq">FAQ</a>
+                <a href="index.aspx#articles">Articles</a>
             </ul>
             <div class="nav-actions">
                 <!-- Language Dropdown -->
@@ -85,13 +193,17 @@
 
     <!-- Mobile Nav -->
     <div class="mobile-overlay" id="mobileOverlay">
-        <a href="index.aspx">Home</a>
+        <a href="index.aspx#home">Home</a>
+        <a href="index.aspx#token-sale">Token Sale</a>
+        <a href="index.aspx#featured-projects">Featured</a>
+        <a href="index.aspx#launchpad-benefits">Benefits</a>
+        <!--<a href="index.aspx#get-started">Get Started</a>-->
+        <a href="index.aspx#ecosystem">Ecosystem</a>
         <a href="index.aspx#about">About</a>
-        <a href="index.aspx#services">Services</a>
         <a href="index.aspx#testimonials">Reviews</a>
-        <a href="index.aspx#faq">Faq's</a>
+        <a href="index.aspx#faq">FAQ</a>
         <a href="index.aspx#articles">Articles</a>
-        <a href="Login.aspx">Sign In</a>
+        <a href="user/index.aspx">Sign In</a>
         <a href="Register.aspx" class="btn-nav-signup">Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;margin-left:4px;"></i></a>
     </div>
 

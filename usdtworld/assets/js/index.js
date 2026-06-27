@@ -142,4 +142,228 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof renderMarketCards !== 'undefined') {
         renderMarketCards('crypto');
     }
+
+    // ═══════ TOKEN SALE COUNTDOWN ═══════
+    (function initTokenSale() {
+        const section = document.getElementById('token-sale');
+        if (!section) return;
+
+        const endDate = new Date(section.dataset.saleEnd || '2026-12-31T23:59:59');
+        const totalRaised = parseFloat(section.dataset.totalRaised || '25555');
+        const targetRaise = parseFloat(section.dataset.targetRaise || '100000');
+        const tokenPrice = section.dataset.tokenPrice || '0.000139';
+        const tokenSymbol = section.dataset.tokenSymbol || 'USDTW';
+
+        const countdownEl = document.getElementById('tokenCountdown');
+        const progressFill = document.getElementById('tokenProgressFill');
+        const progressBar = section.querySelector('.token-sale-progress');
+        const raisedText = document.getElementById('tokenRaisedText');
+        const targetText = document.getElementById('tokenTargetText');
+        const priceEl = document.getElementById('tokenPrice');
+        const symbolEl = document.getElementById('tokenSymbol');
+        const form = document.getElementById('tokenSaleForm');
+        const emailInput = document.getElementById('tokenSaleEmail');
+        const msgEl = document.getElementById('tokenSaleMsg');
+
+        if (priceEl) priceEl.textContent = tokenPrice;
+        if (symbolEl) symbolEl.textContent = tokenSymbol;
+        if (targetText) targetText.textContent = targetRaise.toLocaleString() + ' USD';
+
+        const percent = targetRaise > 0 ? Math.min(100, Math.round((totalRaised / targetRaise) * 100)) : 0;
+        if (raisedText) {
+            raisedText.textContent = totalRaised.toLocaleString() + ' USD (' + percent + '%)';
+        }
+        if (progressBar) {
+            progressBar.setAttribute('aria-valuenow', String(percent));
+        }
+
+        function animateProgress() {
+            if (!progressFill) return;
+            requestAnimationFrame(function () {
+                progressFill.style.width = percent + '%';
+            });
+        }
+
+        if ('IntersectionObserver' in window && progressFill) {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        animateProgress();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.35 });
+            observer.observe(section);
+        } else {
+            animateProgress();
+        }
+
+        function pad(n) {
+            return String(n).padStart(2, '0');
+        }
+
+        function updateCountdown() {
+            if (!countdownEl) return;
+            const now = Date.now();
+            const diff = endDate.getTime() - now;
+
+            if (diff <= 0) {
+                countdownEl.querySelectorAll('.token-countdown__value').forEach(function (el) {
+                    el.textContent = '00';
+                });
+                return;
+            }
+
+            const days = Math.floor(diff / 86400000);
+            const hours = Math.floor((diff % 86400000) / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+
+            const map = { days: days, hours: hours, minutes: minutes, seconds: seconds };
+            countdownEl.querySelectorAll('.token-countdown__value').forEach(function (el) {
+                const unit = el.getAttribute('data-unit');
+                if (!unit) return;
+                el.textContent = unit === 'days' ? String(map[unit]) : pad(map[unit]);
+            });
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        function isValidEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        if (form && emailInput) {
+            const savedEmail = localStorage.getItem('tokenSaleEmail');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+
+                if (!email) {
+                    if (msgEl) {
+                        msgEl.textContent = 'Please enter your email address.';
+                        msgEl.className = 'token-sale-form__msg is-error';
+                    }
+                    emailInput.focus();
+                    return;
+                }
+
+                if (!isValidEmail(email)) {
+                    if (msgEl) {
+                        msgEl.textContent = 'Please enter a valid email address.';
+                        msgEl.className = 'token-sale-form__msg is-error';
+                    }
+                    emailInput.focus();
+                    return;
+                }
+
+                localStorage.setItem('tokenSaleEmail', email);
+                if (msgEl) {
+                    msgEl.textContent = 'Redirecting to registration...';
+                    msgEl.className = 'token-sale-form__msg is-success';
+                }
+
+                window.setTimeout(function () {
+                    window.location.href = 'Register.aspx?email=' + encodeURIComponent(email);
+                }, 600);
+            });
+        }
+    })();
+
+    // ═══════ FEATURED PROJECTS ═══════
+    (function initFeaturedProjects() {
+        const section = document.getElementById('featured-projects');
+        if (!section) return;
+
+        const endDate = new Date(section.dataset.saleEnd || '2026-12-31T23:59:59');
+        const tokenPrice = section.dataset.tokenPrice || '0.000139';
+        const tokenSymbol = section.dataset.tokenSymbol || 'USDTW';
+        const daysEl = document.getElementById('featuredDaysLeft');
+        const priceEl = document.getElementById('featuredTokenPrice');
+        const symbolEl = document.getElementById('featuredTokenSymbol');
+
+        if (priceEl) priceEl.textContent = tokenPrice;
+        if (symbolEl) symbolEl.textContent = tokenSymbol;
+
+        const tickerPriceEl = document.getElementById('featuredTickerPrice');
+        if (tickerPriceEl) {
+            const num = parseFloat(tokenPrice);
+            tickerPriceEl.textContent = isNaN(num)
+                ? '$' + tokenPrice
+                : '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 });
+        }
+
+        function updateDaysLeft() {
+            if (!daysEl) return;
+            const diff = endDate.getTime() - Date.now();
+            const days = Math.max(0, Math.ceil(diff / 86400000));
+            daysEl.textContent = String(days);
+        }
+
+        updateDaysLeft();
+        setInterval(updateDaysLeft, 60000);
+    })();
+
+    // ═══════ NEWSLETTER SIGNUP ═══════
+    (function initNewsletterSignup() {
+        const form = document.getElementById('newsletterSignupForm');
+        const emailInput = document.getElementById('newsletterEmail');
+        const consentInput = document.getElementById('newsletterConsent');
+        const msgEl = document.getElementById('newsletterMsg');
+
+        if (!form || !emailInput) return;
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                if (msgEl) {
+                    msgEl.textContent = 'Please enter your email address.';
+                    msgEl.className = 'newsletter-banner__msg is-error';
+                }
+                emailInput.focus();
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                if (msgEl) {
+                    msgEl.textContent = 'Please enter a valid email address.';
+                    msgEl.className = 'newsletter-banner__msg is-error';
+                }
+                emailInput.focus();
+                return;
+            }
+
+            if (consentInput && !consentInput.checked) {
+                if (msgEl) {
+                    msgEl.textContent = 'Please agree to receive emails from USDT World.';
+                    msgEl.className = 'newsletter-banner__msg is-error';
+                }
+                consentInput.focus();
+                return;
+            }
+
+            localStorage.setItem('newsletterEmail', email);
+
+            if (msgEl) {
+                msgEl.textContent = 'Redirecting to signup...';
+                msgEl.className = 'newsletter-banner__msg is-success';
+            }
+
+            setTimeout(function () {
+                window.location.href = 'Register.aspx?email=' + encodeURIComponent(email);
+            }, 400);
+        });
+    })();
 });
