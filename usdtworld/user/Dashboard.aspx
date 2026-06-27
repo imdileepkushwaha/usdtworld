@@ -501,7 +501,7 @@ body {
                                 </div>
                                 <p class="sv-wallet-card__label">Topup Wallet</p>
                                 <div class="sv-wallet-card__amount">
-                                    <asp:Label ID="Lblworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
                                 <p class="sv-wallet-card__hint">Available for Topup</p>
@@ -519,7 +519,7 @@ body {
                                 </div>
                                 <p class="sv-wallet-card__label">Upgrade Wallet</p>
                                 <div class="sv-wallet-card__amount">
-                                    <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lblupgarde" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
                                 <p class="sv-wallet-card__hint">Upgrade &amp; activation </p>
@@ -922,7 +922,7 @@ body {
                                 </div>
                                 <p class="sv-earn-stat__label">Single Leg Income</p>
                                 <div class="sv-earn-stat__amount">
-                                    <asp:Label ID="lblhelp" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lblsingleincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
