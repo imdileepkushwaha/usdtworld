@@ -40,7 +40,7 @@ public partial class user_Dashboard : System.Web.UI.Page
                 laoddata();
                 balance();
                 string url = clsUtility.ProjectWebsite;
-
+                TxtLeftLinkLink.Text = "https://usdtworld.club/" + "/Register.aspx?UserId=" + Session["userid"].ToString() + "&standingposition=1";
 
                 TxtRightLink.Text = clsUtility.ProjectWebsite + "/Register.aspx?UserId=" + Session["userid"].ToString() + "&standingposition=2";
                 //loadaward();
@@ -220,9 +220,9 @@ public partial class user_Dashboard : System.Web.UI.Page
         if (ds.Tables[0].Rows.Count > 0)
         {
             lblhelp.Text = ds.Tables[0].Rows[0]["roilevelincome"].ToString();
-            lblroi.Text = ds.Tables[0].Rows[0]["roiincome"].ToString();
+            //lblroi.Text = ds.Tables[0].Rows[0]["roiincome"].ToString();
             lbltotal.Text = ds.Tables[0].Rows[0]["totalincome"].ToString();
-            lblDirectincome.Text = ds.Tables[0].Rows[0]["directincome"].ToString();
+           // lblDirectincome.Text = ds.Tables[0].Rows[0]["directincome"].ToString();
             lblinvamount.Text = ds.Tables[0].Rows[0]["Toupamount"].ToString();
             //LblLevelIncome.Text = ds.Tables[3].Rows[0][0].ToString();
 
@@ -305,9 +305,9 @@ public partial class user_Dashboard : System.Web.UI.Page
         lblMatching.Text = dt.Rows[0]["Binaryincome"].ToString();
         lblhelp.Text = dt.Rows[0]["HelpIncome"].ToString();
         lblreward.Text = dt.Rows[0]["RewardIncome"].ToString();
-        lblroi.Text = dt.Rows[0]["levelroiIncome"].ToString();
+      //  lblroi.Text = dt.Rows[0]["levelroiIncome"].ToString();
         lbltotalincome.Text = dt.Rows[0]["Totalincome"].ToString();
-        // LblLevelIncome.Text = dt.Rows[0]["DailyLevelIncome"].ToString();
+        LblLevelIncome.Text = dt.Rows[0]["DailyLevelIncome"].ToString();
         lbldailyincome.Text = dt.Rows[0]["DailyLevel"].ToString();
         lblcurrentleftbv.Text = dt.Rows[0]["currentleftbv"].ToString();
         lblcurrrentightbv.Text = dt.Rows[0]["currentrightbv"].ToString();

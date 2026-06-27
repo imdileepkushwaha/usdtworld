@@ -65,7 +65,7 @@ public partial class LevelIncomeReport : System.Web.UI.Page
     }
     public DataTable getLevelIncome(clsAccount objaccount)
     {
-        string str_query = "SELECT I.Userid,U.UserName,I.Fromuserid,I.FromuserCommission,I.IncomePer,I.levelNo,I.income,I.AdminPer,I.Admincharge,I.Paybleamount,Convert(VARCHAR(50),I.Entrydate,103) ExpectedDate,CASE when I.Status=0 THEN 'DUE' ELSE 'PAID' END AS Status FROM ROILevelIncomeTB I JOIN UserDetail U ON I.Userid=U.UserId where 1=1 ";
+        string str_query = "SELECT I.Userid,U.UserName,I.JuniorUserId,I.levelNo,I.Amount,Convert(VARCHAR(50),I.MentionDate,103) EntryDate FROM LevelIncomeDetail I JOIN UserDetail U ON I.Userid=U.UserId where levelno !='1'";
 
 
         if (objaccount.FromDate != DateTime.MinValue && objaccount.ToDate != DateTime.MinValue)
@@ -80,7 +80,7 @@ public partial class LevelIncomeReport : System.Web.UI.Page
         }
 
 
-        str_query += " order by I.Entrydate  desc";
+        str_query += " order by I.MentionDate  desc";
 
 
 

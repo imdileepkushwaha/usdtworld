@@ -903,7 +903,7 @@ body {
                                 </div>
                                 <p class="sv-earn-stat__label">Level Income</p>
                                 <div class="sv-earn-stat__amount">
-                                    <asp:Label ID="lblroi" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="LblLevelIncome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
