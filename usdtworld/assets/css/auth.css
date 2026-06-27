@@ -369,7 +369,7 @@
     .brand-tagline {
         color: var(--muted);
         font-size: 0.875rem;
-        margin-bottom: 44px;
+        margin-bottom: 20px;
         line-height: 1.5;
         letter-spacing: 0.02em;
     }
@@ -1428,6 +1428,7 @@
         color: var(--muted);
         margin: 0;
         line-height: 1.4;
+        text-align: start;
     }
 
     /* Floating dots animation */

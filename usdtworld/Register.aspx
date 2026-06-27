@@ -5,11 +5,11 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= clsUtility.ProjectName %> – Create Account</title>
-    <meta name="application-name" content="<%= clsUtility.ProjectName %> - Future Of Smart Trading" />
+    <title><%= clsUtility.ProjectName %> – Join USDTW Presale</title>
+    <meta name="application-name" content="<%= clsUtility.ProjectName %> - USDTW Token Presale" />
     <meta name="author" content="<%= clsUtility.Company %>" />
-    <meta name="keywords" content="<%= clsUtility.ProjectName %>, Crypto, Forex, and Stocks Trading Business" />
-    <meta name="description" content="Create your <%= clsUtility.ProjectName %> account and start your trading journey." />
+    <meta name="keywords" content="<%= clsUtility.ProjectName %>, USDTW, Crypto Token, Launchpad, Presale" />
+    <meta name="description" content="Create your <%= clsUtility.ProjectName %> account and join the USDTW token presale at $0.000139." />
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
                             </span>
                         </div>
                         <p class="auth-loader-title">Please wait</p>
-                        <p class="auth-loader-text">Creating your account<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                        <p class="auth-loader-text">Setting up your USDTW account<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
                         <div class="auth-loader-bar" aria-hidden="true"><span></span></div>
                     </div>
                 </div>
@@ -73,14 +73,14 @@
                             <img src="img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="auth-brand-logo__img" onerror="this.onerror=null;this.src='user/img/logo.png';" />
                             <!-- <div class="brand-logo"><%= clsUtility.ProjectName %></div> -->
                         </div>
-                        <div class="brand-tagline">Start Your Trading Journey</div>
+                        <div class="brand-tagline">Join the USDTW Token Presale</div>
 
                         <div class="steps-process">
                             <div class="step-item" data-aos="fade-right" data-aos-delay="300">
                                 <div class="step-circle">1</div>
                                 <div class="step-info">
                                     <h4>Create Account</h4>
-                                    <p>Fill in your details below</p>
+                                    <p>Register with your details below</p>
                                 </div>
                                 <div class="step-connector">
                                     <div class="step-connector-line"></div>
@@ -90,7 +90,7 @@
                                 <div class="step-circle">2</div>
                                 <div class="step-info">
                                     <h4>Verify Identity</h4>
-                                    <p>Quick &amp; secure verification</p>
+                                    <p>Quick &amp; secure KYC verification</p>
                                 </div>
                                 <div class="step-connector">
                                     <div class="step-connector-line"></div>
@@ -99,16 +99,16 @@
                             <div class="step-item" data-aos="fade-right" data-aos-delay="600">
                                 <div class="step-circle">3</div>
                                 <div class="step-info">
-                                    <h4>Start Trading</h4>
-                                    <p>Access global markets instantly</p>
+                                    <h4>Buy USDTW</h4>
+                                    <p>Secure tokens at $0.000139 &amp; access launchpad</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="trust-badges">
                             <div class="trust-badge">
-                                <i class="fas fa-shield-halved"></i>
-                                <span>SSL Secured</span>
+                                <i class="fas fa-coins"></i>
+                                <span>USDTW Presale</span>
                             </div>
                             <div class="trust-badge">
                                 <i class="fas fa-lock"></i>
@@ -125,8 +125,8 @@
                     </div>
 
                     <div class="auth-form-header">
-                        <h1>Create Account</h1>
-                        <p>Join thousands of traders worldwide</p>
+                        <h1>Join USDTW Presale</h1>
+                        <p>Create your account and secure USDTW at $0.000139 per token</p>
                     </div>
 
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -224,7 +224,7 @@
                                     </div>
                                 </div>
 
-                                <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="auth-submit-btn" runat="server" Text="Create My Account" OnClick="btnSubmit_Click" data-aos="fade-up" data-aos-delay="400" />
+                                <asp:Button ID="btnSubmit" OnClientClick="return validate();" CssClass="auth-submit-btn" runat="server" Text="Create Account &amp; Join Presale" OnClick="btnSubmit_Click" data-aos="fade-up" data-aos-delay="400" />
                             </div>
 
                             <div class="register-hidden-fields" aria-hidden="true">

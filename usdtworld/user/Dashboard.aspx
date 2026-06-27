@@ -409,7 +409,7 @@ body {
         <div class="scroll-text">
             <span class="sv-welcome-label">Welcome,</span>
             <asp:Label ID="lblusername" runat="server" Text="Member"></asp:Label>
-            &nbsp;&bull;&nbsp; Trade ID:
+            &nbsp;&bull;&nbsp; User ID:
             <asp:Label ID="lbluserid" runat="server" Text="—"></asp:Label>
             &nbsp;&bull;&nbsp; Happy Trading!
         </div>

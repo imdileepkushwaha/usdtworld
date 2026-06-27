@@ -18,28 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ═══════ COUNTER ANIMATION ═══════
-    function animateCounter(el, target) {
-        if (!el) return;
-        let current = 0;
-        const step = Math.ceil(target / 80);
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) { current = target; clearInterval(timer); }
-            el.innerText = current.toLocaleString() + '+';
-        }, 25);
-    }
-    const counterEl = document.getElementById('counterUsers');
-    if (counterEl) {
-        let stored = JSON.parse(localStorage.getItem("memberCounter"));
-        if (!stored) stored = { value: 2332, lastUpdated: Date.now() };
-        const interval = 3600000;
-        let cycles = Math.floor((Date.now() - stored.lastUpdated) / interval);
-        if (cycles > 0) { stored.value += cycles * 6; stored.lastUpdated += cycles * interval; }
-        localStorage.setItem("memberCounter", JSON.stringify(stored));
-        animateCounter(counterEl, stored.value);
-    }
-
     // ═══════ LIVE HERO PRICES ═══════
     async function loadHeroPrices() {
         try {
@@ -142,6 +120,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof renderMarketCards !== 'undefined') {
         renderMarketCards('crypto');
     }
+
+    // ═══════ HERO TOKEN DATA (synced from #token-sale) ═══════
+    (function initHeroToken() {
+        const tokenSection = document.getElementById('token-sale');
+        if (!tokenSection) return;
+
+        const endDate = new Date(tokenSection.dataset.saleEnd || '2026-12-31T23:59:59');
+        const totalRaised = parseFloat(tokenSection.dataset.totalRaised || '25555');
+        const tokenPrice = tokenSection.dataset.tokenPrice || '0.000139';
+        const tokenSymbol = tokenSection.dataset.tokenSymbol || 'USDTW';
+
+        const priceEl = document.getElementById('heroTokenPrice');
+        const symbolEl = document.getElementById('heroTokenSymbol');
+        const raisedEl = document.getElementById('heroRaisedAmount');
+        const daysEl = document.getElementById('heroDaysLeft');
+
+        if (priceEl) priceEl.textContent = tokenPrice;
+        if (symbolEl) symbolEl.textContent = tokenSymbol;
+        if (raisedEl) raisedEl.textContent = '$' + totalRaised.toLocaleString();
+
+        function updateDaysLeft() {
+            if (!daysEl) return;
+            const diff = endDate.getTime() - Date.now();
+            const days = Math.max(0, Math.ceil(diff / 86400000));
+            daysEl.textContent = String(days);
+        }
+
+        updateDaysLeft();
+        setInterval(updateDaysLeft, 60000);
+    })();
 
     // ═══════ TOKEN SALE COUNTDOWN ═══════
     (function initTokenSale() {

@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= clsUtility.ProjectName %> – Login</title>
+    <title><%= clsUtility.ProjectName %> – Sign In | USDTW</title>
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,11 +60,11 @@
                             <span class="auth-loader-ring auth-loader-ring--outer"></span>
                             <span class="auth-loader-ring auth-loader-ring--inner"></span>
                             <span class="auth-loader-core">
-                                <i class="fa-solid fa-chart-line"></i>
+                                <i class="fa-solid fa-coins"></i>
                             </span>
                         </div>
                         <p class="auth-loader-title">Please wait</p>
-                        <p class="auth-loader-text">Signing you in<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                        <p class="auth-loader-text">Accessing your account<span class="auth-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
                         <div class="auth-loader-bar" aria-hidden="true"><span></span></div>
                     </div>
                 </div>
@@ -119,25 +119,25 @@
                                     <img src="../img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="auth-brand-logo__img" onerror="this.onerror=null;this.src='img/logo.png';" />
                                     <!-- <div class="brand-logo"><%= clsUtility.ProjectName %></div> -->
                                 </div>
-                                <p class="brand-tagline">Your premium social trading platform.<br />Smarter insights. Bigger returns.</p>
+                                <p class="brand-tagline">Your gateway to the USDTW token ecosystem.</p>
 
                                 <ul class="brand-features">
                                     <li class="brand-feature">
                                         <div class="feature-icon">
-                                            <i class="fa-solid fa-chart-line"></i>
+                                            <i class="fa-solid fa-tags"></i>
                                         </div>
                                         <div class="feature-text">
-                                            <h4>Real-Time Analytics</h4>
-                                            <p>Live market data with AI-powered signals</p>
+                                            <h4>USDTW Presale</h4>
+                                            <p>Buy tokens at $0.000139 before public listing</p>
                                         </div>
                                     </li>
                                     <li class="brand-feature">
                                         <div class="feature-icon feature-icon--cyan">
-                                            <i class="fa-solid fa-users-gear"></i>
+                                            <i class="fa-solid fa-layer-group"></i>
                                         </div>
                                         <div class="feature-text">
-                                            <h4>Copy Trading</h4>
-                                            <p>Follow top traders and mirror their moves</p>
+                                            <h4>Launchpad Access</h4>
+                                            <p>Participate in vetted crypto project launches</p>
                                         </div>
                                     </li>
                                     <li class="brand-feature">
@@ -145,17 +145,17 @@
                                             <i class="fa-solid fa-shield-halved"></i>
                                         </div>
                                         <div class="feature-text">
-                                            <h4>Bank-Grade Security</h4>
+                                            <h4>Secure Platform</h4>
                                             <p>256-bit encryption &amp; 2FA authentication</p>
                                         </div>
                                     </li>
                                     <li class="brand-feature">
                                         <div class="feature-icon feature-icon--green">
-                                            <i class="fa-solid fa-bolt"></i>
+                                            <i class="fa-solid fa-chart-line"></i>
                                         </div>
                                         <div class="feature-text">
-                                            <h4>Lightning Execution</h4>
-                                            <p>Sub-millisecond order execution speed</p>
+                                            <h4>Live Sale Tracking</h4>
+                                            <p>Monitor presale progress and token milestones</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -166,14 +166,14 @@
                         <div class="auth-form-panel">
                             <div class="form-header" data-aos="fade-left" data-aos-delay="200">
                                 <h2>Welcome back</h2>
-                                <p>Sign in to your trading account</p>
+                                <p>Sign in to manage your USDTW holdings and presale account</p>
                             </div>
 
                             <div id="loginForm" data-aos="fade-left" data-aos-delay="300">
                                 <div class="input-group">
                                     <i class="fa-regular fa-envelope input-group__icon"></i>
-                                    <asp:TextBox ID="txtusername" runat="server" CssClass="input-group__field" placeholder="Trade ID" autocomplete="username"></asp:TextBox>
-                                    <label for="<%= txtusername.ClientID %>" class="input-group__label">Trade ID</label>
+                                    <asp:TextBox ID="txtusername" runat="server" CssClass="input-group__field" placeholder="User ID" autocomplete="username"></asp:TextBox>
+                                    <label for="<%= txtusername.ClientID %>" class="input-group__label">User ID</label>
                                 </div>
 
                                 <div class="input-group">

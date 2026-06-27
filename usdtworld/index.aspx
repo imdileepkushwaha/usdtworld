@@ -50,28 +50,28 @@
 
     <div class="hero-container">
         <div class="hero-left">
-            <div class="hero-badge"><span class="live-dot"></span> Markets Open - 24/7</div>
+            <div class="hero-badge"><span class="live-dot"></span> Pre-Token Sale Live</div>
             <h1 class="hero-title">
-                Trade <span class="shimmer">Smarter,</span>
-                <span class="line-2">Grow Faster.</span>
+                Power the Future with <span class="shimmer">UWC+</span>
+                <span class="line-2">Token Sale.</span>
             </h1>
-            <p class="hero-desc">Access global Crypto, Forex, and Stock markets from one powerful platform. AI-powered insights, real-time analytics, and lightning-fast execution at your fingertips.</p>
+            <p class="hero-desc">Join the USDT World presale and secure your stake in a next-gen crypto launchpad ecosystem. Transparent pricing, real-time sale progress, and early access before public listing.</p>
             <div class="hero-actions">
-                <a href="Register.aspx" class="btn-hero-primary">Start Trading <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#markets" class="btn-hero-secondary"><i class="fa-solid fa-chart-line"></i> Explore Markets</a>
+                <a href="Register.aspx" class="btn-hero-primary">Buy USDTW <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#token-sale" class="btn-hero-secondary"><i class="fa-solid fa-rocket"></i> View Token Sale</a>
             </div>
             <div class="hero-metrics">
                 <div class="hero-metric">
-                    <h3 id="counterUsers">0</h3>
-                    <p>Active Traders</p>
+                    <h3>$<span id="heroTokenPrice">0.000139</span></h3>
+                    <p><span id="heroTokenSymbol">USDTW</span> Price</p>
                 </div>
                 <div class="hero-metric">
-                    <h3>$2.5B+</h3>
-                    <p>Trading Volume</p>
+                    <h3 id="heroRaisedAmount">$25,555</h3>
+                    <p>Funds Raised</p>
                 </div>
                 <div class="hero-metric">
-                    <h3>150+</h3>
-                    <p>Instruments</p>
+                    <h3 id="heroDaysLeft">—</h3>
+                    <p>Days to Sale End</p>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
 </section>
 
 <!-- ═══════ LIVE TICKER ═══════ -->
-    <div class="ticker-bar">
+    <div class="ticker-bar" style="display: none;">
         <div class="ticker-track" id="tickerTrack">
             <div class="ticker-item"><span class="t-name">Loading live data...</span></div>
         </div>
@@ -545,32 +545,32 @@
         <div class="about-visual" data-aos="fade-right">
             <img src="assets/images/about_social_vista.png" alt="About USDT World" style="box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
             <div class="about-float">
-                <h3 class="gradient-text">98%</h3>
-                <p>Client Satisfaction</p>
+                <h3 class="gradient-text">USDTW</h3>
+                <p>Native Token</p>
             </div>
-            <div class="about-floating-icon a-float-1"><i class="fa-solid fa-chart-pie"></i></div>
-            <div class="about-floating-icon a-float-2"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="about-floating-icon a-float-1"><i class="fa-solid fa-coins"></i></div>
+            <div class="about-floating-icon a-float-2"><i class="fa-solid fa-rocket"></i></div>
         </div>
         <div data-aos="fade-left">
-            <span class="section-tag"><i class="fa-solid fa-star"></i> Why USDT World</span>
-            <h2 class="section-title">Built for <span class="gradient-text">Modern Traders</span></h2>
-            <p class="section-sub" style="margin-bottom: 10px;">We combine cutting-edge technology with years of market expertise to deliver a platform that empowers traders worldwide.</p>
+            <span class="section-tag"><i class="fa-solid fa-star"></i> About USDTW</span>
+            <h2 class="section-title">The Token Behind <span class="gradient-text">USDT World</span></h2>
+            <p class="section-sub" style="margin-bottom: 10px;">USDTW powers the USDT World launchpad ecosystem — from presale access and staking rewards to governance and platform utility across token trading, liquidity, and new project launches.</p>
             <div class="about-features">
                 <div class="about-feat">
-                    <div class="about-feat-icon" style="background:rgba(var(--primary-rgb),0.1);color:var(--primary);"><i class="fa-solid fa-rocket"></i></div>
-                    <div><h6>Lightning Fast Execution</h6><p>Sub-millisecond order processing for optimal results.</p></div>
+                    <div class="about-feat-icon" style="background:rgba(var(--primary-rgb),0.1);color:var(--primary);"><i class="fa-solid fa-tags"></i></div>
+                    <div><h6>Early Presale Access</h6><p>Secure USDTW at $0.000139 before public listing and benefit from early-bird pricing.</p></div>
                 </div>
                 <div class="about-feat">
-                    <div class="about-feat-icon" style="background:rgba(var(--secondary-rgb),0.1);color:var(--secondary);"><i class="fa-solid fa-globe"></i></div>
-                    <div><h6>Global Market Access</h6><p>Trade across 150+ instruments in Crypto, Forex, and Stocks.</p></div>
+                    <div class="about-feat-icon" style="background:rgba(var(--secondary-rgb),0.1);color:var(--secondary);"><i class="fa-solid fa-layer-group"></i></div>
+                    <div><h6>Launchpad Utility</h6><p>Use USDTW to participate in vetted token launches, liquidity pools, and ecosystem rewards.</p></div>
                 </div>
                 <div class="about-feat">
-                    <div class="about-feat-icon" style="background:rgba(16,185,129,0.1);color:var(--emerald);"><i class="fa-solid fa-headset"></i></div>
-                    <div><h6>24/7 Expert Support</h6><p>Our dedicated support team is always available to assist you.</p></div>
+                    <div class="about-feat-icon" style="background:rgba(16,185,129,0.1);color:var(--emerald);"><i class="fa-solid fa-chart-line"></i></div>
+                    <div><h6>Transparent Tokenomics</h6><p>Track presale progress, raise targets, and sale milestones in real time on our platform.</p></div>
                 </div>
                 <div class="about-feat">
-                    <div class="about-feat-icon" style="background:rgba(245,158,11,0.1);color:var(--gold);"><i class="fa-solid fa-lock"></i></div>
-                    <div><h6>Regulated & Secure</h6><p>Fully licensed platform with institutional-grade security.</p></div>
+                    <div class="about-feat-icon" style="background:rgba(245,158,11,0.1);color:var(--gold);"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div><h6>Secure &amp; Audited</h6><p>Built with institutional-grade security, smart contract best practices, and investor protection in mind.</p></div>
                 </div>
             </div>
         </div>
@@ -671,8 +671,8 @@
         <div class="testimonials-header section-header-row" data-aos="fade-up">
             <div class="section-header-text">
                 <span class="section-tag"><i class="fa-solid fa-quote-left"></i> Testimonials</span>
-                <h2 class="section-title">Trusted by <span class="gradient-text">Thousands</span></h2>
-                <p class="section-sub">See what our traders have to say about their experience with USDT World.</p>
+                <h2 class="section-title">Trusted by <span class="gradient-text">Early Investors</span></h2>
+                <p class="section-sub">See what presale participants and token holders say about the USDTW experience.</p>
             </div>
             <div class="swiper-nav">
                 <button type="button" class="swiper-button-prev testimonials-prev" aria-label="Previous testimonial"></button>
@@ -686,10 +686,10 @@
                         <div class="testi-stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <blockquote>"USDT World completely transformed my trading. The AI analytics helped me increase my returns by 340% in just 6 months. Absolutely incredible platform."</blockquote>
+                        <blockquote>"I joined the USDTW presale early and the process was seamless. Clear pricing at $0.000139, transparent progress bar, and instant registration — exactly what I wanted from a launchpad token."</blockquote>
                         <div class="testi-author">
                             <div class="testi-avatar">AK</div>
-                            <div><h6>Aarav Kumar</h6><span>Crypto Trader · Mumbai</span></div>
+                            <div><h6>Aarav Kumar</h6><span>Presale Investor · Mumbai</span></div>
                         </div>
                     </div>
                 </div>
@@ -698,10 +698,10 @@
                         <div class="testi-stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <blockquote>"The Forex signals and real-time execution are unmatched. I moved from three different platforms to just USDT World. It has everything I need."</blockquote>
+                        <blockquote>"USDT World launchpad gave me access to vetted projects I couldn't find elsewhere. Holding USDTW unlocks early allocations and the ecosystem feels well thought out."</blockquote>
                         <div class="testi-author">
                             <div class="testi-avatar">SR</div>
-                            <div><h6>Sarah Rahman</h6><span>Forex Specialist · Dubai</span></div>
+                            <div><h6>Sarah Rahman</h6><span>Token Holder · Dubai</span></div>
                         </div>
                     </div>
                 </div>
@@ -710,10 +710,10 @@
                         <div class="testi-stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <blockquote>"Best stock trading experience I've ever had. The portfolio manager alone is worth the switch. Clean interface, powerful tools, great support."</blockquote>
+                        <blockquote>"The presale countdown and raise tracker built real trust. I knew exactly how much was raised toward the $100K target before I committed my allocation."</blockquote>
                         <div class="testi-author">
                             <div class="testi-avatar">DP</div>
-                            <div><h6>Deepak Patel</h6><span>Stock Investor · Delhi</span></div>
+                            <div><h6>Deepak Patel</h6><span>Crypto Investor · Delhi</span></div>
                         </div>
                     </div>
                 </div>
@@ -722,10 +722,10 @@
                         <div class="testi-stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <blockquote>"The smart alerts saved me from a major market dip last month. I get notified exactly when I need to act — no more staring at charts all day."</blockquote>
+                        <blockquote>"USDTW isn't just a token — it's the key to the whole platform. Staking, launchpad access, and liquidity features all tie back to holding USDTW. Strong utility from day one."</blockquote>
                         <div class="testi-author">
                             <div class="testi-avatar">MJ</div>
-                            <div><h6>Meera Joshi</h6><span>Day Trader · Bangalore</span></div>
+                            <div><h6>Meera Joshi</h6><span>DeFi Enthusiast · Bangalore</span></div>
                         </div>
                     </div>
                 </div>
@@ -734,10 +734,10 @@
                         <div class="testi-stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <blockquote>"I started with zero trading knowledge. The Trading Academy courses and demo account helped me go from beginner to confident trader in just 3 months."</blockquote>
+                        <blockquote>"I was new to token presales but USDT World made it simple. Register, buy USDTW, and track everything in one dashboard. Great onboarding for first-time investors."</blockquote>
                         <div class="testi-author">
                             <div class="testi-avatar">RS</div>
-                            <div><h6>Rohan Sharma</h6><span>Options Trader · Pune</span></div>
+                            <div><h6>Rohan Sharma</h6><span>Early Backer · Pune</span></div>
                         </div>
                     </div>
                 </div>
@@ -804,9 +804,9 @@
                 <div class="cta-icon cta-icon-3"><i class="fa-solid fa-coins"></i></div>
                 <div class="cta-icon cta-icon-4"><i class="fa-solid fa-chart-line"></i></div>
             </div>
-            <h2>Ready to Start <span class="gradient-text">Trading?</span></h2>
-            <p>Join thousands of traders who trust USDT World. Create your free account in under 2 minutes and start growing your portfolio today.</p>
-            <a href="Register.aspx" class="btn-hero-primary">Create Free Account <i class="fa-solid fa-arrow-right"></i></a>
+            <h2>Ready to Buy <span class="gradient-text">USDTW?</span></h2>
+            <p>Join the USDT World presale at $0.000139 per token. Secure your allocation before the sale ends and be part of the next-generation crypto launchpad ecosystem.</p>
+            <a href="Register.aspx" class="btn-hero-primary">Buy USDTW Token <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -816,65 +816,65 @@
     <div class="faq-container">
         <div class="faq-block" data-aos="fade-up">
             <span class="section-tag"><i class="fa-solid fa-question"></i> Frequently Asked Questions</span>
-            <h2 class="section-title">Quick Answers For Traders</h2>
-            <p class="section-sub">Explore the most common questions about our platform, account setup, and market access.</p>
+            <h2 class="section-title">Quick Answers About <span class="gradient-text">USDTW</span></h2>
+            <p class="section-sub">Everything you need to know about the USDT World token, presale, and how to participate.</p>
             <div class="faq-layout">
                 <div class="faq-content" data-aos="fade-right">
                     <div class="faq-grid">
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>What does this tool do?</span>
+                                <span>What is the USDTW token?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>Online trading’s primary advantages are that it allows you to manage your trades at your convenience.</p>
+                                <p>USDTW is the native utility token of USDT World. It powers the launchpad ecosystem — enabling presale participation, staking rewards, governance voting, and access to token trading, liquidity provision, and new project launches on the platform.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>What are the disadvantages of online trading?</span>
+                                <span>How do I buy USDTW in the presale?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>Yes, online trading involves market risk. Prices of assets like stocks or cryptocurrencies can fluctuate quickly, which may lead to losses if trades are not managed properly.</p>
+                                <p>Click "Buy USDTW" or "Register" on our homepage, create your account, and complete the registration process. Once verified, you can purchase USDTW at the current presale price of $0.000139 per token before the public sale ends.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>Is online trading safe?</span>
+                                <span>What is the presale price and raise target?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>It can be safe, but only if you use the right platform and follow proper precautions.</p>
-                                <h6 style="color: #fff; margin: 15px 0 10px;">Smart Safety Tips</h6>
-                                <p>Start with a small investment<br>Always verify platform credibility<br>Use secure internet (avoid public WiFi)<br>Withdraw profits regularly<br>Keep learning before scaling</p>
+                                <p>Each USDTW token is priced at $0.000139 (USD) during the presale. The targeted raise is $100,000 USD, with live progress tracking available on the Token Sale section of our homepage.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>What is online trading, and how does it work?</span>
+                                <span>When does the token sale end?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>Online trading means buying and selling financial assets through the internet using a trading platform or app.<br>Online trading is like digital buying & selling in financial markets, where you earn based on price movements.</p>
+                                <p>The pre-token sale runs until December 31, 2026. A live countdown timer on our homepage shows the exact time remaining. We recommend securing your allocation early as presale tiers may sell out before the deadline.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>Which app is best for online trading?</span>
+                                <span>What can I do with USDTW after purchase?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>USDT World App is one of the most advanced platforms powered by AI-driven trading technology, designed to help users trade smarter and faster. With intelligent automation and real-time market insights, it simplifies trading for both beginners and professionals.</p>
+                                <p>USDTW holders can access the USDT World launchpad for vetted project allocations, participate in liquidity pools, earn staking rewards, and use the token across the platform's trading and ecosystem features as they go live.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button type="button" class="faq-question">
-                                <span>How to create a trading account?</span>
+                                <span>Is the USDTW presale safe?</span>
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>To create a trading account, first choose a reliable trading platform or broker, then sign up by providing your basic details like name, mobile number, and email. After registration, complete the KYC (Know Your Customer) process by uploading documents such as your ID proof, address proof, PAN card, and bank details. Once your verification is approved, link your bank account and add funds to your wallet. After funding, your trading account becomes active, and you can start buying and selling assets like stocks, cryptocurrencies, or forex directly through the app or website.</p>
+                                <p>USDT World follows smart contract security best practices and provides transparent sale metrics on-chain and on-platform. Always verify you're on the official usdtworld.com site, never share your private keys, and only invest what you can afford to lose.</p>
+                                <h6 style="color: #fff; margin: 15px 0 10px;">Safety Tips</h6>
+                                <p>Verify the official website URL<br>Never send funds to unofficial wallets<br>Complete KYC only through our platform<br>Track your purchase in your dashboard<br>Contact support for any doubts before investing</p>
                             </div>
                         </div>
                     </div>
@@ -908,8 +908,8 @@
             <div class="articles-header section-header-row">
                 <div class="section-header-text">
                     <span class="section-tag"><i class="fa-solid fa-newspaper"></i> Latest Articles</span>
-                    <h2 class="section-title">Insightful Trading Stories</h2>
-                    <p class="section-sub">Read our latest market insights, strategy guides, and product updates.</p>
+                    <h2 class="section-title">USDTW &amp; <span class="gradient-text">Token Insights</span></h2>
+                    <p class="section-sub">Read the latest on USDTW presale, launchpad updates, tokenomics, and crypto investing guides.</p>
                 </div>
                 <div class="swiper-nav">
                     <button type="button" class="swiper-button-prev articles-prev" aria-label="Previous article"></button>
@@ -921,53 +921,41 @@
                     <div class="swiper-slide">
                         <div class="article-card-item">
                             <div class="article-thumb"><img src="assets/images/blog/1.png" alt="Crypto portfolio chart"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 20, 2026</span><span>•</span><span>Trading Strategy</span></div>
-                            <h5>Swing Trading Definition</h5>
-                            <p>Our platform is not only about trading-it's also a hub for knowledge and learning.</p>
+                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 20, 2026</span><span>•</span><span>Token Sale</span></div>
+                            <h5>USDTW Presale: A Complete Guide</h5>
+                            <p>Everything you need to know about buying USDTW at $0.000139, sale milestones, and how to secure your allocation.</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="article-card-item">
                             <div class="article-thumb"><img src="assets/images/blog/2.png" alt="Volatility market view"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 18, 2026</span><span>•</span><span>Trading Market</span></div>
-                            <h5>Hedge Funds Work?</h5>
-                            <p>To cater to your individual trading preferences, we offer a variety of order types,
-                      including market.</p>
+                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 18, 2026</span><span>•</span><span>Tokenomics</span></div>
+                            <h5>Understanding USDTW Token Utility</h5>
+                            <p>How USDTW powers the launchpad, staking, governance, and liquidity features across the USDT World ecosystem.</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="article-card-item">
                             <div class="article-thumb"><img src="assets/images/blog/3.png" alt="Platform feature highlights"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 15, 2026</span><span>•</span><span>Platform Tips</span></div>
-                            <h5>Options Trading business?</h5>
-                            <p>Security is our top priority, and we employ robust measures to ensure the safety of
-                      your funds.</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="article-card-item">
-                            <div class="article-thumb"><img src="assets/images/blog/4.png" alt="Platform feature highlights"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 15, 2026</span><span>•</span><span>Platform Tips</span></div>
-                            <h5>Options Trading business?</h5>
-                            <p>Security is our top priority, and we employ robust measures to ensure the safety of
-                      your funds.</p>
+                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 15, 2026</span><span>•</span><span>Launchpad</span></div>
+                            <h5>Why Crypto Launchpads Matter</h5>
+                            <p>Discover how USDT World's launchpad vets projects and gives USDTW holders early access to high-potential token sales.</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="article-card-item">
                             <div class="article-thumb"><img src="assets/images/blog/5.png" alt="Crypto trading strategies"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 21, 2026</span><span>•</span><span>Crypto Trading</span></div>
-                            <h5>Mastering Bitcoin Trading</h5>
-                            <p>Learn the fundamental strategies for trading Bitcoin and understanding blockchain market cycles.</p>
+                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 14, 2026</span><span>•</span><span>Presale Tips</span></div>
+                            <h5>5 Tips for First-Time Token Buyers</h5>
+                            <p>From verifying the official site to tracking raise progress — a practical checklist before joining any crypto presale.</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="article-card-item">
                             <div class="article-thumb"><img src="assets/images/blog/6.png" alt="Crypto security guide"></div>
-                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 21, 2026</span><span>•</span><span>Crypto Security</span></div>
-                            <h5>Securing Your Crypto Assets</h5>
-                            <p>A comprehensive guide on cold wallets, multi-sig vaults, and keeping your digital assets safe.</p>
+                            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i><span>May 12, 2026</span><span>•</span><span>Security</span></div>
+                            <h5>Securing Your USDTW Investment</h5>
+                            <p>Best practices for wallet safety, avoiding scams, and protecting your tokens after the presale purchase.</p>
                         </div>
                     </div>
                 </div>
