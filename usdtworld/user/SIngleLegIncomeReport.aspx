@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Level Income Report" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="LevelIncomeReport.aspx.cs" Inherits="LevelIncomeReport" %>
+﻿<%@ Page Title="Single Leg Income Report" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="SIngleLegIncomeReport.aspx.cs" Inherits="LevelIncomeReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/account-pages.css" rel="stylesheet" />
@@ -23,14 +23,14 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="sv-account-page sv-report-page">
-                <div class="sv-page-header sv-page-header--income-level">
+                <div class="sv-page-header sv-page-header--income-single">
                     <div class="sv-page-header__glow sv-page-header__glow--1"></div>
                     <div class="sv-page-header__glow sv-page-header__glow--2"></div>
                     <div class="sv-page-header__main">
-                        <div class="sv-page-header__icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="sv-page-header__icon"><i class="fa-solid fa-diagram-project"></i></div>
                         <div class="sv-page-header__text">
-                            <h1>Level Income</h1>
-                            <p>View level-wise team income across your network</p>
+                            <h1>Single Leg Income</h1>
+                            <p>View single leg plan income credited to your wallets</p>
                         </div>
                     </div>
                     <div class="sv-page-header__actions">
@@ -38,14 +38,14 @@
                             <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
                             Dashboard
                         </a>
-                        <span class="sv-page-header__crumb">My Income / Level Income</span>
+                        <span class="sv-page-header__crumb">My Income / Single Leg Income</span>
                     </div>
                 </div>
 
                 <nav class="sv-topup-tabs sv-topup-tabs--wide sv-income-tabs" aria-label="Income sections">
                     <a href="DirectIncomeReport.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-user-plus"></i> Direct Income</a>
-                    <a href="LevelIncomeReport.aspx" class="sv-topup-tabs__item sv-topup-tabs__item--active"><i class="fa-solid fa-layer-group"></i> Level Income</a>
-                    <a href="SIngleLegIncomeReport.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-diagram-project"></i> Single Leg Income</a>
+                    <a href="LevelIncomeReport.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-layer-group"></i> Level Income</a>
+                    <a href="SIngleLegIncomeReport.aspx" class="sv-topup-tabs__item sv-topup-tabs__item--active"><i class="fa-solid fa-diagram-project"></i> Single Leg Income</a>
                 </nav>
 
                 <div class="sv-form-card">
@@ -53,7 +53,7 @@
                         <span class="sv-form-card__head-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                         <div class="sv-form-card__head-text">
                             <h3>Search Criteria</h3>
-                            <p>Filter level income by date range</p>
+                            <p>Filter single leg income by date range</p>
                         </div>
                     </div>
                     <div class="sv-form-card__body">
@@ -91,22 +91,22 @@
                         <span class="sv-form-card__head-icon"><i class="fa-solid fa-list"></i></span>
                         <div class="sv-form-card__head-text">
                             <h3>Income Details</h3>
-                            <p>Level income transaction history</p>
+                            <p>Single leg income transaction history</p>
                         </div>
                     </div>
                     <div class="sv-form-card__body">
                         <div class="sv-report-toolbar">
-                            <p class="sv-report-toolbar__title"><i class="fa-solid fa-table"></i> Level Income List</p>
+                            <p class="sv-report-toolbar__title"><i class="fa-solid fa-table"></i> Single Leg Income List</p>
                         </div>
                         <div class="sv-msg-table-wrap">
                             <div class="sv-msg-table-scroll">
                                 <asp:GridView ID="GridView1" runat="server" CssClass="sv-msg-table table table-borderless" Width="100%"
                                     AutoGenerateColumns="False" GridLines="None" OnRowCommand="GridView1_RowCommand"
-                                    EmptyDataText="No level income records found.">
+                                    EmptyDataText="No single leg income records found.">
                                     <EmptyDataTemplate>
                                         <div class="sv-report-empty">
-                                            <i class="fa-solid fa-layer-group"></i>
-                                            <p>No level income records found for the selected criteria.</p>
+                                            <i class="fa-solid fa-diagram-project"></i>
+                                            <p>No single leg income records found for the selected criteria.</p>
                                         </div>
                                     </EmptyDataTemplate>
                                     <Columns>
@@ -123,13 +123,8 @@
                                         <asp:TemplateField HeaderText="Username">
                                             <ItemTemplate><%# Eval("Username") %></ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="From User Id">
-                                            <ItemTemplate>
-                                                <span class="sv-topup-user-cell"><%# Eval("JuniorUserId") %></span>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Level No">
-                                            <ItemTemplate><%# Eval("LevelNo") %></ItemTemplate>
+                                        <asp:TemplateField HeaderText="Plan">
+                                            <ItemTemplate><%# Eval("planname") %></ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Earning Wallet">
                                             <ItemTemplate>
@@ -144,6 +139,11 @@
                                         <asp:TemplateField HeaderText="Total Income">
                                             <ItemTemplate>
                                                 <span class="sv-topup-amount-cell"><%# Eval("Amount") %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Closing Date">
+                                            <ItemTemplate>
+                                                <span class="sv-topup-date-cell"><%# Eval("closingDate") %></span>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Entry Date">

@@ -13,6 +13,9 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.IO;
+using ARA_StringHunt;
+using System.Configuration;
+using BusinessLogicTier;
 
 
 
@@ -533,7 +536,7 @@ public partial class Register : System.Web.UI.Page
 
                     userMail(username, userid, password, useremail);
 
-                    // smssending(number, username, userid, password);
+                     smssending(number, username, userid, password);
 
                     Response.Redirect("user/ConfirmRegistration.aspx");
                 }
@@ -594,18 +597,18 @@ public partial class Register : System.Web.UI.Page
     public string smssending(string number, string username, string userid, string password)
     {
         string txtnumber = number;
-        string txtmessage = "Dear " + username + ",Thank you for choosing  SANDHYA INFO SOLUTION. Please use the following data to login. Your User id :- " + userid + "and Your password :- " + password + ". For login please visit 'https://GOOGLE.COM/'";
+        string txtmessage = "Welcome " + username + " Your Registered Login Id is " + userid + " and Password is " + password + " . for more details please log on to www.usdtworld.club Thank you!";
         //txtmessage = txtmessage.Replace("#", "%23").Replace(":", "%3A").Replace(",", "%2C").Replace(" ", "%20");
 
 
-        string strurl = "http://chatway.in/api/" + txtnumber + "&message=" + txtmessage + "&";
+        string strurl = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=usdtwallet&apikey=D65F1-900D2&apirequest=Text&sender=UPPDTE&mobile=" + txtnumber + "&message=" + txtmessage + "SMS&route=TRANS&TemplateID=1607100000000273633&format=JSON";
 
-        //string strurl = "http://chatway.in/api/send-msg?username=SG686869&number=" + txtnumber + "&message=" + txtmessage + "&token=TDlua0RhVlZQOFhMTGlOSFU3bG5GQT09";
+        //string strurl = "https://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=usdtwallet&apikey=D65F1-900D2&apirequest=Text&sender=UPPDTE&mobile=" + txtnumber + "&message=" + txtmessage + "&token=TDlua0RhVlZQOFhMTGlOSFU3bG5GQT09";
         //string strurl = "http://chatway.in/api/send-file?username=SG686869&number=" + txtnumber + "&message=" + txtmessage + "&token=TDlua0RhVlZQOFhMTGlOSFU3bG5GQT09&file_url=&file_name=";
 
-        string result = apicall(strurl);
-
-        return result;
+      //  string result = apicall(strurl);
+        string res = strurl.CallURL();
+        return res;
     }
 
     public string apicall(string url)

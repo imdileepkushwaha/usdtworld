@@ -9,12 +9,16 @@ using System.Data;
 
 using System.Configuration;
 using BusinessLogicTier;
+using DataTier;
+using ARA_StringHunt;
 
 public partial class WalletTransfer : System.Web.UI.Page
 {
     clsEPin objEPin = new clsEPin();
     clsUser objUser = new clsUser();
     clsAccount objaccount = new clsAccount();
+
+    Data ObjData = new Data();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["userid"] != null)
@@ -80,8 +84,11 @@ public partial class WalletTransfer : System.Web.UI.Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+
+    void insertvalues()
     {
+        if(Session["totp"].ToString()==txtotp.Text)
+        { 
         if (txtuserid.Text != "")
         {
             if (txttransferuserid.Text != "")
@@ -106,6 +113,10 @@ public partial class WalletTransfer : System.Web.UI.Page
                     string rs = objUser.Transferamountwallet(objUser);
                     if (rs == "t")
                     {
+                        pnlotp.Visible = false;
+                        btnotpsubmit.Visible = false;
+                        btnSubmit.Visible = true;
+
                         clsUser cl = new clsUser();
                         cl.UserId = objUser.UserId;
                         DataTable from = cl.getUserName(cl);
@@ -130,19 +141,65 @@ public partial class WalletTransfer : System.Web.UI.Page
                     }
                     else
                         if (rs == "f")
-                        {
-                            Message.Show("balance amount should be greater than transfer amount...!!!");
-                        }
-                        else
+                    {
+                        Message.Show("balance amount should be greater than transfer amount...!!!");
+                    }
+                    else
                             if (rs == "m")
-                            {
-                                Message.Show("both user should be paid user");
-                            }
-                            else
-                            {
-                                Message.Show("Unknown Error Occurred...!!!");
-                            }
+                    {
+                        Message.Show("both user should be paid user");
+                    }
+                    else
+                    {
+                        Message.Show("Unknown Error Occurred...!!!");
+                    }
 
+                }
+                else
+                {
+                    Message.Show("balance amount should be greater than transfer amount...!!!");
+                }
+            }
+            else
+            {
+                Message.Show("Enter transfer user id...!!!");
+            }
+        }
+        else
+        {
+            Message.Show("Enter user id...!!!");
+        }
+        }
+        else
+        {
+            Message.Show("Invalid OTP...!!!");
+        }
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (txtuserid.Text != "")
+        {
+            if (txttransferuserid.Text != "")
+            {
+
+                if (Convert.ToDecimal(txtbalance.Text) >= Convert.ToDecimal(TXtAmount.Text))
+                {
+                    var rand = new Random();
+                    var uid = rand.Next(1000, 10000);
+
+                    string str_otp = uid.ToString();
+                    Session["totp"] = str_otp;
+                    string str_url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=usdtwallet&apikey=D65F1-900D2&apirequest=Text&sender=UPPDTE&mobile=" + Session["Mobile"].ToString() + "&message=Dear Member " + str_otp + " is the Otp For Wallet Transfer, usdwallet. sms&route=TRANS&TemplateID=1607100000000385070&format=JSON";
+                    //string str_url = "http://sms.shortmsgservice.com/sms-panel/api/http/index.php?username=usdtwallet&apikey=D65F1-900D2&apirequest=Text&sender=UPPDTE&mobile=" + "7905329740" + "&message=Dear Member " + str_otp + " is the Otp For Wallet Transfer, usdwallet. sms&route=TRANS&TemplateID=1607100000000385070&format=JSON";
+
+                    string res=   str_url.CallURL();
+                    objUser.Insert_SendSMS(Session["mobile"].ToString(), res, str_url);
+                    pnlotp.Visible = true;
+                    btnotpsubmit.Visible = true;
+
+                    btnSubmit.Visible = false;
+                    Message.Show("OTP Sent To Your Registered Mobile No");
                 }
                 else
                 {
@@ -162,15 +219,36 @@ public partial class WalletTransfer : System.Web.UI.Page
 
     void balance()
     {
-        objaccount.UserId = Session["userId"].ToString();
-        
-        DataTable dtrechrge = objaccount.getUserWalletBalanceReportrechargewallet(objaccount);
-        txtbalance.Text = dtrechrge.Rows[0]["bal"].ToString();
 
+        DataTable dtrechrge = getBalance();
+      
+            txtbalance.Text = dtrechrge.Rows[0]["utilitybalance"].ToString();
        
 
+
+
     }
-   
+
+    public DataTable getBalance()
+    {
+        string str_query = @"select balanceamount,utilitybalance  from userdetail with (nolock) where userid='" + Session["userid"].ToString() + "'";
+
+        //  str_query += " order by sa.instno ";
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(str_query);
+        }
+        catch (Exception ex)
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+        return dt;
+    }
+
+
     protected void txtuserid_TextChanged(object sender, EventArgs e)
     {
         loadusername();
@@ -187,5 +265,10 @@ public partial class WalletTransfer : System.Web.UI.Page
     {
         Response.Redirect("Dashboard.aspx");
     }
-   
+
+
+    protected void btnotpsubmit_Click(object sender, EventArgs e)
+    {
+        insertvalues();
+    }
 }

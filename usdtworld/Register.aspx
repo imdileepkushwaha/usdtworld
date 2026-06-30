@@ -174,18 +174,20 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group" data-aos="fade-up" data-aos-delay="190">
-                                        <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-group__input" runat="server" maxlength="14" placeholder="Phone Number"></asp:TextBox>
-                                        <i class="fas fa-phone form-group__icon"></i>
-                                        <div class="form-group__glow"></div>
-                                    </div>
-                                    <div class="form-group" data-aos="fade-up" data-aos-delay="210">
+
+                                       <div class="form-group" data-aos="fade-up" data-aos-delay="210">
                                         <asp:DropDownList ID="ddcountry" AutoPostBack="true" CssClass="form-group__input" runat="server" OnSelectedIndexChanged="ddcountry_SelectedIndexChanged">
                                             <asp:ListItem Value="0">Country</asp:ListItem>
                                         </asp:DropDownList>
                                         <i class="fas fa-globe form-group__icon"></i>
                                         <div class="form-group__glow"></div>
                                     </div>
+                                    <div class="form-group" data-aos="fade-up" data-aos-delay="190">
+                                        <asp:TextBox ID="txtmobile" onkeypress="return isNumber(event)" CssClass="form-group__input" runat="server" maxlength="14" placeholder="Phone Number"></asp:TextBox>
+                                        <i class="fas fa-phone form-group__icon"></i>
+                                        <div class="form-group__glow"></div>
+                                    </div>
+                                 
                                 </div>
 
                                 <div class="form-row">

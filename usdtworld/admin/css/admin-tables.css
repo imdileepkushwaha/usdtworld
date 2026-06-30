@@ -249,3 +249,33 @@
     background: rgba(239, 68, 68, 0.12);
     color: #dc2626 !important;
 }
+
+/* Request status badges (Pending / Approved / Rejected) */
+.admin-panel .label,
+.admin-panel .adm-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    border: 0;
+}
+
+.admin-panel .label-warning,
+.admin-panel .adm-status-badge--pending {
+    background: rgba(245, 158, 11, 0.14);
+    color: #b45309 !important;
+}
+
+.admin-panel .label-success,
+.admin-panel .adm-status-badge--approved {
+    background: rgba(34, 197, 94, 0.14);
+    color: #15803d !important;
+}
+
+.admin-panel .label-danger,
+.admin-panel .adm-status-badge--rejected {
+    background: rgba(239, 68, 68, 0.14);
+    color: #b91c1c !important;
+}

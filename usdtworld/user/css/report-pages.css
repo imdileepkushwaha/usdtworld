@@ -18,6 +18,25 @@
     box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
 }
 
+.sv-page-header--income-direct .sv-page-header__icon {
+    background: linear-gradient(135deg, #d97706, #fbbf24);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
+}
+
+.sv-page-header--income-level .sv-page-header__icon {
+    background: linear-gradient(135deg, #0891b2, #00d4ff);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.sv-page-header--income-single .sv-page-header__icon {
+    background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+    box-shadow: 0 8px 20px rgba(108, 99, 255, 0.35);
+}
+
+.sv-income-tabs {
+    margin-bottom: 20px;
+}
+
 .sv-form-card--withdraw {
     border-color: rgba(245, 158, 11, 0.22);
 }
@@ -482,6 +501,17 @@
     text-align: center;
     color: var(--rep-muted);
     font-size: 0.9rem;
+}
+
+.sv-report-empty i {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 2rem;
+    color: rgba(108, 99, 255, 0.5);
+}
+
+.sv-report-empty p {
+    margin: 0;
 }
 
 @media (max-width: 991px) {

@@ -89,6 +89,16 @@
     -webkit-text-fill-color: var(--adm-text) !important;
 }
 
+.adm-form-page select.form-control,
+.adm-form-card select.form-control,
+.adm-modal select.form-control {
+    min-height: 46px;
+    border-radius: 12px !important;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
 .adm-form-page .form-control::placeholder,
 .adm-modal .form-control::placeholder {
     color: #94a3b8 !important;

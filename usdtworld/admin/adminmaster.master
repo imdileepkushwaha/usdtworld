@@ -18,12 +18,13 @@
     <link rel="stylesheet" href="../web-assets/css/lib/bootstrap.min.css" />
     <link rel="stylesheet" href="../web-assets/css/lib/apexcharts.css" />
     <link rel="stylesheet" href="../web-assets/css/lib/dataTables.min.css" />
-    <link rel="stylesheet" href="../web-assets/css/lib/flatpickr.min.css" />
     <link rel="stylesheet" href="../web-assets/css/style.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
     <link rel="stylesheet" href="css/admin-dashboard-theme.css" />
     <link rel="stylesheet" href="css/admin-legacy-bridge.css" />
     <link rel="stylesheet" href="css/admin-tables.css" />
     <link rel="stylesheet" href="css/admin-loader.css" />
+    <link rel="stylesheet" href="css/admin-datepicker.css" />
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -127,7 +128,7 @@
                     </ul>
                 </li>
 
-                <li class="dropdown">
+                <li class="dropdown" style="display:none">
                     <a href="javascript:void(0)">
                         <iconify-icon icon="solar:chart-2-outline" class="menu-icon"></iconify-icon>
                         <span>Accounts</span>
@@ -165,14 +166,16 @@
                     </ul>
                 </li>
 
-                <li class="dropdown" style="display:none;">
+                <li class="dropdown">
                     <a href="javascript:void(0)">
                         <iconify-icon icon="solar:chart-outline" class="menu-icon"></iconify-icon>
                         <span>All Income Reports</span>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="#"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Daily Income Report</a></li>
-                        <li><a href="#"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Team Income Report</a></li>
+                        <li><a href="LevelIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Level Income</a></li>
+                        <li><a href="SIngleLegIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Single Leg Income</a></li>
+
+                         <li><a href="#"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Global Non Working Income</a></li>
                     </ul>
                 </li>
 
@@ -311,7 +314,9 @@
     </script>
     <script src="../web-assets/js/lib/jquery-3.7.1.min.js"></script>
     <script src="../web-assets/js/lib/bootstrap.bundle.min.js"></script>
+    <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="js/admin-modal.js"></script>
+    <script src="js/admin-datepicker.js"></script>
     <script src="../web-assets/js/lib/apexcharts.min.js"></script>
     <script src="../web-assets/js/lib/dataTables.min.js"></script>
     <script src="../web-assets/js/lib/iconify-icon.min.js"></script>

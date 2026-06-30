@@ -1,4 +1,4 @@
-﻿﻿using BusinessLogicTier;
+﻿using BusinessLogicTier;
 using System;
 using DataTier;
 using System.Data.SqlClient;
@@ -75,47 +75,56 @@ public partial class admin_UserEdit : System.Web.UI.Page
     void loaddata()
     {
         objUser.UserId = Session["userid"].ToString();
-        DataTable dt = new DataTable();
-        dt = objUser.getUserDetail(objUser);
-        if (dt.Rows.Count > 0)
+        DataTable dt = GetUserDetail(objUser.UserId);
+        if (dt == null || dt.Rows.Count == 0)
         {
-            txtsponserid.Text = dt.Rows[0]["sponserid"].ToString();
-            loadsusername();
-            txtname.Text = dt.Rows[0]["username"].ToString();
-            txtmobile.Text = dt.Rows[0]["mobile"].ToString();
-            txtemail.Text = dt.Rows[0]["email"].ToString();
-            ddgender.SelectedValue = dt.Rows[0]["gender"].ToString();
-            txtaddress.Text = dt.Rows[0]["address"].ToString();
-            ddcountry.SelectedValue = dt.Rows[0]["countryid"].ToString();
-            loadstate();
-            ddstate.SelectedValue = dt.Rows[0]["stateid"].ToString();
-            loadcity();
-            ddcity.SelectedValue = dt.Rows[0]["cityid"].ToString();
-            txtareaname.Text = dt.Rows[0]["areaname"].ToString();
-            txtpincode.Text = dt.Rows[0]["pincode"].ToString();
-            try
-            {
-                txtdateofbirth.Text = Convert.ToDateTime(dt.Rows[0]["dateofbirth"].ToString()).ToString("dd/MM/yyyy");
-            }
-            catch { }
-            txtnomineename.Text = dt.Rows[0]["nomineename"].ToString();
-            txtnomineerelation.Text = dt.Rows[0]["nomineerelation"].ToString();
-            txtaccountholdername.Text = dt.Rows[0]["accountholdername"].ToString();
-            txtaccountno.Text = dt.Rows[0]["accountno"].ToString();
-            txtpan.Text = dt.Rows[0]["pannumber"].ToString();
-            Txtwallettype.Text = dt.Rows[0]["wallettype"].ToString();
-            TxtWalletAdd.Text = dt.Rows[0]["walletaddress"].ToString();
-            txtifsccode.Text = dt.Rows[0]["ifsccode"].ToString();
-            txtbranchname.Text = dt.Rows[0]["branchname"].ToString();
-            ddbank.SelectedValue = dt.Rows[0]["bankname"].ToString();
-            hdstatus.Value = dt.Rows[0]["status"].ToString();
+            Message.Show("Unable to load user profile. Please try again or contact support.");
+            return;
         }
+
+        txtsponserid.Text = dt.Rows[0]["sponserid"].ToString();
+        loadsusername();
+        txtname.Text = dt.Rows[0]["username"].ToString();
+        txtmobile.Text = dt.Rows[0]["mobile"].ToString();
+        txtemail.Text = dt.Rows[0]["email"].ToString();
+        if (ddgender.Items.FindByValue(dt.Rows[0]["gender"].ToString()) != null)
+            ddgender.SelectedValue = dt.Rows[0]["gender"].ToString();
+        txtaddress.Text = dt.Rows[0]["address"].ToString();
+        if (ddcountry.Items.FindByValue(dt.Rows[0]["countryid"].ToString()) != null)
+            ddcountry.SelectedValue = dt.Rows[0]["countryid"].ToString();
+        loadstate();
+        if (ddstate.Items.FindByValue(dt.Rows[0]["stateid"].ToString()) != null)
+            ddstate.SelectedValue = dt.Rows[0]["stateid"].ToString();
+        loadcity();
+        if (ddcity.Items.FindByValue(dt.Rows[0]["cityid"].ToString()) != null)
+            ddcity.SelectedValue = dt.Rows[0]["cityid"].ToString();
+        txtareaname.Text = dt.Rows[0]["areaname"].ToString();
+        txtpincode.Text = dt.Rows[0]["pincode"].ToString();
+        try
+        {
+            txtdateofbirth.Text = Convert.ToDateTime(dt.Rows[0]["dateofbirth"].ToString()).ToString("dd/MM/yyyy");
+        }
+        catch { }
+        txtnomineename.Text = dt.Rows[0]["nomineename"].ToString();
+        txtnomineerelation.Text = dt.Rows[0]["nomineerelation"].ToString();
+        txtaccountholdername.Text = dt.Rows[0]["accountholdername"].ToString();
+        txtaccountno.Text = dt.Rows[0]["accountno"].ToString();
+        txtpan.Text = dt.Rows[0]["pannumber"].ToString();
+        if (dt.Columns.Contains("wallettype"))
+            Txtwallettype.Text = dt.Rows[0]["wallettype"].ToString();
+        if (dt.Columns.Contains("walletaddress"))
+            TxtWalletAdd.Text = dt.Rows[0]["walletaddress"].ToString();
+        txtifsccode.Text = dt.Rows[0]["ifsccode"].ToString();
+        txtbranchname.Text = dt.Rows[0]["branchname"].ToString();
+        if (ddbank.Items.FindByValue(dt.Rows[0]["bankname"].ToString()) != null)
+            ddbank.SelectedValue = dt.Rows[0]["bankname"].ToString();
+        hdstatus.Value = dt.Rows[0]["status"].ToString();
     }
     void loadbank()
     {
         ddbank.Items.Clear();
-        DataTable dt = new DataTable();
-        dt = objbank.getBank();
+        DataTable dt = objbank.getBank();
+        if (dt == null) return;
         ddbank.DataSource = dt;
         ddbank.DataTextField = "BankName";
         ddbank.DataValueField = "BankID";
@@ -126,8 +135,8 @@ public partial class admin_UserEdit : System.Web.UI.Page
     void loadcountry()
     {
         ddcountry.Items.Clear();
-        DataTable dt = new DataTable();
-        dt = objState.getCountry();
+        DataTable dt = objState.getCountry();
+        if (dt == null) return;
         ddcountry.DataSource = dt;
         ddcountry.DataTextField = "CountryName";
         ddcountry.DataValueField = "CountryID";
@@ -138,10 +147,9 @@ public partial class admin_UserEdit : System.Web.UI.Page
     void loadstate()
     {
         ddstate.Items.Clear();
-        DataTable dt = new DataTable();
         objState.CountryId = ddcountry.SelectedValue.ToString();
-        dt = objState.getState(objState);
-
+        DataTable dt = objState.getState(objState);
+        if (dt == null) return;
         ddstate.DataSource = dt;
         ddstate.DataTextField = "StateName";
         ddstate.DataValueField = "StateID";
@@ -152,10 +160,9 @@ public partial class admin_UserEdit : System.Web.UI.Page
     void loadcity()
     {
         ddcity.Items.Clear();
-        DataTable dt = new DataTable();
         objState.StateId = ddstate.SelectedValue.ToString();
-        dt = objState.getCity(objState);
-
+        DataTable dt = objState.getCity(objState);
+        if (dt == null) return;
         ddcity.DataSource = dt;
         ddcity.DataTextField = "CityName";
         ddcity.DataValueField = "CityID";
@@ -270,10 +277,9 @@ public partial class admin_UserEdit : System.Web.UI.Page
 
     void loadsusername()
     {
-        DataTable dt = new DataTable();
         objUser.UserId = txtsponserid.Text;
-        dt = objUser.getUserName(objUser);
-        if (dt.Rows.Count > 0)
+        DataTable dt = objUser.getUserName(objUser);
+        if (dt != null && dt.Rows.Count > 0)
         {
             txtsponsername.Text = dt.Rows[0]["username"].ToString();
         }
@@ -281,7 +287,6 @@ public partial class admin_UserEdit : System.Web.UI.Page
         {
             if (txtsponserid.Text == "0")
             {
-
                 txtsponsername.Text = "Company";
                 txtsponserid.Text = "0";
             }
@@ -297,5 +302,22 @@ public partial class admin_UserEdit : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Response.Redirect("Dashboard.aspx");
+    }
+
+    DataTable GetUserDetail(string userId)
+    {
+        string str_query = "SELECT ud.*,cm.stateid,sm.countryid,sm.statename,CASE WHEN isnull(ud.PhotoImage,'')='' THEN 'img/default.png' ELSE '../ProductImage/'+ud.PhotoImage END AS PhotoImage,(select UserName from userdetail where UserId=ud.sponserid) as Sponsername,(select UserName from userdetail where UserId=ud.parentuserid) as parentname,convert(char,ud.activatedate,103) as activationdate,(select top 1 planamount from UserTopupTb where userid=ud.userid and type='A') planamount FROM userdetail ud left join citymaster cm on ud.cityid=cm.cityid left join statemaster sm on cm.stateid=sm.stateid where ud.UserId = '" + userId + "' ";
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(str_query);
+        }
+        catch
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+        return dt;
     }
 }

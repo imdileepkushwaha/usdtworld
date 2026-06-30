@@ -254,6 +254,47 @@
                         <li>
                             <a href="TopupDetail.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Topup Detail</a>
                         </li>
+
+
+                         <li>
+                            <a href="WalletTransferUSDT.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Wallet Transfer</a>
+                        </li>
+                        <li>
+                            <a href="WalletTransfer.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>P2P Transfer</a>
+                        </li>
+                      
+                      
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="heroicons:document" class="menu-icon"></iconify-icon>
+                        <span>Wallet Management</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                       
+
+
+                         <li>
+                            <a href="WalletTransferUSDT.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Wallet Transfer</a>
+                        </li>
+                        <li>
+                            <a href="WalletTransfer.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>P2P Transfer</a>
+                        </li>
+
+
+                         <li>
+                            <a href="TransactionReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Earning Wallet</a>
+                        </li>
+                        <li>
+                            <a href="TransactionReportTOpup.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Topup Wallet</a>
+                        </li>
+                        <li>
+                            <a href="TransactionReportUpgrade.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Upgrade Wallet</a>
+                        </li>
+                      
                       
                     </ul>
                 </li>
@@ -355,7 +396,7 @@
                         </li>
                        
                          <li>
-                            <a href="#"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>SIngle Leg Income</a>
+                            <a href="SIngleLegIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>SIngle Leg Income</a>
                         </li>
 
                          <li>

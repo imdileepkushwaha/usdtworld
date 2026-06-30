@@ -32,7 +32,12 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
-            <div class="modal2"><div class="center2"><img alt="" src="loader.gif" /></div></div>
+            <div class="sv-page-loader">
+                <div class="sv-page-loader__card">
+                    <div class="sv-page-loader__spinner"></div>
+                    <span class="sv-page-loader__text">Submitting request...</span>
+                </div>
+            </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -57,10 +62,12 @@
                     </div>
                 </div>
 
-                <nav class="sv-topup-tabs" aria-label="Topup sections">
+                <nav class="sv-topup-tabs sv-topup-tabs--wide" aria-label="Topup sections">
                     <a href="TopupRequestAdd.aspx" class="sv-topup-tabs__item sv-topup-tabs__item--active"><i class="fa-solid fa-wallet"></i> Deposit Request</a>
                     <a href="ActivateUserToWallet.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-user-check"></i> Activate User</a>
                     <a href="TopupDetail.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-list-check"></i> Topup Detail</a>
+                    <a href="WalletTransferUSDT.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-right-left"></i> Wallet Transfer</a>
+                    <a href="WalletTransfer.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-people-arrows"></i> P2P Transfer</a>
                 </nav>
 
                 <div class="sv-form-card">

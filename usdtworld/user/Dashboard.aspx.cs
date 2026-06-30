@@ -11,6 +11,9 @@ using System.Data;
 using BusinessLogicTier;
 using System.Web.UI.HtmlControls;
 using System.Web.Services;
+using System.Web.Script.Services;
+using System.Text;
+using ARA_StringHunt;
 
 public partial class user_Dashboard : System.Web.UI.Page
 {
@@ -73,7 +76,7 @@ public partial class user_Dashboard : System.Web.UI.Page
                 GetAllIncome();
                 loadPlans();
 
-
+                BindDashboardQr();
             }
 
 
@@ -482,7 +485,7 @@ public partial class user_Dashboard : System.Web.UI.Page
         }
     }
 
-    [WebMethod]
+    [WebMethod(EnableSession = true)]
     public static int BecomePrimeMember()
     {
         int c = 0;
@@ -508,6 +511,237 @@ public partial class user_Dashboard : System.Web.UI.Page
             c = 3;
         }
         return c;
+    }
+
+    void BindDashboardQr()
+    {
+        if (Session["userid"] == null) return;
+
+        string userId = Session["userid"].ToString();
+        hdnDashUserId.Value = userId;
+
+        objuser.UserId = userId;
+        DataTable dt = getUserDetail(objuser);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            hdnDashUserName.Value = dt.Rows[0]["username"].ToString();
+            hdnProfileQrData.Value = BuildProfileQrPayload(dt.Rows[0]);
+        }
+
+        DataTable bal = GetUtilityBalance(userId);
+        if (bal != null && bal.Rows.Count > 0)
+            hdnDashBalance.Value = bal.Rows[0]["utilitybalance"].ToString();
+    }
+
+    string BuildProfileQrPayload(DataRow row)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("USDTWORLD MEMBER PROFILE");
+        sb.AppendLine("------------------------");
+        sb.AppendLine("User ID: " + row["userid"]);
+        sb.AppendLine("Name: " + row["username"].ToString().Trim());
+        if (row.Table.Columns.Contains("mobile") && row["mobile"] != DBNull.Value)
+            sb.AppendLine("Mobile: " + row["mobile"].ToString().Trim());
+        if (row.Table.Columns.Contains("email") && row["email"] != DBNull.Value)
+            sb.AppendLine("Email: " + row["email"].ToString().Trim());
+        if (row.Table.Columns.Contains("sponserid") && row["sponserid"] != DBNull.Value)
+            sb.AppendLine("Sponsor ID: " + row["sponserid"].ToString().Trim());
+        if (row.Table.Columns.Contains("Sponsername") && row["Sponsername"] != DBNull.Value)
+            sb.AppendLine("Sponsor: " + row["Sponsername"].ToString().Trim());
+        sb.AppendLine("Platform: USDTWorld");
+        return sb.ToString();
+    }
+
+    static DataTable GetUtilityBalance(string userId)
+    {
+        string safeId = userId.Replace("'", "''");
+        string str_query = "select balanceamount, utilitybalance from userdetail with (nolock) where userid='" + safeId + "'";
+        Data objData = new Data();
+        DataTable dt = null;
+        objData.StartConnection();
+        try
+        {
+            dt = objData.RunDataTable(str_query);
+        }
+        catch
+        {
+            dt = null;
+        }
+        objData.EndConnection();
+        return dt;
+    }
+
+    static string GetClientIp()
+    {
+        var ctx = HttpContext.Current;
+        if (ctx == null) return "";
+        string ip = ctx.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        if (string.IsNullOrEmpty(ip))
+            ip = ctx.Request.ServerVariables["REMOTE_ADDR"];
+        return ip ?? "";
+    }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static QrApiResponse LookupQrRecipient(string userId)
+    {
+        try
+        {
+            var session = HttpContext.Current.Session;
+            if (session == null || session["userid"] == null)
+                return QrApiResponse.Fail("Session expired. Please login again.");
+
+            if (string.IsNullOrWhiteSpace(userId))
+                return QrApiResponse.Fail("Invalid User ID in QR code.");
+
+            userId = userId.Trim();
+            if (userId.Equals(session["userid"].ToString(), StringComparison.OrdinalIgnoreCase))
+                return QrApiResponse.Fail("Cannot transfer to yourself.");
+
+            clsUser objUser = new clsUser();
+            objUser.UserId = userId.Replace("'", "''");
+            DataTable dt = objUser.getUserName(objUser);
+            if (dt == null || dt.Rows.Count == 0)
+                return QrApiResponse.Fail("Invalid User Id...!!!");
+
+            string userName = GetRowString(dt.Rows[0], "username", "UserName");
+            return QrApiResponse.Ok(userId, userName);
+        }
+        catch (Exception ex)
+        {
+            return QrApiResponse.Fail("Unable to verify member: " + ex.Message);
+        }
+    }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static QrApiResponse ValidateQrTxnPassword(string password)
+    {
+        try
+        {
+            var session = HttpContext.Current.Session;
+            if (session == null || session["userid"] == null)
+                return QrApiResponse.Fail("Session expired. Please login again.");
+
+            if (string.IsNullOrWhiteSpace(password))
+                return QrApiResponse.Fail("Enter transaction password.");
+
+            clsLogin objlogin = new clsLogin();
+            objlogin.username = session["userid"].ToString();
+            objlogin.password = password;
+            objlogin.ipaddress = GetClientIp();
+
+            DataTable dt = objlogin.Chk_UserLoginDetailstranspassword(objlogin);
+            if (dt == null || dt.Rows.Count == 0)
+                return QrApiResponse.Fail("Invalid transaction password.");
+
+            session["qr_txn_pwd"] = password;
+            session["qr_txn_verified"] = "1";
+            return QrApiResponse.Pass("Transaction password verified.");
+        }
+        catch (Exception ex)
+        {
+            return QrApiResponse.Fail("Verification failed: " + ex.Message);
+        }
+    }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static QrApiResponse SubmitQrTransfer(string toUserId, string amount)
+    {
+        try
+        {
+            var session = HttpContext.Current.Session;
+            if (session == null || session["userid"] == null)
+                return QrApiResponse.Fail("Session expired.");
+
+            if (session["qr_txn_verified"] == null || session["qr_txn_verified"].ToString() != "1")
+                return QrApiResponse.Fail("Verify transaction password first.");
+
+            if (string.IsNullOrWhiteSpace(toUserId))
+                return QrApiResponse.Fail("Recipient not set.");
+
+            decimal transferAmount;
+            if (!decimal.TryParse(amount, NumberStyles.Any, CultureInfo.InvariantCulture, out transferAmount) || transferAmount <= 0)
+                return QrApiResponse.Fail("Enter a valid transfer amount.");
+
+            if (transferAmount % 1 != 0)
+                return QrApiResponse.Fail("Transfer Amount should be multiple of 1 $ ...!!!");
+
+            string fromUserId = session["userid"].ToString();
+            toUserId = toUserId.Trim();
+
+            if (toUserId.Equals(fromUserId, StringComparison.OrdinalIgnoreCase))
+                return QrApiResponse.Fail("Cannot transfer to yourself.");
+
+            DataTable balDt = GetUtilityBalance(fromUserId);
+            if (balDt == null || balDt.Rows.Count == 0)
+                return QrApiResponse.Fail("Unable to read wallet balance.");
+
+            decimal balance;
+            if (!decimal.TryParse(balDt.Rows[0]["utilitybalance"].ToString(), out balance))
+                return QrApiResponse.Fail("Unable to read wallet balance.");
+
+            if (balance < transferAmount)
+                return QrApiResponse.Fail("Balance amount should be greater than transfer amount...!!!");
+
+            clsUser objUser = new clsUser();
+            objUser.UserId = toUserId.Replace("'", "''");
+            DataTable toDt = objUser.getUserName(objUser);
+            if (toDt == null || toDt.Rows.Count == 0)
+                return QrApiResponse.Fail("Invalid recipient user id.");
+
+            objUser.UserId = fromUserId;
+            objUser.TransferUserId = toUserId;
+            objUser.chargeAmount = transferAmount;
+            objUser.MentionBy = fromUserId;
+
+            string rs = objUser.Transferamountwallet(objUser);
+            if (rs == "t")
+            {
+                clsUser cl = new clsUser();
+                cl.UserId = fromUserId;
+                DataTable from = cl.getUserName(cl);
+                string fmob = from.Rows[0]["mobile"].ToString();
+
+                cl.UserId = toUserId;
+                DataTable to = cl.getUserName(cl);
+                string tomob = to.Rows[0]["mobile"].ToString();
+
+                clsLogin objl = new clsLogin();
+                objl.SendsmsWalletTransfer("Dear User, Amont " + objUser.chargeAmount + " has been transferred to User " + objUser.TransferUserId, fmob);
+                objl.SendsmsWalletTransfer("Dear User, Amont " + objUser.chargeAmount + " has been transferred from User " + objUser.UserId, tomob);
+
+                session.Remove("qr_txn_verified");
+                session.Remove("qr_txn_pwd");
+
+                DataTable newBal = GetUtilityBalance(fromUserId);
+                string newBalance = newBal.Rows[0]["utilitybalance"].ToString();
+
+                return QrApiResponse.WithBalance("Wallet transfer successfully...!!!", newBalance);
+            }
+
+            if (rs == "f")
+                return QrApiResponse.Fail("Balance amount should be greater than transfer amount...!!!");
+            if (rs == "m")
+                return QrApiResponse.Fail("Both users should be paid users.");
+
+            return QrApiResponse.Fail("Unknown error occurred...!!!");
+        }
+        catch (Exception ex)
+        {
+            return QrApiResponse.Fail("Transfer failed: " + ex.Message);
+        }
+    }
+
+    static string GetRowString(DataRow row, params string[] columnNames)
+    {
+        foreach (var col in columnNames)
+        {
+            if (row.Table.Columns.Contains(col) && row[col] != DBNull.Value)
+                return row[col].ToString();
+        }
+        return "";
     }
 
 
@@ -1052,4 +1286,39 @@ public partial class user_Dashboard : System.Web.UI.Page
 
     //(Ends)
 
+}
+
+public class QrApiResponse
+{
+    public bool success { get; set; }
+    public string message { get; set; }
+    public string userId { get; set; }
+    public string userName { get; set; }
+    public bool needsOtp { get; set; }
+    public string balance { get; set; }
+
+    public static QrApiResponse Fail(string message)
+    {
+        return new QrApiResponse { success = false, message = message };
+    }
+
+    public static QrApiResponse Ok(string userId, string userName)
+    {
+        return new QrApiResponse { success = true, userId = userId, userName = userName };
+    }
+
+    public static QrApiResponse Pass(string message)
+    {
+        return new QrApiResponse { success = true, message = message };
+    }
+
+    public static QrApiResponse NeedsOtp(string message)
+    {
+        return new QrApiResponse { success = true, needsOtp = true, message = message };
+    }
+
+    public static QrApiResponse WithBalance(string message, string balance)
+    {
+        return new QrApiResponse { success = true, message = message, balance = balance };
+    }
 }

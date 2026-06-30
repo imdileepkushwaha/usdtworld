@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/account-pages.css" rel="stylesheet" />
     <link href="css/messages-page.css" rel="stylesheet" />
+    <link href="css/topup-pages.css" rel="stylesheet" />
     <script type="text/javascript">
         function validate() {
             if (document.getElementById("<%=txtsponserid.ClientID%>").value == "") {
@@ -61,30 +62,6 @@
                 return false;
             }
         }
-
-        function fnprint() {
-
-            $("#btnprint").hide();
-            //Get the HTML of div
-            var divElements = document.getElementById("div_print").innerHTML;
-            //Get the HTML of whole page
-            var oldPage = document.body.innerHTML;
-
-            //Reset the page's HTML with div's HTML only
-            document.body.innerHTML =
-                "<html><head><title></title></head><body>" +
-                divElements + "</body>";
-
-            //Print Page
-            window.print();
-
-            //Restore orignal HTML
-            document.body.innerHTML = oldPage;
-
-            window.location = "UserProfile.aspx";
-
-
-        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
@@ -138,6 +115,9 @@
                     </a>
                 </nav>
 
+                <asp:HiddenField ID="hdnProfileQrData" runat="server" ClientIDMode="Static" />
+                <asp:Label ID="lblQrUserId" runat="server" ClientIDMode="Static" Visible="false" />
+
                 <div class="sv-form-card">
                     <div class="sv-form-card__head">
                         <span class="sv-form-card__head-icon"><i class="fa-solid fa-users"></i></span>
@@ -147,6 +127,8 @@
                         </div>
                     </div>
                     <div class="sv-form-card__body">
+                        <div class="sv-profile-sponsor-layout">
+                            <div class="sv-profile-sponsor-layout__main">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="sv-field">
@@ -236,6 +218,22 @@
                                 <div class="sv-field">
                                     <label class="sv-field__label">Date of Birth</label>
                                     <asp:TextBox ID="txtdateofbirth" CssClass="form-control form_date" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="sv-profile-sponsor-layout__qr">
+                                <div class="sv-topup-qr sv-topup-qr--profile">
+                                    <div class="sv-topup-qr__frame-wrap">
+                                        <div class="sv-topup-qr__frame">
+                                            <div id="profileQrCanvas"></div>
+                                        </div>
+                                    </div>
+                                    <span class="sv-topup-qr__hint">Scan profile QR</span>
+                                </div>
+                                <div class="sv-profile-qr-actions sv-profile-qr-actions--inline">
+                                    <button type="button" class="sv-btn-primary" onclick="printProfileQr();"><i class="fa-solid fa-print"></i> Print</button>
+                                    <button type="button" class="sv-btn-success" onclick="shareProfileQr();"><i class="fa-solid fa-share-nodes"></i> Share</button>
                                 </div>
                             </div>
                         </div>
@@ -356,6 +354,9 @@
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="js/qr-share.js"></script>
+    <script src="js/profile-qr.js"></script>
     <script type="text/javascript">
         $('.form_date').datepicker({
             format: 'dd/mm/yyyy',

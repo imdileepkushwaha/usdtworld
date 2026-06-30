@@ -83,6 +83,11 @@ public partial class user_TransactionPass : System.Web.UI.Page
          {
              Response.Redirect("PurchaseReport.aspx");
          }
+
+         if (Session["pg"] == "wallettransferUSDT")
+         {
+             Response.Redirect("WalletTransferUSDT.aspx");
+         }
          if (Session["pg"] == "coupanassignment")
          {
              Response.Redirect("CouponAssignmentMaster.aspx");

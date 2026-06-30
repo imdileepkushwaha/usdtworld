@@ -1,154 +1,152 @@
-﻿<%@ Page Title="Binary Income Report" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="DirectIncomeReport.aspx.cs" Inherits="admin_UserReport" %>
+﻿<%@ Page Title="Direct Income Report" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="DirectIncomeReport.aspx.cs" Inherits="admin_UserReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="css/account-pages.css" rel="stylesheet" />
+    <link href="css/report-pages.css" rel="stylesheet" />
+    <link href="css/topup-pages.css" rel="stylesheet" />
+    <link href="css/messages-page.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
-    <section class="content-header">
-     
-      <ol class="breadcrumb">
-    <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i> Home > </a></li>
-            <li><a href="#">My Income > </a></li>
-        <li class="active">Direct Income </li>
-      
-      </ol>
-    </section>   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentpageData" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+        <ProgressTemplate>
+            <div class="sv-page-loader">
+                <div class="sv-page-loader__card">
+                    <div class="sv-page-loader__spinner"></div>
+                    <span class="sv-page-loader__text">Loading income report...</span>
+                </div>
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="sv-account-page sv-report-page">
+                <div class="sv-page-header sv-page-header--income-direct">
+                    <div class="sv-page-header__glow sv-page-header__glow--1"></div>
+                    <div class="sv-page-header__glow sv-page-header__glow--2"></div>
+                    <div class="sv-page-header__main">
+                        <div class="sv-page-header__icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                        <div class="sv-page-header__text">
+                            <h1>Direct Income</h1>
+                            <p>View direct referral income credited to your account</p>
+                        </div>
+                    </div>
+                    <div class="sv-page-header__actions">
+                        <a href="Dashboard.aspx" class="sv-page-breadcrumb">
+                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
+                            Dashboard
+                        </a>
+                        <span class="sv-page-header__crumb">My Income / Direct Income</span>
+                    </div>
+                </div>
 
-            <div class="row" style="color:white;">
-          <div class="col-md-12">
-              <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Search Criteria</h3>
+                <nav class="sv-topup-tabs sv-topup-tabs--wide sv-income-tabs" aria-label="Income sections">
+                    <a href="DirectIncomeReport.aspx" class="sv-topup-tabs__item sv-topup-tabs__item--active"><i class="fa-solid fa-user-plus"></i> Direct Income</a>
+                    <a href="LevelIncomeReport.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-layer-group"></i> Level Income</a>
+                    <a href="SIngleLegIncomeReport.aspx" class="sv-topup-tabs__item"><i class="fa-solid fa-diagram-project"></i> Single Leg Income</a>
+                </nav>
+
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Search Criteria</h3>
+                            <p>Filter direct income by date range</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-calendar"></i> From Date</label>
+                                    <asp:TextBox ID="txtfromdate" CssClass="form-control form_date" runat="server" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-calendar-day"></i> To Date</label>
+                                    <asp:TextBox ID="txttodate" CssClass="form-control form_date" runat="server" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sv-field">
+                                    <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> User ID</label>
+                                    <asp:TextBox ID="txtuserid" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sv-report-actions">
+                            <div class="sv-report-actions__left">
+                                <asp:Button ID="btnSubmit" CssClass="sv-btn-primary" runat="server" Text="Search" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnCancel" CssClass="sv-btn-danger" runat="server" Text="Reset" OnClick="btnCancel_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sv-form-card">
+                    <div class="sv-form-card__head">
+                        <span class="sv-form-card__head-icon"><i class="fa-solid fa-list"></i></span>
+                        <div class="sv-form-card__head-text">
+                            <h3>Income Details</h3>
+                            <p>Direct income transaction history</p>
+                        </div>
+                    </div>
+                    <div class="sv-form-card__body">
+                        <div class="sv-report-toolbar">
+                            <p class="sv-report-toolbar__title"><i class="fa-solid fa-table"></i> Direct Income List</p>
+                        </div>
+                        <div class="sv-msg-table-wrap">
+                            <div class="sv-msg-table-scroll">
+                                <asp:GridView ID="GridView1" runat="server" CssClass="sv-msg-table table table-borderless" Width="100%"
+                                    AutoGenerateColumns="False" GridLines="None" OnRowCommand="GridView1_RowCommand"
+                                    EmptyDataText="No direct income records found.">
+                                    <EmptyDataTemplate>
+                                        <div class="sv-report-empty">
+                                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                                            <p>No direct income records found for the selected criteria.</p>
+                                        </div>
+                                    </EmptyDataTemplate>
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="#">
+                                            <ItemTemplate>
+                                                <span class="sv-msg-sr"><%# Container.DataItemIndex + 1 %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="User Id">
+                                            <ItemTemplate>
+                                                <span class="sv-topup-user-cell"><%# Eval("userid") %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="From User ID">
+                                            <ItemTemplate>
+                                                <span class="sv-topup-user-cell"><%# Eval("JuniorUserId") %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Income">
+                                            <ItemTemplate>
+                                                <span class="sv-txn-amount sv-txn-amount--credit"><%# Eval("Amount") %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Date">
+                                            <ItemTemplate>
+                                                <span class="sv-topup-date-cell"><%# Eval("MentionDate") %></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-                   <div class="box-body">
-                  
-                          <div class="row">
-                         <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>From date :</label>
-                                 <asp:TextBox ID="txtfromdate" CssClass="form-control form_date" runat="server"></asp:TextBox>
-                             </div>
-                         </div>
-                         <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>To date :</label>
-                                  <asp:TextBox ID="txttodate"  CssClass="form-control form_date" runat="server"></asp:TextBox>
-                             </div>
-                         </div>
-                               <div class="col-md-4">
-                             <div class="form-group">
-                                 <label>User ID :</label>
-                                  <asp:TextBox ID="txtuserid"  CssClass="form-control" runat="server"></asp:TextBox>
-                             </div>
-                         </div>
-                     </div>
-                         
-                          
-                       </div>
-                         <div class="box-footer">
-                        
-             
-
-                             
-
-                               <asp:Button ID="btnSubmit"  CssClass="btn btn-primary" runat="server" Text="Search" OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="btnCancel" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-                    
-              </div>
-
-
-                  
-              </div>
-
-
-              <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Details</h3>
-            </div>
-                   <div class="box-body">
-                  
-                          <div class="row">
-                         <div class="col-md-12 bg-light">
-                             <div class="form-group">
-                                <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered table-hover dataTable" Width="100%" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
-                               <Columns>
-                                    <asp:TemplateField HeaderText="#">
-                                        <ItemTemplate>
-                                            <%#Container.DataItemIndex+1 %>
-                                          
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                  
-                                     <asp:TemplateField HeaderText="User Id">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lbluserid" runat="server" Text='<%#Eval("userid") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="From User ID">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("JuniorUserId") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Income">
-                                        <ItemTemplate>  
-                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("Amount") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>    
-                                   
-                                    <asp:TemplateField HeaderText="Date">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblemail" runat="server" Text='<%#Eval("MentionDate") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>                                  
-                                                                    
-                                </Columns>
-                            </asp:GridView>
-                             </div>
-                         </div>
-                      
-                            
-                     </div>
-                         
-                          
-                       </div>
-                         <div class="box-footer">
-                        
-             
-
-                           
-                    
-              </div>
-
-
-                  
-              </div>
-
-              </div>
-                  </div>
-
-
-
-
-         
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
-      <script type="text/javascript">
-          $('.form_date').datepicker({
-              format: 'dd/mm/yyyy',
-          }).on('changeDate', function (ev) {
-              $(this).datepicker('hide');
-          });
-     </script>
-       <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
         Sys.Application.add_load(LoadHandler);
         function LoadHandler() {
@@ -158,6 +156,5 @@
                 $(this).datepicker('hide');
             });
         }
-     </script>
+    </script>
 </asp:Content>
-

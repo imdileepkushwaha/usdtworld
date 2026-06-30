@@ -1,0 +1,224 @@
+/* Admin panel — bootstrap-datepicker theme + date input fields */
+
+/* ── Date input fields ── */
+.admin-panel .form-control.form_date,
+.admin-panel input.form_date.form-control,
+.admin-panel .adm-date-input.form-control {
+    min-height: 46px;
+    padding-right: 44px !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--adm-border) !important;
+    background-color: #fafbfc !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%239ca3af'%3E%3Cpath d='M152 64H296V24C296 10.7 306.7 0 320 0C333.3 0 344 10.7 344 24V64H384C419.3 64 448 92.7 448 128V448C448 483.3 419.3 512 384 512H64C28.7 512 0 483.3 0 448V128C0 92.7 28.7 64 64 64H104V24C104 10.7 114.7 0 128 0C141.3 0 152 10.7 152 24V64zM48 192V448C48 456.8 55.2 464 64 464H384C392.8 464 400 456.8 400 448V192H48z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 17px 17px;
+    color: var(--adm-text) !important;
+    -webkit-text-fill-color: var(--adm-text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.admin-panel .adm-input-wrap .form-control.form_date,
+.admin-panel .adm-input-wrap input.form_date.form-control {
+    padding-left: 42px !important;
+    padding-right: 44px !important;
+}
+
+.admin-panel .form-control.form_date:focus,
+.admin-panel input.form_date.form-control:focus,
+.admin-panel .adm-date-input.form-control:focus {
+    background-color: #fff !important;
+    border-color: var(--adm-accent) !important;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.18) !important;
+    outline: none;
+}
+
+.admin-panel .form-control.form_date::placeholder,
+.admin-panel input.form_date.form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+.admin-panel .adm-date-field {
+    position: relative;
+}
+
+.admin-panel .adm-date-field__icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #9ca3af;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ── Calendar popup ── */
+.admin-panel .datepicker.dropdown-menu {
+    z-index: 1060 !important;
+    min-width: 290px;
+    margin-top: 8px;
+    padding: 14px 14px 12px;
+    border: 1px solid var(--adm-border);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 18px 48px rgba(15, 23, 42, 0.14);
+    font-family: var(--adm-font);
+}
+
+.admin-panel .datepicker-dropdown::before,
+.admin-panel .datepicker-dropdown::after {
+    display: none;
+}
+
+.admin-panel .datepicker table {
+    width: 100%;
+    margin: 0;
+}
+
+.admin-panel .datepicker .datepicker-switch,
+.admin-panel .datepicker .prev,
+.admin-panel .datepicker .next,
+.admin-panel .datepicker tfoot tr th {
+    border-radius: 10px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-panel .datepicker .datepicker-switch {
+    font-family: var(--adm-font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--adm-text);
+    padding: 8px 10px;
+}
+
+.admin-panel .datepicker .datepicker-switch:hover,
+.admin-panel .datepicker .prev:hover,
+.admin-panel .datepicker .next:hover,
+.admin-panel .datepicker tfoot tr th:hover {
+    background: #f3f4f6;
+    color: var(--adm-text);
+}
+
+.admin-panel .datepicker .prev,
+.admin-panel .datepicker .next {
+    color: var(--adm-muted);
+    font-size: 0.82rem;
+    line-height: 1;
+}
+
+.admin-panel .datepicker .prev i,
+.admin-panel .datepicker .next i {
+    pointer-events: none;
+}
+
+.admin-panel .datepicker table tr th.dow {
+    padding: 8px 0 10px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--adm-muted);
+}
+
+.admin-panel .datepicker table tr td,
+.admin-panel .datepicker table tr th {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 11px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.admin-panel .datepicker table tr td.day {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--adm-text);
+}
+
+.admin-panel .datepicker table tr td.old,
+.admin-panel .datepicker table tr td.new {
+    color: #c4cad4;
+}
+
+.admin-panel .datepicker table tr td.day:hover,
+.admin-panel .datepicker table tr td.focused {
+    background: #f3f4f6;
+    color: var(--adm-text);
+}
+
+.admin-panel .datepicker table tr td.today {
+    background: rgba(255, 193, 7, 0.14);
+    color: #92400e;
+    border: 1px solid rgba(251, 191, 36, 0.45);
+    font-weight: 600;
+}
+
+.admin-panel .datepicker table tr td.today:hover {
+    background: rgba(255, 193, 7, 0.24);
+    color: #78350f;
+}
+
+.admin-panel .datepicker table tr td.active,
+.admin-panel .datepicker table tr td.active:hover,
+.admin-panel .datepicker table tr td.active.disabled,
+.admin-panel .datepicker table tr td.active.disabled:hover,
+.admin-panel .datepicker table tr td span.active,
+.admin-panel .datepicker table tr td span.active:hover,
+.admin-panel .datepicker table tr td span.active.disabled,
+.admin-panel .datepicker table tr td span.active.disabled:hover {
+    background: linear-gradient(135deg, #fbbf24 0%, #ffc107 100%) !important;
+    color: #1f2937 !important;
+    border: none;
+    font-weight: 700;
+    text-shadow: none;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.35);
+}
+
+.admin-panel .datepicker table tr td.today.active,
+.admin-panel .datepicker table tr td.today.active:hover {
+    border-color: transparent;
+}
+
+.admin-panel .datepicker table tr td.disabled,
+.admin-panel .datepicker table tr td.disabled:hover {
+    color: #d1d5db;
+    background: transparent;
+    cursor: default;
+}
+
+.admin-panel .datepicker table tr td span {
+    display: block;
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    margin: 3px;
+    border-radius: 12px;
+}
+
+.admin-panel .datepicker table tr td span:hover {
+    background: #f3f4f6;
+}
+
+.admin-panel .datepicker tfoot tr th {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--adm-accent-2);
+    padding-top: 8px;
+}
+
+.admin-panel .datepicker tfoot tr th.clear {
+    color: #ef4444;
+}
+
+@media (max-width: 575px) {
+    .admin-panel .datepicker.dropdown-menu {
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        min-width: 0;
+    }
+}

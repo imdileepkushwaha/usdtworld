@@ -16,10 +16,9 @@ public partial class LevelIncomeReport : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Session["userid"] != null)
+            if (Session["useradmin"] != null)
             {
-                txtuserid.Text = Session["userid"].ToString();
-                txtuserid.Enabled = false;
+               
             }
             else
             {
@@ -65,12 +64,12 @@ public partial class LevelIncomeReport : System.Web.UI.Page
     }
     public DataTable getLevelIncome(clsAccount objaccount)
     {
-        string str_query = "SELECT I.Userid,U.UserName,I.JuniorUserId,I.levelNo,I.Amount,Convert(VARCHAR(50),I.MentionDate,103) EntryDate,i.TopupWalletIncome,i.EarningWalletIncome FROM LevelIncomeDetail I JOIN UserDetail U ON I.Userid=U.UserId where levelno !='1'";
+        string str_query = "SELECT pm.planname, I.Userid,U.UserName,I.Amount,Convert(VARCHAR(50),I.MentionDate,103) EntryDate,i.TopupWalletIncome,i.EarningWalletIncome,Convert(VARCHAR(50),I.closingdate ,103) closingdate FROM SingleLegClosingDetailSummary I left JOIN UserDetail U ON I.Userid=U.UserId LEFT JOIN planmaster pm ON pm.id=i.PlanId where 1=1 ";
 
 
         if (objaccount.FromDate != DateTime.MinValue && objaccount.ToDate != DateTime.MinValue)
         {
-            str_query += "  and cast(I.Entrydate as date)  >= cast('" + objaccount.FromDate + "' as date)   and cast(I.Entrydate as date)   <= cast('" + objaccount.ToDate + "' as date) ";
+            str_query += "  and cast(I.closingdate as date)  >= cast('" + objaccount.FromDate + "' as date)   and cast(I.closingdate as date)   <= cast('" + objaccount.ToDate + "' as date) ";
         }
 
 
@@ -80,7 +79,7 @@ public partial class LevelIncomeReport : System.Web.UI.Page
         }
 
 
-        str_query += " order by I.MentionDate  desc";
+        str_query += " order by I.closingdate  desc";
 
 
 

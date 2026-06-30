@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="user_Dashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="user_Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	<style>
@@ -127,6 +127,8 @@ body {
         .warning-table > tbody > tr > td {
             border: 1px solid #e6e3e3;
         }
+
+        
     </style>
 
 
@@ -293,6 +295,9 @@ body {
     <!--(Ends)-->
     <link href="../dist/css/user-profile.css" rel="stylesheet" />
     <link href="css/dashboard-page.css" rel="stylesheet" />
+    <link href="css/account-pages.css" rel="stylesheet" />
+    <link href="css/topup-pages.css" rel="stylesheet" />
+    <link href="css/dashboard-qr.css" rel="stylesheet" />
     <link href="assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
@@ -323,6 +328,14 @@ body {
         </div>
 
         <div class="sv-dash-header__actions">
+            <div class="sv-dash-qr-actions">
+                <button type="button" class="sv-dash-qr-btn" onclick="openQrHubModal('show'); return false;" title="Show my profile QR">
+                    <i class="fa-solid fa-qrcode"></i> Show QR
+                </button>
+                <button type="button" class="sv-dash-qr-btn sv-dash-qr-btn--scan" onclick="openQrHubModal('scan'); return false;" title="Scan QR and transfer">
+                    <i class="fa-solid fa-camera"></i> Scan QR
+                </button>
+            </div>
             <a href="Dashboard.aspx" class="sv-dash-breadcrumb">
                 <iconify-icon icon="solar:home-smile-angle-outline" class="icon"></iconify-icon>
                 Dashboard
@@ -3726,6 +3739,198 @@ Profit Share Budget</p>
         }
     </style>
     <!-- /.box-body -->
+
+    <asp:HiddenField ID="hdnProfileQrData" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdnDashUserId" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdnDashUserName" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdnDashBalance" runat="server" ClientIDMode="Static" />
+
+    <div id="svQrHubModal" class="sv-qr-hub hidden" aria-hidden="true">
+        <div class="sv-qr-hub__backdrop" onclick="closeQrHubModal()"></div>
+        <div class="sv-qr-hub__dialog" role="dialog" aria-labelledby="svQrHubTitle">
+            <div class="sv-qr-hub__head">
+                <div class="sv-qr-hub__head-glow sv-qr-hub__head-glow--1"></div>
+                <div class="sv-qr-hub__head-glow sv-qr-hub__head-glow--2"></div>
+                <div class="sv-qr-hub__head-main">
+                    <div class="sv-qr-hub__head-icon">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <div class="sv-qr-hub__head-text">
+                        <span class="sv-qr-hub__eyebrow">
+                            <span class="sv-qr-hub__pulse"></span>
+                            Quick Pay
+                        </span>
+                        <h3 id="svQrHubTitle">QR Hub</h3>
+                        <!-- <p>Share your profile QR or scan a member to transfer instantly</p> -->
+                    </div>
+                </div>
+                <button type="button" class="sv-qr-hub__close" onclick="closeQrHubModal()" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="sv-qr-hub__body">
+                <div class="sv-qr-hub__tabs">
+                    <button type="button" class="sv-qr-hub__tab sv-qr-hub__tab--active" data-tab="show" onclick="switchQrHubTab('show')">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <span>My QR</span>
+                    </button>
+                    <button type="button" class="sv-qr-hub__tab" data-tab="scan" onclick="switchQrHubTab('scan')">
+                        <i class="fa-solid fa-camera"></i>
+                        <span>Scan &amp; Pay</span>
+                    </button>
+                </div>
+
+                <div class="sv-qr-hub__body-inner">
+                <div id="svQrTabShow" class="sv-qr-hub__panel sv-qr-hub__panel--active">
+                    <!-- <div class="sv-qr-hub__section-label">
+                        <i class="fa-solid fa-id-card"></i> Your Profile QR
+                    </div> -->
+                    <div class="sv-qr-hub__qr-stage">
+                        <div class="sv-topup-qr__frame-wrap">
+                            <div class="sv-topup-qr__frame">
+                                <div id="dashProfileQrCanvas"></div>
+                            </div>
+                        </div>
+                        <div class="sv-qr-hub__user-card">
+                            <span class="sv-qr-hub__user-label">Member</span>
+                            <strong id="lblQrUserId"></strong>
+                        </div>
+                    </div>
+                    <div class="sv-profile-qr-actions sv-profile-qr-actions--inline sv-qr-hub__actions">
+                        <button type="button" class="sv-btn-primary" onclick="printDashQr()"><i class="fa-solid fa-print"></i> Print</button>
+                        <button type="button" class="sv-btn-success" onclick="shareDashQr()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                    </div>
+                </div>
+
+                <div id="svQrTabScan" class="sv-qr-hub__panel">
+                    <div id="svQrScanStep1" class="sv-qr-scan-step">
+                        <p class="sv-qr-scan-step__hint">Point camera at member profile QR code</p>
+                        <div id="qrScannerReader" class="sv-qr-scanner"></div>
+                        <p id="svQrScanMsg" class="sv-qr-scan-msg"></p>
+                        <div class="sv-qr-scan-toolbar">
+                            <button type="button" class="sv-btn-danger sv-qr-scan-stop" id="btnStopScanner" style="display:none;" onclick="stopQrScanner()">Stop Camera</button>
+                            <label class="sv-btn-primary sv-qr-upload-btn">
+                                <i class="fa-solid fa-image"></i> Upload QR Image
+                                <input type="file" id="qrScannerFile" accept="image/*" capture="environment" />
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="svQrScanStep2" class="sv-qr-scan-step hidden">
+                        <div class="sv-qr-inner-card sv-form-card">
+                            <div class="sv-form-card__head">
+                                <span class="sv-form-card__head-icon"><i class="fa-solid fa-key"></i></span>
+                                <div class="sv-form-card__head-text">
+                                    <h3>Transaction Password</h3>
+                                    <p>Verify your transaction password to continue</p>
+                                </div>
+                            </div>
+                            <div class="sv-form-card__body">
+                                <p id="svQrRecipientBadge" class="sv-qr-recipient-badge"></p>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="sv-field">
+                                            <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> User ID</label>
+                                            <input type="text" id="txtQrTxnUserId" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="sv-field">
+                                            <label class="sv-field__label"><i class="fa-solid fa-lock"></i> Transaction Password</label>
+                                            <div class="sv-password-field__wrap">
+                                                <span class="sv-password-field__icon"><i class="fa-solid fa-lock"></i></span>
+                                                <input type="password" id="txtQrTxnPass" class="form-control" placeholder="Enter transaction password" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p id="svQrTxnMsg" class="sv-qr-scan-msg"></p>
+                                <div class="sv-topup-actions">
+                                    <button type="button" class="sv-btn-primary" onclick="verifyQrTxnPassword()"><i class="fa-solid fa-shield-halved"></i> Verify &amp; Continue</button>
+                                    <button type="button" class="sv-btn-danger" onclick="resetQrScanFlow()">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="svQrScanStep3" class="sv-qr-scan-step hidden">
+                        <div class="sv-qr-inner-card sv-form-card">
+                            <div class="sv-form-card__head">
+                                <span class="sv-form-card__head-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                                <div class="sv-form-card__head-text">
+                                    <h3>QR P2P Transfer</h3>
+                                    <p>Confirm recipient and transfer amount</p>
+                                </div>
+                            </div>
+                            <div class="sv-form-card__body">
+                                <div class="sv-topup-section">
+                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-user"></i> Your Account</h4>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="sv-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> User ID</label>
+                                                <input type="text" id="txtQrFromId" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sv-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-user"></i> User Name</label>
+                                                <input type="text" id="txtQrFromName" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sv-topup-section">
+                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-user-group"></i> Recipient</h4>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="sv-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-id-card"></i> Transfer User ID</label>
+                                                <input type="text" id="txtQrToId" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sv-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-user-check"></i> Transfer User Name</label>
+                                                <input type="text" id="txtQrToName" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sv-topup-section">
+                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-coins"></i> Transfer Amount</h4>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="sv-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-scale-balanced"></i> Your Balance</label>
+                                                <input type="text" id="txtQrBalance" class="form-control sv-topup-balance" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sv-field sv-topup-amount-field">
+                                                <label class="sv-field__label"><i class="fa-solid fa-indian-rupee-sign"></i> Transfer Amount</label>
+                                                <input type="number" id="txtQrAmount" class="form-control" placeholder="Enter amount to transfer" min="1" step="1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p id="svQrTransferMsg" class="sv-qr-scan-msg"></p>
+                                <div class="sv-topup-actions">
+                                    <button type="button" class="sv-btn-success" onclick="submitQrTransfer()"><i class="fa-solid fa-paper-plane"></i> Confirm Transfer</button>
+                                    <button type="button" class="sv-btn-danger" onclick="resetQrScanFlow()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
@@ -4070,4 +4275,8 @@ Profit Share Budget</p>
         loadCrypto();
         setInterval(loadCrypto, 30000);
 </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="js/qr-share.js"></script>
+    <script src="js/dashboard-qr.js"></script>
 </asp:Content>
