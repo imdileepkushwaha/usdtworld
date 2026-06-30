@@ -219,9 +219,9 @@ public partial class user_Dashboard : System.Web.UI.Page
         ds = objuser.GetDirect(objuser);
         if (ds.Tables[0].Rows.Count > 0)
         {
-            lblhelp.Text = ds.Tables[0].Rows[0]["roilevelincome"].ToString();
+           // lblhelp.Text = ds.Tables[0].Rows[0]["roilevelincome"].ToString();
             //lblroi.Text = ds.Tables[0].Rows[0]["roiincome"].ToString();
-            lbltotal.Text = ds.Tables[0].Rows[0]["totalincome"].ToString();
+            lbltotalincome.Text = ds.Tables[0].Rows[0]["totalincome"].ToString();
            // lblDirectincome.Text = ds.Tables[0].Rows[0]["directincome"].ToString();
             lblinvamount.Text = ds.Tables[0].Rows[0]["Toupamount"].ToString();
             //LblLevelIncome.Text = ds.Tables[3].Rows[0][0].ToString();
@@ -295,6 +295,8 @@ public partial class user_Dashboard : System.Web.UI.Page
         //LblBinaryIncome.Text = dt.Rows[0]["Binaryincome"].ToString();
         Lblleftbv.Text = dt.Rows[0]["LeftBv"].ToString();
         Lblsingleleg.Text = dt.Rows[0]["singleleg"].ToString();
+
+        Lblsingleincome.Text = dt.Rows[0]["singleincome"].ToString();
         lblgoldirector.Text = dt.Rows[0]["GoldDIrector1"].ToString();
         lblleadership.Text = dt.Rows[0]["leadershipincome1"].ToString();
         lblDIrectorIncome.Text = dt.Rows[0]["directorincome1"].ToString();
@@ -303,7 +305,7 @@ public partial class user_Dashboard : System.Web.UI.Page
         lblselfincome.Text = dt.Rows[0]["selfincome"].ToString();
         Lblrightbv.Text = dt.Rows[0]["RightBv"].ToString();
         lblMatching.Text = dt.Rows[0]["Binaryincome"].ToString();
-        lblhelp.Text = dt.Rows[0]["HelpIncome"].ToString();
+        //lblhelp.Text = dt.Rows[0]["HelpIncome"].ToString();
         lblreward.Text = dt.Rows[0]["RewardIncome"].ToString();
       //  lblroi.Text = dt.Rows[0]["levelroiIncome"].ToString();
         lbltotalincome.Text = dt.Rows[0]["Totalincome"].ToString();
@@ -331,7 +333,7 @@ public partial class user_Dashboard : System.Web.UI.Page
         lbl550.Text = dt.Rows[0]["status550"].ToString();
         lbl100.Text = dt.Rows[0]["status1100"].ToString();
         lblrank2.Text = dt.Rows[0]["categoryname"].ToString();
-        lbltotal.Text = dt.Rows[0]["TotalIncome"].ToString();
+        lbltotalincome.Text = dt.Rows[0]["TotalIncome"].ToString();
         //lblrfrl.Text = dt.Rows[0]["sponcering"].ToString();
 
         // LblTds.Text = dt.Rows[0]["TDS"].ToString();
@@ -535,13 +537,28 @@ public partial class user_Dashboard : System.Web.UI.Page
 
         }
     }
-
+    public DataTable getUserDetail(clsUser objUser)
+    {
+        string str_query = "SELECT ud.*,cm.stateid,sm.countryid,sm.statename,CASE WHEN isnull(ud.PhotoImage,'')='' THEN 'img/default.png' ELSE '../ProductImage/'+ud.PhotoImage END AS PhotoImage,(select UserName from userdetail where UserId=ud.sponserid) as Sponsername,(select UserName from userdetail where UserId=ud.parentuserid) as parentname,convert(char,ud.activatedate,103) as activationdate,(select top 1 planamount from UserTopupTb where userid=ud.userid and type='A') planamount FROM userdetail ud left join citymaster cm on ud.cityid=cm.cityid left join statemaster sm on cm.stateid=sm.stateid where ud.UserId = '" + objUser.UserId + "' ";
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(str_query);
+        }
+        catch (Exception ex)
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+        return dt;
+    }
     void loadnotification()
     {
         objuser.UserId = Session["userid"].ToString();
         DataTable dt = new DataTable();
 
-        dt = objuser.getUserDetail(objuser);
+        dt = getUserDetail(objuser);
         if (dt.Rows[0]["AccountHolderName"].ToString() == "" || dt.Rows[0]["AccountNo"].ToString() == "" || dt.Rows[0]["IFSCCode"].ToString() == "" || dt.Rows[0]["BankName"].ToString() == "" || dt.Rows[0]["BankName"].ToString() == "0" || dt.Rows[0]["BranchName"].ToString() == "" || dt.Rows[0]["PanNumber"].ToString() == "")
         {
             pnlnotification.Visible = true;
@@ -557,7 +574,7 @@ public partial class user_Dashboard : System.Web.UI.Page
     {
         objuser.UserId = Session["userid"].ToString();
         DataTable dt = new DataTable();
-        dt = objuser.getUserDetail(objuser);
+        dt = getUserDetail(objuser);
         if (dt.Rows.Count > 0)
         {
             lbluserid.Text = dt.Rows[0]["userid"].ToString();
@@ -819,7 +836,7 @@ public partial class user_Dashboard : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         objuser.UserId = UserId;
-        dt = objuser.getUserDetail(objuser);
+        dt = getUserDetail(objuser);
         if (dt.Rows.Count > 0)
         {
             lblwalletbalance123.Text = dt.Rows[0]["balanceamount"].ToString();
@@ -836,7 +853,7 @@ public partial class user_Dashboard : System.Web.UI.Page
             DataTable totpup = getUserWalletBalanceReporttopupwallet(objaccount);
             Lbltoupup.Text = totpup.Rows[0]["bal"].ToString();    
             DataTable working = getUserWalletBalanceReportworkingwallet(objaccount);
-            Lblworking.Text = working.Rows[0]["bal"].ToString();
+            Lblupgarde.Text = working.Rows[0]["bal"].ToString();
             DataTable nonworking = getUserWalletBalanceReportnonworkingwallet(objaccount);
             Lblnonworking.Text = nonworking.Rows[0]["bal"].ToString();
 
@@ -868,7 +885,7 @@ public partial class user_Dashboard : System.Web.UI.Page
     }
     public DataTable getUserWalletBalanceReportworkingwallet(clsAccount objaccount)
     {
-        string str_query = "select isnull( sum(cramount),0) as sumCr,isnull( sum(dramount),0) as sumdr,isnull( sum(cramount),0)-isnull( sum(dramount),0) as bal from TransactionDetail td where 1=1 and type=2 ";
+        string str_query = "select isnull( sum(cramount),0) as sumCr,isnull( sum(dramount),0) as sumdr,isnull( sum(cramount),0)-isnull( sum(dramount),0) as bal from TransactionDetailUpgrade td where 1=1 ";
 
         if (objaccount.UserId != "")
         {
@@ -891,7 +908,7 @@ public partial class user_Dashboard : System.Web.UI.Page
 
     public DataTable getUserWalletBalanceReportnonworkingwallet(clsAccount objaccount)
     {
-        string str_query = "select isnull( sum(cramount),0) as sumCr,isnull( sum(dramount),0) as sumdr,isnull( sum(cramount),0)-isnull( sum(dramount),0) as bal from TransactionDetail td where 1=1 and type=1 ";
+        string str_query = "select isnull( sum(cramount),0) as sumCr,isnull( sum(dramount),0) as sumdr,isnull( sum(cramount),0)-isnull( sum(dramount),0) as bal from TransactionDetail td where 1=1 ";
 
         if (objaccount.UserId != "")
         {

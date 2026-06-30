@@ -1,10 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="user_Dashboard" %>
-
-
-
-
-
-
+<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="user_Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	<style>
@@ -479,7 +473,7 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:wallet-outline" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Earning</span>
+                                    <span class="sv-wallet-card__chip"><a href="TransactionReport.aspx">Earning History</a></span>
                                 </div>
                                 <p class="sv-wallet-card__label">Earning Wallet</p>
                                 <div class="sv-wallet-card__amount">
@@ -497,11 +491,11 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:wallet" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Topup</span>
+                                    <span class="sv-wallet-card__chip"><a href="TransactionReportTOpup.aspx">Topup History</a></span>
                                 </div>
                                 <p class="sv-wallet-card__label">Topup Wallet</p>
                                 <div class="sv-wallet-card__amount">
-                                    <asp:Label ID="Lblworking" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
                                 <p class="sv-wallet-card__hint">Available for Topup</p>
@@ -515,11 +509,11 @@ body {
                                     <span class="sv-wallet-card__icon">
                                         <iconify-icon icon="mdi:cash-plus" class="icon"></iconify-icon>
                                     </span>
-                                    <span class="sv-wallet-card__chip">Upgrade</span>
+                                    <span class="sv-wallet-card__chip"><a href="TransactionReportUpgrade.aspx">UPGRADE History</a></span>
                                 </div>
                                 <p class="sv-wallet-card__label">Upgrade Wallet</p>
                                 <div class="sv-wallet-card__amount">
-                                    <asp:Label ID="Lbltoupup" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lblupgarde" CssClass="heading sv-wallet-card__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-wallet-card__currency">USD</span>
                                 </div>
                                 <p class="sv-wallet-card__hint">Upgrade &amp; activation </p>
@@ -922,7 +916,7 @@ body {
                                 </div>
                                 <p class="sv-earn-stat__label">Single Leg Income</p>
                                 <div class="sv-earn-stat__amount">
-                                    <asp:Label ID="lblhelp" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="Lblsingleincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
@@ -957,7 +951,7 @@ body {
                                 </div>
                                 <p class="sv-earn-stat__label">Total Income</p>
                                 <div class="sv-earn-stat__amount">
-                                    <asp:Label ID="lbltotal" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="lbltotalincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
@@ -991,7 +985,7 @@ body {
                                 </div>
                                 <p class="sv-earn-stat__label">Total Income</p>
                                 <div class="sv-earn-stat__amount">
-                                    <asp:Label ID="lbltotalincome" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
+                                    <asp:Label ID="aaa" CssClass="heading sv-earn-stat__value" runat="server" Text="0"></asp:Label>
                                     <span class="sv-earn-stat__currency">USD</span>
                                 </div>
                             </div>
@@ -4076,5 +4070,4 @@ Profit Share Budget</p>
         loadCrypto();
         setInterval(loadCrypto, 30000);
 </script>
-    </div>
 </asp:Content>

@@ -46,7 +46,7 @@ public partial class admin_index : System.Web.UI.Page
                 Session["username"] = dt.Rows[0]["username2"].ToString();
                 Session["UserImage"] = dt.Rows[0]["UserImage"].ToString();
                 Session["status"] = dt.Rows[0]["status1"].ToString();
-                Session["Mobile"] = dt.Rows[0]["status1"].ToString();
+                Session["Mobile"] = dt2.Rows[0]["mobile"].ToString();
                 if (dt.Rows[0]["status123"].ToString() == "1")
                 {
                     ViewState["otp"] = dt.Rows[0]["otp"].ToString();
