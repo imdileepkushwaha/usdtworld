@@ -1,0 +1,324 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="adminmaster.master.cs" Inherits="admin_MasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head id="Head1" runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title><%= clsUtility.ProjectName %> | Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v4-shims.min.css" />
+
+    <link rel="stylesheet" href="../web-assets/css/remixicon.css" />
+    <link rel="stylesheet" href="../web-assets/css/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="../web-assets/css/lib/apexcharts.css" />
+    <link rel="stylesheet" href="../web-assets/css/lib/dataTables.min.css" />
+    <link rel="stylesheet" href="../web-assets/css/lib/flatpickr.min.css" />
+    <link rel="stylesheet" href="../web-assets/css/style.css" />
+    <link rel="stylesheet" href="css/admin-dashboard-theme.css" />
+    <link rel="stylesheet" href="css/admin-legacy-bridge.css" />
+    <link rel="stylesheet" href="css/admin-tables.css" />
+    <link rel="stylesheet" href="css/admin-loader.css" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body class="admin-panel" data-theme="light" data-nav-page="<%= System.IO.Path.GetFileName(Request.Path) %>">
+    <script>
+        (function () {
+            document.body.classList.remove('adm-mobile-nav-open', 'overlay-active');
+            var sidebar = document.querySelector('.sidebar');
+            if (sidebar) sidebar.classList.remove('sidebar-open');
+        })();
+    </script>
+
+    <div class="adm-sidebar-backdrop" id="admSidebarBackdrop" aria-hidden="true"></div>
+
+    <aside class="sidebar adm-sidebar">
+        <button type="button" class="sidebar-close-btn" aria-label="Close menu">
+            <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+        </button>
+
+        <div class="sv-sidebar-brand">
+            <a href="Dashboard.aspx" class="sidebar-logo">
+                <span class="sv-logo-wrap">
+                    <img src="../img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--full" onerror="this.onerror=null;this.src='img/default.png';" />
+                    <img src="../img/usdtw.png" alt="<%= clsUtility.ProjectName %>" class="sv-logo-img sv-logo-img--icon" onerror="this.onerror=null;this.src='img/default.png';" />
+                </span>
+                <span class="sv-logo-text">
+                    <span class="sv-brand-name"><%= clsUtility.ProjectName %></span>
+                    <span class="sv-brand-tag">Admin Panel</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="sidebar-menu-area">
+            <ul class="sidebar-menu" id="sidebar-menu">
+                <li class="sidebar-menu-group"><span>General</span></li>
+                <li>
+                    <a href="Dashboard.aspx">
+                        <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-group"><span>Management</span></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:settings-outline" class="menu-icon"></iconify-icon>
+                        <span>Utility Management</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="CountryAdd.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Add Country</a></li>
+                        <li><a href="StateAdd.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Add State</a></li>
+                        <li><a href="CityAdd.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Add City</a></li>
+                        <li><a href="BankAdd.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Add Bank</a></li>
+                        <li><a href="BankAccountAdd.aspx"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>Bank Account Add</a></li>
+                        <li><a href="deductioncharge.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Deduction Master</a></li>
+                        <li><a href="NewsAdd.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>News Add</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:shop-outline" class="menu-icon"></iconify-icon>
+                        <span>Franchisee Master</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="FranchiseetypeMaster.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Franchisee Type</a></li>
+                        <li><a href="franchiseeAdd.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Franchisee Add</a></li>
+                        <li><a href="FranchiseeReport.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Franchisee Report</a></li>
+                        <li><a href="FranchiseePurchaseMaster.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Product Purchase</a></li>
+                        <li><a href="FranchiseePurchaseDetail.aspx"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>Purchase Report</a></li>
+                        <li><a href="FranchiseeStockDetail.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Stock Details</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:wallet-money-outline" class="menu-icon"></iconify-icon>
+                        <span>Topup Management</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="DepositRequestReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Topup Request Report</a></li>
+                        <li><a href="Usertopupreport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>User Topup Report</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-menu-group"><span>Network &amp; Accounts</span></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                        <span>My Network</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="UserAdd.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Add User</a></li>
+                        <li><a href="UserReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>User Report</a></li>
+                        <li><a href="BinaryReportAutopool.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Autopool Binary</a></li>
+                        <li><a href="UserAutopoolReport.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>User Autopool</a></li>
+                        <li><a href="kycApprovalForUser.aspx"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>Approve KYC</a></li>
+                        <li><a href="DownlineReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Downline Report</a></li>
+                        <li><a href="treeview.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Treeview Report</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" style="display:none">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:chart-2-outline" class="menu-icon"></iconify-icon>
+                        <span>Accounts</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="AutopoolIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Autopool Income</a></li>
+                        <li><a href="RewardIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Reward Income</a></li>
+                        <li><a href="InboxAdmin.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>User Support</a></li>
+                        <li><a href="TransactionReport.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Transaction Report</a></li>
+                        <li><a href="Dailypayoutdetail.aspx"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>Daily Closing</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="hugeicons:money-send-square" class="menu-icon"></iconify-icon>
+                        <span>Fund Request</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="DepositRequestReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Deposit Request</a></li>
+                        <li><a href="WithdrawlRequestReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Withdrawal Request</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-menu-group"><span>Support</span></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:chat-round-dots-outline" class="menu-icon"></iconify-icon>
+                        <span>Customer Care</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="NewMessageAdmin.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Compose Mail</a></li>
+                        <li><a href="InboxAdmin.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Inbox</a></li>
+                        <li><a href="SentboxAdmin.aspx"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i>Sent Mail</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:chart-outline" class="menu-icon"></iconify-icon>
+                        <span>All Income Reports</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="LevelIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Level Income</a></li>
+                        <li><a href="SIngleLegIncomeReport.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Single Leg Income</a></li>
+
+                         <li><a href="#"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Global Non Working Income</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" style="display:none;">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:settings-minimalistic-outline" class="menu-icon"></iconify-icon>
+                        <span>Settings</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="SystemSetting.aspx"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>System Setting</a></li>
+                        <li><a href="MessageSetting.aspx"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>Message Setting</a></li>
+                        <li><a href="IPAdd.aspx"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>Add IP</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="dashboard-main adm-main">
+        <div class="navbar-header adm-navbar">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto">
+                    <div class="d-flex flex-wrap align-items-center gap-4">
+                        <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar">
+                            <iconify-icon icon="heroicons:bars-3-solid" class="icon text-2xl non-active"></iconify-icon>
+                            <iconify-icon icon="iconoir:arrow-right" class="icon text-2xl active"></iconify-icon>
+                        </button>
+                        <button type="button" class="sidebar-mobile-toggle" aria-label="Open menu">
+                            <iconify-icon icon="heroicons:bars-3-solid" class="icon"></iconify-icon>
+                        </button>
+                        <div class="sv-welcome d-none d-lg-block" >
+                            <p class="sv-welcome__label">Welcome back 👋</p>
+                            <p class="sv-welcome__user">
+                                <asp:Literal ID="litAdminWelcome" runat="server" />
+                            </p>
+                            
+                        </div>
+                        <form class="navbar-search d-none d-md-block" onsubmit="return false;">
+                            <input type="text" name="search" placeholder="Search reports, users..." autocomplete="off" />
+                            <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex flex-wrap align-items-center gap-3">
+                        <button class="adm-nav-btn adm-nav-btn--notify has-indicator rounded-circle d-flex justify-content-center align-items-center" type="button" title="Notifications">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="adm-notify-badge">4</span>
+                        </button>
+                        <button class="adm-nav-btn rounded-circle d-flex justify-content-center align-items-center" type="button" onclick="toggleFullScreen()" title="Fullscreen">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="adm-profile-btn d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Admin menu">
+                                <span class="adm-profile-btn__avatar-wrap">
+                                    <img src="img/default.png" class="adm-profile-btn__avatar" alt="Admin" />
+                                    <span class="adm-profile-btn__status" aria-hidden="true"></span>
+                                </span>
+                                <span class="adm-profile-btn__meta d-none d-md-flex">
+                                    <span class="adm-profile-btn__name"><asp:Label ID="LblUsernameSideMenu" runat="server" Text="Admin" /></span>
+                                    <span class="adm-profile-btn__role">Administrator</span>
+                                </span>
+                                <i class="fa-solid fa-chevron-down adm-profile-btn__caret d-none d-md-inline"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end adm-profile-dropdown">
+                                <div class="adm-profile-card">
+                                    <span class="adm-profile-card__avatar-wrap">
+                                        <img src="img/default.png" class="adm-profile-card__avatar" alt="Admin" />
+                                        <span class="adm-profile-card__status" aria-hidden="true"></span>
+                                    </span>
+                                    <div class="adm-profile-card__meta">
+                                        <p class="adm-profile-card__name"><asp:Label ID="LblMainId" runat="server" Text="Admin" /></p>
+                                        <p class="adm-profile-card__role">Administrator</p>
+                                    </div>
+                                </div>
+                                <ul class="adm-profile-menu list-unstyled mb-0">
+                                    <li>
+                                        <a class="dropdown-item adm-profile-menu__item" href="Dashboard.aspx">
+                                            <span class="adm-profile-menu__icon adm-profile-menu__icon--blue"><i class="fa-solid fa-house"></i></span>
+                                            <span class="adm-profile-menu__text">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item adm-profile-menu__item" href="CHangePassword.aspx">
+                                            <span class="adm-profile-menu__icon adm-profile-menu__icon--amber"><i class="fa-solid fa-key"></i></span>
+                                            <span class="adm-profile-menu__text">Change Password</span>
+                                        </a>
+                                    </li>
+                                    <li class="adm-profile-menu__divider" role="separator"></li>
+                                    <li>
+                                        <a class="dropdown-item adm-profile-menu__item adm-profile-menu__item--danger" href="logout.aspx">
+                                            <span class="adm-profile-menu__icon adm-profile-menu__icon--danger"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                            <span class="adm-profile-menu__text">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="form1" runat="server">
+            <div class="dashboard-main-body adm-body">
+                <asp:ContentPlaceHolder ID="contentPageHeading" runat="server"></asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="contentpageData" runat="server"></asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="contentScript" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </form>
+
+        <footer class="d-footer adm-footer">
+            <div class="row align-items-center justify-content-between g-2">
+                <div class="col-auto">
+                    <p class="mb-0">&copy; <%= clsUtility.Session %> <span class="adm-footer-brand"><%= clsUtility.ProjectName %></span>. All rights reserved.</p>
+                </div>
+                <div class="col-auto d-none d-md-block">
+                    <p class="mb-0"><i class="fa-solid fa-shield-halved" style="color:#fbbf24;margin-right:6px;"></i>Secure admin portal</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                if (document.documentElement.requestFullScreen) document.documentElement.requestFullScreen();
+                else if (document.documentElement.mozRequestFullScreen) document.documentElement.mozRequestFullScreen();
+                else if (document.documentElement.webkitRequestFullScreen) document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            } else {
+                if (document.cancelFullScreen) document.cancelFullScreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+            }
+        }
+    </script>
+    <script src="../web-assets/js/lib/jquery-3.7.1.min.js"></script>
+    <script src="../web-assets/js/lib/bootstrap.bundle.min.js"></script>
+    <script src="js/admin-modal.js"></script>
+    <script src="../web-assets/js/lib/apexcharts.min.js"></script>
+    <script src="../web-assets/js/lib/dataTables.min.js"></script>
+    <script src="../web-assets/js/lib/iconify-icon.min.js"></script>
+    <script src="../web-assets/js/app.js"></script>
+    <script src="../user/js/sidebar-menu.js"></script>
+    <script src="js/admin-sidebar.js"></script>
+</body>
+</html>

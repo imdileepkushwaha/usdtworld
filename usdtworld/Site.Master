@@ -1,0 +1,254 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="socialvista.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">USDT World – Crypto, Forex & Stocks Trading</asp:ContentPlaceHolder></title>
+   <meta name="application-name"
+    content="USDT World - Future Of Smart Trading">
+  <meta name="author" content="USDT World">
+  <meta name="keywords" content="USDT World, Crypto, Forex, and Stocks Trading Business">
+  <meta name="description"
+    content="Experience the power of future trading, the ultimate tarding portfolio designed to transform your trading business. With its sleek design and advanced features, USDT World empowers you to showcase your expertise, engage clients, and dominate the markets. Elevate your online presence and unlock new trading possibilities with Bitrader.">
+
+  <!-- OG meta data -->
+  <meta property="og:title"
+    content="USDT World - Future Of Smart Trading">
+  <meta property="og:site_name" content=USDT World>
+  <meta property="og:url" content="index.aspx">
+  <meta property="og:description"
+    content="Welcome to USDT World, the ultimate tarding portfolio designed to transform your trading business. With its sleek and modern design, Bitrader provides a cutting-edge platform to showcase your expertise, attract clients, and stay ahead in the competitive trading markets.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og.png">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/web-style.css">
+
+    <!-- Font Awesome 6.5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        document.documentElement.classList.add('is-loading');
+    </script>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body class="is-loading">
+    <form id="mainForm" runat="server">
+
+    <!-- ═══════ PAGE PRELOADER ═══════ -->
+    <div id="sitePreloader" class="site-preloader" role="status" aria-live="polite" aria-label="Loading USDT World">
+        <div class="site-preloader__bg" aria-hidden="true">
+            <div class="site-preloader__glow site-preloader__glow--1"></div>
+            <div class="site-preloader__glow site-preloader__glow--2"></div>
+            <div class="site-preloader__stars"></div>
+        </div>
+        <div class="site-preloader__inner">
+            <div class="site-preloader__coin-scene">
+                <div class="site-preloader__coin-glow" aria-hidden="true"></div>
+                <div class="site-preloader__orbit site-preloader__orbit--1" aria-hidden="true"></div>
+                <div class="site-preloader__orbit site-preloader__orbit--2" aria-hidden="true"></div>
+                <div class="site-preloader__coin">
+                    <div class="site-preloader__coin-body">
+                        <div class="site-preloader__coin-face site-preloader__coin-face--front">
+                            <span class="site-preloader__coin-rim" aria-hidden="true"></span>
+                            <img src="assets/images/usdtw.png" alt="" onerror="this.onerror=null;this.src='img/usdtw.png';" />
+                        </div>
+                        <div class="site-preloader__coin-edge" aria-hidden="true"></div>
+                        <div class="site-preloader__coin-face site-preloader__coin-face--back">
+                            <span class="site-preloader__coin-rim" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="site-preloader__brand">USDT World</p>
+            <p class="site-preloader__tagline">Future of Smart Trading</p>
+            <div class="site-preloader__bar" aria-hidden="true">
+                <span class="site-preloader__bar-fill"></span>
+            </div>
+            <p class="site-preloader__text">
+                Loading assets
+                <span class="site-preloader__dots"><span>.</span><span>.</span><span>.</span></span>
+            </p>
+        </div>
+    </div>
+    <noscript>
+        <style>
+            .site-preloader { display: none !important; }
+            html.is-loading, body.is-loading { overflow: auto !important; }
+        </style>
+    </noscript>
+    <script>
+        (function () {
+            var preloader = document.getElementById('sitePreloader');
+            if (!preloader) return;
+
+            var MIN_MS = 900;
+            var MAX_MS = 3500;
+            var start = Date.now();
+            var done = false;
+            var barFill = preloader.querySelector('.site-preloader__bar-fill');
+            var loadText = preloader.querySelector('.site-preloader__text');
+
+            function setProgress(pct) {
+                if (barFill) barFill.style.width = Math.min(100, pct) + '%';
+                if (loadText) {
+                    var label = loadText.childNodes[0];
+                    if (label && label.nodeType === 3) label.textContent = 'Ready ';
+                }
+            }
+
+            var progressTimer = setInterval(function () {
+                var elapsed = Date.now() - start;
+                var pct = Math.min(95, Math.round((elapsed / MIN_MS) * 95));
+                setProgress(pct);
+                if (elapsed >= MIN_MS) clearInterval(progressTimer);
+            }, 50);
+
+            function hidePreloader() {
+                if (done) return;
+                done = true;
+                clearInterval(progressTimer);
+                setProgress(100);
+
+                var elapsed = Date.now() - start;
+                var delay = Math.max(0, MIN_MS - elapsed);
+
+                setTimeout(function () {
+                    preloader.classList.add('is-hidden');
+                    document.documentElement.classList.remove('is-loading');
+                    if (document.body) document.body.classList.remove('is-loading');
+
+                    setTimeout(function () {
+                        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                    }, 650);
+                }, delay);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hidePreloader, { once: true });
+            } else {
+                hidePreloader();
+            }
+
+            window.addEventListener('load', hidePreloader, { once: true });
+            setTimeout(hidePreloader, MAX_MS);
+        })();
+    </script>
+
+    <!-- ═══════ NAVBAR ═══════ -->
+    <nav class="navbar-sv" id="mainNavbar">
+        <div class="nav-inner">
+            <a href="index.aspx" class="nav-logo">
+                <img src="assets/images/usdtw.png" alt="USDT World">
+                
+            </a>
+            <ul class="nav-links">
+                <a href="index.aspx#home">Home</a>
+                <a href="index.aspx#token-sale">Token Sale</a>
+                <a href="index.aspx#featured-projects">Featured</a>
+                <a href="index.aspx#launchpad-benefits">Benefits</a>
+                <a href="index.aspx#get-started">Get Started</a>
+                <a href="index.aspx#ecosystem">Ecosystem</a>
+                <a href="index.aspx#about">About</a>
+                <a href="index.aspx#testimonials">Reviews</a>
+                <a href="index.aspx#faq">FAQ</a>
+                <a href="index.aspx#articles">Articles</a>
+            </ul>
+            <div class="nav-actions">
+                <!-- Language Dropdown -->
+                <div class="lang-selector">
+                    <button type="button" class="lang-btn">
+                        <i class="fa-solid fa-globe"></i> EN <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="javascript:void(0)" onclick="translatePage('en')" class="active"><img src="https://flagcdn.com/w20/us.png" alt="English"> English</a>
+                        <a href="javascript:void(0)" onclick="translatePage('es')"><img src="https://flagcdn.com/w20/es.png" alt="Spanish"> Espa&#241;ol</a>
+                        <a href="javascript:void(0)" onclick="translatePage('hi')"><img src="https://flagcdn.com/w20/in.png" alt="Hindi"> &#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</a>
+                        <a href="javascript:void(0)" onclick="translatePage('de')"><img src="https://flagcdn.com/w20/de.png" alt="German"> Deutsch</a>
+                    </div>
+                </div>
+
+                <a href="user/index.aspx" class="btn-nav-login">Sign In</a>
+                <a href="Register.aspx" class="btn-nav-signup">Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;margin-left:4px;"></i></a>
+            </div>
+            <div class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <a href="index.aspx#home">Home</a>
+        <a href="index.aspx#token-sale">Token Sale</a>
+        <a href="index.aspx#featured-projects">Featured</a>
+        <a href="index.aspx#launchpad-benefits">Benefits</a>
+        <!--<a href="index.aspx#get-started">Get Started</a>-->
+        <a href="index.aspx#ecosystem">Ecosystem</a>
+        <a href="index.aspx#about">About</a>
+        <a href="index.aspx#testimonials">Reviews</a>
+        <a href="index.aspx#faq">FAQ</a>
+        <a href="index.aspx#articles">Articles</a>
+        <a href="user/index.aspx">Sign In</a>
+        <a href="Register.aspx" class="btn-nav-signup">Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;margin-left:4px;"></i></a>
+    </div>
+
+    
+
+    <!-- ═══════ PAGE CONTENT ═══════ -->
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="footer">
+        <div class="footer-inner">
+           
+            <div class="footer-bottom">
+                <p>© 2026 USDT World. All rights reserved.</p>
+                <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Google Translate (Hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

@@ -1,0 +1,532 @@
+/* Admin form pages — fields, grids, image upload */
+
+.adm-form-page {
+    margin-bottom: 24px;
+}
+
+.adm-form-page .row {
+    --bs-gutter-x: 20px;
+    --bs-gutter-y: 20px;
+}
+
+/* ── Field label ── */
+.adm-field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--adm-text);
+    letter-spacing: 0.01em;
+}
+
+.adm-field-label .adm-field-label__req {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+/* ── Input with icon ── */
+.adm-input-wrap {
+    position: relative;
+}
+
+.adm-input-wrap__icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #9ca3af;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.adm-input-wrap .form-control {
+    padding-left: 42px !important;
+    min-height: 46px;
+    border-radius: 12px !important;
+    border: 1px solid var(--adm-border) !important;
+    background: #fafbfc !important;
+    color: var(--adm-text) !important;
+    -webkit-text-fill-color: var(--adm-text);
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.adm-input-wrap .form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+.adm-input-wrap .form-control:focus {
+    background: #fff !important;
+    color: var(--adm-text) !important;
+    -webkit-text-fill-color: var(--adm-text) !important;
+    border-color: var(--adm-accent) !important;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.18) !important;
+}
+
+.admin-panel .adm-input-wrap .form-control:-webkit-autofill,
+.admin-panel .adm-input-wrap .form-control:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--adm-text) !important;
+    -webkit-box-shadow: 0 0 0 1000px #fafbfc inset !important;
+    box-shadow: 0 0 0 1000px #fafbfc inset !important;
+}
+
+/* Plain form controls on form pages (no icon wrap) */
+.adm-form-page .form-control,
+.adm-form-card .form-control,
+.adm-modal .form-control {
+    color: var(--adm-text) !important;
+    background: #fafbfc !important;
+    -webkit-text-fill-color: var(--adm-text) !important;
+    border: 1px solid var(--adm-border) !important;
+}
+
+.adm-form-page .form-control:focus,
+.adm-form-card .form-control:focus,
+.adm-modal .form-control:focus {
+    color: var(--adm-text) !important;
+    background: #fff !important;
+    -webkit-text-fill-color: var(--adm-text) !important;
+}
+
+.adm-form-page .form-control::placeholder,
+.adm-modal .form-control::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+}
+
+/* ── Form grid ── */
+.adm-form-grid {
+    display: grid;
+    gap: 18px 20px;
+}
+
+.adm-form-grid--bank {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 1200px) {
+    .adm-form-grid--bank {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .adm-form-grid--bank {
+        grid-template-columns: 1fr;
+    }
+}
+
+.adm-form-grid--full {
+    grid-column: 1 / -1;
+}
+
+.adm-form-grid--settings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 992px) {
+    .adm-form-grid--settings {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .adm-form-grid--settings {
+        grid-template-columns: 1fr;
+    }
+}
+
+.adm-form-section {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+.adm-form-section:first-child {
+    margin-top: 0;
+}
+
+.adm-form-section__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--adm-border);
+    font-family: var(--adm-font-display);
+    font-size: 0.92rem!important;
+    font-weight: 700;
+    color: var(--adm-text);
+}
+
+.adm-form-section__title i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 193, 7, 0.12);
+    color: #d97706;
+    font-size: 0.85rem;
+}
+
+.adm-form-section__grid {
+    display: grid;
+    gap: 18px 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 992px) {
+    .adm-form-section__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .adm-form-section__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.adm-field-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* ── Form card ── */
+.adm-form-card .box-body {
+    padding: 24px 24px 8px !important;
+}
+
+.adm-form-card .box-footer {
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 16px 24px 20px !important;
+}
+
+.adm-form-card .box-footer .btn-primary {
+    min-width: 130px;
+    padding: 10px 22px;
+    font-weight: 600;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(255, 193, 7, 0.28);
+}
+
+.adm-form-card .box-footer .btn-outline-secondary {
+    min-width: 110px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* ── QR / image upload layout ── */
+.adm-upload-field {
+    margin-top: 4px;
+}
+
+.adm-upload-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    align-items: stretch;
+}
+
+@media (max-width: 767px) {
+    .adm-upload-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Preview panel */
+.adm-upload-preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1.5px dashed #d1d5db;
+    background: linear-gradient(180deg, #fafbfc 0%, #f3f4f6 100%);
+    overflow: hidden;
+}
+
+.adm-upload-preview__img {
+    display: block;
+    max-width: 100%;
+    max-height: 168px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid var(--adm-border);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.adm-upload-preview__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    color: #9ca3af;
+    padding: 12px;
+}
+
+.adm-upload-preview__placeholder i {
+    font-size: 2.4rem;
+    color: #d1d5db;
+}
+
+.adm-upload-preview__placeholder span {
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 140px;
+}
+
+.adm-upload-preview.has-image .adm-upload-preview__placeholder {
+    display: none;
+}
+
+.adm-upload-preview.has-image .adm-upload-preview__img {
+    display: block !important;
+}
+
+.adm-upload-preview:not(.has-image) .adm-upload-preview__img {
+    display: none !important;
+}
+
+/* Dropzone */
+.adm-upload-dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 200px;
+    padding: 28px 24px;
+    border-radius: 14px;
+    border: 2px dashed #d1d5db;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adm-upload-dropzone:hover,
+.adm-upload-dropzone.is-dragover {
+    border-color: var(--adm-accent);
+    background: rgba(255, 193, 7, 0.04);
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.1);
+}
+
+.adm-upload-dropzone__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 193, 7, 0.12);
+    color: #d97706;
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.adm-upload-dropzone__title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--adm-text);
+}
+
+.adm-upload-dropzone__hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.adm-upload-dropzone__filename {
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 4px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #f3f4f6;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adm-upload-dropzone__filename.has-file {
+    background: rgba(255, 193, 7, 0.15);
+    color: #92400e;
+}
+
+.adm-upload-dropzone .adm-upload-browse {
+    margin-top: 6px;
+    pointer-events: none;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 7px 16px;
+}
+
+.adm-upload-input {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    z-index: 2;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 0 !important;
+}
+
+/* Table card on form pages */
+.adm-form-page .adm-table-card .box-header {
+    padding: 16px 22px;
+}
+
+.adm-form-page .adm-table-card .box-body--flush {
+    /* padding: 0 !important; */
+    overflow: visible;
+}
+
+.adm-form-page .adm-table-card .table-responsive {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    border: 0;
+    border-radius: 0 0 16px 16px;
+    margin: 0;
+}
+
+/* ── Edit modal ── */
+.adm-modal .modal-content {
+    border: 1px solid var(--adm-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.adm-modal .modal-header {
+    padding: 18px 22px;
+    background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+    border-bottom: 1px solid var(--adm-border);
+}
+
+.adm-modal .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: var(--adm-font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--adm-text);
+}
+
+.adm-modal .modal-title i {
+    color: var(--adm-accent);
+}
+
+.adm-modal .modal-body {
+    padding: 22px 22px 10px;
+}
+
+.adm-modal .modal-footer {
+    padding: 14px 22px 18px;
+    background: #f8fafc;
+    border-top: 1px solid var(--adm-border);
+    gap: 10px;
+}
+
+.adm-modal .adm-form-grid--bank {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 767px) {
+    .adm-modal .adm-form-grid--bank {
+        grid-template-columns: 1fr;
+    }
+}
+
+.adm-qr-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--adm-border);
+    object-fit: contain;
+    background: #fff;
+}
+
+/* Utility Management sub-nav tabs */
+.adm-util-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.adm-util-tabs__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--adm-muted);
+    text-decoration: none !important;
+    background: var(--adm-card);
+    border: 1px solid var(--adm-border);
+    box-shadow: var(--adm-shadow-sm);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.adm-util-tabs__item i {
+    font-size: 0.82rem;
+    opacity: 0.85;
+}
+
+.adm-util-tabs__item:hover {
+    color: var(--adm-text);
+    border-color: rgba(255, 193, 7, 0.45);
+    transform: translateY(-1px);
+}
+
+.adm-util-tabs__item--active {
+    color: #1f2937 !important;
+    background: linear-gradient(135deg, #FFC107 0%, #fbbf24 100%);
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(255, 193, 7, 0.28);
+}
+
+.adm-util-tabs__item--active i {
+    opacity: 1;
+}
+
+@media (max-width: 575px) {
+    .adm-util-tabs__item {
+        flex: 1 1 calc(50% - 4px);
+        justify-content: center;
+        padding: 9px 10px;
+        font-size: 0.76rem;
+    }
+}

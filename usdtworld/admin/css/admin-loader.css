@@ -1,0 +1,186 @@
+/* Admin panel — modern loading overlays (legacy + new markup) */
+:root {
+    --adm-loader-primary: #487fff;
+    --adm-loader-overlay: rgba(15, 23, 42, 0.45);
+}
+
+@keyframes admLoaderSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Keep hidden UpdateProgress from leaking a fixed overlay */
+.admin-panel div[id*="updateProgress"][style*="display: none"],
+.admin-panel div[id*="updateProgress"][style*="display:none"],
+.admin-panel div[id*="UpdateProgress"][style*="display: none"],
+.admin-panel div[id*="UpdateProgress"][style*="display:none"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+/* ── New markup (matches user sv-page-loader, light admin theme) ── */
+.admin-panel .adm-page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--adm-loader-overlay);
+    backdrop-filter: blur(4px);
+}
+
+.admin-panel div[id*="updateProgress"]:not([style*="display: none"]):not([style*="display:none"]) .adm-page-loader,
+.admin-panel div[id*="UpdateProgress"]:not([style*="display: none"]):not([style*="display:none"]) .adm-page-loader {
+    display: flex;
+}
+
+.admin-panel .adm-page-loader__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--adm-card);
+    border: 1px solid var(--adm-border);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+}
+
+.admin-panel .adm-page-loader__spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(72, 127, 255, 0.2);
+    border-top-color: var(--adm-loader-primary);
+    animation: admLoaderSpin 0.8s linear infinite;
+}
+
+.admin-panel .adm-page-loader__text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--adm-muted);
+}
+
+/* ── Legacy modal2 / center2 + loader.gif ── */
+.admin-panel div[id*="updateProgress"]:not([style*="display: none"]):not([style*="display:none"]) .modal2,
+.admin-panel div[id*="UpdateProgress"]:not([style*="display: none"]):not([style*="display:none"]) .modal2 {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--adm-loader-overlay) !important;
+    backdrop-filter: blur(4px);
+    opacity: 1 !important;
+    border: 0 !important;
+}
+
+.admin-panel .modal2 .center2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--adm-card);
+    border: 1px solid var(--adm-border);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+.admin-panel .modal2 .center2 img {
+    display: none !important;
+}
+
+.admin-panel .modal2 .center2::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(72, 127, 255, 0.2);
+    border-top-color: var(--adm-loader-primary);
+    animation: admLoaderSpin 0.8s linear infinite;
+}
+
+.admin-panel .modal2 .center2::after {
+    content: "Loading...";
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--adm-muted);
+    font-family: var(--adm-font);
+}
+
+/* ── Legacy ajax-loader.gif UpdateProgress overlay ── */
+.admin-panel div[id*="updateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"]),
+.admin-panel div[id*="UpdateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"]) {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--adm-loader-overlay) !important;
+    backdrop-filter: blur(4px);
+    opacity: 1 !important;
+    text-align: center !important;
+    border: 0 !important;
+}
+
+.admin-panel div:has(> img[src*="ajax-loader"]) > img {
+    display: none !important;
+}
+
+.admin-panel div[id*="updateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"])::after,
+.admin-panel div[id*="UpdateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"])::after {
+    grid-area: 1 / 1;
+    content: "Loading...";
+    width: 168px;
+    min-height: 108px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 24px 22px;
+    box-sizing: border-box;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--adm-muted);
+    font-family: var(--adm-font);
+    background: var(--adm-card);
+    border: 1px solid var(--adm-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+    z-index: 1;
+}
+
+.admin-panel div[id*="updateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"])::before,
+.admin-panel div[id*="UpdateProgress"]:not([style*="display: none"]):not([style*="display:none"]) > div:has(> img[src*="ajax-loader"])::before {
+    grid-area: 1 / 1;
+    content: "";
+    width: 40px;
+    height: 40px;
+    margin-bottom: 38px;
+    border-radius: 50%;
+    border: 3px solid rgba(72, 127, 255, 0.2);
+    border-top-color: var(--adm-loader-primary);
+    animation: admLoaderSpin 0.8s linear infinite;
+    z-index: 2;
+}

@@ -1,0 +1,193 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+
+using System.Configuration;
+using BusinessLogicTier;
+using DataTier;
+
+public partial class WalletTransfer : System.Web.UI.Page
+{
+    clsEPin objEPin = new clsEPin();
+    clsUser objUser = new clsUser();
+    clsAccount objaccount = new clsAccount();
+
+    Data ObjData = new Data();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["userid"] != null)
+        {
+            if (!IsPostBack)
+            {
+
+                loadvalue();
+            }
+        }
+        else
+        {
+            Response.Redirect("index.aspx");
+        }
+    }
+
+
+
+
+
+    public string Insert_wallettransfer()
+    {
+       
+        string res = "";
+        string s2 = "";
+        SqlConnection cn;
+        SqlTransaction tr = null;
+        DataSet ds = new DataSet();
+        cn = ObjData.StartConnectionInTransaction();
+        tr = cn.BeginTransaction(IsolationLevel.Serializable);
+
+        try
+        {
+            s2 = "sp_WalletTransferSelf";
+            SqlParameter[] parameter = {
+                new SqlParameter("@UserId",Session["userid"].ToString()),
+                new SqlParameter("@Amount",TXtAmount.Text),
+                new SqlParameter("@MentionBy",Session["userid"].ToString()),
+                new SqlParameter("@fromWalletType",ddfromwallet.SelectedValue.ToString()),
+                new SqlParameter("@toWalletType",ddtowallet.SelectedValue.ToString()),
+
+                };
+            res = ObjData.RunInsUpDelQueryTransProcScalar(s2, tr, parameter);
+            tr.Commit();
+        }
+        catch (Exception ex)
+        {
+            res = "0";
+            tr.Rollback();
+        }
+        finally
+        {
+            ObjData.EndConnection();
+            tr.Dispose();
+        }
+        return res;
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        
+           
+
+                if (Convert.ToDecimal(txtbalance.Text) >= Convert.ToDecimal(TXtAmount.Text))
+                {
+               
+                    string rs = Insert_wallettransfer();
+                    if (rs == "t")
+                    {
+                     
+                       Message.Show("wallet transfer Successfully...!!!");
+                     
+                        balance();
+                //txtuserid.Text = "";
+                // txtusername.Text = "";
+                TXtAmount.Text = "";
+
+                    }
+                    else
+                        if (rs == "f")
+                        {
+                            Message.Show("balance amount should be greater than transfer amount...!!!");
+                        }
+                        else
+                            if (rs == "m")
+                            {
+                                Message.Show("both user should be paid user");
+                            }
+                            else
+                            {
+                                Message.Show("Unknown Error Occurred...!!!");
+                            }
+
+                }
+                else
+                {
+                    Message.Show("balance amount should be greater than transfer amount...!!!");
+                }
+          
+    }
+
+    void balance()
+    {
+        
+        DataTable dtrechrge = getBalance();
+        if (ddfromwallet.SelectedValue == "Earning")
+        {
+            txtbalance.Text = dtrechrge.Rows[0]["balanceamount"].ToString();
+        }
+        else if (ddfromwallet.SelectedValue == "Topup")
+        {
+            txtbalance.Text = dtrechrge.Rows[0]["utilitybalance"].ToString();
+        }
+
+
+
+    }
+
+    public DataTable getBalance()
+    {
+        string str_query = @"select balanceamount,utilitybalance  from userdetail with (nolock) where userid='" + Session["userid"].ToString() + "'";
+
+      //  str_query += " order by sa.instno ";
+        DataTable dt = null;
+        ObjData.StartConnection();
+        try
+        {
+            dt = ObjData.RunDataTable(str_query);
+        }
+        catch (Exception ex)
+        {
+            dt = null;
+        }
+        ObjData.EndConnection();
+        return dt;
+    }
+
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("dashboard.aspx");
+    }
+    protected void btnCancel_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect("Dashboard.aspx");
+    }
+
+
+    protected void ddfromwallet_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        loadvalue();
+    }
+    void loadvalue()
+    {
+        ddtowallet.Items.Clear();
+
+
+        if (ddfromwallet.SelectedValue == "Earning")
+        {
+            ListItem li = new ListItem("Topup", "Topup");
+            ddtowallet.Items.Insert(0, li);
+
+            ListItem li2 = new ListItem("Upgrade", "Upgrade");
+            ddtowallet.Items.Insert(1, li2);
+        }
+        else
+        {
+            ListItem li2 = new ListItem("Upgrade", "Upgrade");
+            ddtowallet.Items.Insert(0, li2);
+        }
+        balance();
+    }
+}
