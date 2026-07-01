@@ -128,7 +128,7 @@ body {
             border: 1px solid #e6e3e3;
         }
 
-        
+
     </style>
 
 
@@ -3860,48 +3860,11 @@ Profit Share Budget</p>
                                 <span class="sv-form-card__head-icon"><i class="fa-solid fa-paper-plane"></i></span>
                                 <div class="sv-form-card__head-text">
                                     <h3>QR P2P Transfer</h3>
-                                    <p>Confirm recipient and transfer amount</p>
+                                    <p>Enter transfer amount from your wallet balance</p>
                                 </div>
                             </div>
                             <div class="sv-form-card__body">
-                                <div class="sv-topup-section">
-                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-user"></i> Your Account</h4>
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <div class="sv-field">
-                                                <label class="sv-field__label"><i class="fa-solid fa-id-badge"></i> User ID</label>
-                                                <input type="text" id="txtQrFromId" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="sv-field">
-                                                <label class="sv-field__label"><i class="fa-solid fa-user"></i> User Name</label>
-                                                <input type="text" id="txtQrFromName" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="sv-topup-section">
-                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-user-group"></i> Recipient</h4>
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <div class="sv-field">
-                                                <label class="sv-field__label"><i class="fa-solid fa-id-card"></i> Transfer User ID</label>
-                                                <input type="text" id="txtQrToId" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="sv-field">
-                                                <label class="sv-field__label"><i class="fa-solid fa-user-check"></i> Transfer User Name</label>
-                                                <input type="text" id="txtQrToName" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="sv-topup-section">
-                                    <h4 class="sv-topup-section__title"><i class="fa-solid fa-coins"></i> Transfer Amount</h4>
+                                <div class="sv-topup-section sv-topup-section--compact">
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <div class="sv-field">

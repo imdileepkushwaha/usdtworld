@@ -520,11 +520,8 @@
     };
 
     function openTransferForm() {
-        if (byId('txtQrFromId')) byId('txtQrFromId').value = getUserId();
-        if (byId('txtQrFromName')) byId('txtQrFromName').value = getUserName();
-        if (byId('txtQrToId')) byId('txtQrToId').value = scanState.toUserId;
-        if (byId('txtQrToName')) byId('txtQrToName').value = scanState.toUserName;
         if (byId('txtQrBalance')) byId('txtQrBalance').value = getBalance();
+        if (byId('txtQrAmount')) byId('txtQrAmount').value = '';
 
         showScanStep(3);
         setMsg('svQrTransferMsg', '');

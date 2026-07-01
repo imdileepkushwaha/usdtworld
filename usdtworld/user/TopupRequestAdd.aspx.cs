@@ -1,4 +1,4 @@
-﻿﻿using BusinessLogicTier;
+﻿using BusinessLogicTier;
 using DataTier;
 using System;
 using System.Collections.Generic;
@@ -117,8 +117,12 @@ public partial class user_TopupRequestAdd : System.Web.UI.Page
     void loadnotification()
     {
         objUser.UserId = Session["userid"].ToString();
-        DataTable dt = new DataTable();
-        dt = objUser.getUserDetail(objUser);
+        DataTable dt = objUser.getUserDetail(objUser);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return;
+        }
+
         if (dt.Rows[0]["activestatus"].ToString() == "0")
         {
             Response.Redirect("Dashboard.aspx");
