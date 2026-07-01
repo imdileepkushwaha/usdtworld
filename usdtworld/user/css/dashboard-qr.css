@@ -618,6 +618,14 @@
     min-width: 120px;
 }
 
+.sv-qr-hub .sv-topup-actions .sv-btn-primary:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
+}
+
 .sv-qr-scan-stop {
     justify-content: center;
 }
