@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using BusinessLogicTier;
+using DataTier;
 
 public partial class LiveChatPage : Page
 {
@@ -90,20 +91,19 @@ public partial class LiveChatPage : Page
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static ChatSearchResponse SearchByMobile(string mobile)
+    public static ChatSearchResponse SearchMember(string query)
     {
         try
         {
             var auth = RequireSession();
             if (auth != null) return ChatSearchResponse.FromFail(auth.message);
 
-            if (string.IsNullOrWhiteSpace(mobile))
-                return ChatSearchResponse.NotFound("Enter a mobile number to search.");
+            if (string.IsNullOrWhiteSpace(query))
+                return ChatSearchResponse.NotFound("Enter mobile number or user ID to search.");
 
-            clsLiveChat chat = new clsLiveChat();
-            DataTable dt = chat.SearchUserByMobile(mobile, CurrentUserId());
+            DataTable dt = SearchMemberTable(query, CurrentUserId());
             if (dt == null || dt.Rows.Count == 0)
-                return ChatSearchResponse.NotFound("No data found for this mobile number.");
+                return ChatSearchResponse.NotFound("No data found for this mobile number or user ID.");
 
             DataRow row = dt.Rows[0];
             bool isActive = GetBool(row, "IsActive") || string.Equals(GetString(row, "Status"), "Active", StringComparison.OrdinalIgnoreCase);
@@ -125,6 +125,55 @@ public partial class LiveChatPage : Page
         {
             return ChatSearchResponse.FromFail("Search failed: " + ex.Message);
         }
+    }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static ChatSearchResponse SearchByMobile(string mobile)
+    {
+        return SearchMember(mobile);
+    }
+
+    static DataTable SearchMemberTable(string query, string currentUserId)
+    {
+        string term = EscSql((query ?? "").Trim());
+        string normalized = EscSql(NormalizeSearchMobile(query));
+        if (string.IsNullOrEmpty(term)) return null;
+
+        string matchSql = "LTRIM(RTRIM(ud.UserId)) = '" + term + "'";
+        if (!string.IsNullOrEmpty(normalized))
+            matchSql += " OR REPLACE(REPLACE(REPLACE(ISNULL(ud.Mobile, ''), ' ', ''), '-', ''), '+', '') = '" + normalized + "'";
+
+        string sql = @"SELECT TOP 1 ud.UserId, ud.UserName, ud.Mobile,
+            CASE WHEN ISNULL(ud.Status, 0) = 1 THEN 'Active' ELSE 'Deactive' END AS Status,
+            CASE WHEN ISNULL(ud.Status, 0) = 1 THEN 1 ELSE 0 END AS IsActive
+            FROM UserDetail ud
+            WHERE ud.UserId <> '" + EscSql(currentUserId) + @"'
+            AND (" + matchSql + @")";
+
+        Data objData = new Data();
+        DataTable dt = null;
+        objData.StartConnection();
+        try
+        {
+            dt = objData.RunDataTable(sql);
+        }
+        finally
+        {
+            objData.EndConnection();
+        }
+        return dt;
+    }
+
+    static string EscSql(string value)
+    {
+        return (value ?? "").Replace("'", "''").Trim();
+    }
+
+    static string NormalizeSearchMobile(string mobile)
+    {
+        if (string.IsNullOrWhiteSpace(mobile)) return "";
+        return mobile.Replace(" ", "").Replace("-", "").Replace("+", "").Trim();
     }
 
     [WebMethod(EnableSession = true)]

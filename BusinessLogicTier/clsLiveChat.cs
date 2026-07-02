@@ -55,16 +55,26 @@ END";
 
         public DataTable SearchUserByMobile(string mobile, string currentUserId)
         {
+            return SearchMember(mobile, currentUserId);
+        }
+
+        public DataTable SearchMember(string query, string currentUserId)
+        {
             EnsureTable();
-            string normalized = Esc(NormalizeMobile(mobile));
-            if (string.IsNullOrEmpty(normalized)) return null;
+            string term = Esc((query ?? "").Trim());
+            string normalized = Esc(NormalizeMobile(query));
+            if (string.IsNullOrEmpty(term)) return null;
+
+            string matchSql = "LTRIM(RTRIM(ud.UserId)) = '" + term + "'";
+            if (!string.IsNullOrEmpty(normalized))
+                matchSql += " OR REPLACE(REPLACE(REPLACE(ISNULL(ud.Mobile, ''), ' ', ''), '-', ''), '+', '') = '" + normalized + "'";
 
             string sql = @"SELECT TOP 1 ud.UserId, ud.UserName, ud.Mobile,
                 CASE WHEN ISNULL(ud.Status, 0) = 1 THEN 'Active' ELSE 'Deactive' END AS Status,
                 CASE WHEN ISNULL(ud.Status, 0) = 1 THEN 1 ELSE 0 END AS IsActive
                 FROM UserDetail ud
-                WHERE REPLACE(REPLACE(REPLACE(ISNULL(ud.Mobile, ''), ' ', ''), '-', ''), '+', '') = '" + normalized + @"'
-                AND ud.UserId <> '" + Esc(currentUserId) + "'";
+                WHERE ud.UserId <> '" + Esc(currentUserId) + @"'
+                AND (" + matchSql + @")";
 
             DataTable dt = null;
             ObjData.StartConnection();

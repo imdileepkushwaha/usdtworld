@@ -111,6 +111,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="SpotCoinPrice.aspx">
+                        <iconify-icon icon="solar:chart-2-outline" class="menu-icon"></iconify-icon>
+                        <span>Spot Coin Price</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-group"><span>Network &amp; Accounts</span></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">

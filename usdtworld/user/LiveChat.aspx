@@ -23,7 +23,7 @@
                         Member Connect
                     </span>
                     <h1>Live Chat</h1>
-                    <p>Search members by mobile number and chat in real time</p>
+                    <p>Search by mobile number or user ID and chat in real time</p>
                 </div>
             </div>
 
@@ -47,11 +47,11 @@
             <aside class="sv-livechat-sidebar" aria-label="Chat contacts">
                 <div class="sv-livechat-sidebar__head">
                     <h3>Find Member</h3>
-                    <p>Search by mobile number to start a conversation</p>
+                    <p>Search by mobile number or user ID</p>
                     <div class="sv-livechat-search">
                         <div class="sv-livechat-search__input-wrap">
-                            <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
-                            <input type="tel" id="txtSearchMobile" maxlength="15" placeholder="Enter mobile number" autocomplete="off" />
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                            <input type="text" id="txtSearchMobile" maxlength="30" placeholder="Mobile number or User ID" autocomplete="off" />
                         </div>
                         <button type="button" id="btnSearchMobile">Search</button>
                     </div>
@@ -87,7 +87,7 @@
                         <i class="fa-solid fa-comments"></i>
                     </div>
                     <h4>Select a conversation</h4>
-                    <p>Search a member by mobile number or pick someone from your recent chats to start messaging.</p>
+                    <p>Search a member by mobile number or user ID, or pick someone from your recent chats to start messaging.</p>
                 </div>
 
                 <div id="chatMessages" class="sv-livechat-messages" style="display:none;"></div>
@@ -121,5 +121,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
-    <script src="js/live-chat.js"></script>
+    <script src="js/live-chat.js?v=2"></script>
 </asp:Content>

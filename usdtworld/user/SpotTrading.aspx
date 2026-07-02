@@ -105,7 +105,7 @@
                                 <span class="sv-spot-hero__tag">Spot</span>
                                 <span class="sv-spot-hero__tag sv-spot-hero__tag--live"><span class="sv-spot-live-dot"></span>Live</span>
                             </div>
-                            <span class="sv-spot-hero__sub" id="svSpotIntervalLabel"><i class="fa-solid fa-chart-line"></i> 1m candles</span>
+                            <span class="sv-spot-hero__sub" id="svSpotIntervalLabel"><i class="fa-solid fa-chart-line"></i> 15m candles</span>
                         </div>
                     </div>
                 </div>
@@ -167,9 +167,10 @@
                             <h6><i class="fa-solid fa-chart-line"></i> UWC+ Chart</h6>
 
                             <div class="sv-spot-intervals" role="group" aria-label="Chart interval">
-                                <button type="button" class="sv-spot-interval is-active" data-interval="1">1m</button>
+                                <button type="button" class="sv-spot-interval" data-interval="1">1m</button>
                                 <button type="button" class="sv-spot-interval" data-interval="5">5m</button>
-                                <button type="button" class="sv-spot-interval" data-interval="15">15m</button>
+                                <button type="button" class="sv-spot-interval is-active" data-interval="15">15m</button>
+                                <button type="button" class="sv-spot-interval" data-interval="1440">1d</button>
                             </div>
 
                         </div>
@@ -502,7 +503,7 @@
 
                                 <li><span>24h volume</span><strong id="svSpotInfoVolume">—</strong></li>
 
-                                <li><span>Interval</span><strong id="svSpotInfoInterval">1 minute</strong></li>
+                                <li><span>Interval</span><strong id="svSpotInfoInterval">15 minutes</strong></li>
 
                                 <li><span>Order type</span><strong>Market</strong></li>
 
@@ -528,7 +529,7 @@
 
     <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
 
-    <script src="js/spot-trading.js"></script>
+    <script src="js/spot-trading.js?v=8"></script>
 
 </asp:Content>
 

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
-using BusinessLogicTier;
 using DataTier;
 
 public partial class user_SpotTrading : Page
@@ -101,6 +100,41 @@ public partial class user_SpotTrading : Page
         return true;
     }
 
+    static SpotCoinPriceConfig LoadMarketConfig()
+    {
+        return new clsSpotCoinPrice().GetActiveConfig();
+    }
+
+    static bool IsPriceWithinTolerance(decimal submittedPrice, decimal marketPrice)
+    {
+        if (marketPrice <= 0) return submittedPrice > 0;
+        decimal diff = Math.Abs(submittedPrice - marketPrice);
+        decimal tolerance = marketPrice * 0.05m;
+        if (tolerance < 0.00000001m) tolerance = 0.00000001m;
+        return diff <= tolerance;
+    }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static SpotMarketConfigResponse GetSpotMarketConfig()
+    {
+        try
+        {
+            string userId = CurrentUserId();
+            if (string.IsNullOrEmpty(userId))
+                return SpotMarketConfigResponse.Fail("Session expired. Please login again.");
+
+            SpotCoinPriceConfig config = LoadMarketConfig();
+            decimal currentPrice = clsSpotCoinPrice.ComputeCurrentPrice(config);
+
+            return SpotMarketConfigResponse.Ok(config, currentPrice);
+        }
+        catch (Exception ex)
+        {
+            return SpotMarketConfigResponse.Fail("Unable to load market config: " + ex.Message);
+        }
+    }
+
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static SpotApiResponse GetSpotState()
@@ -129,8 +163,14 @@ public partial class user_SpotTrading : Page
             if (string.IsNullOrEmpty(userId))
                 return SpotApiResponse.Fail("Session expired. Please login again.");
 
+            SpotCoinPriceConfig config = LoadMarketConfig();
+            decimal marketPrice = clsSpotCoinPrice.ComputeCurrentPrice(config);
+
             if (price <= 0)
                 return SpotApiResponse.Fail("Invalid market price.");
+
+            if (!IsPriceWithinTolerance(price, marketPrice))
+                return SpotApiResponse.Fail("Price changed. Please refresh and try again.");
 
             if (amount <= 0)
                 return SpotApiResponse.Fail("Enter a valid amount.");
@@ -192,6 +232,49 @@ public partial class user_SpotTrading : Page
         {
             return SpotApiResponse.Fail("Trade failed: " + ex.Message);
         }
+    }
+}
+
+public class SpotMarketConfigResponse
+{
+    public bool success { get; set; }
+    public string message { get; set; }
+    public string coinSymbol { get; set; }
+    public string startPrice { get; set; }
+    public string targetPrice { get; set; }
+    public int durationMonths { get; set; }
+    public string startDate { get; set; }
+    public string endDate { get; set; }
+    public string currentPrice { get; set; }
+    public string minPrice { get; set; }
+    public string maxPrice { get; set; }
+    public string floorPrice { get; set; }
+    public string ceilingPrice { get; set; }
+    public string dailyIncreasePercent { get; set; }
+
+    public static SpotMarketConfigResponse Fail(string message)
+    {
+        return new SpotMarketConfigResponse { success = false, message = message };
+    }
+
+    public static SpotMarketConfigResponse Ok(SpotCoinPriceConfig config, decimal currentPrice)
+    {
+        return new SpotMarketConfigResponse
+        {
+            success = true,
+            coinSymbol = config.CoinSymbol,
+            startPrice = config.StartPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            targetPrice = config.TargetPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            durationMonths = config.DurationMonths,
+            startDate = config.StartDate.ToString("o", CultureInfo.InvariantCulture),
+            endDate = config.EndDate.ToString("o", CultureInfo.InvariantCulture),
+            currentPrice = currentPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            minPrice = config.MinPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            maxPrice = config.MaxPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            floorPrice = config.FloorPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            ceilingPrice = config.CeilingPrice.ToString("0.########", CultureInfo.InvariantCulture),
+            dailyIncreasePercent = config.DailyIncreasePercent.ToString("0.########", CultureInfo.InvariantCulture)
+        };
     }
 }
 

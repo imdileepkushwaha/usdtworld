@@ -105,7 +105,7 @@
             showSearchResult(
                 '<div class="sv-livechat-search-result__meta">' +
                     '<strong>' + escHtml(res.user.userName) + ' — Not Active</strong>' +
-                    '<span>' + escHtml(res.user.mobile) + ' · This member cannot receive messages right now.</span>' +
+                    '<span>' + escHtml(res.user.mobile) + ' · ID: ' + escHtml(res.user.userId) + ' · This member cannot receive messages right now.</span>' +
                 '</div>',
                 'sv-livechat-search-result--inactive'
             );
@@ -114,7 +114,7 @@
 
         if (res.resultType === 'not_found') {
             showSearchResult(
-                '<div class="sv-livechat-search-result__meta"><strong>No data found</strong><span>' + escHtml(res.message || 'No member exists with this mobile number.') + '</span></div>',
+                '<div class="sv-livechat-search-result__meta"><strong>No data found</strong><span>' + escHtml(res.message || 'No member exists with this mobile number or user ID.') + '</span></div>',
                 'sv-livechat-search-result--notfound'
             );
             return;
@@ -134,7 +134,7 @@
             list.innerHTML =
                 '<div class="sv-livechat-list__empty">' +
                     '<i class="fa-solid fa-inbox"></i>' +
-                    'No conversations yet. Search a mobile number to start chatting.' +
+                    'No conversations yet. Search by mobile number or user ID to start chatting.' +
                 '</div>';
             return;
         }
@@ -393,18 +393,18 @@
         }
     }
 
-    function searchMobile() {
+    function searchMember() {
         var input = byId('txtSearchMobile');
-        var mobile = input ? input.value.trim() : '';
-        if (!mobile) {
+        var query = input ? input.value.trim() : '';
+        if (!query) {
             showSearchResult(
-                '<div class="sv-livechat-search-result__meta"><strong>Enter mobile number</strong><span>Type a mobile number to search.</span></div>',
+                '<div class="sv-livechat-search-result__meta"><strong>Enter search term</strong><span>Type a mobile number or user ID.</span></div>',
                 'sv-livechat-search-result--error'
             );
             return;
         }
 
-        postWebMethod('SearchByMobile', { mobile: mobile }, function (res) {
+        postWebMethod('SearchMember', { query: query }, function (res) {
             renderSearchResult(res);
         }, function (err) {
             showSearchResult(
@@ -583,7 +583,7 @@
         var txtSearch = byId('txtSearchMobile');
         var txtMessage = byId('txtChatMessage');
 
-        if (btnSearch) btnSearch.addEventListener('click', searchMobile);
+        if (btnSearch) btnSearch.addEventListener('click', searchMember);
 
         if (btnAttach && fileInput) {
             btnAttach.addEventListener('click', function () {
@@ -621,7 +621,7 @@
             txtSearch.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    searchMobile();
+                    searchMember();
                 }
             });
             txtSearch.addEventListener('input', function () {
