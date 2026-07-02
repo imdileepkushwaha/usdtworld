@@ -70,6 +70,7 @@
     <Compile Include="clsdthsuscription.cs" />
     <Compile Include="clsEPin.cs" />
     <Compile Include="clsfranchisee.cs" />
+    <Compile Include="clsLiveChat.cs" />
     <Compile Include="clsLogin.cs" />
     <Compile Include="Clsmail.cs" />
     <Compile Include="clsMoneyTransfer.cs" />

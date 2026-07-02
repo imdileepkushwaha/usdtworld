@@ -86,6 +86,13 @@
         };
     }
 
+    function setVerifyContinueEnabled(enabled) {
+        var btn = byId('btnQrVerifyContinue');
+        if (!btn) return;
+        btn.disabled = !enabled;
+        btn.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+    }
+
     function proceedToTxnStep(userId, userName, statusMsg) {
         scanState.toUserId = userId;
         scanState.toUserName = userName || '';
@@ -102,6 +109,7 @@
         showScanStep(2);
         setScanMsg('', false);
         setMsg('svQrTxnMsg', statusMsg || '', false);
+        setVerifyContinueEnabled(false);
     }
 
     function setMsg(elId, text, isError) {
@@ -460,6 +468,7 @@
         setMsg('svQrTxnMsg', '');
         setMsg('svQrTransferMsg', '');
         setScanMsg('', false);
+        setVerifyContinueEnabled(true);
 
         showScanStep(1);
 
@@ -487,21 +496,32 @@
                 'Recipient: ' + qrRecipient.userId + (qrRecipient.userName ? ' — ' + qrRecipient.userName : '')
             );
 
+            if (qrRecipient.userId.toLowerCase() === getUserId().toLowerCase()) {
+                setMsg('svQrTxnMsg', 'Cannot transfer to yourself.', true);
+                setVerifyContinueEnabled(false);
+                return;
+            }
+
             postWebMethod('LookupQrRecipient', { userId: qrRecipient.userId }, function (res) {
                 if (res && res.success) {
                     scanState.toUserId = res.userId;
                     scanState.toUserName = res.userName;
                     setMsg('svQrTxnMsg', 'Recipient: ' + res.userId + ' — ' + res.userName, false);
+                    setVerifyContinueEnabled(true);
                     return;
                 }
                 if (res && res.message) {
                     setMsg('svQrTxnMsg', res.message, true);
                 }
+                setVerifyContinueEnabled(false);
             });
         });
     }
 
     window.verifyQrTxnPassword = function () {
+        var btn = byId('btnQrVerifyContinue');
+        if (btn && btn.disabled) return;
+
         var password = byId('txtQrTxnPass') ? byId('txtQrTxnPass').value : '';
         setMsg('svQrTxnMsg', '');
 

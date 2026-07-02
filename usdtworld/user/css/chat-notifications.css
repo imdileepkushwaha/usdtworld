@@ -1,0 +1,157 @@
+/* Live chat — global notifications */
+.sv-livechat-menu-link {
+    position: relative;
+}
+
+.sv-livechat-menu-badge,
+.sv-chat-nav-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.9);
+}
+
+.sv-livechat-menu-badge {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+.sv-livechat-menu-badge.is-visible,
+.sv-chat-nav-badge.is-visible {
+    display: inline-flex;
+}
+
+.sv-chat-nav-btn {
+    position: relative;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.sv-chat-nav-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.sv-chat-toast-wrap {
+    position: fixed;
+    top: 88px;
+    right: 18px;
+    z-index: 10050;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: min(360px, calc(100vw - 24px));
+    pointer-events: none;
+}
+
+.sv-chat-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 41, 59, 0.95) 100%);
+    border: 1px solid rgba(108, 99, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    color: #e8edf5;
+    cursor: pointer;
+    transform: translateX(110%);
+    opacity: 0;
+    animation: svChatToastIn 0.35s ease forwards;
+}
+
+.sv-chat-toast.is-leaving {
+    animation: svChatToastOut 0.28s ease forwards;
+}
+
+@keyframes svChatToastIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes svChatToastOut {
+    to {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+}
+
+.sv-chat-toast__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.35), rgba(0, 212, 255, 0.2));
+    color: #fff;
+    font-size: 1rem;
+}
+
+.sv-chat-toast__body {
+    min-width: 0;
+    flex: 1;
+}
+
+.sv-chat-toast__title {
+    margin: 0 0 4px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sv-chat-toast__text {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.sv-chat-toast__time {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    color: #64748b;
+}
+
+.sv-chat-toast__close {
+    border: 0;
+    background: transparent;
+    color: #94a3b8;
+    padding: 2px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.sv-chat-toast__close:hover {
+    color: #fff;
+}
+
+@media (max-width: 575px) {
+    .sv-chat-toast-wrap {
+        top: auto;
+        bottom: 16px;
+        right: 12px;
+        left: 12px;
+        max-width: none;
+    }
+}
