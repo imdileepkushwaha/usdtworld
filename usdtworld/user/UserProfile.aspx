@@ -355,8 +355,8 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentScript" runat="Server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="js/qr-share.js"></script>
-    <script src="js/profile-qr.js"></script>
+    <script src="js/qr-share.js?v=3"></script>
+    <script src="js/profile-qr.js?v=3"></script>
     <script type="text/javascript">
         $('.form_date').datepicker({
             format: 'dd/mm/yyyy',

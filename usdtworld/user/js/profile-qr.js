@@ -1,5 +1,6 @@
 (function () {
     var qrInstance = null;
+    var lastKnownQrSrc = '';
 
     function getQrData() {
         var el = document.getElementById('hdnProfileQrData');
@@ -11,16 +12,56 @@
         return el ? el.innerText.trim() : 'profile';
     }
 
+    function getQrContainer() {
+        return document.getElementById('profileQrCanvas');
+    }
+
     function clearQrContainer() {
-        var container = document.getElementById('profileQrCanvas');
+        var container = getQrContainer();
         if (!container) return;
         container.innerHTML = '';
         qrInstance = null;
+        lastKnownQrSrc = '';
+    }
+
+    function captureRenderedQrSrc(attempt) {
+        var container = getQrContainer();
+        if (!container) return;
+
+        var src = '';
+        if (window.SvQrShare && SvQrShare.readElementSrc) {
+            src = SvQrShare.readElementSrc(container);
+        } else {
+            var canvas = container.querySelector('canvas');
+            var img = container.querySelector('img');
+            if (canvas && canvas.width > 0) {
+                try { src = canvas.toDataURL('image/png'); } catch (e) { }
+            } else if (img && img.src) {
+                src = img.src;
+            }
+        }
+
+        if (src) {
+            lastKnownQrSrc = src;
+            if (window.SvQrShare && SvQrShare.prebuild) {
+                SvQrShare.prebuild({
+                    getDetails: getQrData,
+                    getUserId: getUserId,
+                    getQrElement: getQrContainer,
+                    getCachedSrc: function () { return lastKnownQrSrc; }
+                });
+            }
+            return;
+        }
+
+        if (attempt < 25) {
+            setTimeout(function () { captureRenderedQrSrc(attempt + 1); }, 120);
+        }
     }
 
     function renderProfileQr() {
         var data = getQrData();
-        var container = document.getElementById('profileQrCanvas');
+        var container = getQrContainer();
         if (!container || !data || typeof QRCode === 'undefined') return;
 
         clearQrContainer();
@@ -32,95 +73,47 @@
             colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.M
         });
+
+        setTimeout(function () { captureRenderedQrSrc(0); }, 150);
     }
 
-    function getQrImageElement() {
-        var container = document.getElementById('profileQrCanvas');
-        if (!container) return null;
-        return container.querySelector('img') || container.querySelector('canvas');
-    }
-
-    function getQrImageSrc(size, callback) {
-        var data = getQrData();
-        if (!data || typeof QRCode === 'undefined') return;
-
-        var tempDiv = document.createElement('div');
-        tempDiv.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
-        document.body.appendChild(tempDiv);
-
-        new QRCode(tempDiv, {
-            text: data,
-            width: size,
-            height: size,
-            colorDark: '#0f172a',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.M
-        });
-
-        setTimeout(function () {
-            var qrEl = tempDiv.querySelector('img') || tempDiv.querySelector('canvas');
-            var src = '';
-            if (qrEl) {
-                src = qrEl.tagName === 'CANVAS' ? qrEl.toDataURL('image/png') : qrEl.src;
-            }
-            document.body.removeChild(tempDiv);
-            callback(src);
-        }, 120);
+    function getShareOptions() {
+        return {
+            getDetails: getQrData,
+            getUserId: getUserId,
+            getQrElement: getQrContainer,
+            getCachedSrc: function () { return lastKnownQrSrc; }
+        };
     }
 
     window.printProfileQr = function () {
-        if (!getQrData()) {
+        if (window.SvQrShare && SvQrShare.print) {
+            SvQrShare.print(getShareOptions());
+            return;
+        }
+        alert('QR print is not available. Please refresh the page.');
+    };
+
+    window.downloadProfileQr = function () {
+        var container = getQrContainer();
+        if (!container) {
             alert('QR code is not ready yet. Please wait a moment.');
             return;
         }
 
-        getQrImageSrc(420, function (src) {
-            if (!src) {
-                alert('Unable to generate QR for printing.');
-                return;
-            }
+        var src = lastKnownQrSrc;
+        if (!src && window.SvQrShare && SvQrShare.readElementSrc) {
+            src = SvQrShare.readElementSrc(container);
+        }
 
-            var win = window.open('', '_blank');
-            if (!win) {
-                alert('Please allow pop-ups to print the QR code.');
-                return;
-            }
-
-            win.document.write(
-                '<!DOCTYPE html><html><head><title>Profile QR</title>' +
-                '<style>' +
-                '@page { margin: 12mm; size: auto; }' +
-                'html, body { margin: 0; padding: 0; height: 100%; }' +
-                'body { display: flex; align-items: center; justify-content: center; background: #fff; }' +
-                'img { width: 340px; height: 340px; display: block; }' +
-                '@media print { img { width: 300px; height: 300px; } }' +
-                '</style></head><body>' +
-                '<img src="' + src + '" alt="Profile QR Code" />' +
-                '</body></html>'
-            );
-            win.document.close();
-            win.onload = function () {
-                win.focus();
-                win.print();
-                win.close();
-            };
-        });
-    };
-
-    window.downloadProfileQr = function () {
-        var qrEl = getQrImageElement();
-        if (!qrEl) {
+        if (!src) {
             alert('QR code is not ready yet. Please wait a moment.');
             return;
         }
 
         var link = document.createElement('a');
         link.download = 'usdtworld-profile-' + getUserId() + '.png';
-        if (qrEl.tagName === 'CANVAS') {
-            link.href = qrEl.toDataURL('image/png');
-        } else {
-            link.href = qrEl.src;
-        }
+        link.href = src;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -157,10 +150,7 @@
 
     window.shareProfileQr = function () {
         if (window.SvQrShare && SvQrShare.share) {
-            SvQrShare.share({
-                getDetails: getQrData,
-                getUserId: getUserId
-            });
+            SvQrShare.share(getShareOptions());
             return;
         }
 
@@ -179,6 +169,12 @@
         document.addEventListener('DOMContentLoaded', initProfileQr);
     } else {
         initProfileQr();
+    }
+
+    if (typeof Sys !== 'undefined' && Sys.Application) {
+        Sys.Application.add_load(function () {
+            initProfileQr();
+        });
     }
 
     if (typeof Sys !== 'undefined' && Sys.WebForms && Sys.WebForms.PageRequestManager) {

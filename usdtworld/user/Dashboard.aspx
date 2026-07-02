@@ -3813,8 +3813,11 @@ Profit Share Budget</p>
                             <button type="button" class="sv-btn-danger sv-qr-scan-stop" id="btnStopScanner" style="display:none;" onclick="stopQrScanner()">Stop Camera</button>
                             <label class="sv-btn-primary sv-qr-upload-btn">
                                 <i class="fa-solid fa-image"></i> Upload QR Image
-                                <input type="file" id="qrScannerFile" accept="image/*" capture="environment" />
+                                <input type="file" id="qrScannerFile" accept="image/*" />
                             </label>
+                            <button type="button" class="sv-btn-danger sv-qr-scan-close" onclick="closeQrHubModal()">
+                                <i class="fa-solid fa-xmark"></i> Close
+                            </button>
                         </div>
                     </div>
 
@@ -4260,7 +4263,7 @@ Profit Share Budget</p>
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-    <script src="js/qr-share.js"></script>
-    <script src="js/dashboard-qr.js"></script>
+    <script src="js/qr-share.js?v=3"></script>
+    <script src="js/dashboard-qr.js?v=3"></script>
     <script src="js/dashboard-live-chat-fab.js"></script>
 </asp:Content>

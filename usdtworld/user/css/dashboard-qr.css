@@ -45,6 +45,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .sv-qr-hub.hidden {
@@ -52,7 +53,7 @@
 }
 
 .sv-qr-hub__backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(4, 8, 18, 0.82);
     backdrop-filter: blur(10px);
@@ -60,8 +61,9 @@
 
 .sv-qr-hub__dialog {
     position: relative;
+    z-index: 1;
     width: min(100%, 500px);
-    max-height: min(92vh, 760px);
+    max-height: min(92vh, 92dvh, 760px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -82,6 +84,7 @@
     gap: 14px;
     padding: 22px 22px 20px;
     overflow: hidden;
+    flex-shrink: 0;
     border-bottom: 1px solid rgba(108, 99, 255, 0.14);
     background:
         linear-gradient(135deg, rgba(108, 99, 255, 0.14) 0%, transparent 55%),
@@ -216,9 +219,12 @@
 
 /* ── Body ── */
 .sv-qr-hub__body {
-    flex: 1;
+    flex: 1 1 auto;
     min-height: 0;
+    overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 16px 18px 20px;
     background:
         radial-gradient(ellipse 80% 50% at 50% 0%, rgba(108, 99, 255, 0.06) 0%, transparent 70%),
@@ -424,11 +430,18 @@
 }
 
 .sv-qr-scan-toolbar .sv-qr-scan-stop,
-.sv-qr-scan-toolbar .sv-qr-upload-btn {
+.sv-qr-scan-toolbar .sv-qr-upload-btn,
+.sv-qr-scan-toolbar .sv-qr-scan-close {
     flex: 1;
     min-width: 140px;
     justify-content: center;
     margin-top: 0;
+}
+
+.sv-qr-scan-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .sv-qr-upload-btn {
@@ -667,28 +680,147 @@
     }
 
     .sv-qr-hub {
-        padding: 12px;
+        padding: 0;
         align-items: flex-end;
+        justify-content: stretch;
     }
 
     .sv-qr-hub__dialog {
-        border-radius: 20px 20px 0 0;
-        max-height: 94vh;
+        width: 100%;
+        max-width: none;
+        max-height: min(94dvh, 94vh);
+        border-radius: 18px 18px 0 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
     }
 
     .sv-qr-hub__head {
-        padding: 18px 16px 16px;
+        padding: 14px 14px 12px;
+    }
+
+    .sv-qr-hub__head-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .sv-qr-hub__head h3 {
+        font-size: 1.05rem !important;
     }
 
     .sv-qr-hub__head p {
         max-width: none;
+        font-size: 0.8rem;
     }
 
     .sv-qr-hub__body {
-        padding: 14px 14px 18px;
+        padding: 12px 12px calc(14px + env(safe-area-inset-bottom, 0px));
     }
 
     .sv-qr-hub__body-inner {
-        padding: 14px 12px 12px;
+        padding: 12px 10px 10px;
+    }
+
+    .sv-qr-hub__tab {
+        padding: 9px 8px;
+        font-size: 0.76rem;
+        gap: 6px;
+    }
+
+    .sv-qr-hub__tab span {
+        white-space: nowrap;
+    }
+
+    .sv-qr-hub__qr-stage .sv-topup-qr__frame {
+        width: min(188px, 58vw);
+        height: min(188px, 58vw);
+        padding: 10px;
+    }
+
+    .sv-qr-hub__qr-stage #dashProfileQrCanvas {
+        width: min(168px, 52vw);
+        height: min(168px, 52vw);
+    }
+
+    .sv-qr-hub__qr-stage #dashProfileQrCanvas canvas,
+    .sv-qr-hub__qr-stage #dashProfileQrCanvas img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .sv-qr-hub__user-card {
+        margin-top: 12px;
+        padding: 10px 14px;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .sv-qr-hub__actions {
+        margin-top: 14px !important;
+        padding-top: 12px;
+    }
+
+    .sv-profile-qr-actions--inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sv-profile-qr-actions--inline .sv-btn-primary,
+    .sv-profile-qr-actions--inline .sv-btn-success {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sv-qr-scanner {
+        min-height: 220px;
+    }
+
+    .sv-qr-scanner video {
+        min-height: 200px;
+    }
+
+    .sv-qr-scan-step__hint {
+        display: none !important;
+    }
+
+    .sv-qr-scan-stop,
+    #btnStopScanner {
+        display: none !important;
+    }
+
+    .sv-qr-scan-toolbar {
+        flex-direction: column;
+    }
+
+    .sv-qr-scan-toolbar .sv-qr-upload-btn,
+    .sv-qr-scan-toolbar .sv-qr-scan-close {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sv-qr-scan-actions {
+        flex-direction: column;
+    }
+
+    .sv-qr-scan-actions .sv-btn-primary,
+    .sv-qr-scan-actions .sv-btn-success,
+    .sv-qr-scan-actions .sv-btn-danger {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .sv-qr-hub__qr-stage .sv-topup-qr__frame {
+        width: min(168px, 72vw);
+        height: min(168px, 72vw);
+    }
+
+    .sv-qr-hub__qr-stage #dashProfileQrCanvas {
+        width: min(148px, 64vw);
+        height: min(148px, 64vw);
     }
 }
