@@ -298,6 +298,7 @@ body {
     <link href="css/account-pages.css" rel="stylesheet" />
     <link href="css/topup-pages.css" rel="stylesheet" />
     <link href="css/dashboard-qr.css" rel="stylesheet" />
+    <link href="css/dashboard-live-chat-fab.css" rel="stylesheet" />
     <link href="assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPageHeading" runat="Server">
@@ -3847,7 +3848,7 @@ Profit Share Budget</p>
                                 </div>
                                 <p id="svQrTxnMsg" class="sv-qr-scan-msg"></p>
                                 <div class="sv-topup-actions">
-                                    <button type="button" class="sv-btn-primary" onclick="verifyQrTxnPassword()"><i class="fa-solid fa-shield-halved"></i> Verify &amp; Continue</button>
+                                    <button type="button" id="btnQrVerifyContinue" class="sv-btn-primary" onclick="verifyQrTxnPassword()"><i class="fa-solid fa-shield-halved"></i> Verify &amp; Continue</button>
                                     <button type="button" class="sv-btn-danger" onclick="resetQrScanFlow()">Back</button>
                                 </div>
                             </div>
@@ -3893,6 +3894,25 @@ Profit Share Budget</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="svDashChatFab" class="sv-dash-chat-fab" aria-label="Open Live Chat">
+        <button type="button" class="sv-dash-chat-fab__close" title="Hide for now" aria-label="Hide chat widget">&times;</button>
+        <svg class="sv-dash-chat-fab__arc" viewBox="0 0 132 58" aria-hidden="true">
+            <defs>
+                <path id="svFabArcPath" d="M 10 40 Q 66 6 122 40" fill="none"/>
+            </defs>
+            <text>
+                <textPath href="#svFabArcPath" startOffset="50%" text-anchor="middle">We Are Here!</textPath>
+            </text>
+        </svg>
+        <span class="sv-dash-chat-fab__wave" aria-hidden="true">&#128075;</span>
+        <a href="LiveChat.aspx" class="sv-dash-chat-fab__btn" title="Open Live Chat">
+            <span class="sv-dash-chat-fab__pulse" aria-hidden="true"></span>
+            <span class="sv-dash-chat-fab__pulse sv-dash-chat-fab__pulse--2" aria-hidden="true"></span>
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+            <span id="svDashChatFabBadge" class="sv-dash-chat-fab__badge" aria-hidden="true"></span>
+        </a>
     </div>
 </asp:Content>
 
@@ -4242,4 +4262,5 @@ Profit Share Budget</p>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script src="js/qr-share.js"></script>
     <script src="js/dashboard-qr.js"></script>
+    <script src="js/dashboard-live-chat-fab.js"></script>
 </asp:Content>

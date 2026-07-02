@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="../web-assets/css/style.css">
     <link rel="stylesheet" href="css/dashboard-theme.css" />
     <link rel="stylesheet" href="css/datepicker-theme.css" />
+    <link rel="stylesheet" href="css/chat-notifications.css" />
 
     <!--New Theme end CSS -->
 
@@ -104,6 +105,10 @@
                     <a href="SpotTrading.aspx">
                         <iconify-icon icon="solar:chart-2-outline" class="menu-icon"></iconify-icon>
                         <span>Spot Trading</span>
+                    <a href="LiveChat.aspx" id="svLiveChatMenuLink" class="sv-livechat-menu-link">
+                        <iconify-icon icon="solar:chat-round-dots-outline" class="menu-icon"></iconify-icon>
+                        <span>Live Chat</span>
+                        <span id="svLiveChatMenuBadge" class="sv-livechat-menu-badge" aria-hidden="true"></span>
                     </a>
                 </li>
 
@@ -462,6 +467,11 @@
                     <div class="d-flex flex-wrap align-items-center gap-3">
                      
 
+                        <a href="LiveChat.aspx" id="svChatNavBtn" class="sv-nav-btn sv-chat-nav-btn has-indicator rounded-circle d-flex justify-content-center align-items-center" title="Live Chat messages">
+                            <i class="fa-solid fa-comment-dots"></i>
+                            <span id="svChatNavBadge" class="sv-chat-nav-badge" aria-hidden="true"></span>
+                        </a>
+
                         <button class="sv-nav-btn has-indicator rounded-circle d-flex justify-content-center align-items-center" type="button" onclick="javascript:toggleFullScreen()" title="Fullscreen">
                             <i class="fa-solid fa-expand"></i>
                         </button>
@@ -479,25 +489,42 @@
                                     </div>
                                 </div>
                                 <ul class="to-top-list">
-                                    <li>
-                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="UserProfile.aspx">
-                                            <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>
-                                            My Profile</a>
+                                    <li class="to-top-list__item">
+                                        <a class="to-top-list__link" href="UserProfile.aspx">
+                                            <span class="to-top-list__icon to-top-list__icon--profile">
+                                                <iconify-icon icon="solar:user-linear"></iconify-icon>
+                                            </span>
+                                            <span class="to-top-list__label">My Profile</span>
+                                            <iconify-icon icon="solar:alt-arrow-right-linear" class="to-top-list__arrow"></iconify-icon>
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="Dashboard.aspx">
-                                            <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-xl"></iconify-icon>
-                                            Dashboard</a>
+                                    <li class="to-top-list__item">
+                                        <a class="to-top-list__link" href="Dashboard.aspx">
+                                            <span class="to-top-list__icon to-top-list__icon--dashboard">
+                                                <iconify-icon icon="solar:home-smile-angle-outline"></iconify-icon>
+                                            </span>
+                                            <span class="to-top-list__label">Dashboard</span>
+                                            <iconify-icon icon="solar:alt-arrow-right-linear" class="to-top-list__arrow"></iconify-icon>
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="CHangePassword.aspx">
-                                            <iconify-icon icon="icon-park-outline:setting-two" class="icon text-xl"></iconify-icon>
-                                            Change Password</a>
+                                    <li class="to-top-list__item">
+                                        <a class="to-top-list__link" href="CHangePassword.aspx">
+                                            <span class="to-top-list__icon to-top-list__icon--settings">
+                                                <iconify-icon icon="icon-park-outline:setting-two"></iconify-icon>
+                                            </span>
+                                            <span class="to-top-list__label">Change Password</span>
+                                            <iconify-icon icon="solar:alt-arrow-right-linear" class="to-top-list__arrow"></iconify-icon>
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="logout.aspx">
-                                            <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>
-                                            Log Out</a>
+                                    <li class="to-top-list__divider" aria-hidden="true"></li>
+                                    <li class="to-top-list__item">
+                                        <a class="to-top-list__link to-top-list__link--logout" href="logout.aspx">
+                                            <span class="to-top-list__icon to-top-list__icon--logout">
+                                                <iconify-icon icon="lucide:power"></iconify-icon>
+                                            </span>
+                                            <span class="to-top-list__label">Log Out</span>
+                                            <iconify-icon icon="solar:alt-arrow-right-linear" class="to-top-list__arrow"></iconify-icon>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -587,5 +614,6 @@
     <script src="../web-assets/js/app.js"></script>
     <script src="js/sidebar-menu.js"></script>
     <script src="js/user-sidebar.js"></script>
+    <script src="js/chat-notifications.js"></script>
 </body>
 </html>

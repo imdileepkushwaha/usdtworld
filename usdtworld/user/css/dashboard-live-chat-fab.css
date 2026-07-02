@@ -1,0 +1,238 @@
+/* Dashboard — animated Live Chat floating widget */
+.sv-dash-chat-fab {
+    position: fixed;
+    right: 22px;
+    bottom: 24px;
+    z-index: 9990;
+    width: 118px;
+    height: 118px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+    animation: svFabEnter 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) 0.8s forwards;
+}
+
+.sv-dash-chat-fab.is-hidden {
+    display: none !important;
+}
+
+.sv-dash-chat-fab__close {
+    position: absolute;
+    top: -6px;
+    right: 2px;
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.92);
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sv-dash-chat-fab__close:hover {
+    color: #fff;
+    background: rgba(30, 41, 59, 0.95);
+    transform: scale(1.08);
+}
+
+.sv-dash-chat-fab__arc {
+    position: absolute;
+    right: 0px;
+    bottom: 60px;
+    left: auto;
+    width: 130px;
+    height: 50px;
+    overflow: visible;
+    pointer-events: none;
+    animation: svFabLabelBob 2.8s ease-in-out infinite;
+    rotate: -37deg; 
+}
+
+.sv-dash-chat-fab__arc text {
+    fill: #38bdf8;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    paint-order: stroke fill;
+    stroke: #fff;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    font-family: "Space Grotesk", "Inter", sans-serif;
+}
+
+.sv-dash-chat-fab__wave {
+    position: absolute;
+    left: -4px;
+    bottom: 18px;
+    font-size: 1.65rem;
+    line-height: 1;
+    pointer-events: none;
+    transform-origin: 70% 85%;
+    animation: svFabWave 1.2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    z-index: 2;
+}
+
+.sv-dash-chat-fab__btn {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    color: #fff !important;
+    background: linear-gradient(145deg, #22c55e 0%, #16a34a 55%, #059669 100%);
+    box-shadow:
+        0 10px 28px rgba(34, 197, 94, 0.45),
+        0 0 0 4px rgba(34, 197, 94, 0.12),
+        inset 0 2px 0 rgba(255, 255, 255, 0.25);
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 1;
+    animation: svFabFloat 3.2s ease-in-out infinite;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.sv-dash-chat-fab__btn:hover {
+    animation-play-state: paused;
+    transform: scale(1.08) translateY(-3px);
+    box-shadow:
+        0 14px 34px rgba(34, 197, 94, 0.55),
+        0 0 0 6px rgba(34, 197, 94, 0.16),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.sv-dash-chat-fab__btn i {
+    font-size: 1.55rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.sv-dash-chat-fab__pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(34, 197, 94, 0.55);
+    pointer-events: none;
+    animation: svFabPulse 2.2s ease-out infinite;
+}
+
+.sv-dash-chat-fab__pulse--2 {
+    animation-delay: 1.1s;
+}
+
+.sv-dash-chat-fab__badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0f172a;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+    z-index: 4;
+}
+
+.sv-dash-chat-fab__badge.is-visible {
+    display: inline-flex;
+    animation: svFabBadgePop 0.45s cubic-bezier(0.34, 1.5, 0.64, 1), svFabBadgePulse 1.8s ease-in-out 0.5s infinite;
+}
+
+.sv-dash-chat-fab.has-unread .sv-dash-chat-fab__btn {
+    animation: svFabFloat 3.2s ease-in-out infinite, svFabAttention 1.6s ease-in-out infinite;
+}
+
+@keyframes svFabEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes svFabFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes svFabLabelBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes svFabWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(18deg); }
+    75% { transform: rotate(-8deg); }
+}
+
+@keyframes svFabPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.55);
+        opacity: 0;
+    }
+}
+
+@keyframes svFabBadgePop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes svFabBadgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+@keyframes svFabAttention {
+    0%, 100% { box-shadow: 0 10px 28px rgba(34, 197, 94, 0.45), 0 0 0 4px rgba(34, 197, 94, 0.12); }
+    50% { box-shadow: 0 14px 36px rgba(34, 197, 94, 0.65), 0 0 0 8px rgba(34, 197, 94, 0.2); }
+}
+
+@media (max-width: 575px) {
+    .sv-dash-chat-fab {
+        right: 14px;
+        bottom: 16px;
+        width: 104px;
+        height: 104px;
+    }
+
+    .sv-dash-chat-fab__btn {
+        width: 56px;
+        height: 56px;
+    }
+
+    .sv-dash-chat-fab__arc {
+        right: 16px;
+        bottom: 40px;
+        width: 118px;
+        height: 46px;
+    }
+
+    .sv-dash-chat-fab__arc text {
+        font-size: 13px;
+        stroke-width: 2.5px;
+    }
+}
