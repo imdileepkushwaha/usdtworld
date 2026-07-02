@@ -17,6 +17,7 @@
         candleSeries: null,
         volumeSeries: null,
         tickTimer: null,
+        cryptoTimer: null,
         trades: [],
         submitting: false
     };
@@ -154,7 +155,7 @@
         var info = byId('svSpotInfoInterval');
         var infoText = state.interval === 1 ? '1 minute' : state.interval + ' minutes';
         if (label) {
-            label.innerHTML = '<i class="fa-solid fa-chart-line"></i> Utility coin · ' + state.interval + 'm candles';
+            label.innerHTML = '<i class="fa-solid fa-chart-line"></i> ' + state.interval + 'm candles';
         }
         if (info) info.textContent = infoText;
     }
@@ -338,6 +339,50 @@
         window.setTimeout(resizeChart, 500);
     }
 
+    function getVolume24h() {
+        var base = state.baseCandles || [];
+        if (!base.length) return 0;
+
+        var now = Math.floor(Date.now() / 1000);
+        var cutoff = now - 86400;
+        var sum = 0;
+        var oldest = now;
+        var i;
+
+        for (i = 0; i < base.length; i++) {
+            var c = base[i];
+            if (c.time >= cutoff) {
+                sum += c.volume || 0;
+                if (c.time < oldest) oldest = c.time;
+            }
+        }
+
+        if (sum <= 0) {
+            for (i = 0; i < base.length; i++) {
+                sum += base[i].volume || 0;
+            }
+            var spanSec = base.length * 60;
+            if (spanSec > 0) sum = sum * (86400 / spanSec);
+        } else {
+            var coveredSec = now - oldest;
+            if (coveredSec > 0 && coveredSec < 86400) {
+                sum = sum * (86400 / coveredSec);
+            }
+        }
+
+        return sum * state.price;
+    }
+
+    function formatCompactUsd(value) {
+        var n = Number(value);
+        if (isNaN(n) || n <= 0) return '$0';
+        if (n >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+        if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+        if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+        if (n >= 1e3) return '$' + (n / 1e3).toFixed(2) + 'K';
+        return '$' + n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    }
+
     function updateTicker() {
         var priceEl = byId('svSpotPrice');
         var changeEl = byId('svSpotChange');
@@ -345,6 +390,7 @@
         var lowEl = byId('svSpotLow');
         var updatedEl = byId('svSpotUpdated');
         var infoPrice = byId('svSpotInfoPrice');
+        var infoVolume = byId('svSpotInfoVolume');
         var launchGain = byId('svSpotLaunchGain');
 
         if (priceEl) priceEl.textContent = formatPrice(state.price);
@@ -367,13 +413,14 @@
         if (launchGain) {
             var launchUp = launchPct >= 0;
             launchGain.textContent = (launchUp ? '+' : '') + launchPct.toFixed(2) + '%';
-            launchGain.className = 'sv-spot-hero__footer-value ' + (launchUp ? 'sv-spot-hero__footer-value--up' : 'sv-spot-hero__footer-value--down');
+            launchGain.className = 'sv-spot-hero__stat-value ' + (launchUp ? 'sv-spot-hero__stat-value--up' : 'sv-spot-hero__stat-value--down');
         }
 
         if (highEl) highEl.textContent = formatPrice(state.high24);
         if (lowEl) lowEl.textContent = formatPrice(state.low24);
         if (updatedEl) updatedEl.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         if (infoPrice) infoPrice.textContent = formatPrice(state.price);
+        if (infoVolume) infoVolume.textContent = formatCompactUsd(getVolume24h());
         updateOhlc();
     }
 
@@ -387,76 +434,102 @@
         if (hdn) hdn.value = String(usdt);
     }
 
-    function setOrderMsg(text, isError) {
-        var el = byId('svSpotOrderMsg');
+    function setOrderMsg(text, isError, side) {
+        var id = side === 'sell' ? 'svSpotSellMsg' : 'svSpotBuyMsg';
+        var el = byId(id);
         if (!el) return;
         el.textContent = text || '';
         el.className = 'sv-spot-order-msg' + (text ? (isError ? ' sv-spot-order-msg--error' : ' sv-spot-order-msg--ok') : '');
     }
 
-    function updateOrderPreview() {
-        var amountInput = byId('txtSpotAmount');
+    function updateBuyPreview() {
+        var amountInput = byId('txtSpotBuyAmount');
         var amount = amountInput ? parseFloat(amountInput.value) : 0;
-        var estPrice = byId('svSpotEstPrice');
-        var receive = byId('svSpotReceive');
-        var receiveLabel = byId('svSpotReceiveLabel');
-        var amountLabel = byId('svSpotAmountLabel');
-        var amountUnit = byId('svSpotAmountUnit');
-
-        if (estPrice) estPrice.textContent = formatPrice(state.price);
-
-        if (state.side === 'buy') {
-            if (amountLabel) amountLabel.textContent = 'Amount';
-            if (amountUnit) amountUnit.textContent = 'USDT';
-            if (receiveLabel) receiveLabel.textContent = 'You receive';
-            if (receive) {
-                var coins = amount > 0 ? amount / state.price : 0;
-                receive.textContent = formatQty(coins) + ' UWC+';
-            }
-        } else {
-            if (amountLabel) amountLabel.textContent = 'Amount';
-            if (amountUnit) amountUnit.textContent = 'UWC+';
-            if (receiveLabel) receiveLabel.textContent = 'You receive';
-            if (receive) {
-                var usdt = amount > 0 ? amount * state.price : 0;
-                receive.textContent = formatQty(usdt) + ' USDT';
-            }
+        var receive = byId('svSpotBuyReceive');
+        if (receive) {
+            var coins = amount > 0 ? amount / state.price : 0;
+            receive.textContent = formatQty(coins) + ' UWC+';
         }
     }
 
-    function applyQuickAmount(pct) {
-        var amountInput = byId('txtSpotAmount');
+    function updateSellPreview() {
+        var amountInput = byId('txtSpotSellAmount');
+        var amount = amountInput ? parseFloat(amountInput.value) : 0;
+        var receive = byId('svSpotSellReceive');
+        if (receive) {
+            var usdt = amount > 0 ? amount * state.price : 0;
+            receive.textContent = formatQty(usdt) + ' USDT';
+        }
+    }
+
+    function updateOrderPreview() {
+        var estPrice = byId('svSpotEstPrice');
+        if (estPrice) estPrice.textContent = formatPrice(state.price);
+        updateBuyPreview();
+        updateSellPreview();
+    }
+
+    function applyQuickAmount(pct, side) {
+        var inputId = side === 'sell' ? 'txtSpotSellAmount' : 'txtSpotBuyAmount';
+        var amountInput = byId(inputId);
         if (!amountInput) return;
 
         var percent = Math.max(0, Math.min(100, pct)) / 100;
         var value = 0;
 
-        if (state.side === 'buy') {
-            value = getUsdtBalance() * percent;
-        } else {
+        if (side === 'sell') {
             value = getUwcBalance() * percent;
+        } else {
+            value = getUsdtBalance() * percent;
         }
 
         amountInput.value = value > 0 ? formatQty(value) : '';
         updateOrderPreview();
     }
 
-    function setSide(side) {
-        state.side = side === 'sell' ? 'sell' : 'buy';
-        document.querySelectorAll('.sv-spot-order-tabs__btn').forEach(function (btn) {
-            btn.classList.toggle('is-active', btn.getAttribute('data-side') === state.side);
-        });
+    function submitOrder(side) {
+        var orderSide = side === 'sell' ? 'sell' : 'buy';
+        if (state.submitting) return;
 
-        var submit = byId('btnSpotSubmit');
-        if (submit) {
-            submit.className = 'sv-spot-submit ' + (state.side === 'buy' ? 'sv-spot-submit--buy' : 'sv-spot-submit--sell');
-            submit.innerHTML = state.side === 'buy'
-                ? '<i class="fa-solid fa-arrow-trend-up"></i> Buy UWC+'
-                : '<i class="fa-solid fa-arrow-trend-down"></i> Sell UWC+';
+        var inputId = orderSide === 'sell' ? 'txtSpotSellAmount' : 'txtSpotBuyAmount';
+        var btnId = orderSide === 'sell' ? 'btnSpotSellSubmit' : 'btnSpotBuySubmit';
+        var amountInput = byId(inputId);
+        var amount = amountInput ? parseFloat(amountInput.value) : 0;
+        setOrderMsg('', false, orderSide);
+
+        if (!amount || amount <= 0) {
+            setOrderMsg('Enter a valid amount.', true, orderSide);
+            return;
         }
 
-        updateOrderPreview();
-        setOrderMsg('');
+        state.submitting = true;
+        state.side = orderSide;
+        var btn = byId(btnId);
+        if (btn) btn.disabled = true;
+
+        postWebMethod('ExecuteSpotTrade', {
+            side: orderSide,
+            amount: amount,
+            price: state.price
+        }, function (res) {
+            state.submitting = false;
+            if (btn) btn.disabled = false;
+
+            if (!res.success) {
+                setOrderMsg(res.message || 'Order failed.', true, orderSide);
+                return;
+            }
+
+            setBalances(res.usdtBalance || 0, res.uwcBalance || 0);
+            setOrderMsg(res.message || 'Order filled.', false, orderSide);
+            if (amountInput) amountInput.value = '';
+            addTrade(res);
+            updateOrderPreview();
+        }, function (err) {
+            state.submitting = false;
+            if (btn) btn.disabled = false;
+            setOrderMsg(err, true, orderSide);
+        });
     }
 
     function seedRandomTrades(count) {
@@ -533,66 +606,22 @@
         });
     }
 
-    function submitOrder() {
-        if (state.submitting) return;
-
-        var amountInput = byId('txtSpotAmount');
-        var amount = amountInput ? parseFloat(amountInput.value) : 0;
-        setOrderMsg('');
-
-        if (!amount || amount <= 0) {
-            setOrderMsg('Enter a valid amount.', true);
-            return;
-        }
-
-        state.submitting = true;
-        var btn = byId('btnSpotSubmit');
-        if (btn) btn.disabled = true;
-
-        postWebMethod('ExecuteSpotTrade', {
-            side: state.side,
-            amount: amount,
-            price: state.price
-        }, function (res) {
-            state.submitting = false;
-            if (btn) btn.disabled = false;
-
-            if (!res.success) {
-                setOrderMsg(res.message || 'Order failed.', true);
-                return;
-            }
-
-            setBalances(res.usdtBalance || 0, res.uwcBalance || 0);
-            setOrderMsg(res.message || 'Order filled.', false);
-            if (amountInput) amountInput.value = '';
-            addTrade(res);
-            updateOrderPreview();
-        }, function (err) {
-            state.submitting = false;
-            if (btn) btn.disabled = false;
-            setOrderMsg(err, true);
-        });
-    }
-
     function bindEvents() {
-        document.querySelectorAll('.sv-spot-order-tabs__btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                setSide(btn.getAttribute('data-side'));
-            });
-        });
+        var buyInput = byId('txtSpotBuyAmount');
+        var sellInput = byId('txtSpotSellAmount');
+        if (buyInput) buyInput.addEventListener('input', updateBuyPreview);
+        if (sellInput) sellInput.addEventListener('input', updateSellPreview);
 
-        var amountInput = byId('txtSpotAmount');
-        if (amountInput) {
-            amountInput.addEventListener('input', updateOrderPreview);
-        }
-
-        var submit = byId('btnSpotSubmit');
-        if (submit) submit.addEventListener('click', submitOrder);
+        var buyBtn = byId('btnSpotBuySubmit');
+        var sellBtn = byId('btnSpotSellSubmit');
+        if (buyBtn) buyBtn.addEventListener('click', function () { submitOrder('buy'); });
+        if (sellBtn) sellBtn.addEventListener('click', function () { submitOrder('sell'); });
 
         document.querySelectorAll('.sv-spot-quick-amt__btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var pct = parseInt(btn.getAttribute('data-pct'), 10);
-                if (!isNaN(pct)) applyQuickAmount(pct);
+                var side = btn.getAttribute('data-side') || 'buy';
+                if (!isNaN(pct)) applyQuickAmount(pct, side);
             });
         });
 
@@ -608,18 +637,111 @@
         state.tickTimer = window.setInterval(pushLiveCandle, TICK_MS);
     }
 
+    var CRYPTO_API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
+    var CRYPTO_REFRESH_MS = 30000;
+
+    function formatCryptoPrice(value) {
+        var n = Number(value);
+        if (isNaN(n)) return '$0.00';
+        if (n >= 1000) {
+            return '$' + n.toLocaleString(undefined, { maximumFractionDigits: 0 });
+        }
+        if (n >= 1) {
+            return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    }
+
+    function renderCryptoList(coins) {
+        var list = byId('svSpotCryptoList');
+        if (!list || !coins || !coins.length) return;
+
+        var html = '';
+        for (var i = 0; i < coins.length; i++) {
+            var coin = coins[i];
+            var change = Number(coin.price_change_percentage_24h) || 0;
+            var up = change >= 0;
+            var changeClass = up ? 'sv-spot-crypto-item__change--up' : 'sv-spot-crypto-item__change--down';
+            var sign = up ? '+' : '';
+            var rank = coin.market_cap_rank || (i + 1);
+            var mcap = formatCompactUsd(coin.market_cap);
+            var vol = formatCompactUsd(coin.total_volume);
+
+            html +=
+                '<div class="sv-spot-crypto-item">' +
+                    '<div class="sv-spot-crypto-item__left">' +
+                        '<span class="sv-spot-crypto-item__rank">' + rank + '</span>' +
+                        '<img src="' + coin.image + '" alt="" width="32" height="32" loading="lazy">' +
+                        '<div class="sv-spot-crypto-item__meta">' +
+                            '<span class="sv-spot-crypto-item__symbol">' + coin.symbol.toUpperCase() + '</span>' +
+                            '<span class="sv-spot-crypto-item__name">' + coin.name + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="sv-spot-crypto-item__right">' +
+                        '<div class="sv-spot-crypto-item__price-row">' +
+                            '<span class="sv-spot-crypto-item__price">' + formatCryptoPrice(coin.current_price) + '</span>' +
+                            '<span class="sv-spot-crypto-item__change ' + changeClass + '">' + sign + change.toFixed(2) + '%</span>' +
+                        '</div>' +
+                        '<span class="sv-spot-crypto-item__detail">MCap ' + mcap + ' · Vol ' + vol + '</span>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        list.innerHTML = html;
+    }
+
+    function loadTopCryptoPrices() {
+        var list = byId('svSpotCryptoList');
+        var updated = byId('svSpotCryptoUpdated');
+
+        if (typeof fetch !== 'function') {
+            if (list) {
+                list.innerHTML = '<div class="sv-spot-crypto-empty">Live prices are not supported in this browser.</div>';
+            }
+            return;
+        }
+
+        fetch(CRYPTO_API_URL)
+            .then(function (res) {
+                if (!res.ok) throw new Error('fetch failed');
+                return res.json();
+            })
+            .then(function (data) {
+                if (!Array.isArray(data) || !data.length) throw new Error('empty');
+                renderCryptoList(data);
+                if (updated) {
+                    updated.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+            })
+            .catch(function () {
+                if (list) {
+                    list.innerHTML =
+                        '<div class="sv-spot-crypto-empty">' +
+                            '<i class="fa-solid fa-triangle-exclamation"></i>' +
+                            '<span>Unable to load prices. Retrying...</span>' +
+                        '</div>';
+                }
+            });
+    }
+
+    function startCryptoRefresh() {
+        loadTopCryptoPrices();
+        if (state.cryptoTimer) window.clearInterval(state.cryptoTimer);
+        state.cryptoTimer = window.setInterval(loadTopCryptoPrices, CRYPTO_REFRESH_MS);
+    }
+
     function init() {
         buildSeedCandles();
         initChart();
         updateTicker();
         updateIntervalLabel();
-        setSide('buy');
         updateOrderPreview();
         bindEvents();
         seedRandomTrades(10);
         renderTrades();
         loadBalances();
         startLiveTicks();
+        startCryptoRefresh();
         window.setTimeout(resizeChart, 800);
     }
 
