@@ -105,6 +105,10 @@
                     <a href="SpotTrading.aspx">
                         <iconify-icon icon="solar:chart-2-outline" class="menu-icon"></iconify-icon>
                         <span>Spot Trading</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="LiveChat.aspx" id="svLiveChatMenuLink" class="sv-livechat-menu-link">
                         <iconify-icon icon="solar:chat-round-dots-outline" class="menu-icon"></iconify-icon>
                         <span>Live Chat</span>

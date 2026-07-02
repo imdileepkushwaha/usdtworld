@@ -30,7 +30,7 @@
 
                 <div class="sv-dash-header__icon sv-spot-header__icon">
 
-                    <i class="fa-solid fa-chart-candlestick"></i>
+                    <i class="fa-solid fa-chart-line"></i>
 
                 </div>
 
